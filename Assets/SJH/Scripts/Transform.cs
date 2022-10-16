@@ -22,11 +22,18 @@ public class Transform : MonoBehaviour
         RaycastHit hitInfo; 
         if (Physics.Raycast(ray, out hitInfo))
         {
-            if(hitInfo.transform.tag == "Furniture")
+            if (Input.GetButton("Fire1"))
             {
-                GameObject furniture = hitInfo.transform.gameObject;
-                print(furniture.name);
+
+
+                if (hitInfo.transform.tag == "Furniture")
+                {
+                    GameObject furniture = hitInfo.transform.gameObject;
+                    print(furniture.name);
+                    furniture.transform.position = Input.mousePosition;
+                }
             }
         }
+        
     }
 }
