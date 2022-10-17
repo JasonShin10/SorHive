@@ -13,6 +13,7 @@ public class DragDrop : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
+        
         if (GameManager.instance.name == gameObject.transform.name)
         {
             Vector2 wheel = Input.mouseScrollDelta;
