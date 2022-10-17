@@ -6,7 +6,7 @@ public class Transform : MonoBehaviour
 {
     Vector3 mOffset;
     float mZCoord;
-    
+    public string name;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class Transform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Select();
+        //Select();
     }
 
     public void Select()
@@ -32,6 +32,7 @@ public class Transform : MonoBehaviour
                 if (hitInfo.transform.tag == "Furniture")
                 {
                     GameObject furniture = hitInfo.transform.gameObject;
+                    name = furniture.name;
                     print(furniture.name);
                    
                 }
