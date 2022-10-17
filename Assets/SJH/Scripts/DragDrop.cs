@@ -20,12 +20,12 @@ public class DragDrop : MonoBehaviour
         if (wheel.y >0)
         {
             gameObject.transform.Rotate(0, speed, 0);
-            speed += Time.deltaTime * 3;
+            speed = 10;
         }
         else if (wheel.y <0)
         {
             gameObject.transform.Rotate(0, mspeed, 0);
-            mspeed -= Time.deltaTime * 3;
+            mspeed = -10;
         }
     }
 
