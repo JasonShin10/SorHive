@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 //누구를 커스텀 할것이냐?
 [CustomEditor(typeof(Map))]
@@ -27,6 +28,19 @@ public class MapEditor : Editor
 
         //바닥 Prefab Field
        map.floor = (GameObject)EditorGUILayout.ObjectField("바닥", map.floor, typeof(GameObject), false);
+
+        //바닥 생성 버튼
+        if(GUILayout.Button("바닥 생성"))
+        {
+            CreateFloor();
+        }
+
+        //만약 Inspector의 값이 변경되었다면
+        if(GUI.changed)
+        {
+            //별표 모양 표시(씬 이동시, 유니티를 끌 때 저장 팝업이 뜨게)
+            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+        }
     }
 
     //Scene 을 그리는 함수
@@ -43,7 +57,7 @@ public class MapEditor : Editor
         Vector3 end;
         //세로 줄 그리자
         Handles.color = Color.red;
-        Handles.DrawLine(Vector3.zero, Vector3.one * 5);
+     
         for (int i = 0; i <= map.tileX; i++)
         {
             start = new Vector3(i, 0, 0);
@@ -57,15 +71,19 @@ public class MapEditor : Editor
             end = new Vector3(map.tileX, 0, i);
             Handles.DrawLine(start, end);
         }
-        if(floor == null)
-        {
-            CreateFloor();
-        }
+      
     }
 
-    GameObject floor;
+    
     void CreateFloor()
     {
+        GameObject floor = GameObject.Find("Floor");
+       //만약에 기존 바닥이 있었다면 지우자
+       if(floor != null)
+        {
+            DestroyImmediate(floor);
+        }
+
        //기본 바닥 생성
        floor = (GameObject)PrefabUtility.InstantiatePrefab(map.floor);
         //tileX, tileY만큼 크기를 키운다
