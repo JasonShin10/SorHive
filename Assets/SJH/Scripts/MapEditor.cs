@@ -66,7 +66,9 @@ public class MapEditor : Editor
     GameObject floor;
     void CreateFloor()
     {
-       GameObject floor = (GameObject)PrefabUtility.InstantiatePrefab(map.floor);  
-
+       //기본 바닥 생성
+       floor = (GameObject)PrefabUtility.InstantiatePrefab(map.floor);
+        //tileX, tileY만큼 크기를 키운다
+        floor.transform.localScale = new Vector3(map.tileX, 1, map.tileZ); 
     }
 }
