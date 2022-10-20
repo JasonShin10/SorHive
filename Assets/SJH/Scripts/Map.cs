@@ -34,37 +34,59 @@ public class Map : MonoBehaviour
         //}
     }
 
+    UnityEngine.Transform selectObj;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            int layer = 1 << LayerMask.NameToLayer("Obj");
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
+                selectObj = hit.transform;
                 //currCube = Instantiate(cube);
-                currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                int x = (int)(hit.point.x);
-                int z = (int)(hit.point.z);
-                currCube.transform.position = new Vector3(x, hit.point.y, z);
-                currCube.GetComponent<Collider>().enabled = false;
+                //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                //int x = (int)(hit.point.x);
+                //int z = (int)(hit.point.z);
+                //currCube.transform.position = new Vector3(x, hit.point.y, z);
+                //currCube.GetComponent<Collider>().enabled = false;
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            currCube = null;
-        }
-
-        if (currCube != null)
+        if(Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+                if(hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    currCube.layer = LayerMask.NameToLayer("Obj");
+                    int x = (int)(hit.point.x);
+                    int z = (int)(hit.point.z);
+                    currCube.transform.position = new Vector3(x, hit.point.y, z);
+
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            selectObj = null;
+        }
+
+        if (selectObj != null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            int layer = 1 << LayerMask.NameToLayer("Ground");
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
+            {
                 int x = (int)(hit.point.x);
                 int z = (int)(hit.point.z);
-                currCube.transform.position = new Vector3(x, hit.point.y, z);
+                selectObj.position = new Vector3(x, hit.point.y, z);
             }
         }
     }
