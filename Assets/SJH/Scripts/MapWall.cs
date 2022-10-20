@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public class MapWall : MonoBehaviour
 {
     public GameObject quadFactory;
     public int tileX = 5;
-    public int tileZ = 5;
+    public int tileY = 5;
     public GameObject cube;
     GameObject currCube;
     GameObject floor;
@@ -14,12 +14,12 @@ public class Map : MonoBehaviour
     {
         for (int i = 0; i <= tileX; i++)
         {
-            for (int j = 0; j <= tileX; j++)
+            for (int j = 0; j <= tileY; j++)
             {
                 floor = Instantiate(quadFactory);
                 Vector3 firstPos = transform.position;
                 firstPos.x += j;
-                firstPos.z += i;
+                firstPos.y += i;
                 floor.transform.position = firstPos;
                 floor.transform.rotation = transform.rotation;
             }
