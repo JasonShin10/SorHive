@@ -83,9 +83,12 @@ public class Map : MonoBehaviour
             int layer = 1 << LayerMask.NameToLayer("Ground");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                int x = (int)(hit.point.x);
-                int z = (int)(hit.point.z);
-                selectObj.position = new Vector3(x, hit.point.y, z);
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && !selectObj.CompareTag("Wall"))
+                {
+                    int x = (int)(hit.point.x);
+                    int z = (int)(hit.point.z);
+                    selectObj.position = new Vector3(x, hit.point.y, z);
+                }
             }
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapWall : MonoBehaviour
+public class MapLeft : MonoBehaviour
 {
     public GameObject quadFactory;
     public int tileX = 5;
@@ -83,9 +83,13 @@ public class MapWall : MonoBehaviour
             int layer = 1 << LayerMask.NameToLayer("WallLeft");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                int x = (int)(hit.point.x);
-                int z = (int)(hit.point.z);
-                selectObj.position = new Vector3(x, hit.point.y, z);
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallLeft") && !selectObj.CompareTag("Wall"))
+                {
+                    int x = (int)(hit.point.x);
+                    int z = (int)(hit.point.z);
+                    int y = (int)(hit.point.y);
+                    selectObj.position = new Vector3(x, y, z);
+                }
             }
         }
     }

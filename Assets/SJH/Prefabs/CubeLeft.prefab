@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8770533033395230762}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: CubeLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3432799492069549885, guid: 1abb60cbe3a0b4846bcd8a462f860f1a, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3432799492069549885, guid: 1abb60cbe3a0b4846bcd8a462f860f1a, type: 3}
       propertyPath: m_IsActive
