@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8770533033395230762}
   m_Layer: 7
-  m_Name: BCube 1
+  m_Name: CubeGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

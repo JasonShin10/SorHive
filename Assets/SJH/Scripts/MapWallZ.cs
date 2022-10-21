@@ -60,7 +60,7 @@ public class MapWallZ : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallRight"))
                 {
                     currCube = Instantiate(cube);
                     currCube.layer = LayerMask.NameToLayer("Obj");
@@ -80,7 +80,7 @@ public class MapWallZ : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            int layer = 1 << LayerMask.NameToLayer("Ground");
+            int layer = 1 << LayerMask.NameToLayer("WallRight");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 int x = (int)(hit.point.x);
