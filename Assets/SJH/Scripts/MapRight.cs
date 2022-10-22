@@ -64,9 +64,9 @@ public class MapRight : MonoBehaviour
                 {
                     currCube = Instantiate(cube);
                     currCube.layer = LayerMask.NameToLayer("Obj");
-                    int x = (int)(hit.point.x);
+                    int y = (int)(hit.point.y);
                     int z = (int)(hit.point.z);
-                    currCube.transform.position = new Vector3(x, hit.point.y, z);
+                    currCube.transform.position = new Vector3(hit.point.x, y, z);
                 }
             }
         }
@@ -96,7 +96,10 @@ public class MapRight : MonoBehaviour
                 line.SetPosition(1, hit.point);
             }
         }
+
+      
     }
 
+    
     public LineRenderer line;
 }

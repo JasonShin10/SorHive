@@ -592,7 +592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538274811}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3}
   m_LocalScale: {x: 0.60730785, y: 0.60730785, z: 0.60730785}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -630,9 +630,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45a3ef9f13cde424eba31a98aa664614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mOffset: {x: 0, y: 0, z: 0}
-  mZCoord: 0
-  name: 
 --- !u!81 &1584769219
 AudioListener:
   m_ObjectHideFlags: 0
@@ -807,7 +804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1998332136}
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.3, y: 0, z: 0}
   m_LocalScale: {x: 0.6073078, y: 0.60730785, z: 0.6073078}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -829,7 +826,7 @@ MonoBehaviour:
   quadFactory: {fileID: 5263190595492025990, guid: fe3506bfbc6c6614dbcd70ff8b839e43, type: 3}
   tileX: 16
   tileY: 16
-  cube: {fileID: 291110610404590840, guid: bd45f010e4b047b4382eb61a3634127f, type: 3}
+  cube: {fileID: 922776874054794103, guid: f35c2c2759609c74aae86bd4e0b06259, type: 3}
   line: {fileID: 1388805788}
 --- !u!1 &2129042309
 GameObject:
