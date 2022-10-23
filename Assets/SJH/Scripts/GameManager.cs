@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    
     private void Awake()
     {
         if (!instance)
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
                 {
                     GameObject furniture = hitInfo.transform.gameObject;
                     name = furniture.name;
-                    print(furniture.name);
+                    //print(furniture.name);
 
                 }
             }

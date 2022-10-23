@@ -8,8 +8,13 @@ public class Map : MonoBehaviour
     public int tileX = 5;
     public int tileZ = 5;
     public GameObject cube;
+    public bool located = true;
+    int ox;
+    int oz;
+    float oy;
     GameObject currCube;
     GameObject floor;
+    Vector3 startPos;
     void Start()
     {
         for (int i = 0; i <= tileX; i++)
@@ -39,12 +44,16 @@ public class Map : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+           
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 selectObj = hit.transform;
+                selectObj.gameObject.GetComponent<Furniture>().located = false;
+
+
                 //currCube = Instantiate(cube);
                 //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //int x = (int)(hit.point.x);
@@ -67,13 +76,27 @@ public class Map : MonoBehaviour
                     int x = (int)(hit.point.x);
                     int z = (int)(hit.point.z);
                     currCube.transform.position = new Vector3(x, hit.point.y, z);
+                    startPos = currCube.transform.position;
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            if(selectObj.GetComponent<Furniture>().canLocated == true)
+            {
+            selectObj.position = new Vector3(ox, oy, oz);
+            selectObj.gameObject.GetComponent<Furniture>().located = true;
             selectObj = null;
+            }
+            else
+            {
+                selectObj.position = startPos;
+                selectObj.GetComponent<Furniture>().canLocated = false;
+                selectObj = null;
+            }
+           
+
         }
 
         if (selectObj != null)
@@ -86,8 +109,11 @@ public class Map : MonoBehaviour
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && !selectObj.CompareTag("Wall"))
                 {
                     int x = (int)(hit.point.x);
+                    ox = (int)(hit.point.x);
                     int z = (int)(hit.point.z);
-                    selectObj.position = new Vector3(x, hit.point.y, z);
+                    oz = (int)(hit.point.z);
+                    oy = hit.point.y;
+                    selectObj.position = new Vector3(x, hit.point.y+5, z);
                 }
             }
         }
