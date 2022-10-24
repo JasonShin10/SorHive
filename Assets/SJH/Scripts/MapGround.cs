@@ -66,9 +66,10 @@ public class MapGround : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    if(GameObject.Find("Canvas").GetComponent<AddManager>().AddBed == true)
+                    if(AddManager.instance.AddBed == true)
                     {
-                    currCube = Instantiate(GameObject.Find("Canvas").GetComponent<AddManager>().bedItems[GameObject.Find("Canvas").GetComponent<AddManager>().currButtonNum]);
+                    currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
+                    AddManager.instance.AddBed = false;
                     currCube.transform.GetChild(0).name = "d" + select;
                     select += 1;
                     currCube.layer = LayerMask.NameToLayer("Obj");

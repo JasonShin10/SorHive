@@ -59,11 +59,16 @@ public class MapRight : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallRight"))
                 {
-                    currCube = Instantiate(cube);
-                    currCube.layer = LayerMask.NameToLayer("Obj");
-                    int y = (int)(hit.point.y);
-                    int z = (int)(hit.point.z);
-                    currCube.transform.position = new Vector3(hit.point.x, y, z);
+                    if (AddManager.instance.AddWallHang == true)
+                    {
+                        currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddWallHang = false;
+                        currCube = Instantiate(cube);
+                        currCube.layer = LayerMask.NameToLayer("Obj");
+                        int y = (int)(hit.point.y);
+                        int z = (int)(hit.point.z);
+                        currCube.transform.position = new Vector3(hit.point.x, y, z);
+                    }
                 }
             }
         }

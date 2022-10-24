@@ -7,16 +7,16 @@ using UnityEngine.UI;
 
 public class AddManager : MonoBehaviour
 {
-    //public static AddManager instance;
+    public static AddManager instance;
 
 
-    //private void Awake()
-    //{
-    //    if (!instance)
-    //    {
-    //        instance = this;
-    //    }
-    //}
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+    }
 
     //오브젝트들이 생성되는 장소
     public Transform SpawnPos ;
@@ -31,7 +31,9 @@ public class AddManager : MonoBehaviour
     public GameObject[] WallHangItem;
 
     public bool AddBed = false;
-
+    public bool AddChair = false;
+    public bool AddDesk = false;
+    public bool AddWallHang = false;
 
     public int currButtonNum = 0;
 
@@ -65,13 +67,13 @@ public class AddManager : MonoBehaviour
     public void OnAddBed()
     {
         AddBed = true;
-        GameObject bed = Instantiate(bedItems[currButtonNum]);
+       // GameObject bed = Instantiate(bedItems[currButtonNum]);
         //bed.transform.position = SpawnPos.transform.position;
-
     }
 
     public void OnAddChair()
     {
+
         GameObject chair = Instantiate(chairItems[currButtonNum]);
         chair.transform.position = SpawnPos.transform.position;
     }
