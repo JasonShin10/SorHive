@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/LHY/RoomChange.unity
     guid: 037abca0bda50d54db9bc8e386515ed0
   - enabled: 1
-    path: Assets/Scenes/LHY/LHY_PlayScene.unity
+    path: Assets/Scenes/LHY/RoomInScene.unity
     guid: 3912660eff075bd40ac71e8d8fbf4289
   m_configObjects: {}
