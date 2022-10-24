@@ -49,7 +49,12 @@ public class LHY_PlayerMove : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        Vector3 dir = new Vector3(-h+v, 0, -v);
+        float w = -h + -v;
+        float hi = -v + h;
+
+            
+
+        Vector3 dir = new Vector3(w, 0, hi);
         dir.Normalize();
 
         P_jump();
@@ -79,6 +84,9 @@ public class LHY_PlayerMove : MonoBehaviour
             //anim.SetBool("IsInAir", false);
             //yVelocity의 값을 0으로 리셋해준다.
             yVelocity = 0;
+
+            //바닥에 착지했으므로 점프 카운트를 0으로 리셋 해준다.
+            Jcount = 0;
         }
         //isjump = false;
         //플레이어가 점프하고 있지 않고, 사용자가 점프키를 눌렀다면

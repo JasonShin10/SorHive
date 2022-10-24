@@ -469,6 +469,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a7288d667c160c40bd886132a903b09, type: 3}
   m_PrefabInstance: {fileID: 351799998}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &619458260 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3187005833135410440, guid: 8a7288d667c160c40bd886132a903b09, type: 3}
+  m_PrefabInstance: {fileID: 351799998}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &619458264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619458260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a616abe2abd294e9c94186569acb2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mats: []
 --- !u!1 &855522561
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,14 +528,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 855522561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4392e61f6d5455d4dbb2a58cd0fde078, type: 3}
+  m_Script: {fileID: 11500000, guid: f0b3488f9d60b224db4ec26f21667a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   quadFactory: {fileID: 5263190595492025990, guid: 77a478752b8c4fb41a7a04d985c4ccfc, type: 3}
   tileX: 16
   tileZ: 16
+  tileY: 16
   cube: {fileID: 5892773125334410659, guid: abf049fad7d621940bc56a6fdc04355e, type: 3}
   located: 1
+  select: 0
 --- !u!1001 &1321209159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -737,8 +757,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quadFactory: {fileID: 5263190595492025990, guid: 850c64188e3aab24195a0c3e22aee574, type: 3}
   tileX: 16
+  tileZ: 16
   tileY: 16
   cube: {fileID: 291110610404590840, guid: bd45f010e4b047b4382eb61a3634127f, type: 3}
+  located: 1
+  select: 0
 --- !u!4 &1538274813
 Transform:
   m_ObjectHideFlags: 0
@@ -967,8 +990,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quadFactory: {fileID: 5263190595492025990, guid: fe3506bfbc6c6614dbcd70ff8b839e43, type: 3}
   tileX: 16
+  tileZ: 16
   tileY: 16
-  cube: {fileID: 8465910140171523783, guid: 35273650af7bbe74c9a25430ef945bcc, type: 3}
+  cube: {fileID: 291110610404590840, guid: bd45f010e4b047b4382eb61a3634127f, type: 3}
+  located: 1
+  select: 0
   line: {fileID: 1388805788}
 --- !u!1 &2129042309
 GameObject:
