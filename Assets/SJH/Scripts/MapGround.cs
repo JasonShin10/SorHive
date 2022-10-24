@@ -36,7 +36,6 @@ public class MapGround : Map
         //    floor.transform.position = firstPos;
         //}
     }
-
     UnityEngine.Transform selectObj;
     void Update()
     {
@@ -74,8 +73,6 @@ public class MapGround : Map
                     currCube.layer = LayerMask.NameToLayer("Obj");
                     int x = (int)(hit.point.x);
                     int z = (int)(hit.point.z);
-
-
                     currCube.transform.position = new Vector3(x, hit.point.y, z);
                     if (currCube.GetComponent<Furniture>())
                     {
@@ -84,14 +81,11 @@ public class MapGround : Map
                     startPos = currCube.GetComponent<Furniture>().startPos;
                     currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
                         startLocation = currCube.GetComponent<Furniture>().startRotation;
-
                     }
-
                     //startPos = currCube.transform.position;
                 }
             }
         }
-
         if (Input.GetMouseButtonUp(0))
         {
             if(selectObj.GetComponent<Furniture>().canLocated == true)
