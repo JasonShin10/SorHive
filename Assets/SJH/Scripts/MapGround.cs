@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MapGround : Map
 {
-
     int select = 0;
     int ox;
     int oz;
@@ -67,7 +66,9 @@ public class MapGround : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    currCube = Instantiate(cube);
+                    if(GameObject.Find("Canvas").GetComponent<AddManager>().AddBed == true)
+                    {
+                    currCube = Instantiate(GameObject.Find("Canvas").GetComponent<AddManager>().bedItems[GameObject.Find("Canvas").GetComponent<AddManager>().currButtonNum]);
                     currCube.transform.GetChild(0).name = "d" + select;
                     select += 1;
                     currCube.layer = LayerMask.NameToLayer("Obj");
@@ -81,6 +82,7 @@ public class MapGround : Map
                     startPos = currCube.GetComponent<Furniture>().startPos;
                     currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
                         startLocation = currCube.GetComponent<Furniture>().startRotation;
+                    }
                     }
                     //startPos = currCube.transform.position;
                 }

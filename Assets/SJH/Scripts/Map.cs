@@ -83,7 +83,6 @@ public class Map : MonoBehaviour
                     currCube.transform.position = new Vector3(x, hit.point.y, z);
                     if (currCube.GetComponent<Furniture>())
                     {
-
                     currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
                     startPos = currCube.GetComponent<Furniture>().startPos;
                     }

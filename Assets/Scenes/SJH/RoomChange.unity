@@ -4688,6 +4688,7 @@ MonoBehaviour:
   - {fileID: 4048591813983505285, guid: 7ace8515e3a8a0a4eb2e5a4ca3acc136, type: 3}
   DeskItem: []
   WallHangItem: []
+  AddBed: 0
   currButtonNum: 1
 --- !u!1 &1125835761
 GameObject:
