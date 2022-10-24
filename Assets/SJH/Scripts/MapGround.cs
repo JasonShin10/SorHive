@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Map : MonoBehaviour
+public class MapGround : Map
 {
-    public GameObject quadFactory;
-    public int tileX = 16;
-    public int tileZ = 16;
-    public int tileY = 16;
-    public GameObject cube;
-    public bool located = true;
-    public int select = 0;
+
+    int select = 0;
     int ox;
     int oz;
     float oy;
     GameObject currCube;
     GameObject floor;
     Vector3 startPos;
+    Quaternion startLocation;
     void Start()
     {
         for (int i = 0; i <= tileX; i++)
@@ -45,8 +41,7 @@ public class Map : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-           
+        {           
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             int layer = 1 << LayerMask.NameToLayer("Obj");
@@ -65,7 +60,6 @@ public class Map : MonoBehaviour
                 //currCube.GetComponent<Collider>().enabled = false;
             }
         }
-
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -75,18 +69,24 @@ public class Map : MonoBehaviour
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     currCube = Instantiate(cube);
-                    currCube.gameObject.name = "d";
+                    currCube.transform.GetChild(0).name = "d" + select;
                     select += 1;
                     currCube.layer = LayerMask.NameToLayer("Obj");
                     int x = (int)(hit.point.x);
                     int z = (int)(hit.point.z);
+
+
                     currCube.transform.position = new Vector3(x, hit.point.y, z);
                     if (currCube.GetComponent<Furniture>())
                     {
 
                     currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
                     startPos = currCube.GetComponent<Furniture>().startPos;
+                    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                        startLocation = currCube.GetComponent<Furniture>().startRotation;
+
                     }
+
                     //startPos = currCube.transform.position;
                 }
             }
@@ -103,13 +103,11 @@ public class Map : MonoBehaviour
             else
             {
                 selectObj.position = startPos;
+                selectObj.rotation = startLocation;
                 selectObj.GetComponent<Furniture>().canLocated = false;
                 selectObj = null;
             }
-           
-
         }
-
         if (selectObj != null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

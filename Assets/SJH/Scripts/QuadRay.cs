@@ -59,7 +59,7 @@ public class QuadRay : MonoBehaviour
 
                 }
             }
-            print(hit.transform.name);
+            //print(hit.transform.name);
             
             
         }

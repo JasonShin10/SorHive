@@ -14,49 +14,52 @@ public class DragDrop : MonoBehaviour
     void Update()
     {
 
-       
-            if (GameManager.instance.name == gameObject.transform.name)
+            print(GameManager.instance.name);
+            //print("ÀÌ¸§" + gameObject.transform.name);
+
+        if (GameManager.instance.name == gameObject.transform.name)
             {
+            
                 Vector2 wheel = Input.mouseScrollDelta;
                 //if (wheel.x != 0 || wheel.y != 0)
                 //{
                 //    print(wheel.y);
                 //}
-                if (wheel.y > 0)
+                if (wheel.y == 1)
                 {
                     gameObject.transform.Rotate(0, speed, 0);
-                    speed = 10;
+                    speed = 90;
                 }
-                else if (wheel.y < 0)
+                else if (wheel.y == -1)
                 {
                     gameObject.transform.Rotate(0, mspeed, 0);
-                    mspeed = -10;
+                    mspeed = -90;
                 }
 
             }
 
         
     }
-    public void Select()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            if (Input.GetButton("Fire1"))
-            {
+    //public void Select()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hitInfo;
+    //    if (Physics.Raycast(ray, out hitInfo))
+    //    {
+    //        if (Input.GetButton("Fire1"))
+    //        {
 
 
-                if (hitInfo.transform.tag == "Furniture")
-                {
-                    GameObject furniture = hitInfo.transform.gameObject;
-                    name = furniture.name;
-                    print(furniture.name);
+    //            if (hitInfo.transform.tag == "Furniture")
+    //            {
+    //                GameObject furniture = hitInfo.transform.gameObject;
+    //                name = furniture.name;
+    //                print(furniture.name);
 
-                }
-            }
-        }
-    }
+    //            }
+    //        }
+    //    }
+    //}
 
     //void OnMouseDown()
     //{

@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapLeft : MonoBehaviour
+public class MapLeft : Map
 {
-    public GameObject quadFactory;
-    public int tileX = 5;
-    public int tileY = 5;
-    public GameObject cube;
+    
     GameObject currCube;
     GameObject floor;
     void Start()

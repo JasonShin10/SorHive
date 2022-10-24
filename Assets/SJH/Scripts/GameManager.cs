@@ -24,27 +24,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Select();
+        //Select();
     }
 
-    public void Select()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
-        {
-            if (Input.GetButton("Fire1"))
-            {
+    //public void Select()
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hitInfo;
+    //    if (Physics.Raycast(ray, out hitInfo))
+    //    {
+    //        if (Input.GetButton("Fire1"))
+    //        {
 
 
-                if (hitInfo.transform.tag == "Furniture")
-                {
-                    GameObject furniture = hitInfo.transform.gameObject;
-                    name = furniture.name;
-                    //print(furniture.name);
+    //            if (hitInfo.transform.tag == "Furniture")
+    //            {
+    //                GameObject furniture = hitInfo.transform.gameObject;
+    //                name = furniture.name;
+    //                print(furniture.name);
 
-                }
-            }
-        }
-    }
+    //            }
+    //        }
+    //    }
+    //}
 }
