@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuadRay : MonoBehaviour
+public class QuadRayWall : MonoBehaviour
 {
     
     
@@ -16,7 +16,7 @@ public class QuadRay : MonoBehaviour
     void Update()
     {
         
-        Ray ray = new Ray(transform.position, transform.up);
+        Ray ray = new Ray(transform.position, -transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue);
 
         RaycastHit hit;
@@ -29,7 +29,7 @@ public class QuadRay : MonoBehaviour
             //{
             print(hit.transform.name);
             //}
-            if (hit.transform.gameObject.CompareTag("Furniture"))
+            if (hit.transform.gameObject.CompareTag("Wall"))
             {
                 // 가구가 배치 안되었을때
                 if (hit.transform.gameObject.GetComponent<Furniture>().located == false)

@@ -39,7 +39,7 @@ public class MapGround : Map
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {           
+        {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             int layer = 1 << LayerMask.NameToLayer("Obj");
@@ -66,24 +66,24 @@ public class MapGround : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    if(AddManager.instance.AddBed == true)
+                    if (AddManager.instance.AddBed == true)
                     {
-                    currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
-                    AddManager.instance.AddBed = false;
-                    currCube.transform.GetChild(0).name = "d" + select;
-                    select += 1;
-                    currCube.layer = LayerMask.NameToLayer("Obj");
-                    int x = (int)(hit.point.x);
-                    int z = (int)(hit.point.z);
-                    currCube.transform.position = new Vector3(x, hit.point.y, z);
-                    if (currCube.GetComponent<Furniture>())
-                    {
+                        currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddBed = false;
+                        currCube.transform.GetChild(0).name = "d" + select;
+                        select += 1;
+                        currCube.layer = LayerMask.NameToLayer("Obj");
+                        int x = (int)(hit.point.x);
+                        int z = (int)(hit.point.z);
+                        currCube.transform.position = new Vector3(x, hit.point.y, z);
+                        if (currCube.GetComponent<Furniture>())
+                        {
 
-                    currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
-                    startPos = currCube.GetComponent<Furniture>().startPos;
-                    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-                        startLocation = currCube.GetComponent<Furniture>().startRotation;
-                    }
+                            currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
+                            startPos = currCube.GetComponent<Furniture>().startPos;
+                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                            startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        }
                     }
                     //startPos = currCube.transform.position;
                 }
@@ -91,18 +91,22 @@ public class MapGround : Map
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if(selectObj.GetComponent<Furniture>().canLocated == true)
+            if (selectObj)
             {
-            selectObj.position = new Vector3(ox, oy, oz);
-            selectObj.gameObject.GetComponent<Furniture>().located = true;
-            selectObj = null;
-            }
-            else
-            {
-                selectObj.position = startPos;
-                selectObj.rotation = startLocation;
-                selectObj.GetComponent<Furniture>().canLocated = false;
-                selectObj = null;
+                if (selectObj.GetComponent<Furniture>().canLocated == true)
+                {
+                    selectObj.position = new Vector3(ox, oy, oz);
+                    selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    selectObj = null;
+                }
+                else
+                {
+                    selectObj.position = startPos;
+                    selectObj.rotation = startLocation;
+                    selectObj.GetComponent<Furniture>().canLocated = false;
+                    selectObj = null;
+                }
+
             }
         }
         if (selectObj != null)
@@ -119,7 +123,7 @@ public class MapGround : Map
                     int z = (int)(hit.point.z);
                     oz = (int)(hit.point.z);
                     oy = hit.point.y;
-                    selectObj.position = new Vector3(x, hit.point.y+5, z);
+                    selectObj.position = new Vector3(x, hit.point.y + 5, z);
                 }
             }
         }

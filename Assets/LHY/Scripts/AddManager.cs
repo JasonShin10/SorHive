@@ -84,7 +84,8 @@ public class AddManager : MonoBehaviour
     }
     public void OnAddWallHang()
     {
-        GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
-        wallhang.transform.position = SpawnPos.transform.position;
+        AddWallHang = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
     }
 }

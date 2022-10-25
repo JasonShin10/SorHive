@@ -29,11 +29,19 @@ public class Furniture : MonoBehaviour
         {
             canLocated = false;
         }
+        else if (other.gameObject.CompareTag("Wall"))
+        {
+            canLocated = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Furniture"))
+        {
+            canLocated = true;
+        }
+        else if (other.gameObject.CompareTag("Wall"))
         {
             canLocated = true;
         }

@@ -7,6 +7,11 @@ public class MapRight : Map
    
     GameObject currCube;
     GameObject floor;
+    float ox;
+    int oz;
+    int oy;
+    Vector3 startPos;
+    Quaternion startLocation;
     void Start()
     {
         for (int i = 0; i <= tileX; i++)
@@ -42,6 +47,10 @@ public class MapRight : Map
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 selectObj = hit.transform;
+                selectObj.gameObject.GetComponent<Furniture>().located = false;
+                selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
+                startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
+                GameManager.instance.name = selectObj.name;
                 //currCube = Instantiate(cube);
                 //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //int x = (int)(hit.point.x);
@@ -61,13 +70,21 @@ public class MapRight : Map
                 {
                     if (AddManager.instance.AddWallHang == true)
                     {
-                        currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
+                        currCube = Instantiate(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddWallHang = false;
-                        currCube = Instantiate(cube);
+                        //currCube = Instantiate(cube);
                         currCube.layer = LayerMask.NameToLayer("Obj");
                         int y = (int)(hit.point.y);
                         int z = (int)(hit.point.z);
                         currCube.transform.position = new Vector3(hit.point.x, y, z);
+                        if (currCube.GetComponent<Furniture>())
+                        {
+
+                            currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
+                            startPos = currCube.GetComponent<Furniture>().startPos;
+                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                            startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        }
                     }
                 }
             }
@@ -75,7 +92,23 @@ public class MapRight : Map
 
         if (Input.GetMouseButtonUp(0))
         {
-            selectObj = null;
+            if (selectObj)
+            {
+                if (selectObj.GetComponent<Furniture>().canLocated == true)
+                {
+                    selectObj.position = new Vector3(ox, oy, oz);
+                    selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    selectObj = null;
+                }
+                else
+                {
+                    selectObj.position = startPos;
+                    selectObj.rotation = startLocation;
+                    selectObj.GetComponent<Furniture>().canLocated = false;
+                    selectObj = null;
+                }
+
+            }
         }
 
         if (selectObj != null)
@@ -85,17 +118,19 @@ public class MapRight : Map
             int layer = 1 << LayerMask.NameToLayer("WallRight");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                print(hit.transform.name);
+                //print(hit.transform.name);
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallRight") && selectObj.CompareTag("Wall"))
                 {
-                    int x = (int)(hit.point.x);
-                    int z = (int)(hit.point.z + 0.5f);
                     int y = (int)(hit.point.y + 0.5f);
+                    oy = (int)(hit.point.y);
+                    int z = (int)(hit.point.z);
+                    oz = (int)(hit.point.z);
+                    ox = hit.point.x;
                     
-                    selectObj.position = new Vector3(x, y, z);
+                    selectObj.position = new Vector3(hit.point.x+5, y, z);
                 }
-                line.SetPosition(0, Camera.main.transform.position);
-                line.SetPosition(1, hit.point);
+                //line.SetPosition(0, Camera.main.transform.position);
+                //line.SetPosition(1, hit.point);
             }
         }
 

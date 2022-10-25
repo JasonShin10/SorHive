@@ -14,6 +14,7 @@ public class Map : MonoBehaviour
     int ox;
     int oz;
     float oy;
+
     GameObject currCube;
     GameObject floor;
     Vector3 startPos;

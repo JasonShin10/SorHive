@@ -14,7 +14,7 @@ public class DragDrop : MonoBehaviour
     void Update()
     {
 
-            print(GameManager.instance.name);
+            //print(GameManager.instance.name);
             //print("¿Ã∏ß" + gameObject.transform.name);
 
         if (GameManager.instance.name == gameObject.transform.name)
