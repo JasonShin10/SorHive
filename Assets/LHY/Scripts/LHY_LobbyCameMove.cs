@@ -8,13 +8,17 @@ public class LHY_LobbyCameMove : MonoBehaviour
 
     //모바일 버전 손가락 터치를 감지 해 줌인,아웃
     float m_fOldToucDis = 0f;       // 터치 이전 거리를 저장합니다.
-    float m_fFieldOfView = 38f;     // 카메라의 FieldOfView의 기본값을 60으로 정합니다.
+    public float m_fStartScale = 1f;     // 룸메니져의 기본 스케일값을 1으로 정합니다.
 
     //PC버전 마우스 스크롤링 줌인,아웃
     //마우스 스크롤 스피드
-    public float scrollSpeed = 2000.0f;
+    public float scrollSpeed = 3000f;
 
-    public Camera miniCame;
+    //public Camera miniCame;
+
+    public GameObject RoomManager;
+
+    
 
 
     // Start is called before the first frame update
@@ -26,25 +30,26 @@ public class LHY_LobbyCameMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckTouch();
+        //CheckTouch();
 
-        if (miniCame.fieldOfView >= 15f && miniCame.fieldOfView <= 60f)
+        if (m_fStartScale >= 0.6f && m_fStartScale <= 2.5f)
         {
             float s = Input.GetAxis("Mouse ScrollWheel");
 
-            miniCame.fieldOfView += -s * scrollSpeed * Time.deltaTime;
+            m_fStartScale += s * scrollSpeed * Time.deltaTime;
         }
         else
         {
-            if(miniCame.fieldOfView < 15)
+            if(m_fStartScale < 0.6f)
             {
-                miniCame.fieldOfView = 15;
+                m_fStartScale = 0.6f;
             }
-            if(miniCame.fieldOfView > 60)
+            if(m_fStartScale > 2.5f)
             {
-                miniCame.fieldOfView = 60;
+                m_fStartScale = 2.5f;
             }
         }
+        RoomManager.gameObject.transform.localScale = new Vector3(m_fStartScale, m_fStartScale, m_fStartScale);
     }
 
     private void CheckTouch()
@@ -60,13 +65,13 @@ public class LHY_LobbyCameMove : MonoBehaviour
             fDis = (m_fToucDis - m_fOldToucDis) * 0.01f;
 
             // 이전 두 터치의 거리와 지금 두 터치의 거리의 차이를 FleldOfView를 차감합니다.
-            m_fFieldOfView -= fDis;
+            m_fStartScale -= fDis;
 
             // 최대는 60최소는 15으로 더이상 증가 혹은 감소가 되지 않도록 합니다.
-            m_fFieldOfView = Mathf.Clamp(m_fFieldOfView, 15.0f, 60.0f);
+            m_fStartScale = Mathf.Clamp(m_fStartScale, 0.6f, 2.5f);
 
             // 확대 / 축소가 갑자기 되지않도록 보간합니다.
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, m_fFieldOfView, Time.deltaTime * 5);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, m_fStartScale, Time.deltaTime * 5);
 
             m_fOldToucDis = m_fToucDis;
         }

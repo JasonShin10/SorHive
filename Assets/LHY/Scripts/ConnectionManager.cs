@@ -39,7 +39,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnJoinedLobby();
         print("OnJoinedLobby");
         //Lobbyæ¿ ¿∏∑Œ ¿Ãµø
-        SceneManager.LoadScene("LHY_LobbyScenes");
+        SceneManager.LoadScene("MainScenes");
     }
 
     void Update()
