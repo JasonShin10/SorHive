@@ -45,7 +45,7 @@ public class MapGround : Map
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                if (hit.transform.CompareTag("Ground"))
+                if (hit.transform.CompareTag("Furniture"))
                 {
                     selectObj = hit.transform;
                     selectObj.gameObject.GetComponent<Furniture>().located = false;
