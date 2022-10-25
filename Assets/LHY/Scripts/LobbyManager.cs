@@ -11,6 +11,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     Dictionary<string, int> roomCache = new Dictionary<string, int>();
 
+    public int myRoom = 0;
+
     void Start()
     {
         //roomCache["a"];
@@ -56,8 +58,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(userName.text);
     }
 
-    public void OnClickButton()
+    public void OnClickModifyProfile()
     {
+        myRoom = 0;
+        CreateRoom();
+        JoinRoom();
+    }
+
+    public void OnClickRoomIn()
+    {
+        myRoom = 1;
         CreateRoom();
         JoinRoom();
     }
@@ -67,7 +77,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         print("OnJoinedRoom");
-        PhotonNetwork.LoadLevel("RoomChange");
+        if (myRoom == 0)
+        {
+            PhotonNetwork.LoadLevel("RoomChange");
+        }
+        else if(myRoom == 1)
+        {
+            PhotonNetwork.LoadLevel("RoomInScene");
+        }
+        else if (myRoom == 2)
+        {
+            //벌집타기 씬
+            //hotonNetwork.LoadLevel("RoomInScene");
+        }
     }
 
     //방 참가가 실패 되었을 때 호출되는 함수
