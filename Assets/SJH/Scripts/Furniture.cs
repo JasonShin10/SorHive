@@ -23,16 +23,21 @@ public class Furniture : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("Furniture"))
         {
             canLocated = false;
         }
-        else if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             canLocated = false;
         }
+        if (other.gameObject.CompareTag("WallLeft"))
+        {
+            canLocated = false;
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -41,7 +46,11 @@ public class Furniture : MonoBehaviour
         {
             canLocated = true;
         }
-        else if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            canLocated = true;
+        }
+        if (other.gameObject.CompareTag("WallLeft"))
         {
             canLocated = true;
         }

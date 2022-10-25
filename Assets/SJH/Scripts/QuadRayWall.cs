@@ -27,7 +27,7 @@ public class QuadRayWall : MonoBehaviour
             // 만약 겹치는 부분이 없다면 가구의 배치가능 상태를 true로 바꾼다.
             //if (hit.transform.gameObject.CompareTag("Furniture") && hit.transform.gameObject.GetComponent<Furniture>().located == false)
             //{
-            print(hit.transform.name);
+           
             //}
             if (hit.transform.gameObject.CompareTag("Wall"))
             {
@@ -47,8 +47,6 @@ public class QuadRayWall : MonoBehaviour
                         transform.GetChild(1).gameObject.SetActive(false);
                     }
                     //타일 상태 배치안됨
-                    
-
                 }
                 // 가구가 배치되었을때
                 else
@@ -60,12 +58,9 @@ public class QuadRayWall : MonoBehaviour
                 }
             }
             //print(hit.transform.name);
-            
-            
         }
         else
         {
-
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(false);
         }

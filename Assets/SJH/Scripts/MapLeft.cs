@@ -46,11 +46,15 @@ public class MapLeft : Map
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
+                if(hit.transform.CompareTag("WallLeft"))
+                {
+
                 selectObj = hit.transform;
                 selectObj.gameObject.GetComponent<Furniture>().located = false;
                 selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                 startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                 GameManager.instance.name = selectObj.name;
+                }
                 //currCube = Instantiate(cube);
                 //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //int x = (int)(hit.point.x);
@@ -72,14 +76,17 @@ public class MapLeft : Map
                     {
                         currCube = Instantiate(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddWallHang = false;
+                        currCube.gameObject.tag = "WallLeft";
+                        currCube.transform.rotation = Quaternion.Euler(0, 0, 0);
                         //currCube = Instantiate(cube);
                         currCube.layer = LayerMask.NameToLayer("Obj");
                         int y = (int)(hit.point.y);
                         int x = (int)(hit.point.x);
                         currCube.transform.position = new Vector3(x, y, hit.point.z);
+                           
                         if (currCube.GetComponent<Furniture>())
                         {
-
+                            
                             currCube.GetComponent<Furniture>().startPos = new Vector3(x, y, hit.point.z);
                             startPos = currCube.GetComponent<Furniture>().startPos;
                             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
@@ -96,7 +103,10 @@ public class MapLeft : Map
             {
                 if (selectObj.GetComponent<Furniture>().canLocated == true)
                 {
+                    //print(1);
                     selectObj.position = new Vector3(ox, oy, oz);
+                    //print(selectObj.position);
+                    //print(ox);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
                     selectObj = null;
                 }
@@ -110,23 +120,24 @@ public class MapLeft : Map
 
             }
         }
-
         if (selectObj != null)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            int layer = 1 << LayerMask.NameToLayer("Wall");
+            int layer = 1 << LayerMask.NameToLayer("WallLeft");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 //print(hit.transform.name);
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallLeft") && selectObj.CompareTag("Wall"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallLeft") && selectObj.CompareTag("WallLeft"))
                 {
-                    int y = (int)(hit.point.y + 0.5f);
+                    //print(oy);
+                    int y = (int)(hit.point.y);
                     oy = (int)(hit.point.y);
                     int x = (int)(hit.point.x);
-                    ox = (int)(hit.point.z);
+                    ox = (int)(hit.point.x);
                     oz = hit.point.z;
 
+        
                     selectObj.position = new Vector3(x, y, hit.point.z);
                 }
                 //line.SetPosition(0, Camera.main.transform.position);

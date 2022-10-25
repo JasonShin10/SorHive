@@ -45,11 +45,14 @@ public class MapGround : Map
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                selectObj = hit.transform;
-                selectObj.gameObject.GetComponent<Furniture>().located = false;
-                selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
-                startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
-                GameManager.instance.name = selectObj.name;
+                if (hit.transform.CompareTag("Ground"))
+                {
+                    selectObj = hit.transform;
+                    selectObj.gameObject.GetComponent<Furniture>().located = false;
+                    selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
+                    startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
+                    GameManager.instance.name = selectObj.name;
+                }
                 //currCube = Instantiate(cube);
                 //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //int x = (int)(hit.point.x);
@@ -116,7 +119,7 @@ public class MapGround : Map
             int layer = 1 << LayerMask.NameToLayer("Ground");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground") && !selectObj.CompareTag("Wall"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     int x = (int)(hit.point.x);
                     ox = (int)(hit.point.x);

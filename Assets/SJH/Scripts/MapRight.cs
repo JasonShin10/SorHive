@@ -46,11 +46,15 @@ public class MapRight : Map
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
+                if(hit.transform.gameObject.CompareTag("Wall"))
+                {
                 selectObj = hit.transform;
                 selectObj.gameObject.GetComponent<Furniture>().located = false;
                 selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                 startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                 GameManager.instance.name = selectObj.name;
+
+                }
                 //currCube = Instantiate(cube);
                 //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 //int x = (int)(hit.point.x);
@@ -127,7 +131,7 @@ public class MapRight : Map
                     oz = (int)(hit.point.z);
                     ox = hit.point.x;
                     
-                    selectObj.position = new Vector3(hit.point.x+5, y, z);
+                    selectObj.position = new Vector3(hit.point.x, y, z);
                 }
                 //line.SetPosition(0, Camera.main.transform.position);
                 //line.SetPosition(1, hit.point);
