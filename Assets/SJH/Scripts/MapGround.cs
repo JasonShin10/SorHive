@@ -73,7 +73,7 @@ public class MapGround : Map
                     {
                         currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddBed = false;
-                        currCube.transform.GetChild(0).name = "d" + select;
+                        currCube.name = "d" + select;
                         select += 1;
                         currCube.layer = LayerMask.NameToLayer("Obj");
                         int x = (int)(hit.point.x);
