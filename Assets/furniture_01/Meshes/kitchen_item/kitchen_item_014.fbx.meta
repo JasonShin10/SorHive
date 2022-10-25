@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 90bbbf0c19ff7aa49897ef602f0144a7
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 2832738763674725674
+    second: kitchen_item.014|low_poly_interior.620|Take 001|BaseLayer
+  - first:
+      74: -7645506382727874621
+    second: kitchen_item.014|low_poly_interior.626|Take 001|BaseLayer
+  - first:
+      74: 5443382147998761545
+    second: kitchen_item.014|low_poly_interior.636|Take 001|BaseLayer
+  - first:
+      74: -6712493536727774769
+    second: kitchen_item.014|low_poly_interior.651|Take 001|BaseLayer
+  - first:
+      74: -8714901131543321329
+    second: kitchen_item.014|low_poly_interior.652|Take 001|BaseLayer
+  - first:
+      74: 928218931098999518
+    second: kitchen_item.014|low_poly_interior.653|Take 001|BaseLayer
+  - first:
+      74: -3065867690600216481
+    second: kitchen_item.014|low_poly_interior.654|Take 001|BaseLayer
+  - first:
+      74: 2982801589581361790
+    second: kitchen_item.014|low_poly_interior.655|Take 001|BaseLayer
+  - first:
+      74: 2111713923566168700
+    second: kitchen_item.014|low_poly_interior.656|Take 001|BaseLayer
+  - first:
+      74: -7334867817780687288
+    second: kitchen_item.014|low_poly_interior.657|Take 001|BaseLayer
+  - first:
+      74: -2629858988232342419
+    second: kitchen_item.014|low_poly_interior.658|Take 001|BaseLayer
+  - first:
+      74: 9049648144347065799
+    second: kitchen_item.014|low_poly_interior.659|Take 001|BaseLayer
+  - first:
+      74: -5243277795428754514
+    second: kitchen_item.014|low_poly_interior.660|Take 001|BaseLayer
+  - first:
+      74: -5977636153673298216
+    second: kitchen_item.014|low_poly_interior.661|Take 001|BaseLayer
+  - first:
+      74: -1617870911995491440
+    second: kitchen_item.014|low_poly_interior.690|Take 001|BaseLayer
+  - first:
+      74: 132768270858919545
+    second: kitchen_item.014|low_poly_interior.7621|Take 001|BaseLayer
+  - first:
+      74: -9022491191247392938
+    second: kitchen_item.014|low_poly_interior.7787|Take 001|BaseLayer
+  - first:
+      74: 3716880865336259666
+    second: kitchen_item.014|low_poly_interior.7789|Take 001|BaseLayer
+  - first:
+      74: -4394076123073670207
+    second: kitchen_item.014|pasted__pCube4556|Take 001|BaseLayer
+  - first:
+      74: 4761128818937414031
+    second: kitchen_item.014|pCube347|Take 001|BaseLayer
+  - first:
+      74: 7342833958683023002
+    second: kitchen_item.014|pCube347|Take 001|BaseLayer.001
+  - first:
+      74: -5686342090025853389
+    second: kitchen_item.014|pCube438|Take 001|BaseLayer
+  - first:
+      74: 5231318560886668319
+    second: kitchen_item.014|pCube445|Take 001|BaseLayer
+  - first:
+      74: 3335907230894627116
+    second: kitchen_item.014|pCube534|Take 001|BaseLayer
+  - first:
+      74: -1476724219302716625
+    second: kitchen_item.014|pCube584|Take 001|BaseLayer
+  - first:
+      74: -2367975226787712945
+    second: kitchen_item.014|pCube667|Take 001|BaseLayer
+  - first:
+      74: 8384523537883409574
+    second: kitchen_item.014|pCube705|Take 001|BaseLayer
+  - first:
+      74: 1897993642459909741
+    second: kitchen_item.014|pCube829|Take 001|BaseLayer
+  - first:
+      74: -6626205118623154784
+    second: kitchen_item.014|pCube850|Take 001|BaseLayer
+  - first:
+      74: 1948324646564839761
+    second: kitchen_item.014|polySurface152|Take 001|BaseLayer
+  - first:
+      74: 3974050800774534762
+    second: kitchen_item.014|polySurface741|Take 001|BaseLayer
+  - first:
+      74: -773913683540381237
+    second: kitchen_item.014|room.3270|Take 001|BaseLayer
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: furniture_01
+    second: {fileID: 2100000, guid: 4f18085d3fb7e0c428db65719a840f78, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 0
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
