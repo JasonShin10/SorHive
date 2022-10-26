@@ -81,7 +81,24 @@ public class MapGround : Map
                         currCube.transform.position = new Vector3(x, hit.point.y, z);
                         if (currCube.GetComponent<Furniture>())
                         {
-
+                            currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
+                            startPos = currCube.GetComponent<Furniture>().startPos;
+                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                            startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        }
+                    }
+                    if (AddManager.instance.AddChair == true)
+                    {
+                        currCube = Instantiate(AddManager.instance.chairItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddChair = false;
+                        currCube.name = "d" + select;
+                        select += 1;
+                        currCube.layer = LayerMask.NameToLayer("Obj");
+                        int x = (int)(hit.point.x);
+                        int z = (int)(hit.point.z);
+                        currCube.transform.position = new Vector3(x, hit.point.y, z);
+                        if (currCube.GetComponent<Furniture>())
+                        {
                             currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
                             startPos = currCube.GetComponent<Furniture>().startPos;
                             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
@@ -89,6 +106,24 @@ public class MapGround : Map
                         }
                     }
                     //startPos = currCube.transform.position;
+                }
+                if (AddManager.instance.AddDesk == true)
+                {
+                    currCube = Instantiate(AddManager.instance.DeskItem[AddManager.instance.currButtonNum]);
+                    AddManager.instance.AddDesk = false;
+                    currCube.name = "d" + select;
+                    select += 1;
+                    currCube.layer = LayerMask.NameToLayer("Obj");
+                    int x = (int)(hit.point.x);
+                    int z = (int)(hit.point.z);
+                    currCube.transform.position = new Vector3(x, hit.point.y, z);
+                    if (currCube.GetComponent<Furniture>())
+                    {
+                        currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
+                        startPos = currCube.GetComponent<Furniture>().startPos;
+                        currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                        startLocation = currCube.GetComponent<Furniture>().startRotation;
+                    }
                 }
             }
         }

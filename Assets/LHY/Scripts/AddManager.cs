@@ -36,9 +36,48 @@ public class AddManager : MonoBehaviour
     public bool AddWallHang = false;
 
     public int currButtonNum = 0;
+    void Start()
+    {
+        bedItems = Resources.LoadAll<GameObject>("bed");
+        chairItems = Resources.LoadAll<GameObject>("armchair");
+        DeskItem = Resources.LoadAll<GameObject>("office_desk");
+        WallHangItem = Resources.LoadAll<GameObject>("window");
+        //for (int i = 0; i < bedItems.Length; i++)
+        //{
+        //    bedItems[i].AddComponent<Furniture>();
+        //    bedItems[i].AddComponent<DragDrop>();
+        //    bedItems[i].AddComponent<Rigidbody>();
+        //    bedItems[i].tag = "Furniture";
+        //}
+        //for (int i = 0; i < chairItems.Length; i++)
+        //{
+        //    chairItems[i].AddComponent<Furniture>();
+        //    chairItems[i].AddComponent<DragDrop>();
+        //    chairItems[i].AddComponent<Rigidbody>();
+        //    chairItems[i].tag = "Furniture";
 
-    
-    public void Button0()
+        //}
+        //for (int i = 0; i < DeskItem.Length; i++)
+        //{
+        //    DeskItem[i].AddComponent<Furniture>();
+        //    DeskItem[i].AddComponent<DragDrop>();
+        //    DeskItem[i].AddComponent<Rigidbody>();
+        //    DeskItem[i].tag = "Furniture";
+        //}
+        //for (int i = 0; i < WallHangItem.Length; i++)
+        //{
+        //    WallHangItem[i].AddComponent<Furniture>();
+        //    WallHangItem[i].AddComponent<DragDrop>();
+        //    WallHangItem[i].AddComponent<Rigidbody>();
+        //    WallHangItem[i].tag = "Wall";
+        //}
+
+
+
+    }
+
+
+        public void Button0()
     {
         currButtonNum = 0;
     }
@@ -73,14 +112,15 @@ public class AddManager : MonoBehaviour
 
     public void OnAddChair()
     {
-
-        GameObject chair = Instantiate(chairItems[currButtonNum]);
-        chair.transform.position = SpawnPos.transform.position;
+        AddChair = true;
+        //GameObject chair = Instantiate(chairItems[currButtonNum]);
+        //chair.transform.position = SpawnPos.transform.position;
     }
     public void OnAddDesk()
     {
-        GameObject desk = Instantiate(DeskItem[currButtonNum]);
-        desk.transform.position = SpawnPos.transform.position;
+        AddDesk = true;
+        //GameObject desk = Instantiate(DeskItem[currButtonNum]);
+        //desk.transform.position = SpawnPos.transform.position;
     }
     public void OnAddWallHang()
     {
