@@ -2266,8 +2266,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2092327839}
   m_HandleRect: {fileID: 2092327838}
   m_Direction: 0
-  m_Value: 0.9779995
-  m_Size: 0.6263098
+  m_Value: 1
+  m_Size: 0.6263099
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4292,7 +4292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958727374}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3}
   m_LocalScale: {x: 0.60730785, y: 0.60730785, z: 0.60730785}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5332,6 +5332,20 @@ MonoBehaviour:
   - {fileID: 3284292496028086339, guid: e6ee4537670f8c046b233033881bd180, type: 3}
   - {fileID: 291110610404590840, guid: bd45f010e4b047b4382eb61a3634127f, type: 3}
   - {fileID: 291110610404590840, guid: bd45f010e4b047b4382eb61a3634127f, type: 3}
+  closetItems: []
+  clothesItems: []
+  coffee_tableItems: []
+  curtainsItems: []
+  electrionicsItems: []
+  flowerItems: []
+  kitchenChairItems: []
+  kitchenTableItems: []
+  lamp: []
+  loungeChairItems: []
+  musical_instrumentItems: []
+  office_chair: []
+  office_desk: []
+  shelf: []
   AddBed: 0
   AddChair: 0
   AddDesk: 0
@@ -8095,7 +8109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -106.78547, y: -28.124}
+  m_AnchoredPosition: {x: -109.18762, y: -28.124}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1671111026
