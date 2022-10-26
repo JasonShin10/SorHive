@@ -83,7 +83,6 @@ public class MapRight : Map
                         currCube.transform.position = new Vector3(hit.point.x, y, z);
                         if (currCube.GetComponent<Furniture>())
                         {
-
                             currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
                             startPos = currCube.GetComponent<Furniture>().startPos;
                             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;

@@ -29,6 +29,33 @@ public class AddManager : MonoBehaviour
     public GameObject[] DeskItem;
     //벽 걸이 오브젝트
     public GameObject[] WallHangItem;
+    //옷장 오브젝트
+    public GameObject[] closetItems;
+    //옷걸이 오브젝트
+    public GameObject[] clothesItems;
+    //커피 테이블 오브젝트
+    public GameObject[] coffee_tableItems;
+    //전자 제품 오브젝트
+    public GameObject[] entertainmentItems;
+    //오락 제품 오브젝트
+    public GameObject[] electrionicsItems;
+    //꽃 오브젝트
+    public GameObject[] flowerItems;
+    //부엌 의자 오브젝트
+    public GameObject[] kitchenChairItems;
+    //부엌 용품 오브젝트
+    public GameObject[] kitchenTableItems;
+    //램프 오브젝트
+    public GameObject[] lamp;
+    //라운지 의자 오브젝트
+    public GameObject[] loungeChairItems;
+    //음악 오브젝트
+    public GameObject[] musical_instrumentItems;
+    //오피스 의자 오브젝트
+    public GameObject[] office_chair;
+    //선반 오브젝트
+    public GameObject[] shelf;
+    
 
     public bool AddBed = false;
     public bool AddChair = false;
@@ -36,8 +63,57 @@ public class AddManager : MonoBehaviour
     public bool AddWallHang = false;
 
     public int currButtonNum = 0;
+    void Start()
+    {
+        bedItems = Resources.LoadAll<GameObject>("bed");
+        chairItems = Resources.LoadAll<GameObject>("armchair");
+        DeskItem = Resources.LoadAll<GameObject>("office_desk");
+        WallHangItem = Resources.LoadAll<GameObject>("window");
+        closetItems = Resources.LoadAll<GameObject>("closet");
+        clothesItems = Resources.LoadAll<GameObject>("clothes");
+        coffee_tableItems = Resources.LoadAll<GameObject>("coffee_table");
+        entertainmentItems = Resources.LoadAll<GameObject>("entertainment");
+        electrionicsItems = Resources.LoadAll<GameObject>("electronics");
+        flowerItems = Resources.LoadAll<GameObject>("flower");
+        kitchenChairItems = Resources.LoadAll<GameObject>("kitchen_chair");
+        kitchenTableItems = Resources.LoadAll<GameObject>("kitchen_table");
+        lamp = Resources.LoadAll<GameObject>("lamp");
+        loungeChairItems = Resources.LoadAll<GameObject>("lounge_chair");
+        musical_instrumentItems = Resources.LoadAll<GameObject>("musical_instrument");
+        office_chair = Resources.LoadAll<GameObject>("office_chair");
+        shelf = Resources.LoadAll<GameObject>("shelf");
+        //for (int i = 0; i < bedItems.Length; i++)
+        //{
+        //    bedItems[i].AddComponent<Furniture>();
+        //    bedItems[i].AddComponent<DragDrop>();
+        //    bedItems[i].AddComponent<Rigidbody>();
+        //    bedItems[i].tag = "Furniture";
+        //}
+        //for (int i = 0; i < chairItems.Length; i++)
+        //{
+        //    chairItems[i].AddComponent<Furniture>();
+        //    chairItems[i].AddComponent<DragDrop>();
+        //    chairItems[i].AddComponent<Rigidbody>();
+        //    chairItems[i].tag = "Furniture";
 
-    
+        //}
+        //for (int i = 0; i < DeskItem.Length; i++)
+        //{
+        //    DeskItem[i].AddComponent<Furniture>();
+        //    DeskItem[i].AddComponent<DragDrop>();
+        //    DeskItem[i].AddComponent<Rigidbody>();
+        //    DeskItem[i].tag = "Furniture";
+        //}
+        //for (int i = 0; i < WallHangItem.Length; i++)
+        //{
+        //    WallHangItem[i].AddComponent<Furniture>();
+        //    WallHangItem[i].AddComponent<DragDrop>();
+        //    WallHangItem[i].AddComponent<Rigidbody>();
+        //    WallHangItem[i].tag = "Wall";
+        //}
+    }
+
+
     public void Button0()
     {
         currButtonNum = 0;
@@ -73,14 +149,15 @@ public class AddManager : MonoBehaviour
 
     public void OnAddChair()
     {
-
-        GameObject chair = Instantiate(chairItems[currButtonNum]);
-        chair.transform.position = SpawnPos.transform.position;
+        AddChair = true;
+        //GameObject chair = Instantiate(chairItems[currButtonNum]);
+        //chair.transform.position = SpawnPos.transform.position;
     }
     public void OnAddDesk()
     {
-        GameObject desk = Instantiate(DeskItem[currButtonNum]);
-        desk.transform.position = SpawnPos.transform.position;
+        AddDesk = true;
+        //GameObject desk = Instantiate(DeskItem[currButtonNum]);
+        //desk.transform.position = SpawnPos.transform.position;
     }
     public void OnAddWallHang()
     {
@@ -88,4 +165,6 @@ public class AddManager : MonoBehaviour
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
+
+    
 }
