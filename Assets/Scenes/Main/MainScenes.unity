@@ -2447,6 +2447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userName: {fileID: 17623654}
+  myRoom: 0
 --- !u!1 &931039891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,8 +3574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eebd233b2c320764c95b717cc11a68da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_fStartScale: 1
   scrollSpeed: 20000
-  miniCame: {fileID: 1227977573}
+  RoomManager: {fileID: 0}
 --- !u!1 &1233186579
 GameObject:
   m_ObjectHideFlags: 0
