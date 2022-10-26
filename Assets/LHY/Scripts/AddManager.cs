@@ -29,6 +29,35 @@ public class AddManager : MonoBehaviour
     public GameObject[] DeskItem;
     //벽 걸이 오브젝트
     public GameObject[] WallHangItem;
+    //옷장 오브젝트
+    public GameObject[] closetItems;
+    //옷걸이 오브젝트
+    public GameObject[] clothesItems;
+    //커피 테이블 오브젝트
+    public GameObject[] coffee_tableItems;
+    //전자 제품 오브젝트
+    public GameObject[] curtainsItems;
+    //오락 제품 오브젝트
+    public GameObject[] electrionicsItems;
+    //꽃 오브젝트
+    public GameObject[] flowerItems;
+    //부엌 의자 오브젝트
+    public GameObject[] kitchenChairItems;
+    //부엌 용품 오브젝트
+    public GameObject[] kitchenTableItems;
+    //램프 오브젝트
+    public GameObject[] lamp;
+    //라운지 의자 오브젝트
+    public GameObject[] loungeChairItems;
+    //음악 오브젝트
+    public GameObject[] musical_instrumentItems;
+    //오피스 의자 오브젝트
+    public GameObject[] office_chair;
+    //오피스 책상 오브젝트
+    public GameObject[] office_desk;
+    //선반 오브젝트
+    public GameObject[] shelf;
+    
 
     public bool AddBed = false;
     public bool AddChair = false;
@@ -77,7 +106,7 @@ public class AddManager : MonoBehaviour
     }
 
 
-        public void Button0()
+    public void Button0()
     {
         currButtonNum = 0;
     }
@@ -128,4 +157,6 @@ public class AddManager : MonoBehaviour
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
+
+    
 }
