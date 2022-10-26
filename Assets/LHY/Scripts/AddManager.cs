@@ -36,7 +36,7 @@ public class AddManager : MonoBehaviour
     //커피 테이블 오브젝트
     public GameObject[] coffee_tableItems;
     //전자 제품 오브젝트
-    public GameObject[] curtainsItems;
+    public GameObject[] entertainmentItems;
     //오락 제품 오브젝트
     public GameObject[] electrionicsItems;
     //꽃 오브젝트
@@ -53,8 +53,6 @@ public class AddManager : MonoBehaviour
     public GameObject[] musical_instrumentItems;
     //오피스 의자 오브젝트
     public GameObject[] office_chair;
-    //오피스 책상 오브젝트
-    public GameObject[] office_desk;
     //선반 오브젝트
     public GameObject[] shelf;
     
@@ -71,6 +69,19 @@ public class AddManager : MonoBehaviour
         chairItems = Resources.LoadAll<GameObject>("armchair");
         DeskItem = Resources.LoadAll<GameObject>("office_desk");
         WallHangItem = Resources.LoadAll<GameObject>("window");
+        closetItems = Resources.LoadAll<GameObject>("closet");
+        clothesItems = Resources.LoadAll<GameObject>("clothes");
+        coffee_tableItems = Resources.LoadAll<GameObject>("coffee_table");
+        entertainmentItems = Resources.LoadAll<GameObject>("entertainment");
+        electrionicsItems = Resources.LoadAll<GameObject>("electronics");
+        flowerItems = Resources.LoadAll<GameObject>("flower");
+        kitchenChairItems = Resources.LoadAll<GameObject>("kitchen_chair");
+        kitchenTableItems = Resources.LoadAll<GameObject>("kitchen_table");
+        lamp = Resources.LoadAll<GameObject>("lamp");
+        loungeChairItems = Resources.LoadAll<GameObject>("lounge_chair");
+        musical_instrumentItems = Resources.LoadAll<GameObject>("musical_instrument");
+        office_chair = Resources.LoadAll<GameObject>("office_chair");
+        shelf = Resources.LoadAll<GameObject>("shelf");
         //for (int i = 0; i < bedItems.Length; i++)
         //{
         //    bedItems[i].AddComponent<Furniture>();
@@ -100,9 +111,6 @@ public class AddManager : MonoBehaviour
         //    WallHangItem[i].AddComponent<Rigidbody>();
         //    WallHangItem[i].tag = "Wall";
         //}
-
-
-
     }
 
 
