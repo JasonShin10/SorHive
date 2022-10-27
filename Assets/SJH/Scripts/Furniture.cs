@@ -6,7 +6,7 @@ public class Furniture : MonoBehaviour
 {
     public bool located = false;
     public bool canLocated = true;
-    public List<GameObject> rays = new List<GameObject>();
+   
     public Vector3 startPos;
     public Quaternion startRotation;
     // Start is called before the first frame update

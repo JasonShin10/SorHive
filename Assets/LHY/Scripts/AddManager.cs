@@ -1,15 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+public class ObjectInfo
+{
 
+    public Vector3 position;
+    public Vector3 scale;
+    public Vector3 angle;
+}
+
+public class ArrayJson<T>
+{
+    public List<T> data;
+}
 
 
 public class AddManager : MonoBehaviour
 {
     public static AddManager instance;
 
-
+    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
     public ObjectInfo objectInfo;
     private void Awake()
     {
@@ -56,8 +68,10 @@ public class AddManager : MonoBehaviour
     public GameObject[] office_chair;
     //선반 오브젝트
     public GameObject[] shelf;
-    
 
+    public Vector3 pos;
+    public Vector3 sca;
+    public Vector3 ang;
     public bool AddBed = false;
     public bool AddChair = false;
     public bool AddDesk = false;
@@ -104,21 +118,7 @@ public class AddManager : MonoBehaviour
         //    bedItems[i].AddComponent<Rigidbody>();
         //    bedItems[i].tag = "Furniture";
         //}
-        //for (int i = 0; i < chairItems.Length; i++)
-        //{
-        //    chairItems[i].AddComponent<Furniture>();
-        //    chairItems[i].AddComponent<DragDrop>();
-        //    chairItems[i].AddComponent<Rigidbody>();
-        //    chairItems[i].tag = "Furniture";
-
-        //}
-        //for (int i = 0; i < DeskItem.Length; i++)
-        //{
-        //    DeskItem[i].AddComponent<Furniture>();
-        //    DeskItem[i].AddComponent<DragDrop>();
-        //    DeskItem[i].AddComponent<Rigidbody>();
-        //    DeskItem[i].tag = "Furniture";
-        //}
+     
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -129,19 +129,36 @@ public class AddManager : MonoBehaviour
     }
     public void OnSave()
     {
-        string jsonData = JsonUtility.ToJson(objectInfo);
+        objectInfo = new ObjectInfo();
+        objectInfo.position = pos;
+        objectInfo.scale = sca;
+        objectInfo.angle = ang;
+        string jsonData = JsonUtility.ToJson(objectInfo, true);
+        // 저장경로
+        string path = Application.dataPath + "/data.txt";
+        // 파일로 저장
+        File.WriteAllText(path, jsonData);
         print(jsonData);
     }
 
+    public void OnLoad()
+    {
+        //저장된 정보 불러오고
+        string path = Application.dataPath + "/data.txt";
+        string jsonData = File.ReadAllText(path);
+        //json -> objectInfo 에 셋팅
+        objectInfo = JsonUtility.FromJson<ObjectInfo>(jsonData);
+        //물체생성
+    }
     public void Button0()
     {
-        print(0);
+        
         currButtonNum = 0;
     }
 
     public void Button1()
     {
-        print(1);
+        
         currButtonNum = 1;
     }
     public void Button2()

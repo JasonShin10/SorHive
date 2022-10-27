@@ -53,12 +53,7 @@ public class MapGround : Map
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
                 }
-                //currCube = Instantiate(cube);
-                //currCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                //int x = (int)(hit.point.x);
-                //int z = (int)(hit.point.z);
-                //currCube.transform.position = new Vector3(x, hit.point.y, z);
-                //currCube.GetComponent<Collider>().enabled = false;
+               
             }
         }
         if (Input.GetMouseButtonDown(1))
@@ -75,17 +70,16 @@ public class MapGround : Map
                         currCube.name = "d" + select;
                         select += 1;
                         currCube.layer = LayerMask.NameToLayer("Obj");
-                        ObjectInfo objectInfo = new ObjectInfo();
-                        objectInfo.position = currCube.transform.position;
-                        objectInfo.scale = currCube.transform.localScale;
-                        objectInfo.angle = currCube.transform.eulerAngles;
-                        AddManager.instance.objectInfo = objectInfo;
-                        objectInfoList.Add(objectInfo);  
+                        
+
                         AddManager.instance.AddBed = false;
 
                         int x = (int)(hit.point.x);
                         int z = (int)(hit.point.z);
                         currCube.transform.position = new Vector3(x, hit.point.y, z);
+                        AddManager.instance.pos = currCube.transform.position;
+                        AddManager.instance.sca = currCube.transform.localScale;
+                        AddManager.instance.ang = currCube.transform.eulerAngles;
                         if (currCube.GetComponent<Furniture>())
                         {
                             currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
