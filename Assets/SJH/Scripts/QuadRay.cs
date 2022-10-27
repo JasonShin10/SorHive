@@ -37,7 +37,7 @@ public class QuadRay : MonoBehaviour
                     
                     if (hit.transform.gameObject.GetComponent<Furniture>().canLocated == false)
                     {
-                        print(1111);
+                        //print(1111);
                         transform.GetChild(0).gameObject.SetActive(false);
                         transform.GetChild(1).gameObject.SetActive(true);
                     }

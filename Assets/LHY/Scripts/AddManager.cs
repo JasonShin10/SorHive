@@ -116,11 +116,13 @@ public class AddManager : MonoBehaviour
 
     public void Button0()
     {
+        print(0);
         currButtonNum = 0;
     }
 
     public void Button1()
     {
+        print(1);
         currButtonNum = 1;
     }
     public void Button2()
@@ -138,6 +140,94 @@ public class AddManager : MonoBehaviour
     public void Button5()
     {
         currButtonNum = 5;
+    }
+
+    public void Button6()
+    {
+        currButtonNum = 6;
+    }
+
+    public void Button7()
+    {
+        currButtonNum = 7;
+    }
+
+    public void Button8()
+    {
+        currButtonNum = 8;
+    }
+
+    public void Button9()
+    {
+        currButtonNum = 9;
+    }
+
+    public void Button10()
+    {
+        currButtonNum = 10;
+    }
+
+    public void Button11()
+    {
+        currButtonNum = 11;
+    }
+    public void Button12()
+    {
+        currButtonNum = 12;
+    }
+    public void Button13()
+    {
+        currButtonNum = 13;
+    }
+
+    public void Button14()
+    {
+        currButtonNum = 14;
+    }
+
+    public void Button15()
+    {
+        currButtonNum = 15;
+    }
+
+    public void Button16()
+    {
+        currButtonNum = 16;
+    }
+
+    public void Button17()
+    {
+        currButtonNum = 17;
+    }
+
+    public void Button18()
+    {
+        currButtonNum = 18;
+    }
+
+    public void Button19()
+    {
+        currButtonNum = 19;
+    }
+
+    public void Button20()
+    {
+        currButtonNum = 20;
+    }
+
+    public void Button21()
+    {
+        currButtonNum = 21;
+    }
+
+    public void Button22()
+    {
+        currButtonNum = 22;
+    }
+
+    public void Button23()
+    {
+        currButtonNum = 23;
     }
 
     public void OnAddBed()

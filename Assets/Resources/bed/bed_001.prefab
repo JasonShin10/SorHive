@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: -3284802288366110616}
   - component: {fileID: -8502271894966037720}
   - component: {fileID: 2365545113760314930}
-  - component: {fileID: 2349503758240354857}
-  - component: {fileID: 7575558057217159060}
+  - component: {fileID: 3243959763017894952}
   m_Layer: 6
   m_Name: bed_001
   m_TagString: Furniture
@@ -133,32 +132,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2349503758240354857
-MonoBehaviour:
+--- !u!65 &3243959763017894952
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18219716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ba1933b32fb51940b09212821a56c67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  located: 0
-  canLocated: 1
-  rays: []
-  startPos: {x: 0, y: 0, z: 0}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7575558057217159060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18219716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec0d5ca971501a46a8f942a8c11ad8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializedVersion: 2
+  m_Size: {x: 1.8318412, y: 1.9242836, z: 0.95830655}
+  m_Center: {x: -0.0000013113022, y: 0.9621416, z: 0.03088814}
