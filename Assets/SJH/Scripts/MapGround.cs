@@ -72,10 +72,17 @@ public class MapGround : Map
                     if (AddManager.instance.AddBed == true)
                     {
                         currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
-                        AddManager.instance.AddBed = false;
                         currCube.name = "d" + select;
                         select += 1;
                         currCube.layer = LayerMask.NameToLayer("Obj");
+                        ObjectInfo objectInfo = new ObjectInfo();
+                        objectInfo.position = currCube.transform.position;
+                        objectInfo.scale = currCube.transform.localScale;
+                        objectInfo.angle = currCube.transform.eulerAngles;
+                        AddManager.instance.objectInfo = objectInfo;
+                        objectInfoList.Add(objectInfo);  
+                        AddManager.instance.AddBed = false;
+
                         int x = (int)(hit.point.x);
                         int z = (int)(hit.point.z);
                         currCube.transform.position = new Vector3(x, hit.point.y, z);

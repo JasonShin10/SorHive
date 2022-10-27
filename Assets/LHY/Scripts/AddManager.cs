@@ -10,6 +10,7 @@ public class AddManager : MonoBehaviour
     public static AddManager instance;
 
 
+    public ObjectInfo objectInfo;
     private void Awake()
     {
         if (!instance)
@@ -126,7 +127,11 @@ public class AddManager : MonoBehaviour
         //    WallHangItem[i].tag = "Wall";
         //}
     }
-
+    public void OnSave()
+    {
+        string jsonData = JsonUtility.ToJson(objectInfo);
+        print(jsonData);
+    }
 
     public void Button0()
     {
