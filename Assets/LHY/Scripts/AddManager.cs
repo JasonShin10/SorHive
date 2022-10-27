@@ -61,6 +61,20 @@ public class AddManager : MonoBehaviour
     public bool AddChair = false;
     public bool AddDesk = false;
     public bool AddWallHang = false;
+    public bool AddCloset = false;
+    public bool AddClothes = false;
+    public bool AddCoffeeTable = false;
+    public bool AddEntertainment = false;
+    public bool AddElectrionic = false;
+    public bool AddFlower = false;
+    public bool AddKitchenChair = false;
+    public bool AddKitchenTable = false;
+    public bool AddLamp = false;
+    public bool AddLoungeChair = false;
+    public bool AddInstrument = false;
+    public bool AddOfficeChair = false;
+    public bool AddShelf = false;
+
 
     public int currButtonNum = 0;
     void Start()
@@ -230,6 +244,115 @@ public class AddManager : MonoBehaviour
         currButtonNum = 23;
     }
 
+    public void Button24()
+    {
+        currButtonNum = 24;
+    }
+
+    public void Button25()
+    {
+        currButtonNum = 25;
+    }
+
+    public void Button26()
+    {
+        currButtonNum = 26;
+    }
+
+    public void Button27()
+    {
+        currButtonNum = 27;
+    }
+
+    public void Button28()
+    {
+        currButtonNum = 28;
+    }
+
+    public void Button29()
+    {
+        currButtonNum = 29;
+    }
+
+    public void Button30()
+    {
+        currButtonNum = 30;
+    }
+
+    public void Button31()
+    {
+        currButtonNum = 31;
+    }
+
+    public void Button32()
+    {
+        currButtonNum = 32;
+    }
+
+    public void Button33()
+    {
+        currButtonNum = 33;
+    }
+
+    public void Button34()
+    {
+        currButtonNum = 34;
+    }
+
+    public void Button35()
+    {
+        currButtonNum = 35;
+    }
+
+    public void Button36()
+    {
+        currButtonNum = 36;
+    }
+
+    public void Button37()
+    {
+        currButtonNum = 37;
+    }
+
+    public void Button38()
+    {
+        currButtonNum = 38;
+    }
+
+    public void Button39()
+    {
+        currButtonNum = 39;
+    }
+
+    public void Button40()
+    {
+        currButtonNum = 40;
+    }
+
+    public void Button41()
+    {
+        currButtonNum = 41;
+    }
+
+    public void Button42()
+    {
+        currButtonNum = 42;
+    }
+
+    public void Button43()
+    {
+        currButtonNum = 43;
+    }
+
+    public void Button44()
+    {
+        currButtonNum = 44;
+    }
+
+
+
+
+
     public void OnAddBed()
     {
         AddBed = true;
@@ -255,6 +378,87 @@ public class AddManager : MonoBehaviour
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
+    public void OnAddCloset()
+    {
+        AddCloset = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
 
-    
+    public void OnAddCoffeeTable()
+    {
+        AddCoffeeTable = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+    public void OnAddEntertainment()
+    {
+        AddEntertainment = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+    public void OnAddElectronics()
+    {
+        AddEntertainment = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+    public void OnAddFlower()
+    {
+        AddFlower = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+    public void OnAddKitchenChair()
+    {
+        AddKitchenChair = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+    public void OnAddKitchenTable()
+    {
+        AddKitchenTable = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+    public void OnAddLamp()
+    {
+        AddLamp = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+    public void OnAddLoungeChair()
+    {
+        AddLoungeChair = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+   
+    public void OnAddInstrument()
+    {
+        AddInstrument = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+    public void OnAddOfficeChair()
+    {
+        AddOfficeChair = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+    public void OnShelf()
+    {
+        AddShelf = true;
+        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+        //wallhang.transform.position = SpawnPos.transform.position;
+    }
+
+
+
 }
