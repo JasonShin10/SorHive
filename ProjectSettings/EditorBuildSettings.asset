@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LHY/RoomInScene.unity
     guid: 3912660eff075bd40ac71e8d8fbf4289
+  - enabled: 1
+    path: Assets/Scenes/LHY/FeedUpLoadScene.unity
+    guid: e6af8ff3e5df9174ab0847de8243af18
   m_configObjects: {}
