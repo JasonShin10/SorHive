@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/LHY/MainScenes.unity
     guid: d6bb1a773222ec741948d6844ee3632c
   - enabled: 1
+    path: Assets/Scenes/LHY/RoomChange.unity
+    guid: 037abca0bda50d54db9bc8e386515ed0
+  - enabled: 1
     path: Assets/Scenes/LHY/RoomInScene.unity
     guid: 3912660eff075bd40ac71e8d8fbf4289
   - enabled: 1
-    path: Assets/Scenes/SJH/RoomChange.unity
-    guid: 4de0b5954aa9369468b3838efa4e7172
+    path: Assets/Scenes/LHY/FeedUpLoadScene.unity
+    guid: e6af8ff3e5df9174ab0847de8243af18
   m_configObjects: {}

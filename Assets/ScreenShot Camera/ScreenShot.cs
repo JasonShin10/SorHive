@@ -33,6 +33,7 @@ namespace CustomUtils
 
         //Sprite sprite;
 
+        public Camera sCame;
     
         public void ScreenShotClick()
         {
