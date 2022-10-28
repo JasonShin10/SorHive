@@ -52,6 +52,7 @@ public class MapGround : Map
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
+            //RemoveJson(selectObj.gameObject);
                 }
                
             }
@@ -71,15 +72,13 @@ public class MapGround : Map
                         select += 1;
                         currCube.layer = LayerMask.NameToLayer("Obj");
                         
-
                         AddManager.instance.AddBed = false;
-
+                        SaveJson(currCube.gameObject);
                         int x = (int)(hit.point.x);
                         int z = (int)(hit.point.z);
                         currCube.transform.position = new Vector3(x, hit.point.y, z);
-                        AddManager.instance.pos = currCube.transform.position;
-                        AddManager.instance.sca = currCube.transform.localScale;
-                        AddManager.instance.ang = currCube.transform.eulerAngles;
+                       
+                        
                         if (currCube.GetComponent<Furniture>())
                         {
                             currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
@@ -135,6 +134,7 @@ public class MapGround : Map
                 if (selectObj.GetComponent<Furniture>().canLocated == true)
                 {
                     selectObj.position = new Vector3(ox, oy, oz);
+                    SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
                     selectObj = null;
                 }
@@ -142,6 +142,7 @@ public class MapGround : Map
                 {
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
+                    SaveJson(selectObj.gameObject);
                     selectObj.GetComponent<Furniture>().canLocated = false;
                     selectObj = null;
                 }
@@ -165,6 +166,49 @@ public class MapGround : Map
                     selectObj.position = new Vector3(x, hit.point.y + 5, z);
                 }
             }
+        }
+    }
+
+    void SaveJson(GameObject obj)
+    {
+        for(int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        {
+            if(AddManager.instance.objectInfoList[i].obj == obj)
+            {
+                //정보수정
+                AddManager.instance.objectInfoList[i].position = obj.transform.position;
+                AddManager.instance.objectInfoList[i].scale = obj.transform.localScale;
+                AddManager.instance.objectInfoList[i].angle = obj.transform.eulerAngles;
+                return ;
+            }
+        }
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.obj = obj;
+        AddManager.instance.pos = obj.transform.position;
+        AddManager.instance.sca = obj.transform.localScale;
+        AddManager.instance.ang = obj.transform.eulerAngles;
+        AddManager.instance.objectInfo.obj = AddManager.instance.obj;
+        AddManager.instance.objectInfo.position = AddManager.instance.pos;
+        AddManager.instance.objectInfo.scale = AddManager.instance.sca;
+        AddManager.instance.objectInfo.angle = AddManager.instance.ang;
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);       
+    }
+
+    void RemoveJson(GameObject obj)
+    {
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.obj = obj;
+        AddManager.instance.pos = obj.transform.position;
+        AddManager.instance.sca = obj.transform.localScale;
+        AddManager.instance.ang = obj.transform.eulerAngles;
+        AddManager.instance.objectInfo.obj = AddManager.instance.obj;
+        AddManager.instance.objectInfo.position = AddManager.instance.pos;
+        AddManager.instance.objectInfo.scale = AddManager.instance.sca;
+        AddManager.instance.objectInfo.angle = AddManager.instance.ang;
+        if (AddManager.instance.objectInfoList.Contains(AddManager.instance.objectInfo))
+        {
+        AddManager.instance.objectInfoList.Remove(AddManager.instance.objectInfo);
+
         }
     }
 }

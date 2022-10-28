@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+
+[System.Serializable]
 public class ObjectInfo
 {
-
+    public GameObject obj;
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
@@ -21,8 +23,8 @@ public class AddManager : MonoBehaviour
 {
     public static AddManager instance;
 
-    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
     public ObjectInfo objectInfo;
+    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
     private void Awake()
     {
         if (!instance)
@@ -69,6 +71,7 @@ public class AddManager : MonoBehaviour
     //선반 오브젝트
     public GameObject[] shelf;
 
+    public GameObject obj;
     public Vector3 pos;
     public Vector3 sca;
     public Vector3 ang;
@@ -127,9 +130,11 @@ public class AddManager : MonoBehaviour
         //    WallHangItem[i].tag = "Wall";
         //}
     }
+    
     public void OnSave()
     {
         objectInfo = new ObjectInfo();
+        objectInfo.obj = obj;
         objectInfo.position = pos;
         objectInfo.scale = sca;
         objectInfo.angle = ang;
@@ -141,6 +146,32 @@ public class AddManager : MonoBehaviour
         print(jsonData);
     }
 
+    public void OnSave2()
+    {
+        
+        ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
+        
+        arrayJson.data = objectInfoList;
+        //objectInfoList.Add(objectInfo);
+        
+        //ArrayJson -> json
+        string jsonData = JsonUtility.ToJson(arrayJson);
+        print(jsonData);
+        // 저장경로
+        string path = Application.dataPath + "/Data";
+        
+        //만약에 경로가 없다면
+        if(Directory.Exists(path)== false)
+        {
+            //폴더를 만든다.
+            Directory.CreateDirectory(path);
+        }
+
+        // 파일로 저장
+        File.WriteAllText(path + "/data.txt", jsonData);
+
+    }
+
     public void OnLoad()
     {
         //저장된 정보 불러오고
@@ -149,6 +180,29 @@ public class AddManager : MonoBehaviour
         //json -> objectInfo 에 셋팅
         objectInfo = JsonUtility.FromJson<ObjectInfo>(jsonData);
         //물체생성
+        CreateObject(objectInfo);
+    }
+
+    public void OnLoad2()
+    {
+        //파일로 불러오기
+        string path = Application.dataPath + "/Data";
+        string jsonData = File.ReadAllText(path + "/data.txt");
+        //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>
+        ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(jsonData);
+        //arrayJson를 참고해서 오브젝트 생성
+        for(int i =0; i < arrayJson.data.Count; i++)
+        {
+            CreateObject(arrayJson.data[i]);
+        }
+    }
+
+    public void CreateObject(ObjectInfo info)
+    {
+        GameObject createObj = Instantiate(info.obj);
+        createObj.transform.position = info.position;
+        createObj.transform.localScale = info.scale;
+        createObj.transform.eulerAngles = info.angle;
     }
     public void Button0()
     {
