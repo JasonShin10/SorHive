@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using System.IO;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -13,14 +14,20 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public int myRoom = 0;
 
+    public Transform feedListContent;
+
+    public GameObject feedUIFactory;
+
     void Start()
     {
         //roomCache["a"];
+        CreateFeedUI();
+
     }
 
     void Update()
     {
-        
+       
     }
 
     //방 생성
@@ -116,6 +123,39 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void CreateRoomListUI()
     {
         //foreach (RoomInfo info in roomCache.Values) ;
+    }
+
+/*    public void LoadFeedData()
+    {
+        
+        
+    }*/
+
+ 
+
+    public void CreateFeedUI()
+    {
+        //피드의 정보를 불러오고
+        //LoadFeedData();
+        int FeedNum = 1;// FeedManager.FeedNum;
+        string path = Application.dataPath + "/LHY/FeedData/feedData" + FeedNum + ".txt";
+
+        string jsonData = File.ReadAllText(path);
+
+        
+        //피드 아이템을 만들어준다.
+        GameObject feed = Instantiate(feedUIFactory, feedListContent);
+
+
+        FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
+
+        FeedItem feedItem = feed.GetComponent<FeedItem>();
+
+        feedItem.myfeedNum = info.myfeedNum;
+        feedItem.feedText.text = info.feedText;
+        feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/"+ info.feedtextureNum);
+        //feedItem.feedtexture.texture = info.feedtexture;
+
     }
 
 }

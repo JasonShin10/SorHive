@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class FeedInfo
     public string UserID; //==계정이름(아이디)
 
     //피드에 올린 사진
-    public string feedtexture;
+    public int feedtextureNum;
 
     //피드에 쓴 글
     public string feedText;
@@ -31,6 +32,9 @@ public class FeedInfo
 
 public class FeedManager : MonoBehaviour
 {
+    public Texture[] photos;
+
+
 
     public GameObject feedManager;
 
@@ -41,8 +45,6 @@ public class FeedManager : MonoBehaviour
     //개시물 번호
     public static int FeedNum = 0; //서버에 올라갈 때 이 피드가 몇번째로 올라간 피드인지 확인하기 위함 
 
-    //내가올릴 사진의 텍스쳐 정보를 담을 변수
-    public Texture mytextur;
 
     public Text mytext;
 
@@ -59,34 +61,56 @@ public class FeedManager : MonoBehaviour
 
     public void OnClickfill()
     {
-        
-        //upLoad된 이미지의 텍스쳐정보를저장한다.
-       // string upLoadImage = my;
+
+       
+
+        //upLoad된 이미지의 텍스쳐정보를저장한다.(PC)
+        int upLoadImagePath = PhotoButton.instence.path;
+
+        //upLoad된 이미지의 텍스쳐정보를저장한다.(Mobile)
+        //string upLoadImagePate1 = Application.persistentDataPath;
+
 
         //사용자가 입력한 Text를 스트링값으로 변환해 저장한다.
         string upLoadText = mytext.text;
         
         //feedInfo 에 피드 로우이미지 텍스쳐를 upLoadImage와 동기화한다.
-        //feedInfo.feedtexture = upLoadImage;
+        
+        feedInfo.feedtextureNum = upLoadImagePath;
         //feedInfo에 피드 텍스트를 upLoadText의 입력값과 동기화한다.
-        feedInfo.feedText = upLoadText;
-
-        feedInfo.myfeedNum++;        
+        feedInfo.feedText = upLoadText;             
     }
 
     public void OnClickSave()
     {
+        feedInfo.myfeedNum = 0;
         //피드정보를 Json으로 변환한다.
         string jsonData = JsonUtility.ToJson(feedInfo, true);
         print(jsonData);
         FeedNum++;
+
+        print("사진번호"+feedInfo.feedtextureNum);
+
+        string path = Application.dataPath + "/LHY/FeedData";
+        
+
+        if(!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        
+        File.WriteAllText(path + "/feedData" + FeedNum + ".txt", jsonData);
     }
 
-    public void OnClickLoad()
+   /* public void OnClickLoad()
     {
         if (FeedNum != 0)
         {
-            //불러오기
+            for(int i =0; i< FeedNum; i++)
+            {
+                //불 러오기               
+            }
+
         }
-    }
+    }*/
 }

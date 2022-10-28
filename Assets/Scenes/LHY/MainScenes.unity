@@ -4891,6 +4891,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userName: {fileID: 17623654}
   myRoom: 0
+  feedListContent: {fileID: 984640305}
+  feedUIFactory: {fileID: 7061890509986261700, guid: 7eff84ead31556446ac4a00847e0296b, type: 3}
 --- !u!1 &931039891
 GameObject:
   m_ObjectHideFlags: 0
