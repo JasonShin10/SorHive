@@ -1,0 +1,1 @@
+{"data":[{"folderNumber":0,"objNumber":3,"obj":{"instanceID":-3522590},"position":{"x":13.0,"y":29.000999450683595,"z":2.0},"scale":{"x":4.0,"y":4.0,"z":4.0},"angle":{"x":0.0,"y":270.0,"z":0.0}},{"folderNumber":0,"objNumber":5,"obj":{"instanceID":-3522606},"position":{"x":5.0,"y":29.000999450683595,"z":9.0},"scale":{"x":4.0,"y":4.0,"z":4.0},"angle":{"x":0.0,"y":0.0,"z":0.0}}]}
