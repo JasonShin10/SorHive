@@ -13,7 +13,7 @@ public class Furniture : MonoBehaviour
     void Start()
     {
         canLocated = true;
-        
+        located = true;
     }
 
     // Update is called once per frame
@@ -55,5 +55,12 @@ public class Furniture : MonoBehaviour
             canLocated = true;
         }
     }
+
+    public void Delete()
+    {
+        
+        Destroy(gameObject);
+    }
+
 
 }

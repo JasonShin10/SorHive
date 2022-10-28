@@ -7,6 +7,8 @@ using UnityEngine.UI;
 [System.Serializable]
 public class ObjectInfo
 {
+    public int folderNumber; 
+    public int objNumber;
     public GameObject obj;
     public Vector3 position;
     public Vector3 scale;
@@ -34,7 +36,7 @@ public class AddManager : MonoBehaviour
     }
 
     //오브젝트들이 생성되는 장소
-    public Transform SpawnPos ;
+    public Transform SpawnPos;
 
     //침대오브젝트
     public GameObject[] bedItems;
@@ -95,6 +97,8 @@ public class AddManager : MonoBehaviour
 
 
     public int currButtonNum = 0;
+  
+ 
     void Start()
     {
         bedItems = Resources.LoadAll<GameObject>("bed");
@@ -114,12 +118,13 @@ public class AddManager : MonoBehaviour
         musical_instrumentItems = Resources.LoadAll<GameObject>("musical_instrument");
         office_chair = Resources.LoadAll<GameObject>("office_chair");
         shelf = Resources.LoadAll<GameObject>("shelf");
-        //for (int i = 0; i < bedItems.Length; i++)
+        OnLoad2();
+        //for (int i = 0; i < closetItems.Length; i++)
         //{
-        //    bedItems[i].AddComponent<Furniture>();
-        //    bedItems[i].AddComponent<DragDrop>();
-        //    bedItems[i].AddComponent<Rigidbody>();
-        //    bedItems[i].tag = "Furniture";
+        //    closetItems[i].AddComponent<Furniture>();
+        //    closetItems[i].AddComponent<DragDrop>();
+        //    closetItems[i].AddComponent<Rigidbody>();
+        //    closetItems[i].tag = "Furniture";
         //}
      
         //for (int i = 0; i < WallHangItem.Length; i++)
@@ -199,10 +204,28 @@ public class AddManager : MonoBehaviour
 
     public void CreateObject(ObjectInfo info)
     {
+       if (info.folderNumber == 0)
+        {
+            info.obj = bedItems[info.objNumber];
         GameObject createObj = Instantiate(info.obj);
+            
         createObj.transform.position = info.position;
         createObj.transform.localScale = info.scale;
         createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+        }
+       if (info.folderNumber == 1)
+        {
+            info.obj = chairItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+        }
+        
+
+
     }
     public void Button0()
     {
