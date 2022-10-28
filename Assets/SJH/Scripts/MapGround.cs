@@ -53,6 +53,7 @@ public class MapGround : Map
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y - 1, selectObj.GetComponent<BoxCollider>().center.z);
                     //RemoveJson(selectObj.gameObject);
                 }
                
@@ -137,7 +138,9 @@ public class MapGround : Map
                     selectObj.position = new Vector3(ox, oy, oz);
                     SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y+1, selectObj.GetComponent<BoxCollider>().center.z);
                     selectObj = null;
+
                 }
                 else
                 {
@@ -165,6 +168,8 @@ public class MapGround : Map
                     oz = (int)(hit.point.z);
                     oy = hit.point.y;
                     selectObj.position = new Vector3(x, hit.point.y + 5, z);
+                  
+                     
                 }
             }
             if(Input.GetKeyDown("i"))

@@ -41883,6 +41883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectInfo:
+    folderNumber: 0
+    objNumber: 0
     obj: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
     scale: {x: 0, y: 0, z: 0}
