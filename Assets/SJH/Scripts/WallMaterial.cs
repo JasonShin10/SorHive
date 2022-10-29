@@ -22,4 +22,12 @@ public class WallMaterial : MonoBehaviour
             rb.material = mats[0];
         }
     }
+
+    void SaveJson()
+    {
+        AddManager.instance.objectInfo = new ObjectInfo();
+        //AddManager.instance.objectInfo.matNumber = 
+
+    }
+
 }

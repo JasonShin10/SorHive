@@ -48,7 +48,7 @@ public class MapGround : Map
                 if (hit.transform.CompareTag("Furniture"))
                 {
                     selectObj = hit.transform;
-                   // selectObj.gameObject.GetComponent<Furniture>().located = false;
+                    selectObj.gameObject.GetComponent<Furniture>().located = false;
                     
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
@@ -194,7 +194,8 @@ public class MapGround : Map
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
                     SaveJson(selectObj.gameObject);
-                    selectObj.GetComponent<Furniture>().canLocated = false;
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
+                    //selectObj.GetComponent<Furniture>().canLocated = false;
                     selectObj = null;
                 }
 
@@ -274,13 +275,14 @@ public class MapGround : Map
     {
         currCube = Instantiate(item);
         
-        SaveJson(currCube.gameObject);
+        //SaveJson(currCube.gameObject);
         currCube.name = "d" + select;
         select += 1;
         currCube.layer = LayerMask.NameToLayer("Obj");
         int x = (int)(hit.point.x);
         int z = (int)(hit.point.z);
         currCube.transform.position = new Vector3(x, hit.point.y, z);
+        currCube.GetComponent<Furniture>().canLocated = true;
         if (currCube.GetComponent<Furniture>())
         {
             currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);

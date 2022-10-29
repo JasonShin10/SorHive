@@ -9,6 +9,7 @@ public class ObjectInfo
 {
     public int folderNumber; 
     public int objNumber;
+    public int matNumber;
     public GameObject obj;
     public Vector3 position;
     public Vector3 scale;
@@ -72,6 +73,9 @@ public class AddManager : MonoBehaviour
     public GameObject[] office_chair;
     //선반 오브젝트
     public GameObject[] shelf;
+    //벽지 머티리얼
+    public Material[] mats;
+    MeshRenderer rb;
 
     public GameObject obj;
     public Vector3 pos;
@@ -116,14 +120,9 @@ public class AddManager : MonoBehaviour
         musical_instrumentItems = Resources.LoadAll<GameObject>("musical_instrument");
         office_chair = Resources.LoadAll<GameObject>("office_chair");
         shelf = Resources.LoadAll<GameObject>("shelf");
-        for (int i = 0; i < office_chair.Length; i++)
-        {
-            office_chair[i].AddComponent<Furniture>();
-            office_chair[i].AddComponent<DragDrop>();
-            office_chair[i].AddComponent<Rigidbody>();
-            office_chair[i].tag = "Furniture";
-        }
-
+        mats = Resources.LoadAll<Material>("WallPaper");
+        rb = GetComponent<MeshRenderer>();
+  
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -578,6 +577,9 @@ public class AddManager : MonoBehaviour
         //wallhang.transform.position = SpawnPos.transform.position;
     }
 
+    public void OnMaterial()
+    {
 
+    }
 
 }

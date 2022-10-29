@@ -34,7 +34,6 @@ public class QuadRay : MonoBehaviour
                 // 가구가 배치 안되었을때
                 if (hit.transform.gameObject.GetComponent<Furniture>().located == false)
                 {
-                    
                     if (hit.transform.gameObject.GetComponent<Furniture>().canLocated == false)
                     {
                         //print(1111);
@@ -43,7 +42,6 @@ public class QuadRay : MonoBehaviour
                     }
                     else
                     {
-
                         transform.GetChild(0).gameObject.SetActive(true);
                         transform.GetChild(1).gameObject.SetActive(false);
                     }
