@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4806190046591913192}
   - component: {fileID: -2663109550193860909}
   - component: {fileID: -1818758847212526881}
-  - component: {fileID: 6416975723097993856}
+  - component: {fileID: -933183118181524525}
   m_Layer: 6
   m_Name: armchair_013
   m_TagString: Furniture
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   located: 0
   canLocated: 1
-  rays: []
   startPos: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &-2663109550193860909
@@ -132,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6416975723097993856
+--- !u!65 &-933183118181524525
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,5 +142,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1970458, y: 2.703097, z: 0.9891821}
-  m_Center: {x: -0.0000015258789, y: 1.35154, z: -0.045578815}
+  m_Size: {x: 1.1970458, y: 0.87102544, z: 0.9891821}
+  m_Center: {x: -0.0000015199184, y: 0.4355042, z: -0.045578822}

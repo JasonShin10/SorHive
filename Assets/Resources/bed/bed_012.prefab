@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 11123218014286449}
   - component: {fileID: -4338774860557299826}
   - component: {fileID: 8155306644018656823}
-  - component: {fileID: -4933417265718831774}
+  - component: {fileID: 6759961225506335839}
   m_Layer: 6
   m_Name: bed_012
   m_TagString: Furniture
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   located: 0
   canLocated: 1
-  rays: []
   startPos: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &-4338774860557299826
@@ -132,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &-4933417265718831774
+--- !u!65 &6759961225506335839
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,5 +142,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.376897, y: 2.5937257, z: 1.7611616}
-  m_Center: {x: 0.0000012516975, y: 1.2968626, z: -0.04393685}
+  m_Size: {x: 1.376897, y: 0.63936454, z: 1.7611616}
+  m_Center: {x: 0.0000012516975, y: 0.31968215, z: -0.04393682}

@@ -53,7 +53,7 @@ public class MapGround : Map
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
-                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y - 1, selectObj.GetComponent<BoxCollider>().center.z);
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y - 1.5f, selectObj.GetComponent<BoxCollider>().center.z);
                     //RemoveJson(selectObj.gameObject);
                 }
                
@@ -138,7 +138,7 @@ public class MapGround : Map
                     selectObj.position = new Vector3(ox, oy, oz);
                     SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
-                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y+1, selectObj.GetComponent<BoxCollider>().center.z);
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y+1.5f, selectObj.GetComponent<BoxCollider>().center.z);
                     selectObj = null;
 
                 }
