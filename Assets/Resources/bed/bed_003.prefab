@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9066596561793994622}
   - component: {fileID: -5111068396653963344}
   - component: {fileID: -7768257210013079805}
-  - component: {fileID: 330690196803463209}
+  - component: {fileID: 9017566037271851299}
   m_Layer: 6
   m_Name: bed_003
   m_TagString: Furniture
@@ -131,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &330690196803463209
+--- !u!65 &9017566037271851299
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

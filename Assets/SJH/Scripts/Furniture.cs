@@ -13,7 +13,7 @@ public class Furniture : MonoBehaviour
     void Start()
     {
         canLocated = true;
-        located = true;
+        //located = true;
     }
 
     // Update is called once per frame

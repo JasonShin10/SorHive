@@ -9,10 +9,14 @@ public class MapGround : Map
     int oz;
     float oy;
     int num;
+    float box;
     GameObject currCube;
     GameObject floor;
     Vector3 startPos;
     Quaternion startLocation;
+
+    Ray ray;
+    RaycastHit hit;
     void Start()
     {
         for (int i = 0; i <= tileX; i++)
@@ -28,105 +32,146 @@ public class MapGround : Map
             }
         }
 
-        //for(int i = 0; i <= tileZ; i++)
-        //{
-        //    floor = Instantiate(quadFactory);
-        //    Vector3 firstPos = floor.transform.position;
-        //    firstPos.z += i;
-        //    floor.transform.position = firstPos;
-        //}
+
+
     }
     UnityEngine.Transform selectObj;
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 if (hit.transform.CompareTag("Furniture"))
                 {
                     selectObj = hit.transform;
-                    selectObj.gameObject.GetComponent<Furniture>().located = false;
+                   // selectObj.gameObject.GetComponent<Furniture>().located = false;
+                    
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
-                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y - 1.5f, selectObj.GetComponent<BoxCollider>().center.z);
-                    //RemoveJson(selectObj.gameObject);
+
+                    //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
+                    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27, 0));
+
+
+
                 }
-               
+
             }
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
                     if (AddManager.instance.AddBed == true)
                     {
-                        currCube = Instantiate(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
-                        currCube.name = "d" + select;
-                        select += 1;
-                        currCube.layer = LayerMask.NameToLayer("Obj");
                         num = 0;
+                        Room(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddBed = false;
-                        SaveJson(currCube.gameObject);
-                        int x = (int)(hit.point.x);
-                        int z = (int)(hit.point.z);
-                        currCube.transform.position = new Vector3(x, hit.point.y, z);
-                        if (currCube.GetComponent<Furniture>())
-                        {
-                            currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
-                            startPos = currCube.GetComponent<Furniture>().startPos;
-                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-                            startLocation = currCube.GetComponent<Furniture>().startRotation;
-                        }
                     }
                     if (AddManager.instance.AddChair == true)
                     {
-                        currCube = Instantiate(AddManager.instance.chairItems[AddManager.instance.currButtonNum]);
                         num = 1;
+                        Room(AddManager.instance.chairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddChair = false;
-                        SaveJson(currCube.gameObject);
-                        currCube.name = "d" + select;
-                        select += 1;
-                        currCube.layer = LayerMask.NameToLayer("Obj");
-                        int x = (int)(hit.point.x);
-                        int z = (int)(hit.point.z);
-                        currCube.transform.position = new Vector3(x, hit.point.y, z);
-                        if (currCube.GetComponent<Furniture>())
-                        {
-                            currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
-                            startPos = currCube.GetComponent<Furniture>().startPos;
-                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-                            startLocation = currCube.GetComponent<Furniture>().startRotation;
-                        }
+                        //currCube = Instantiate(AddManager.instance.chairItems[AddManager.instance.currButtonNum]);
+                        //num = 1;
+                        //AddManager.instance.AddChair = false;
+                        //SaveJson(currCube.gameObject);
+                        //currCube.name = "d" + select;
+                        //select += 1;
+                        //currCube.layer = LayerMask.NameToLayer("Obj");
+                        //int x = (int)(hit.point.x);
+                        //int z = (int)(hit.point.z);
+                        //currCube.transform.position = new Vector3(x, hit.point.y, z);
+                        //if (currCube.GetComponent<Furniture>())
+                        //{
+                        //    currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
+                        //    startPos = currCube.GetComponent<Furniture>().startPos;
+                        //    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                        //    startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        //}
                     }
                     //startPos = currCube.transform.position;
-                }
-                if (AddManager.instance.AddDesk == true)
-                {
-                    currCube = Instantiate(AddManager.instance.DeskItem[AddManager.instance.currButtonNum]);
-                    AddManager.instance.AddDesk = false;
-                    currCube.name = "d" + select;
-                    select += 1;
-                    currCube.layer = LayerMask.NameToLayer("Obj");
-                    int x = (int)(hit.point.x);
-                    int z = (int)(hit.point.z);
-                    currCube.transform.position = new Vector3(x, hit.point.y, z);
-                    if (currCube.GetComponent<Furniture>())
+                    if (AddManager.instance.AddDesk == true)
                     {
-                        currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
-                        startPos = currCube.GetComponent<Furniture>().startPos;
-                        currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-                        startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        num = 2;
+                        Room(AddManager.instance.DeskItem[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddDesk = false;
                     }
+                    if (AddManager.instance.AddCloset == true)
+                    {
+                        Room(AddManager.instance.closetItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddCloset = false;
+                    }
+                    if (AddManager.instance.AddCoffeeTable == true)
+                    {
+                        Room(AddManager.instance.coffee_tableItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddCoffeeTable = false;
+                    }
+                    if (AddManager.instance.AddEntertainment == true)
+                    {
+                        Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddEntertainment = false;
+                    }
+              
+                    if (AddManager.instance.AddElectrionic == true)
+                    {
+                        Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddElectrionic = false;
+                    }
+              
+                    if (AddManager.instance.AddFlower == true)
+                    {
+                        Room(AddManager.instance.flowerItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddFlower = false;
+                    }
+                    if (AddManager.instance.AddKitchenChair == true)
+                    {
+                        Room(AddManager.instance.kitchenChairItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddKitchenChair = false;
+                    }
+                    if (AddManager.instance.AddKitchenTable == true)
+                    {
+                        Room(AddManager.instance.kitchenTableItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddKitchenTable = false;
+                    }
+                    if (AddManager.instance.AddLamp == true)
+                    {
+                        Room(AddManager.instance.lamp[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddLamp = false;
+                    }
+                    if (AddManager.instance.AddLoungeChair == true)
+                    {
+                        Room(AddManager.instance.loungeChairItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddLoungeChair = false;
+                    }
+                    if (AddManager.instance.AddInstrument == true)
+                    {
+                        Room(AddManager.instance.musical_instrumentItems[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddInstrument = false;
+                    }
+                    if (AddManager.instance.AddOfficeChair == true)
+                    {
+                        Room(AddManager.instance.office_chair[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddOfficeChair = false;
+                    }
+                    if (AddManager.instance.AddShelf == true)
+                    {
+                        Room(AddManager.instance.shelf[AddManager.instance.currButtonNum]);
+                        AddManager.instance.AddShelf = false;
+                    }
+
                 }
+
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -138,7 +183,9 @@ public class MapGround : Map
                     selectObj.position = new Vector3(ox, oy, oz);
                     SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
-                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, selectObj.GetComponent<BoxCollider>().center.y+1.5f, selectObj.GetComponent<BoxCollider>().center.z);
+
+                    selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
+                    
                     selectObj = null;
 
                 }
@@ -155,8 +202,8 @@ public class MapGround : Map
         }
         if (selectObj != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             int layer = 1 << LayerMask.NameToLayer("Ground");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
@@ -168,35 +215,35 @@ public class MapGround : Map
                     oz = (int)(hit.point.z);
                     oy = hit.point.y;
                     selectObj.position = new Vector3(x, hit.point.y + 5, z);
-                  
-                     
+
+
                 }
             }
-            if(Input.GetKeyDown("i"))
+            if (Input.GetKeyDown("i"))
             {
                 selectObj.GetComponent<Furniture>().Delete();
                 RemoveJson(selectObj.gameObject);
-                
+
             }
         }
     }
 
     void SaveJson(GameObject obj)
     {
-        for(int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if(AddManager.instance.objectInfoList[i].obj == obj)
+            if (AddManager.instance.objectInfoList[i].obj == obj)
             {
                 //정보수정
                 AddManager.instance.objectInfoList[i].position = obj.transform.position;
                 AddManager.instance.objectInfoList[i].scale = obj.transform.localScale;
                 AddManager.instance.objectInfoList[i].angle = obj.transform.eulerAngles;
-                return ;
+                return;
             }
         }
         AddManager.instance.objectInfo = new ObjectInfo();
         AddManager.instance.obj = obj;
-        
+
         AddManager.instance.pos = obj.transform.position;
         AddManager.instance.sca = obj.transform.localScale;
         AddManager.instance.ang = obj.transform.eulerAngles;
@@ -206,7 +253,7 @@ public class MapGround : Map
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
-        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);       
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
 
     void RemoveJson(GameObject obj)
@@ -220,7 +267,28 @@ public class MapGround : Map
                 return;
             }
         }
-      
+
+    }
+
+    void Room(GameObject item)
+    {
+        currCube = Instantiate(item);
+        
+        SaveJson(currCube.gameObject);
+        currCube.name = "d" + select;
+        select += 1;
+        currCube.layer = LayerMask.NameToLayer("Obj");
+        int x = (int)(hit.point.x);
+        int z = (int)(hit.point.z);
+        currCube.transform.position = new Vector3(x, hit.point.y, z);
+        if (currCube.GetComponent<Furniture>())
+        {
+            currCube.GetComponent<Furniture>().startPos = new Vector3(x, hit.point.y, z);
+            startPos = currCube.GetComponent<Furniture>().startPos;
+            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+            startLocation = currCube.GetComponent<Furniture>().startRotation;
+        }
+        box = currCube.GetComponent<BoxCollider>().center.y;
     }
 
 

@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 public class RoomSave : MonoBehaviour
 {
-    ObjectInfo objectInfo;
+    RawImage img;
     // Start is called before the first frame update
     void Start()
     {
+        img = GetComponent<RawImage>();
+        img.texture = Resources.Load<Texture>("ZRoomImage/my0");
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OnSave()
     {
-        string jsonData = JsonUtility.ToJson(objectInfo);
+        
     }
 }

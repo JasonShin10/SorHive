@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1047457640075782298}
   - component: {fileID: 8721551009404654675}
   - component: {fileID: -8916470298434869390}
-  - component: {fileID: 5251428479078508564}
+  - component: {fileID: -8382171762032615118}
   m_Layer: 6
   m_Name: office_table_002
   m_TagString: Furniture
@@ -101,7 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   located: 0
   canLocated: 1
-  rays: []
   startPos: {x: 0, y: 0, z: 0}
   startRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &8721551009404654675
@@ -132,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5251428479078508564
+--- !u!65 &-8382171762032615118
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,5 +142,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.055791, y: 1.7487043, z: 0.5255872}
-  m_Center: {x: -0.0000005245209, y: 0.87435216, z: 0.000000834465}
+  m_Size: {x: 1.055791, y: 0.5174334, z: 0.5255872}
+  m_Center: {x: -0.0000005364418, y: 0.25871664, z: 0.000000834465}

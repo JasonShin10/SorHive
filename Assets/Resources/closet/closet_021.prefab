@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9084877020919867835}
   - component: {fileID: 1454788760172302133}
   - component: {fileID: -289877324381424968}
+  - component: {fileID: 2237551257642187350}
   m_Layer: 6
   m_Name: closet_021
   m_TagString: Furniture
@@ -30,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 1139720976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,8 +126,21 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2237551257642187350
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139720976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2540063, y: 1.7785457, z: 0.63502204}
+  m_Center: {x: 0.0000014901161, y: 0.88927275, z: -0.003432557}

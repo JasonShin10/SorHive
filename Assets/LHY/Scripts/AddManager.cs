@@ -14,7 +14,6 @@ public class ObjectInfo
     public Vector3 scale;
     public Vector3 angle;
 }
-
 public class ArrayJson<T>
 {
     public List<T> data;
@@ -23,6 +22,7 @@ public class ArrayJson<T>
 
 public class AddManager : MonoBehaviour
 {
+[SerializeField] string screenShotName;
     public static AddManager instance;
 
     public ObjectInfo objectInfo;
@@ -94,11 +94,9 @@ public class AddManager : MonoBehaviour
     public bool AddInstrument = false;
     public bool AddOfficeChair = false;
     public bool AddShelf = false;
-
-
     public int currButtonNum = 0;
-  
- 
+
+    Button furniture;
     void Start()
     {
         bedItems = Resources.LoadAll<GameObject>("bed");
@@ -118,15 +116,14 @@ public class AddManager : MonoBehaviour
         musical_instrumentItems = Resources.LoadAll<GameObject>("musical_instrument");
         office_chair = Resources.LoadAll<GameObject>("office_chair");
         shelf = Resources.LoadAll<GameObject>("shelf");
-        OnLoad2();
-        //for (int i = 0; i < closetItems.Length; i++)
-        //{
-        //    closetItems[i].AddComponent<Furniture>();
-        //    closetItems[i].AddComponent<DragDrop>();
-        //    closetItems[i].AddComponent<Rigidbody>();
-        //    closetItems[i].tag = "Furniture";
-        //}
-     
+        for (int i = 0; i < office_chair.Length; i++)
+        {
+            office_chair[i].AddComponent<Furniture>();
+            office_chair[i].AddComponent<DragDrop>();
+            office_chair[i].AddComponent<Rigidbody>();
+            office_chair[i].tag = "Furniture";
+        }
+
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -134,8 +131,16 @@ public class AddManager : MonoBehaviour
         //    WallHangItem[i].AddComponent<Rigidbody>();
         //    WallHangItem[i].tag = "Wall";
         //}
+        //furniture = transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).GetComponent<Button>();
+        //furniture.onClick.AddListener(Button10);
+        OnLoad2();
+
     }
-    
+    private void Update()
+    {
+        print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
+        
+    }
     public void OnSave()
     {
         objectInfo = new ObjectInfo();
@@ -174,7 +179,20 @@ public class AddManager : MonoBehaviour
 
         // 파일로 저장
         File.WriteAllText(path + "/data.txt", jsonData);
+        RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+        Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+        RenderTexture.active = renderTexture;
 
+        Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
+
+        /*  // sprite = Sprite.Create(texture,)
+          Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+          sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+
+        texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        texture.Apply();
+
+        File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
     }
 
     public void OnLoad()
@@ -213,6 +231,7 @@ public class AddManager : MonoBehaviour
         createObj.transform.localScale = info.scale;
         createObj.transform.eulerAngles = info.angle;
             objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
         }
        if (info.folderNumber == 1)
         {
@@ -222,6 +241,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
             objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
         }
         
 
