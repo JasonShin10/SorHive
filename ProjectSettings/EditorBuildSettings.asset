@@ -6,18 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LHY/ConnectionScene.unity
-    guid: 657e93847563be644a125bf56c3c2882
+    path: Assets/Scenes/Main/ProtoScene/ConnectionScene.unity
+    guid: ba4d02604e0e6df479d2a05102bce04c
   - enabled: 1
-    path: Assets/Scenes/LHY/MainScenes.unity
-    guid: d6bb1a773222ec741948d6844ee3632c
+    path: Assets/Scenes/Main/ProtoScene/FeedUpLoadScene.unity
+    guid: 148b75846c7e62d4d8693e1fe7cb7207
   - enabled: 1
-    path: Assets/Scenes/LHY/RoomChange.unity
-    guid: 037abca0bda50d54db9bc8e386515ed0
+    path: Assets/Scenes/Main/ProtoScene/MainScenes.unity
+    guid: 981c4a080bba45f4185e6208cbba80f3
   - enabled: 1
-    path: Assets/Scenes/LHY/RoomInScene.unity
-    guid: 3912660eff075bd40ac71e8d8fbf4289
+    path: Assets/Scenes/Main/ProtoScene/RoomChange.unity
+    guid: e2ac2dfcdc4fa8e41a54bd2e7fc781e6
   - enabled: 1
-    path: Assets/Scenes/LHY/FeedUpLoadScene.unity
-    guid: e6af8ff3e5df9174ab0847de8243af18
+    path: Assets/Scenes/Main/ProtoScene/RoomInScene.unity
+    guid: c54cd07128ac3024bb28e9ee4018cc7c
   m_configObjects: {}

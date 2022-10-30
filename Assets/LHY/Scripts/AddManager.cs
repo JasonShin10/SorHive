@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ObjectInfo
@@ -612,7 +613,10 @@ public class AddManager : MonoBehaviour
     }
 
 
-
+    public void mainScene()
+    {
+        SceneManager.LoadScene("MainScenes");
+    }
 
 
     public void OnAddBed()

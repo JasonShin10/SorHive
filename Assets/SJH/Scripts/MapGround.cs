@@ -235,8 +235,8 @@ public class MapGround : Map
             }
             if (Input.GetKeyDown("i"))
             {
-                selectObj.GetComponent<Furniture>().Delete();
                 RemoveJson(selectObj.gameObject);
+                selectObj.GetComponent<Furniture>().Delete();
 
             }
         }
