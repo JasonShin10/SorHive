@@ -2,7 +2,7 @@
     "myfeedNum": 0,
     "UserID": "",
     "feedtextureNum": 1,
-    "feedText": "ㅏㅓㅣㅠㅎ나ㅓㅇ롸ㅣㄷㅈ",
+    "feedText": "집 가구 싶다아ㅏㅏ아",
     "Like": 0,
     "currcomment": 0,
     "comments": []
