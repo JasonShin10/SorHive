@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -179,22 +180,23 @@ public class AddManager : MonoBehaviour
             Directory.CreateDirectory(path);
         }
 
-        // 파일로 저장
-        File.WriteAllText(path + "/data.txt", jsonData);
-        RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
-        Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
-        RenderTexture.active = renderTexture;
+        //// 파일로 저장
+        //File.WriteAllText(path + "/data.txt", jsonData);
+        //RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+        //Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+        //RenderTexture.active = renderTexture;
 
-        Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
+        //Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
 
-        /*  // sprite = Sprite.Create(texture,)
-          Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
-          sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+        ///*  // sprite = Sprite.Create(texture,)
+        //  Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+        //  sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
 
-        texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        texture.Apply();
+        //texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+        //texture.Apply();
 
-        File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+        //File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+        //EditorApplication.ExecuteMenuItem("Assets/Refresh");
     }
 
     public void OnLoad()
@@ -382,6 +384,7 @@ public class AddManager : MonoBehaviour
         if (info.folderNumber == 15)
         {
             info.obj.GetComponent<MeshRenderer>().material = mats[info.matNumber];
+            objectInfoList.Add(info);
         }
     }
     public void CreateMat(ObjectInfo info)
