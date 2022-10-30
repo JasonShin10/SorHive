@@ -1,8 +1,8 @@
 {
     "myfeedNum": 0,
     "UserID": "",
-    "feedtextureNum": 2,
-    "feedText": "예쁘다",
+    "feedtextureNum": 3,
+    "feedText": "단풍 가을",
     "Like": 0,
     "currcomment": 0,
     "comments": []

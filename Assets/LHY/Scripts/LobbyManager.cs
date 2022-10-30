@@ -8,6 +8,8 @@ using System.IO;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
+    public static LobbyManager instence;
+
     public Text userName;
 
     Dictionary<string, int> roomCache = new Dictionary<string, int>();
@@ -18,6 +20,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public GameObject feedUIFactory;
 
+    private void Awake()
+    {
+        instence = this;
+    }
     void Start()
     {
         //roomCache["a"];
@@ -125,37 +131,39 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //foreach (RoomInfo info in roomCache.Values) ;
     }
 
-/*    public void LoadFeedData()
-    {
-        
-        
-    }*/
+    /*    public void LoadFeedData()
+        {
 
- 
+
+        }*/
+
+    public int FeedNum = 1;
 
     public void CreateFeedUI()
     {
+        FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
         //피드의 정보를 불러오고
         //LoadFeedData();
-        int FeedNum = 1;// FeedManager.FeedNum;
-        string path = Application.dataPath + "/LHY/FeedData/feedData" + FeedNum + ".txt";
+        // FeedManager.FeedNum;
+        for(int i = 1; i <= FeedNum; i++)
+        {
+            string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
-        string jsonData = File.ReadAllText(path);
+            print(FeedNum+"피드개수");
 
-        
-        //피드 아이템을 만들어준다.
-        GameObject feed = Instantiate(feedUIFactory, feedListContent);
+            string jsonData = File.ReadAllText(path);
 
+            //피드 아이템을 만들어준다.
+            GameObject feed = Instantiate(feedUIFactory, feedListContent);
 
-        FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
+            FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
 
-        FeedItem feedItem = feed.GetComponent<FeedItem>();
-
-        feedItem.myfeedNum = info.myfeedNum;
-        feedItem.feedText.text = info.feedText;
-        feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/"+ info.feedtextureNum);
-        //feedItem.feedtexture.texture = info.feedtexture;
-
+            FeedItem feedItem = feed.GetComponent<FeedItem>();
+            
+            feedItem.myfeedNum = info.myfeedNum;
+            feedItem.feedText.text = info.feedText;
+            feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/" + info.feedtextureNum);
+            //feedItem.feedtexture.texture = info.feedtexture;
+        }
     }
-
 }
