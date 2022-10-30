@@ -83,6 +83,8 @@ public class FeedManager : MonoBehaviour
 
     public void OnClickSave()
     {
+        LobbyManager.instence.FeedNum++;
+
         feedInfo.myfeedNum = 0;
         //피드정보를 Json으로 변환한다.
         string jsonData = JsonUtility.ToJson(feedInfo, true);
