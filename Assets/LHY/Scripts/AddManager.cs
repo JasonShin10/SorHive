@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -141,7 +140,7 @@ public class AddManager : MonoBehaviour
     }
     private void Update()
     {
-        print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
+        //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
 
     }
     public void OnSave()
@@ -180,8 +179,8 @@ public class AddManager : MonoBehaviour
             Directory.CreateDirectory(path);
         }
 
-        //// 파일로 저장
-        //File.WriteAllText(path + "/data.txt", jsonData);
+         
+        File.WriteAllText(path + "/data.txt", jsonData);
         //RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
         //Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
         //RenderTexture.active = renderTexture;
@@ -383,7 +382,7 @@ public class AddManager : MonoBehaviour
         }
         if (info.folderNumber == 15)
         {
-            info.obj.GetComponent<MeshRenderer>().material = mats[info.matNumber];
+            info.room.GetComponent<MeshRenderer>().material = mats[info.matNumber];
             objectInfoList.Add(info);
         }
     }

@@ -222,7 +222,7 @@ public class MapRight : Map
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if (AddManager.instance.objectInfoList[i].obj == objRoom)
+            if (AddManager.instance.objectInfoList[i].room == objRoom)
             {
                 //정보수정
                 AddManager.instance.objectInfoList[i].matNumber = AddManager.instance.currButtonNum;
@@ -231,7 +231,7 @@ public class MapRight : Map
             }
         }
         AddManager.instance.objectInfo = new ObjectInfo();
-        AddManager.instance.objectInfo.obj = objRoom;
+        AddManager.instance.objectInfo.room = objRoom;
         AddManager.instance.objectInfo.folderNumber = num;
         AddManager.instance.objectInfo.matNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
