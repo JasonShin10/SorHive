@@ -110,75 +110,75 @@ public class MapGround : Map
                     }
                     if (AddManager.instance.AddCloset == true)
                     {
-                        num = 3;
+                        num = 4;
                         Room(AddManager.instance.closetItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCloset = false;
                     }
                     if (AddManager.instance.AddCoffeeTable == true)
                     {
-                        num = 4;
+                        num = 5;
                         Room(AddManager.instance.coffee_tableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCoffeeTable = false;
                     }
                     if (AddManager.instance.AddEntertainment == true)
                     {
-                        num = 5;
+                        num = 6;
                         Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddEntertainment = false;
                     }
 
                     if (AddManager.instance.AddElectrionic == true)
                     {
-                        num = 6;
+                        num = 7;
                         Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddElectrionic = false;
                     }
 
                     if (AddManager.instance.AddFlower == true)
                     {
-                        num = 7;
+                        num = 8;
                         Room(AddManager.instance.flowerItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddFlower = false;
                     }
                     if (AddManager.instance.AddKitchenChair == true)
                     {
-                        num = 8;
+                        num = 9;
                         Room(AddManager.instance.kitchenChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenChair = false;
                     }
                     if (AddManager.instance.AddKitchenTable == true)
                     {
-                        num = 9;
+                        num = 10;
                         Room(AddManager.instance.kitchenTableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenTable = false;
                     }
                     if (AddManager.instance.AddLamp == true)
                     {
-                        num = 10;
+                        num = 11;
                         Room(AddManager.instance.lamp[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLamp = false;
                     }
                     if (AddManager.instance.AddLoungeChair == true)
                     {
-                        num = 11;
+                        num = 12;
                         Room(AddManager.instance.loungeChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLoungeChair = false;
                     }
                     if (AddManager.instance.AddInstrument == true)
                     {
-                        num = 12;
+                        num = 13;
                         Room(AddManager.instance.musical_instrumentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddInstrument = false;
                     }
                     if (AddManager.instance.AddOfficeChair == true)
                     {
-                        num = 13;
+                        num = 14;
                         Room(AddManager.instance.office_chair[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddOfficeChair = false;
                     }
                     if (AddManager.instance.AddShelf == true)
                     {
-                        num = 14;
+                        num = 15;
                         Room(AddManager.instance.shelf[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddShelf = false;
                     }
@@ -304,8 +304,9 @@ public class MapGround : Map
             startPos = currCube.GetComponent<Furniture>().startPos;
             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
             startLocation = currCube.GetComponent<Furniture>().startRotation;
-            box = currCube.GetComponent<BoxCollider>().center.y - 0.1f;
+            box = currCube.GetComponent<BoxCollider>().center.y - 0.01f;
             currCube.GetComponent<BoxCollider>().center = new Vector3(currCube.GetComponent<BoxCollider>().center.x, box, currCube.GetComponent<BoxCollider>().center.z);
+            SaveJson(currCube);
         }
 
     }

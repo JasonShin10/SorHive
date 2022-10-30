@@ -10,8 +10,16 @@ public class MapRight : Map
     float ox;
     int oz;
     int oy;
+    int num;
+    int mNum;
+    float box;
+    public Material[] mats;
+    MeshRenderer rb;
+
     Vector3 startPos;
     Quaternion startLocation;
+    Ray ray;
+    RaycastHit hit;
     void Start()
     {
         for (int i = 0; i <= tileX; i++)
@@ -26,7 +34,8 @@ public class MapRight : Map
                 floor.transform.rotation = transform.rotation;
             }
         }
-
+        mats = Resources.LoadAll<Material>("WallPaper");
+        rb = GetComponent<MeshRenderer>();
         //for(int i = 0; i <= tileZ; i++)
         //{
         //    floor = Instantiate(quadFactory);
@@ -41,8 +50,8 @@ public class MapRight : Map
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+           ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+           
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
@@ -66,28 +75,38 @@ public class MapRight : Map
 
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("WallRight"))
                 {
                     if (AddManager.instance.AddWallHang == true)
                     {
-                        currCube = Instantiate(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
+                        num = 3;
+                        Room(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
+                        
+                        //currCube = Instantiate(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddWallHang = false;
-                        //currCube = Instantiate(cube);
-                        currCube.layer = LayerMask.NameToLayer("Obj");
-                        int y = (int)(hit.point.y);
-                        int z = (int)(hit.point.z);
-                        currCube.transform.position = new Vector3(hit.point.x, y, z);
-                        if (currCube.GetComponent<Furniture>())
-                        {
-                            currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
-                            startPos = currCube.GetComponent<Furniture>().startPos;
-                            currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-                            startLocation = currCube.GetComponent<Furniture>().startRotation;
-                        }
+                        ////currCube = Instantiate(cube);
+                        //currCube.layer = LayerMask.NameToLayer("Obj");
+                        //int y = (int)(hit.point.y);
+                        //int z = (int)(hit.point.z);
+                        //currCube.transform.position = new Vector3(hit.point.x, y, z);
+                        //if (currCube.GetComponent<Furniture>())
+                        //{
+                        //    currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
+                        //    startPos = currCube.GetComponent<Furniture>().startPos;
+                        //    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+                        //    startLocation = currCube.GetComponent<Furniture>().startRotation;
+                        //}
+                    }
+                    if (AddManager.instance.AddMaterial == true)
+                    {
+                        num = 15;
+                        Mat();
+                        SaveMat(GameObject.Find("Wall_B"));
+                        AddManager.instance.AddWallHang = false;
                     }
                 }
             }
@@ -101,6 +120,7 @@ public class MapRight : Map
                 {
                     selectObj.position = new Vector3(ox, oy, oz);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    SaveJson(selectObj.gameObject);
                     selectObj = null;
                 }
                 else
@@ -108,6 +128,7 @@ public class MapRight : Map
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
                     selectObj.GetComponent<Furniture>().canLocated = false;
+                    SaveJson(selectObj.gameObject);
                     selectObj = null;
                 }
 
@@ -116,8 +137,8 @@ public class MapRight : Map
 
         if (selectObj != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
             int layer = 1 << LayerMask.NameToLayer("WallRight");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
@@ -139,7 +160,81 @@ public class MapRight : Map
 
       
     }
+    void SaveJson(GameObject obj)
+    {
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        {
+            if (AddManager.instance.objectInfoList[i].obj == obj)
+            {
+                //정보수정
+                AddManager.instance.objectInfoList[i].position = obj.transform.position;
+                AddManager.instance.objectInfoList[i].scale = obj.transform.localScale;
+                AddManager.instance.objectInfoList[i].angle = obj.transform.eulerAngles;
+                return;
+            }
+        }
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.obj = obj;
 
-    
+        AddManager.instance.pos = obj.transform.position;
+        AddManager.instance.sca = obj.transform.localScale;
+        AddManager.instance.ang = obj.transform.eulerAngles;
+        AddManager.instance.objectInfo.objNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.obj = AddManager.instance.obj;
+        AddManager.instance.objectInfo.position = AddManager.instance.pos;
+        AddManager.instance.objectInfo.scale = AddManager.instance.sca;
+        AddManager.instance.objectInfo.angle = AddManager.instance.ang;
+        
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+
+    }
+
+    void Room(GameObject item)
+    {
+        currCube = Instantiate(item);
+
+        //SaveJson(currCube.gameObject);
+        currCube.name = "d" + select;
+        select += 1;
+        currCube.layer = LayerMask.NameToLayer("Obj");
+        int y = (int)(hit.point.y);
+        int z = (int)(hit.point.z);
+        currCube.transform.position = new Vector3(hit.point.x, y, z);
+        SaveJson(currCube);
+        //if (currCube.GetComponent<Furniture>())
+        //{
+        //    currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
+        //    startPos = currCube.GetComponent<Furniture>().startPos;
+        //    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
+        //    startLocation = currCube.GetComponent<Furniture>().startRotation;
+         
+        //}
+
+    }
+
+    void Mat()
+    {
+        GameObject.Find("Wall_B").GetComponent<MeshRenderer>().material = mats[AddManager.instance.currButtonNum];
+    }
+
+    void SaveMat(GameObject objRoom)
+    {
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        {
+            if (AddManager.instance.objectInfoList[i].obj == objRoom)
+            {
+                //정보수정
+                AddManager.instance.objectInfoList[i].matNumber = AddManager.instance.currButtonNum;
+                
+                return;
+            }
+        }
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.objectInfo.obj = objRoom;
+        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.matNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+    }
     public LineRenderer line;
 }

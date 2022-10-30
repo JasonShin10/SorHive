@@ -7,10 +7,11 @@ using UnityEngine.UI;
 [System.Serializable]
 public class ObjectInfo
 {
-    public int folderNumber; 
+    public int folderNumber;
     public int objNumber;
     public int matNumber;
     public GameObject obj;
+    public GameObject room;
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
@@ -24,7 +25,7 @@ public class ArrayJson<T>
 
 public class AddManager : MonoBehaviour
 {
-[SerializeField] string screenShotName;
+    [SerializeField] string screenShotName;
     public static AddManager instance;
 
     public ObjectInfo objectInfo;
@@ -99,6 +100,7 @@ public class AddManager : MonoBehaviour
     public bool AddInstrument = false;
     public bool AddOfficeChair = false;
     public bool AddShelf = false;
+    public bool AddMaterial = false;
     public int currButtonNum = 0;
 
     Button furniture;
@@ -123,7 +125,7 @@ public class AddManager : MonoBehaviour
         shelf = Resources.LoadAll<GameObject>("shelf");
         mats = Resources.LoadAll<Material>("WallPaper");
         rb = GetComponent<MeshRenderer>();
-  
+
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -139,7 +141,7 @@ public class AddManager : MonoBehaviour
     private void Update()
     {
         print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
-        
+
     }
     public void OnSave()
     {
@@ -158,20 +160,20 @@ public class AddManager : MonoBehaviour
 
     public void OnSave2()
     {
-        
+
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-        
+
         arrayJson.data = objectInfoList;
         //objectInfoList.Add(objectInfo);
-        
+
         //ArrayJson -> json
         string jsonData = JsonUtility.ToJson(arrayJson);
         print(jsonData);
         // 저장경로
         string path = Application.dataPath + "/Data";
-        
+
         //만약에 경로가 없다면
-        if(Directory.Exists(path)== false)
+        if (Directory.Exists(path) == false)
         {
             //폴더를 만든다.
             Directory.CreateDirectory(path);
@@ -214,27 +216,28 @@ public class AddManager : MonoBehaviour
         //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>
         ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(jsonData);
         //arrayJson를 참고해서 오브젝트 생성
-        for(int i =0; i < arrayJson.data.Count; i++)
+        for (int i = 0; i < arrayJson.data.Count; i++)
         {
             CreateObject(arrayJson.data[i]);
         }
+
     }
 
     public void CreateObject(ObjectInfo info)
     {
-       if (info.folderNumber == 0)
+        if (info.folderNumber == 0)
         {
             info.obj = bedItems[info.objNumber];
-        GameObject createObj = Instantiate(info.obj);
-            
-        createObj.transform.position = info.position;
-        createObj.transform.localScale = info.scale;
-        createObj.transform.eulerAngles = info.angle;
+            GameObject createObj = Instantiate(info.obj);
+
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
             createObj.GetComponent<BoxCollider>().center = info.boxPosition;
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-       if (info.folderNumber == 1)
+        if (info.folderNumber == 1)
         {
             info.obj = chairItems[info.objNumber];
             GameObject createObj = Instantiate(info.obj);
@@ -247,7 +250,7 @@ public class AddManager : MonoBehaviour
         }
         if (info.folderNumber == 2)
         {
-            info.obj =DeskItem[info.objNumber];
+            info.obj = DeskItem[info.objNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -376,19 +379,24 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-  
-
-
+        if (info.folderNumber == 15)
+        {
+            info.obj.GetComponent<MeshRenderer>().material = mats[info.matNumber];
+        }
     }
+    public void CreateMat(ObjectInfo info)
+    {
+    }
+
     public void Button0()
     {
-        
+
         currButtonNum = 0;
     }
 
     public void Button1()
     {
-        
+
         currButtonNum = 1;
     }
     public void Button2()
@@ -608,7 +616,7 @@ public class AddManager : MonoBehaviour
     public void OnAddBed()
     {
         AddBed = true;
-       // GameObject bed = Instantiate(bedItems[currButtonNum]);
+        // GameObject bed = Instantiate(bedItems[currButtonNum]);
         //bed.transform.position = SpawnPos.transform.position;
     }
 
@@ -689,7 +697,7 @@ public class AddManager : MonoBehaviour
         //wallhang.transform.position = SpawnPos.transform.position;
     }
 
-   
+
     public void OnAddInstrument()
     {
         AddInstrument = true;
@@ -713,7 +721,7 @@ public class AddManager : MonoBehaviour
 
     public void OnMaterial()
     {
-
+        AddMaterial = true;
     }
 
 }
