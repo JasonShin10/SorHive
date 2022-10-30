@@ -3676,6 +3676,7 @@ GameObject:
   - component: {fileID: 606234686}
   - component: {fileID: 606234687}
   - component: {fileID: 606234684}
+  - component: {fileID: 606234688}
   m_Layer: 5
   m_Name: Room
   m_TagString: Untagged
@@ -3744,7 +3745,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 606234687}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -3795,6 +3796,18 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &606234688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606234682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab8fb911fe6fd64187f85de6bca742e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &630656174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4362,7 +4375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &750030784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4893,6 +4906,7 @@ MonoBehaviour:
   myRoom: 0
   feedListContent: {fileID: 984640305}
   feedUIFactory: {fileID: 7061890509986261700, guid: 7eff84ead31556446ac4a00847e0296b, type: 3}
+  FeedNum: 1
 --- !u!1 &931039891
 GameObject:
   m_ObjectHideFlags: 0
