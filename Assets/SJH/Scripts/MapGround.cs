@@ -9,7 +9,8 @@ public class MapGround : Map
     int oz;
     float oy;
     int num;
-    float box;
+    float box = 0;
+    float e = 0;
     GameObject currCube;
     GameObject floor;
     Vector3 startPos;
@@ -41,7 +42,7 @@ public class MapGround : Map
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
+
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
@@ -49,7 +50,7 @@ public class MapGround : Map
                 {
                     selectObj = hit.transform;
                     selectObj.gameObject.GetComponent<Furniture>().located = false;
-                    
+
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
@@ -66,7 +67,7 @@ public class MapGround : Map
         if (Input.GetMouseButtonDown(1))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
+
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -109,63 +110,75 @@ public class MapGround : Map
                     }
                     if (AddManager.instance.AddCloset == true)
                     {
+                        num = 3;
                         Room(AddManager.instance.closetItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCloset = false;
                     }
                     if (AddManager.instance.AddCoffeeTable == true)
                     {
+                        num = 4;
                         Room(AddManager.instance.coffee_tableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCoffeeTable = false;
                     }
                     if (AddManager.instance.AddEntertainment == true)
                     {
+                        num = 5;
                         Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddEntertainment = false;
                     }
-              
+
                     if (AddManager.instance.AddElectrionic == true)
                     {
+                        num = 6;
                         Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddElectrionic = false;
                     }
-              
+
                     if (AddManager.instance.AddFlower == true)
                     {
+                        num = 7;
                         Room(AddManager.instance.flowerItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddFlower = false;
                     }
                     if (AddManager.instance.AddKitchenChair == true)
                     {
+                        num = 8;
                         Room(AddManager.instance.kitchenChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenChair = false;
                     }
                     if (AddManager.instance.AddKitchenTable == true)
                     {
+                        num = 9;
                         Room(AddManager.instance.kitchenTableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenTable = false;
                     }
                     if (AddManager.instance.AddLamp == true)
                     {
+                        num = 10;
                         Room(AddManager.instance.lamp[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLamp = false;
                     }
                     if (AddManager.instance.AddLoungeChair == true)
                     {
+                        num = 11;
                         Room(AddManager.instance.loungeChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLoungeChair = false;
                     }
                     if (AddManager.instance.AddInstrument == true)
                     {
+                        num = 12;
                         Room(AddManager.instance.musical_instrumentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddInstrument = false;
                     }
                     if (AddManager.instance.AddOfficeChair == true)
                     {
+                        num = 13;
                         Room(AddManager.instance.office_chair[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddOfficeChair = false;
                     }
                     if (AddManager.instance.AddShelf == true)
                     {
+                        num = 14;
                         Room(AddManager.instance.shelf[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddShelf = false;
                     }
@@ -181,11 +194,11 @@ public class MapGround : Map
                 if (selectObj.GetComponent<Furniture>().canLocated == true)
                 {
                     selectObj.position = new Vector3(ox, oy, oz);
-                    SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
 
                     selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
-                    
+                    SaveJson(selectObj.gameObject);
+
                     selectObj = null;
 
                 }
@@ -193,8 +206,8 @@ public class MapGround : Map
                 {
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
-                    SaveJson(selectObj.gameObject);
                     selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
+                    SaveJson(selectObj.gameObject);
                     //selectObj.GetComponent<Furniture>().canLocated = false;
                     selectObj = null;
                 }
@@ -204,7 +217,7 @@ public class MapGround : Map
         if (selectObj != null)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            
+
             int layer = 1 << LayerMask.NameToLayer("Ground");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
@@ -254,7 +267,9 @@ public class MapGround : Map
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
+        AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+        
     }
 
     void RemoveJson(GameObject obj)
@@ -274,7 +289,7 @@ public class MapGround : Map
     void Room(GameObject item)
     {
         currCube = Instantiate(item);
-        
+
         //SaveJson(currCube.gameObject);
         currCube.name = "d" + select;
         select += 1;
@@ -289,8 +304,10 @@ public class MapGround : Map
             startPos = currCube.GetComponent<Furniture>().startPos;
             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
             startLocation = currCube.GetComponent<Furniture>().startRotation;
+            box = currCube.GetComponent<BoxCollider>().center.y - 0.1f;
+            currCube.GetComponent<BoxCollider>().center = new Vector3(currCube.GetComponent<BoxCollider>().center.x, box, currCube.GetComponent<BoxCollider>().center.z);
         }
-        box = currCube.GetComponent<BoxCollider>().center.y;
+
     }
 
 

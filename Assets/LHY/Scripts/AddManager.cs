@@ -14,6 +14,7 @@ public class ObjectInfo
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
+    public Vector3 boxPosition;
 }
 public class ArrayJson<T>
 {
@@ -229,6 +230,7 @@ public class AddManager : MonoBehaviour
         createObj.transform.position = info.position;
         createObj.transform.localScale = info.scale;
         createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
@@ -239,10 +241,142 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        
+        if (info.folderNumber == 2)
+        {
+            info.obj =DeskItem[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 3)
+        {
+            info.obj = WallHangItem[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 4)
+        {
+            info.obj = closetItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 5)
+        {
+            info.obj = coffee_tableItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 6)
+        {
+            info.obj = entertainmentItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 7)
+        {
+            info.obj = electrionicsItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 8)
+        {
+            info.obj = flowerItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 9)
+        {
+            info.obj = kitchenChairItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 10)
+        {
+            info.obj = kitchenTableItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 11)
+        {
+            info.obj = lamp[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 12)
+        {
+            info.obj = loungeChairItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 13)
+        {
+            info.obj = musical_instrumentItems[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.folderNumber == 14)
+        {
+            info.obj = office_chair[info.objNumber];
+            GameObject createObj = Instantiate(info.obj);
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+  
 
 
     }
