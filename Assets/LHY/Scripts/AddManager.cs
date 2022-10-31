@@ -383,6 +383,7 @@ public class AddManager : MonoBehaviour
         }
         if (info.folderNumber == 15)
         {
+            info.room = GameObject.Find("Wall_B");
             info.room.GetComponent<MeshRenderer>().material = mats[info.matNumber];
             objectInfoList.Add(info);
         }

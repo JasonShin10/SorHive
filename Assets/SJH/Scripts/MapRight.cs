@@ -230,6 +230,7 @@ public class MapRight : Map
                 return;
             }
         }
+
         AddManager.instance.objectInfo = new ObjectInfo();
         AddManager.instance.objectInfo.room = objRoom;
         AddManager.instance.objectInfo.folderNumber = num;
