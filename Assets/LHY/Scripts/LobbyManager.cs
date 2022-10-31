@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -92,11 +93,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         print("OnJoinedRoom");
         if (myRoom == 0)
         {
-            PhotonNetwork.LoadLevel("RoomChange");
+            SceneManager.LoadScene("RoomChange");
+            //PhotonNetwork.LoadLevel("RoomChange");
         }
         else if(myRoom == 1)
         {
-            PhotonNetwork.LoadLevel("RoomInScene");
+            SceneManager.LoadScene("RoomInScene");
+            //PhotonNetwork.LoadLevel("RoomInScene");
         }
         else if (myRoom == 2)
         {
