@@ -1,0 +1,9 @@
+{
+    "myfeedNum": 0,
+    "UserID": "",
+    "feedtextureNum": 4,
+    "feedText": "열공",
+    "Like": 0,
+    "currcomment": 0,
+    "comments": []
+}
