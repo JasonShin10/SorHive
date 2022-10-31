@@ -1,1 +1,345 @@
-{"data":[{"folderNumber":0,"objNumber":2,"matNumber":0,"obj":{"instanceID":-512788},"room":{"instanceID":0},"position":{"x":14.0,"y":29.000999450683595,"z":3.0},"scale":{"x":4.0,"y":4.0,"z":4.0},"angle":{"x":0.0,"y":0.0,"z":0.0},"boxPosition":{"x":-9.5367431640625e-7,"y":0.30000001192092898,"z":0.30000001192092898}},{"folderNumber":1,"objNumber":0,"matNumber":0,"obj":{"instanceID":-512804},"room":{"instanceID":0},"position":{"x":3.0,"y":29.000999450683595,"z":12.0},"scale":{"x":2.5,"y":2.5,"z":2.5},"angle":{"x":0.0,"y":270.0,"z":0.0},"boxPosition":{"x":0.00023780763149261475,"y":0.3334050476551056,"z":0.3334050476551056}},{"folderNumber":2,"objNumber":2,"matNumber":0,"obj":{"instanceID":-512820},"room":{"instanceID":0},"position":{"x":0.0,"y":29.0,"z":12.0},"scale":{"x":3.0,"y":3.0,"z":3.0},"angle":{"x":0.0,"y":270.0,"z":0.0},"boxPosition":{"x":-5.364418029785156e-7,"y":0.24871663749217988,"z":0.24871663749217988}},{"folderNumber":15,"objNumber":0,"matNumber":0,"obj":{"instanceID":0},"room":{"instanceID":357674},"position":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":0.0,"y":0.0,"z":0.0},"angle":{"x":0.0,"y":0.0,"z":0.0},"boxPosition":{"x":0.0,"y":0.0,"z":0.0}},{"folderNumber":3,"objNumber":0,"matNumber":0,"obj":{"instanceID":-512836},"room":{"instanceID":0},"position":{"x":-0.4109998941421509,"y":37.0,"z":9.0},"scale":{"x":2.0,"y":2.0,"z":2.0},"angle":{"x":0.0,"y":90.0,"z":0.0},"boxPosition":{"x":0.0,"y":0.0,"z":0.0}}]}
+{
+    "data": [
+        {
+            "folderNumber": 0,
+            "objNumber": 2,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": 29264
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 14.0,
+                "y": 29.000999450683595,
+                "z": 3.0
+            },
+            "scale": {
+                "x": 4.0,
+                "y": 4.0,
+                "z": 4.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -9.5367431640625e-7,
+                "y": 0.30000001192092898,
+                "z": 0.30000001192092898
+            }
+        },
+        {
+            "folderNumber": 1,
+            "objNumber": 0,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": 29152
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 3.0,
+                "y": 29.000999450683595,
+                "z": 12.0
+            },
+            "scale": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 270.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.00023780763149261475,
+                "y": 0.3334050476551056,
+                "z": 0.3334050476551056
+            }
+        },
+        {
+            "folderNumber": 2,
+            "objNumber": 2,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": 29996
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 0.0,
+                "y": 29.0,
+                "z": 12.0
+            },
+            "scale": {
+                "x": 3.0,
+                "y": 3.0,
+                "z": 3.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 270.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -5.364418029785156e-7,
+                "y": 0.24871663749217988,
+                "z": 0.24871663749217988
+            }
+        },
+        {
+            "folderNumber": 15,
+            "objNumber": 0,
+            "matNumber": 1,
+            "obj": {
+                "instanceID": 0
+            },
+            "room": {
+                "instanceID": 383022
+            },
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "folderNumber": 3,
+            "objNumber": 0,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": 29926
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": -0.4109998941421509,
+                "y": 37.0,
+                "z": 9.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "folderNumber": 0,
+            "objNumber": 5,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -581772
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 13.0,
+                "y": 29.000999450683595,
+                "z": 4.0
+            },
+            "scale": {
+                "x": 4.0,
+                "y": 4.0,
+                "z": 4.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0023689866065979006,
+                "y": 0.2866796851158142,
+                "z": 0.2866796851158142
+            }
+        },
+        {
+            "folderNumber": 2,
+            "objNumber": 4,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -581820
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 0.0,
+                "y": 29.0,
+                "z": 2.0
+            },
+            "scale": {
+                "x": 3.0,
+                "y": 3.0,
+                "z": 3.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.1413818597793579,
+                "y": 1.1083338260650635,
+                "z": 1.1083338260650635
+            }
+        },
+        {
+            "folderNumber": 14,
+            "objNumber": 8,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -581852
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 4.0,
+                "y": 29.0,
+                "z": 3.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0000025779008865356447,
+                "y": 0.4898831248283386,
+                "z": 0.4898831248283386
+            }
+        },
+        {
+            "folderNumber": 12,
+            "objNumber": 3,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -582020
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 9.0,
+                "y": 29.0,
+                "z": 0.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.000003516674041748047,
+                "y": 0.396371066570282,
+                "z": 0.396371066570282
+            }
+        },
+        {
+            "folderNumber": 13,
+            "objNumber": 0,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -582036
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 0.0,
+                "y": 29.000999450683595,
+                "z": 10.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0000018775463104248047,
+                "y": 0.6536895036697388,
+                "z": 0.6536895036697388
+            }
+        },
+        {
+            "folderNumber": 15,
+            "objNumber": 1,
+            "matNumber": 0,
+            "obj": {
+                "instanceID": -571280
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": -0.41099992394447329,
+                "y": 36.0,
+                "z": 10.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ]
+}
