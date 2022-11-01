@@ -11,11 +11,12 @@ public class MapGround : Map
     int num;
     float box = 0;
     float e = 0;
+    public Material[] floorMats;
     GameObject currCube;
     GameObject floor;
     Vector3 startPos;
     Quaternion startLocation;
-
+    MeshRenderer rb;
     Ray ray;
     RaycastHit hit;
     void Start()
@@ -32,7 +33,8 @@ public class MapGround : Map
                 floor.transform.rotation = transform.rotation;
             }
         }
-
+        floorMats = Resources.LoadAll<Material>("floorMat");
+        rb = GetComponent<MeshRenderer>();
 
 
     }
@@ -48,19 +50,13 @@ public class MapGround : Map
             {
                 if (hit.transform.CompareTag("Furniture"))
                 {
-
                     selectObj = hit.transform;
                     selectObj.gameObject.GetComponent<Furniture>().located = false;
-
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
-
                     //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
                     selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
-
-
-
                 }
 
             }
@@ -143,8 +139,7 @@ public class MapGround : Map
                     }
 
                     if (AddManager.instance.AddFlower == true)
-                    {
-                     
+                    {             
                         num = 8;
                         Room(AddManager.instance.flowerItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddFlower = false;
@@ -185,21 +180,24 @@ public class MapGround : Map
                         AddManager.instance.AddInstrument = false;
                     }
                     if (AddManager.instance.AddOfficeChair == true)
-                    {
-                    
+                    {                   
                         num = 14;
                         Room(AddManager.instance.office_chair[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddOfficeChair = false;
                     }
                     if (AddManager.instance.AddShelf == true)
-                    {
-                   
-                        
+                    {                 
                         num = 15;
                         Room(AddManager.instance.shelf[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddShelf = false;
                     }
+                    if (AddManager.instance.AddFloor == true)
+                    {
+                        num = 16;
+                        FloorMat();
+                        AddManager.instance.AddFloor = false;
 
+                    }
                 }
 
             }
@@ -258,7 +256,10 @@ public class MapGround : Map
             }
         }
     }
-
+    void FloorMat()
+    {
+        GameObject.Find("Floor.007").GetComponent<MeshRenderer>().material = floorMats[AddManager.instance.currButtonNum];
+    }
     void SaveJson(GameObject obj)
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)

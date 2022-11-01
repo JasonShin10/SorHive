@@ -104,6 +104,7 @@ public class AddManager : MonoBehaviour
     public bool AddOfficeChair = false;
     public bool AddShelf = false;
     public bool AddMaterial = false;
+    public bool AddFloor = false;
     public int currButtonNum = 0;
 
     Button furniture;
@@ -1035,7 +1036,7 @@ public class AddManager : MonoBehaviour
 
     public void OnFloor()
     {
-
+        AddFloor = true;
     }
 
 }

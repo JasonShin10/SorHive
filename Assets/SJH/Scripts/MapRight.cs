@@ -14,6 +14,7 @@ public class MapRight : Map
     int mNum;
     float box;
     public Material[] mats;
+    public Material[] floorMats;
     MeshRenderer rb;
 
     Vector3 startPos;
@@ -36,6 +37,7 @@ public class MapRight : Map
         }
         mats = Resources.LoadAll<Material>("WallPaper");
         rb = GetComponent<MeshRenderer>();
+        floorMats = Resources.LoadAll<Material>("floorMat");
         //for(int i = 0; i <= tileZ; i++)
         //{
         //    floor = Instantiate(quadFactory);
@@ -109,6 +111,7 @@ public class MapRight : Map
                         SaveMat(GameObject.Find("Wall_B"));
                         AddManager.instance.AddWallHang = false;
                     }
+                 
                 }
             }
         }
@@ -218,6 +221,8 @@ public class MapRight : Map
     {
         GameObject.Find("Wall_B").GetComponent<MeshRenderer>().material = mats[AddManager.instance.currButtonNum];
     }
+
+  
 
     void SaveMat(GameObject objRoom)
     {
