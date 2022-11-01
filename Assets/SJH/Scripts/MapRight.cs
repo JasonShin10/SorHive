@@ -83,6 +83,7 @@ public class MapRight : Map
                 {
                     if (AddManager.instance.AddWallHang == true)
                     {
+               
                         num = 3;
                         Room(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
                         
@@ -103,6 +104,7 @@ public class MapRight : Map
                     }
                     if (AddManager.instance.AddMaterial == true)
                     {
+                       
                         num = 15;
                         Mat();
                         SaveMat(GameObject.Find("Wall_B"));

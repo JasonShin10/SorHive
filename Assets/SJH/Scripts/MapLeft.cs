@@ -79,6 +79,8 @@ public class MapLeft : Map
                 {
                     if (AddManager.instance.AddWallHang == true)
                     {
+                       
+                       
                         //currCube = Instantiate(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);
                         num = 3;
                         Room(AddManager.instance.WallHangItem[AddManager.instance.currButtonNum]);

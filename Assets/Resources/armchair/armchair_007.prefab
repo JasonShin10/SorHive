@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1373179480911754788}
   - component: {fileID: -8270101933970732476}
   - component: {fileID: 5276870614337171418}
-  - component: {fileID: -3001850351371344694}
+  - component: {fileID: -1612526083088615528}
   m_Layer: 6
   m_Name: armchair_007
   m_TagString: Furniture
@@ -131,7 +131,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &-3001850351371344694
+--- !u!65 &-1612526083088615528
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
