@@ -78,6 +78,8 @@ public class AddManager : MonoBehaviour
     public GameObject[] shelf;
     //벽지 머티리얼
     public Material[] mats;
+    //바닥 머티리얼
+    public Material[] floor;
     MeshRenderer rb;
 
     public GameObject obj;
@@ -125,6 +127,7 @@ public class AddManager : MonoBehaviour
         office_chair = Resources.LoadAll<GameObject>("office_chair");
         shelf = Resources.LoadAll<GameObject>("shelf");
         mats = Resources.LoadAll<Material>("WallPaper");
+        floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
 
         //for (int i = 0; i < WallHangItem.Length; i++)
@@ -1028,6 +1031,11 @@ public class AddManager : MonoBehaviour
         AddOfficeChair = false;
         AddShelf = false;
         AddWallHang = false;
+    }
+
+    public void OnFloor()
+    {
+
     }
 
 }

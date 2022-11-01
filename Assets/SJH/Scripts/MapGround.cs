@@ -57,7 +57,7 @@ public class MapGround : Map
                     GameManager.instance.name = selectObj.name;
 
                     //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
-                    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.3f, 0));
+                    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
 
 
 
@@ -322,7 +322,7 @@ public class MapGround : Map
             currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
             startLocation = currCube.GetComponent<Furniture>().startRotation;
             box = currCube.GetComponent<BoxCollider>().center.y - 0.01f;
-            currCube.GetComponent<BoxCollider>().center = new Vector3(currCube.GetComponent<BoxCollider>().center.x, box - 0.1f, currCube.GetComponent<BoxCollider>().center.z);
+            currCube.GetComponent<BoxCollider>().center = new Vector3(currCube.GetComponent<BoxCollider>().center.x, box, currCube.GetComponent<BoxCollider>().center.z);
             SaveJson(currCube);
         }
 
