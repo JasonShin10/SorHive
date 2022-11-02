@@ -10,6 +10,7 @@ public class RoomSave : MonoBehaviour
     void Start()
     {
         img = GetComponent<RawImage>();
+        if(Resources.Load<Texture>("ZRoomImage/my0"))
         img.texture = Resources.Load<Texture>("ZRoomImage/my0");
         
     }

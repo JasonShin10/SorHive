@@ -75,15 +75,17 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickModifyProfile()
     {
         myRoom = 0;
-        CreateRoom();
-        JoinRoom();
+        SceneManager.LoadScene("RoomChange");
+        //CreateRoom();
+        //JoinRoom();
     }
 
     public void OnClickRoomIn()
     {
         myRoom = 1;
-        CreateRoom();
-        JoinRoom();
+        SceneManager.LoadScene("RoomInScene");
+        //CreateRoom();
+        //JoinRoom();
     }
 
     //방 참가가 완료되었을때 호출되는 함수

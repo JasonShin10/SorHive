@@ -172,7 +172,7 @@ public class AddManager : MonoBehaviour
         //objectInfoList.Add(objectInfo);
 
         //ArrayJson -> json
-        string jsonData = JsonUtility.ToJson(arrayJson);
+        string jsonData = JsonUtility.ToJson(arrayJson, true);
         print(jsonData);
         // 저장경로
         string path = Application.dataPath + "/Data";
@@ -219,6 +219,7 @@ public class AddManager : MonoBehaviour
         //파일로 불러오기
         string path = Application.dataPath + "/Data";
         string jsonData = File.ReadAllText(path + "/data.txt");
+
         //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>
         ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(jsonData);
         //arrayJson를 참고해서 오브젝트 생성
