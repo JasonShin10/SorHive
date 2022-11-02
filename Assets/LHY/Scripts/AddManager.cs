@@ -11,12 +11,14 @@ public class ObjectInfo
     public int folderNumber;
     public int objNumber;
     public int matNumber;
+    public int floorMatNumber;
     public GameObject obj;
     public GameObject room;
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
     public Vector3 boxPosition;
+
 }
 public class ArrayJson<T>
 {
@@ -392,9 +394,18 @@ public class AddManager : MonoBehaviour
             info.room.GetComponent<MeshRenderer>().material = mats[info.matNumber];
             objectInfoList.Add(info);
         }
+        if (info.folderNumber == 16)
+        {
+            info.room = GameObject.Find("Floor.007");
+            info.room.GetComponent<MeshRenderer>().material = floor[info.floorMatNumber];
+            objectInfoList.Add(info);
+        }
+        
     }
     public void CreateMat(ObjectInfo info)
     {
+
+
     }
 
     public void Button0()
@@ -788,6 +799,7 @@ public class AddManager : MonoBehaviour
         AddMaterial = false;
         AddShelf = false;
         AddWallHang = false;
+
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
@@ -836,6 +848,7 @@ public class AddManager : MonoBehaviour
         AddMaterial = false;
         AddShelf = false;
         AddWallHang = false;
+
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }

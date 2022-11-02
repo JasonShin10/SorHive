@@ -123,16 +123,14 @@ public class MapGround : Map
                         AddManager.instance.AddCoffeeTable = false;
                     }
                     if (AddManager.instance.AddEntertainment == true)
-                    {
-                    
+                    {                  
                         num = 6;
                         Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddEntertainment = false;
                     }
 
                     if (AddManager.instance.AddElectrionic == true)
-                    {
-                 
+                    {                
                         num = 7;
                         Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddElectrionic = false;
@@ -146,7 +144,6 @@ public class MapGround : Map
                     }
                     if (AddManager.instance.AddKitchenChair == true)
                     {
-                    
                         num = 9;
                         Room(AddManager.instance.kitchenChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenChair = false;
@@ -195,6 +192,7 @@ public class MapGround : Map
                     {
                         num = 16;
                         FloorMat();
+                        SaveMat(GameObject.Find("Floor.007"));
                         AddManager.instance.AddFloor = false;
 
                     }
@@ -259,6 +257,27 @@ public class MapGround : Map
     void FloorMat()
     {
         GameObject.Find("Floor.007").GetComponent<MeshRenderer>().material = floorMats[AddManager.instance.currButtonNum];
+        
+    }
+
+    void SaveMat(GameObject objRoom)
+    {
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        {
+            if (AddManager.instance.objectInfoList[i].room == objRoom)
+            {
+                //정보수정
+                AddManager.instance.objectInfoList[i].floorMatNumber = AddManager.instance.currButtonNum;
+
+                return;
+            }
+        }
+
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.objectInfo.room = objRoom;
+        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.floorMatNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
     void SaveJson(GameObject obj)
     {
