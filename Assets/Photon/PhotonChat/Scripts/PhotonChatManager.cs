@@ -90,7 +90,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
             chatDisplay.text += "\n" + msgs;
-            Debug.Log(msgs);
+            print(msgs);
         }
     }
 
@@ -128,7 +128,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public void OnConnected()
     {
         print("Connected");
-        isConnected = true;
+     
         joinChatButton.SetActive(false);
         chatClient.Subscribe(new string[] { "RegionChannel" });
         
@@ -139,6 +139,15 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
        
     }
 
+    public void SubmitPublicChatOnClick()
+    {
+        if (privateReceiver == "")
+        {
+            chatClient.PublishMessage("RegionChannel", currentChat);
+            chatField.text = "";
+            currentChat = "";
+        }
+    }
 
    public void SubmitPrivateChatOnClick()
     {
@@ -151,13 +160,4 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         }
     }
 
-    public void SubmitPublicChatOnClick()
-    {
-        if (privateReceiver == "")
-        {
-            chatClient.PublishMessage("RegionChannel", currentChat);
-            chatField.text = "";
-            currentChat = "";
-        }
-    }
 }
