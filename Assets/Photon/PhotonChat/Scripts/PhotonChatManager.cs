@@ -12,7 +12,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     [SerializeField] GameObject joinChatButton;
     ChatClient chatClient;
     bool isConnected;
-
     [SerializeField] string username;
 
     public void UsernameOnValueChange(string valueIn)
@@ -35,7 +34,37 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     [SerializeField] InputField chatField;
     [SerializeField] Text chatDisplay;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+    }
 
+    // Update is called once per frame 
+    void Update()
+    {
+        if (isConnected)
+        {
+            chatClient.Service();
+        }
+
+        if(chatField.text != "" && Input.GetKey(KeyCode.Return))
+        {
+            SubmitPublicChatOnClick();
+            SubmitPrivateChatOnClick();
+
+        }
+        //chatClient.Service();
+    }
+    public void TypeChatOnValueChange(string valueIn)
+    {
+        currentChat = valueIn;
+    }
+
+    public void ReceiverOnValueChange(string valueIn)
+    {
+        privateReceiver = valueIn;
+    }
     public void DebugReturn(DebugLevel level, string message)
     {
         
@@ -46,15 +75,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
        
     }
 
-    public void OnConnected()
-    {
-        print("Connected");
-       
-        joinChatButton.SetActive(false);
-        chatClient.Subscribe(new string[] { "RegionChannel" });
-        
-
-    }
 
  
 
@@ -105,41 +125,39 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         
     }
 
+    public void OnConnected()
+    {
+        print("Connected");
+        isConnected = true;
+        joinChatButton.SetActive(false);
+        chatClient.Subscribe(new string[] { "RegionChannel" });
+        
+
+    }
     public void OnUserUnsubscribed(string channel, string user)
     {
        
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
 
-    // Update is called once per frame
-    void Update()
+   public void SubmitPrivateChatOnClick()
     {
-        if (isConnected)
+      
+        if (privateReceiver != "")
         {
-            chatClient.Service();
+            chatClient.SendPrivateMessage(privateReceiver, currentChat);
+            chatField.text = "";
+            currentChat = "";
         }
+    }
 
-        if(chatField.text != "" && Input.GetKey(KeyCode.Return))
+    public void SubmitPublicChatOnClick()
+    {
+        if (privateReceiver == "")
         {
-            SubmitPublicChatOnClick();
-            SubmitPrivateChatOnClick();
-
+            chatClient.PublishMessage("RegionChannel", currentChat);
+            chatField.text = "";
+            currentChat = "";
         }
-        //chatClient.Service();
-    }
-
-    private void SubmitPrivateChatOnClick()
-    {
-        
-    }
-
-    private void SubmitPublicChatOnClick()
-    {
-       
     }
 }
