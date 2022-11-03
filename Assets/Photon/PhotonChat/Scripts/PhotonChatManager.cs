@@ -144,13 +144,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     {
         if (privateReceiver == "")
         {
-
             chatClient.PublishMessage("RegionChannel", currentChat);
             chatField.text = "";
             currentChat = "";
         }
     }
-
    public void SubmitPrivateChatOnClick()
     {
       
