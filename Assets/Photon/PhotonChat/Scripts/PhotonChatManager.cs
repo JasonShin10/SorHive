@@ -25,7 +25,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         chatClient = new ChatClient(this);
         chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(username));
         print("Connecting");
-
     }
 
     [SerializeField] GameObject chatPanel;
