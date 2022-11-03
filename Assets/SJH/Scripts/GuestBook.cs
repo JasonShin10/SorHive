@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GuestBook : MonoBehaviour
 {
     public GameObject player;
-    public Canvas guestBoxUI;
+    public ScrollRect guestBoxUI;
     public GameObject guestBox;
     // Start is called before the first frame update
     void Start()
