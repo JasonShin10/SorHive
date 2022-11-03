@@ -18,7 +18,6 @@ public class ObjectInfo
     public Vector3 scale;
     public Vector3 angle;
     public Vector3 boxPosition;
-
 }
 public class ArrayJson<T>
 {
@@ -132,7 +131,6 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
-
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -148,7 +146,6 @@ public class AddManager : MonoBehaviour
     private void Update()
     {
         //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
-
     }
     public void OnSave()
     {
@@ -167,9 +164,7 @@ public class AddManager : MonoBehaviour
 
     public void OnSave2()
     {
-
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-
         arrayJson.data = objectInfoList;
         //objectInfoList.Add(objectInfo);
 
@@ -712,7 +707,6 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
         AddEntertainment = false;
@@ -725,8 +719,7 @@ public class AddManager : MonoBehaviour
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
-        
+        AddShelf = false;     
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
@@ -759,7 +752,6 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
         AddEntertainment = false;
@@ -784,10 +776,8 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
-        
         AddElectrionic = false;
         AddFlower = false;
         AddKitchenChair = false;
@@ -809,10 +799,8 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
-
         AddElectrionic = false;
         AddFlower = false;
         AddKitchenChair = false;
