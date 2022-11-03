@@ -7,14 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class ItemManager : MonoBehaviour
 {
-    public static ItemManager instance;
-    private void Awake()
-    {
-        if (!instance)
-        {
-            instance = this;
-        }
-    }
+    //public static ItemManager instance;
+    //private void Awake()
+    //{
+    //    if (!instance)
+    //    {
+    //        instance = this;
+    //    }
+    //}
     // Start is called before the first frame update
     void Start()
     {

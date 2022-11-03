@@ -70,7 +70,6 @@ public class FeedManager : MonoBehaviour
         //upLoad된 이미지의 텍스쳐정보를저장한다.(Mobile)
         //string upLoadImagePate1 = Application.persistentDataPath;
 
-
         //사용자가 입력한 Text를 스트링값으로 변환해 저장한다.
         string upLoadText = mytext.text;
         
@@ -94,8 +93,6 @@ public class FeedManager : MonoBehaviour
         print("사진번호"+feedInfo.feedtextureNum);
 
         string path = Application.dataPath + "/LHY/FeedData";
-        
-
         if(!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
