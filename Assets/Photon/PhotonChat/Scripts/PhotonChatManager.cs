@@ -37,7 +37,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     // Start is called before the first frame update
     void Start()
     {
-       
+        chatField.onValueChanged.AddListener(TypeChatOnValueChange);
     }
 
     // Update is called once per frame 
@@ -131,7 +131,8 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
      
         joinChatButton.SetActive(false);
         chatClient.Subscribe(new string[] { "RegionChannel" });
-        
+        chatClient.SetOnlineStatus(ChatUserStatus.Online);
+
 
     }
     public void OnUserUnsubscribed(string channel, string user)
@@ -143,6 +144,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     {
         if (privateReceiver == "")
         {
+
             chatClient.PublishMessage("RegionChannel", currentChat);
             chatField.text = "";
             currentChat = "";
