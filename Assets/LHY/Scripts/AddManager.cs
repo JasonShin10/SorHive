@@ -11,6 +11,7 @@ public class ObjectInfo
     public int folderNumber;
     public int objNumber;
     public int matNumber;
+    public int floorMatNumber;
     public GameObject obj;
     public GameObject room;
     public Vector3 position;
@@ -130,7 +131,6 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
-
         //for (int i = 0; i < WallHangItem.Length; i++)
         //{
         //    WallHangItem[i].AddComponent<Furniture>();
@@ -146,7 +146,6 @@ public class AddManager : MonoBehaviour
     private void Update()
     {
         //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
-
     }
     public void OnSave()
     {
@@ -165,9 +164,7 @@ public class AddManager : MonoBehaviour
 
     public void OnSave2()
     {
-
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-
         arrayJson.data = objectInfoList;
         //objectInfoList.Add(objectInfo);
 
@@ -392,9 +389,18 @@ public class AddManager : MonoBehaviour
             info.room.GetComponent<MeshRenderer>().material = mats[info.matNumber];
             objectInfoList.Add(info);
         }
+        if (info.folderNumber == 16)
+        {
+            info.room = GameObject.Find("Floor.007");
+            info.room.GetComponent<MeshRenderer>().material = floor[info.floorMatNumber];
+            objectInfoList.Add(info);
+        }
+        
     }
     public void CreateMat(ObjectInfo info)
     {
+
+
     }
 
     public void Button0()
@@ -701,7 +707,6 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
         AddEntertainment = false;
@@ -714,8 +719,7 @@ public class AddManager : MonoBehaviour
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
-        
+        AddShelf = false;     
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
@@ -748,7 +752,6 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
         AddEntertainment = false;
@@ -773,10 +776,8 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
-        
         AddElectrionic = false;
         AddFlower = false;
         AddKitchenChair = false;
@@ -788,6 +789,7 @@ public class AddManager : MonoBehaviour
         AddMaterial = false;
         AddShelf = false;
         AddWallHang = false;
+
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
@@ -797,10 +799,8 @@ public class AddManager : MonoBehaviour
         AddDesk = false;
         AddBed = false;
         AddChair = false;
-
         AddCloset = false;
         AddCoffeeTable = false;
-
         AddElectrionic = false;
         AddFlower = false;
         AddKitchenChair = false;
@@ -836,6 +836,7 @@ public class AddManager : MonoBehaviour
         AddMaterial = false;
         AddShelf = false;
         AddWallHang = false;
+
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }

@@ -58,7 +58,6 @@ public class MapGround : Map
                     //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
                     selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
                 }
-
             }
         }
         if (Input.GetMouseButtonDown(1))
@@ -123,16 +122,14 @@ public class MapGround : Map
                         AddManager.instance.AddCoffeeTable = false;
                     }
                     if (AddManager.instance.AddEntertainment == true)
-                    {
-                    
+                    {                  
                         num = 6;
                         Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddEntertainment = false;
                     }
 
                     if (AddManager.instance.AddElectrionic == true)
-                    {
-                 
+                    {                
                         num = 7;
                         Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddElectrionic = false;
@@ -146,7 +143,6 @@ public class MapGround : Map
                     }
                     if (AddManager.instance.AddKitchenChair == true)
                     {
-                    
                         num = 9;
                         Room(AddManager.instance.kitchenChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenChair = false;
@@ -195,8 +191,8 @@ public class MapGround : Map
                     {
                         num = 16;
                         FloorMat();
+                        SaveMat(GameObject.Find("Floor.007"));
                         AddManager.instance.AddFloor = false;
-
                     }
                 }
 
@@ -244,8 +240,6 @@ public class MapGround : Map
                     oz = (int)(hit.point.z);
                     oy = hit.point.y;
                     selectObj.position = new Vector3(x, hit.point.y + 5, z);
-
-
                 }
             }
             if (Input.GetKeyDown("i"))
@@ -259,6 +253,26 @@ public class MapGround : Map
     void FloorMat()
     {
         GameObject.Find("Floor.007").GetComponent<MeshRenderer>().material = floorMats[AddManager.instance.currButtonNum];
+    }
+
+    void SaveMat(GameObject objRoom)
+    {
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
+        {
+            if (AddManager.instance.objectInfoList[i].room == objRoom)
+            {
+                //정보수정
+                AddManager.instance.objectInfoList[i].floorMatNumber = AddManager.instance.currButtonNum;
+
+                return;
+            }
+        }
+
+        AddManager.instance.objectInfo = new ObjectInfo();
+        AddManager.instance.objectInfo.room = objRoom;
+        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.floorMatNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
     void SaveJson(GameObject obj)
     {
@@ -275,7 +289,6 @@ public class MapGround : Map
         }
         AddManager.instance.objectInfo = new ObjectInfo();
         AddManager.instance.obj = obj;
-
         AddManager.instance.pos = obj.transform.position;
         AddManager.instance.sca = obj.transform.localScale;
         AddManager.instance.ang = obj.transform.eulerAngles;
@@ -286,8 +299,7 @@ public class MapGround : Map
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
         AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
-        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
-        
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);   
     }
 
     void RemoveJson(GameObject obj)
@@ -307,7 +319,6 @@ public class MapGround : Map
     void Room(GameObject item)
     {
         currCube = Instantiate(item);
-
         //SaveJson(currCube.gameObject);
         currCube.name = "d" + select;
         select += 1;
@@ -326,7 +337,6 @@ public class MapGround : Map
             currCube.GetComponent<BoxCollider>().center = new Vector3(currCube.GetComponent<BoxCollider>().center.x, box, currCube.GetComponent<BoxCollider>().center.z);
             SaveJson(currCube);
         }
-
     }
 
 
