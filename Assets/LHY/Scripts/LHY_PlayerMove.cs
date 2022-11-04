@@ -10,6 +10,7 @@ public class LHY_PlayerMove : MonoBehaviour
 
     public CharacterController cc;
 
+    
     #region jump
     //플레이어가 점프 버튼을 눌렀는지 확인하는 변수를 선언한다.
     public bool isjump = false;

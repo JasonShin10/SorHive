@@ -1,9 +1,6 @@
 {
-    "myfeedNum": 0,
+    "myGuestBoxNum": 0,
     "UserID": "",
-    "feedtextureNum": 0,
-    "feedText": "",
-    "Like": 0,
-    "currcomment": 0,
+    "guestBoxText": "sdsdas",
     "comments": []
 }

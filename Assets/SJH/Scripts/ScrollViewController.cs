@@ -35,7 +35,6 @@ public class ScrollViewController : MonoBehaviour
             uiObjects[i].anchoredPosition = new Vector2(0f, -y);
             y += uiObjects[i].sizeDelta.y + space;
         }
-
         scrollRect.content.sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, y);
     }
 }
