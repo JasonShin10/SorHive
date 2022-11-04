@@ -4,17 +4,38 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ConnectionManager : MonoBehaviourPunCallbacks
 {
-    //
+    public InputField ID;
+    public InputField Password;
+
+    public Button btnConnect;
 
     void Start()
     {
-        //서버 접속
+        ID.onValueChanged.AddListener(OnValueChanged);
+        Password.onValueChanged.AddListener(OnPassValueChanged);
+    }
+
+    public void OnValueChanged(string s)
+    {
+        btnConnect.interactable = s.Length > 0 && Password.text.Length > 0;
+        print("OnValueChanged : " + s);
+    }
+
+    public void OnPassValueChanged(string b)
+    {
+        btnConnect.interactable = b.Length > 0 && ID.text.Length > 0;
+    }
+
+
+    public void OnCilckConnect()
+    {
+        //서버 접속 요청
         PhotonNetwork.ConnectUsingSettings();
     }
-    
 
     //마스터 서버 접속 성공시 호출(Lobby에 진입 할 수 없는 상태)
     public override void OnConnected()
@@ -39,7 +60,8 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnJoinedLobby();
         print("OnJoinedLobby");
         //Lobby씬 으로 이동
-        SceneManager.LoadScene("MainScenes");
+        PhotonNetwork.LoadLevel("MainScenes");
+        //SceneManager.LoadScene("MainScenes");
     }
 
     void Update()

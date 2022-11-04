@@ -118,13 +118,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     }
 
     //방 목록이 변경 되었을 때(생성, 정보갱신, 삭제)호출 해주는 함수
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+   /* public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         //룸 리스트 정보 갱신   
         UPdateRoomListUI();
         //룸 리스트 생성
         CreateRoomListUI();
-    }
+    }*/
 
     void UPdateRoomListUI()
     {
