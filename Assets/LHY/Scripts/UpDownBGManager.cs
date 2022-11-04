@@ -23,8 +23,6 @@ public class UpDownBGManager : MonoBehaviour
     public void OnFeedUpLoad()
     {
         SceneManager.LoadScene("FeedUpLoadScene");
-
-      
     }
 
     public void OnUpLoadImage()
@@ -43,6 +41,4 @@ public class UpDownBGManager : MonoBehaviour
     {
         PhotonNetwork.LoadLevel("MainScenes");
     }
-
-    
 }

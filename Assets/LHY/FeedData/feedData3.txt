@@ -1,8 +1,8 @@
 {
     "myfeedNum": 0,
     "UserID": "",
-    "feedtextureNum": 4,
-    "feedText": "pppp",
+    "feedtextureNum": 2,
+    "feedText": "pp",
     "Like": 0,
     "currcomment": 0,
     "comments": []

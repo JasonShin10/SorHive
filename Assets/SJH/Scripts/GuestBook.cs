@@ -8,6 +8,7 @@ public class GuestBook : MonoBehaviour
     public GameObject player;
     public ScrollRect guestBoxUI;
     public GameObject guestBox;
+    public GameObject guestBoxWrite;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +21,22 @@ public class GuestBook : MonoBehaviour
         float distance = Vector3.Distance(guestBox.transform.position , player.transform.position); 
         if (distance > 3)
         {
-            guestBoxUI.transform.GetChild(0).gameObject.SetActive(true);
-            guestBoxUI.transform.GetChild(1).gameObject.SetActive(false);
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
         else
         {
-            guestBoxUI.transform.GetChild(0).gameObject.SetActive(false);
-            guestBoxUI.transform.GetChild(1).gameObject.SetActive(true);
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            gameObject.transform.GetChild(2).gameObject.SetActive(true);
         }
-        print(distance);
+        //print(distance);
+    }
+
+    public void OnGuestBookWrite()
+    {
+
+        guestBoxWrite.SetActive(true);
     }
 }
