@@ -11,7 +11,7 @@ public class LHY_PlayerMove : MonoBehaviour
 
     public CharacterController cc;
 
-    
+    public bool buttonClicked = false;
     #region jump
     //플레이어가 점프 버튼을 눌렀는지 확인하는 변수를 선언한다.
     public bool isjump = false;
@@ -99,8 +99,9 @@ public class LHY_PlayerMove : MonoBehaviour
         }
         //isjump = false;
         //플레이어가 점프하고 있지 않고, 사용자가 점프키를 눌렀다면
-        if (isjump == false && Input.GetButtonDown("Jump"))
-        {
+        //if (isjump == false && Input.GetButtonDown("Jump"))
+            if (isjump == false && buttonClicked == true)
+            {
             //anim.Play("JStart");
             //몇번점프했는지 점수를 1점 추가해준다.
             Jcount++;
@@ -117,7 +118,11 @@ public class LHY_PlayerMove : MonoBehaviour
         }
         //시간이 흐름에 따라 Gravity의 값을 yVelocity에서 빼준다. 
         yVelocity -= Gravity * Time.deltaTime;
+        buttonClicked = false;
     }
 
-  
+    public void OnClickJump()
+    {
+        buttonClicked = true;
+    }
 }
