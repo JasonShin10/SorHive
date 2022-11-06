@@ -14,7 +14,7 @@ public class RoomInManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        CreateFeedUI();
     }
 
     // Update is called once per frame
