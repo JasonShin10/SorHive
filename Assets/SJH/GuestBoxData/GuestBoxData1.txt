@@ -1,6 +1,0 @@
-{
-    "myGuestBoxNum": 0,
-    "UserID": "",
-    "guestBoxText": "sdsdas",
-    "comments": []
-}

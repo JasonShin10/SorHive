@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class GuestBookItem : MonoBehaviour
 {
     //방명록 번호
-    public int myGuestBoxNum = 0;
+    public int myGuestBookNum = 0;
 
     //피드를 올린 사람(ID)
     public Text UserID; //==계정이름(아이디)
 
     //피드에 쓴 글
-    public Text guestBoxText;
+    public Text guestBookText;
 
     //해당 피드의 좋아요 개수
     public int Like = 0;

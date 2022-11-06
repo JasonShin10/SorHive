@@ -1,0 +1,6 @@
+{
+    "myGuestBookNum": 0,
+    "UserID": "",
+    "guestBookText": "sdfsdfsdf",
+    "comments": []
+}

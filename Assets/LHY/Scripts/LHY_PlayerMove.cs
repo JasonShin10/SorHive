@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LHY_PlayerMove : MonoBehaviour
 {
     public float speed = 5;
@@ -42,20 +43,27 @@ public class LHY_PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveUpdate();
+        //MoveUpdate();
     }
 
-    void MoveUpdate()
+    public void MoveUpdate(Vector2 inputDirection)
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        //float h = Input.GetAxis("Horizontal");
+        //float v = Input.GetAxis("Vertical");
+
+        float v = inputDirection.y;
+        float h = inputDirection.x;
+
 
         float w = -h + -v;
         float hi = -v + h;
 
-            
+        
+
+
 
         Vector3 dir = new Vector3(w, 0, hi);
+        //Vector2 dir = inputDirection;
         dir.Normalize();
 
         P_jump();
@@ -110,4 +118,6 @@ public class LHY_PlayerMove : MonoBehaviour
         //시간이 흐름에 따라 Gravity의 값을 yVelocity에서 빼준다. 
         yVelocity -= Gravity * Time.deltaTime;
     }
+
+  
 }

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Photon/PhotonChat/Demos/DemoChat/DemoChat-Scene.unity
     guid: ec07267f6a28fb044ac89845274e79af
+  - enabled: 1
+    path: Assets/Scenes/Main/ProtoScene/GuestBookLoadScene.unity
+    guid: 0c04c4f5e797eec4aa8b33dfd462193b
   m_configObjects: {}

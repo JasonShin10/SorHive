@@ -245,9 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c4873722e827e458e78249dee8fa8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGuestBoxNum: 0
+  myGuestBookNum: 0
   UserID: {fileID: 5511896417636334296}
-  guestBoxText: {fileID: 6823100882436307539}
+  guestBookText: {fileID: 6823100882436307539}
   Like: 0
 --- !u!1 &5151506063061339582
 GameObject:

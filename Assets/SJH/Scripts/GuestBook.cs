@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GuestBook : MonoBehaviour
@@ -36,7 +37,7 @@ public class GuestBook : MonoBehaviour
 
     public void OnGuestBookWrite()
     {
-
-        guestBoxWrite.SetActive(true);
+        SceneManager.LoadScene("GuestBookLoadScene");
+        //guestBoxWrite.SetActive(true);
     }
 }
