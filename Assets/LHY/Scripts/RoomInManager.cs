@@ -40,11 +40,11 @@ public class RoomInManager : MonoBehaviour
         //피드의 정보를 불러오고
         //LoadFeedData();
         // FeedManager.FeedNum;
-        print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length);
-        for (int i = 1; i <= GuestBookNum; i++)
+        // print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length);
+        for (int i = 1; i < GuestBookNum; i++)
         {
             string path = Application.dataPath + "/SJH/GuestBookData/guestBookData" + i + ".txt";
-
+            //print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/")[i]);
             print(GuestBookNum + "피드개수");
 
             string jsonData = File.ReadAllText(path);

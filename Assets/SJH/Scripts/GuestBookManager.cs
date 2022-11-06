@@ -72,7 +72,7 @@ public class GuestBookManager : MonoBehaviour
             Directory.CreateDirectory(path);
         }
         File.WriteAllText(path + "/guestBookData" + GuestBookNum + ".txt", jsonData);
-        print(GuestBookNum);
+        //print(GuestBookNum);
         SceneManager.LoadScene("RoomInScene");
     }
 
