@@ -405,13 +405,11 @@ public class AddManager : MonoBehaviour
 
     public void Button0()
     {
-
         currButtonNum = 0;
     }
 
     public void Button1()
     {
-
         currButtonNum = 1;
     }
     public void Button2()
@@ -641,14 +639,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         // GameObject bed = Instantiate(bedItems[currButtonNum]);
         //bed.transform.position = SpawnPos.transform.position;
@@ -666,14 +664,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject chair = Instantiate(chairItems[currButtonNum]);
         //chair.transform.position = SpawnPos.transform.position;
@@ -689,14 +687,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject desk = Instantiate(DeskItem[currButtonNum]);
         //desk.transform.position = SpawnPos.transform.position;
@@ -712,14 +710,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;     
+        //AddShelf = false;     
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
@@ -733,14 +731,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -757,14 +755,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -780,14 +778,14 @@ public class AddManager : MonoBehaviour
         AddCoffeeTable = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
 
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
@@ -803,14 +801,14 @@ public class AddManager : MonoBehaviour
         AddCoffeeTable = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -827,68 +825,68 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
       
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
 
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
 
-    public void OnAddKitchenChair()
-    {
-        AddKitchenChair = true;
-        AddDesk = false;
-        AddBed = false;
-        AddChair = false;
+    //public void OnAddKitchenChair()
+    //{
+    //    AddKitchenChair = true;
+    //    AddDesk = false;
+    //    AddBed = false;
+    //    AddChair = false;
 
-        AddCloset = false;
-        AddCoffeeTable = false;
-        AddEntertainment = false;
-        AddElectrionic = false;
-        AddFlower = false;
+    //    AddCloset = false;
+    //    AddCoffeeTable = false;
+    //    AddEntertainment = false;
+    //    AddElectrionic = false;
+    //    AddFlower = false;
 
-        AddKitchenTable = false;
-        AddLamp = false;
-        AddLoungeChair = false;
-        AddInstrument = false;
-        AddOfficeChair = false;
-        AddMaterial = false;
-        AddShelf = false;
-        AddWallHang = false;
-        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
-        //wallhang.transform.position = SpawnPos.transform.position;
-    }
-    public void OnAddKitchenTable()
-    {
-        AddKitchenTable = true;
-        AddDesk = false;
-        AddBed = false;
-        AddChair = false;
+    //    AddKitchenTable = false;
+    //    AddLamp = false;
+    //    AddLoungeChair = false;
+    //    AddInstrument = false;
+    //    AddOfficeChair = false;
+    //    AddMaterial = false;
+    //    AddShelf = false;
+    //    AddWallHang = false;
+    //    //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+    //    //wallhang.transform.position = SpawnPos.transform.position;
+    //}
+    //public void OnAddKitchenTable()
+    //{
+    //    AddKitchenTable = true;
+    //    AddDesk = false;
+    //    AddBed = false;
+    //    AddChair = false;
 
-        AddCloset = false;
-        AddCoffeeTable = false;
-        AddEntertainment = false;
-        AddElectrionic = false;
-        AddFlower = false;
-        AddKitchenChair = false;
+    //    AddCloset = false;
+    //    AddCoffeeTable = false;
+    //    AddEntertainment = false;
+    //    AddElectrionic = false;
+    //    AddFlower = false;
+    //    AddKitchenChair = false;
 
-        AddLamp = false;
-        AddLoungeChair = false;
-        AddInstrument = false;
-        AddOfficeChair = false;
-        AddMaterial = false;
-        AddShelf = false;
-        AddWallHang = false;
-        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
-        //wallhang.transform.position = SpawnPos.transform.position;
-    }
+    //    AddLamp = false;
+    //    AddLoungeChair = false;
+    //    AddInstrument = false;
+    //    AddOfficeChair = false;
+    //    AddMaterial = false;
+    //    AddShelf = false;
+    //    AddWallHang = false;
+    //    //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+    //    //wallhang.transform.position = SpawnPos.transform.position;
+    //}
     public void OnAddLamp()
     {
         AddLamp = true;
@@ -901,14 +899,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
     
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -925,14 +923,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
 
         AddInstrument = false;
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -951,14 +949,14 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
 
         AddOfficeChair = false;
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
@@ -976,43 +974,43 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
 
         AddMaterial = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
         //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
         //wallhang.transform.position = SpawnPos.transform.position;
     }
 
-    public void OnShelf()
-    {
-        AddShelf = true;
-        AddDesk = false;
-        AddBed = false;
-        AddChair = false;
+    //public void OnShelf()
+    //{
+    //    AddShelf = true;
+    //    AddDesk = false;
+    //    AddBed = false;
+    //    AddChair = false;
 
-        AddCloset = false;
-        AddCoffeeTable = false;
-        AddEntertainment = false;
-        AddElectrionic = false;
-        AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
-        AddLamp = false;
-        AddLoungeChair = false;
-        AddInstrument = false;
-        AddOfficeChair = false;
-        AddMaterial = false;
+    //    AddCloset = false;
+    //    AddCoffeeTable = false;
+    //    AddEntertainment = false;
+    //    AddElectrionic = false;
+    //    AddFlower = false;
+    //    AddKitchenChair = false;
+    //    AddKitchenTable = false;
+    //    AddLamp = false;
+    //    AddLoungeChair = false;
+    //    AddInstrument = false;
+    //    AddOfficeChair = false;
+    //    AddMaterial = false;
 
-        AddWallHang = false;
-        //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
-        //wallhang.transform.position = SpawnPos.transform.position;
-    }
+    //    AddWallHang = false;
+    //    //GameObject wallhang = Instantiate(WallHangItem[currButtonNum]);
+    //    //wallhang.transform.position = SpawnPos.transform.position;
+    //}
 
     public void OnMaterial()
     {
@@ -1026,13 +1024,13 @@ public class AddManager : MonoBehaviour
         AddEntertainment = false;
         AddElectrionic = false;
         AddFlower = false;
-        AddKitchenChair = false;
-        AddKitchenTable = false;
+        //AddKitchenChair = false;
+        //AddKitchenTable = false;
         AddLamp = false;
         AddLoungeChair = false;
         AddInstrument = false;
         AddOfficeChair = false;
-        AddShelf = false;
+        //AddShelf = false;
         AddWallHang = false;
     }
 
