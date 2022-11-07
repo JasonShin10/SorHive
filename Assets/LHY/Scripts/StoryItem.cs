@@ -7,7 +7,7 @@ public class StoryInfo
 {
     public RawImage roomImage;
     public RawImage character;
-    public Text nickNameText;
+    public Text manber_NameText;
     public RawImage ProfileImage;
 }
 
