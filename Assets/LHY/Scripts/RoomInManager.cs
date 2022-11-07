@@ -45,7 +45,7 @@ public class RoomInManager : MonoBehaviour
         {
             string path = Application.dataPath + "/SJH/GuestBookData/guestBookData" + i + ".txt";
             //print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/")[i]);
-            print(GuestBookNum + "피드개수");
+            //print(GuestBookNum + "피드개수");
 
             string jsonData = File.ReadAllText(path);
 
