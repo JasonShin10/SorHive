@@ -41,6 +41,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         print(inputDirection);
         controller.MoveUpdate(Vector2.zero);
     }
+
     
     private void ControlJoystickLever(PointerEventData eventData)
     {
