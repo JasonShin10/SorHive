@@ -65,7 +65,9 @@ public class GuestBookManager : MonoBehaviour
         //피드정보를 Json으로 변환한다.
         string jsonData = JsonUtility.ToJson(guestBookInfo, true);
         //print(jsonData);
+        GuestBookNum = Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length/2; 
         GuestBookNum++;
+
         string path = Application.dataPath + "/SJH/GuestBookData";
         if(!Directory.Exists(path))
         {
@@ -75,7 +77,6 @@ public class GuestBookManager : MonoBehaviour
         print(GuestBookNum);
         SceneManager.LoadScene("RoomInScene");
     }
-
    /* public void OnClickLoad()
     {
         if (FeedNum != 0)
@@ -87,5 +88,4 @@ public class GuestBookManager : MonoBehaviour
 
         }
     }*/
-
 }
