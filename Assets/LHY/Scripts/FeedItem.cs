@@ -18,7 +18,7 @@ public class FeedItem : MonoBehaviour
     public Text feedText;
 
     //해당 피드의 좋아요 개수
-    public int Like = 0;
+    public int honey = 0;
 
     //해당 피드의 댓글 개수
     public int currcomment = 0;
