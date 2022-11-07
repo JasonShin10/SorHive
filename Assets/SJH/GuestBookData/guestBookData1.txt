@@ -1,6 +1,6 @@
 {
     "myGuestBookNum": 0,
     "UserID": "",
-    "guestBookText": "ㅇㄹㄴㄹㄴㅇ",
+    "guestBookText": "sdfsdf",
     "comments": []
 }
