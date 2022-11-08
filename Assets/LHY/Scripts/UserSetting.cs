@@ -87,9 +87,14 @@ public class UserSetting : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
-        requester.requestType = RequestType.POST;
+        requester.requestType = RequestType.PUT;
+
+        requester.putData = JsonUtility.ToJson(logdata, true);
+        print(requester.putData);
 
         requester.onComplete = OnClickDownload;
+
+
 
         HttpManager.instance.SendRequest(requester);
     }
