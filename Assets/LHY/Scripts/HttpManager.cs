@@ -43,6 +43,7 @@ public class HttpManager : MonoBehaviour
         {
 
             case RequestType.POST:
+                print("post");
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
@@ -56,18 +57,23 @@ public class HttpManager : MonoBehaviour
                 }
                 break;
             case RequestType.PUT:
+                print("aaa");
                 webRequest = UnityWebRequest.Put(requester.url, requester.putData);
+                print("1111");
                 byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                print("222");
                 webRequest.uploadHandler = new UploadHandlerRaw(pdata);
+                print("333");
                 webRequest.SetRequestHeader("Content-Type", "application/json");
+
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
                 break;
         }
-
         //서버에 요청을 보내고 응답이 올때까지 기다린다.
         yield return webRequest.SendWebRequest();
+        print("webRequest");
 
         //만약에 응답이 성공했다면
         if (webRequest.result == UnityWebRequest.Result.Success)
