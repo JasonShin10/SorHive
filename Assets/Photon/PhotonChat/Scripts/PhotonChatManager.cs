@@ -13,6 +13,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     ChatClient chatClient;
     bool isConnected;
     [SerializeField] string username;
+    public Text chatText;
 
     public void UsernameOnValueChange(string valueIn)
     {
@@ -32,11 +33,14 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     string currentChat;
     [SerializeField] InputField chatField;
     [SerializeField] Text chatDisplay;
+    public Transform ChatListContent;
+    public GameObject ChatUIFactory;
 
     // Start is called before the first frame update
     void Start()
     {
         chatField.onValueChanged.AddListener(TypeChatOnValueChange);
+        ChatConnectOnClick();
     }
 
     // Update is called once per frame 
@@ -51,9 +55,8 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         {
             SubmitPublicChatOnClick();
             SubmitPrivateChatOnClick();
-
         }
-        //chatClient.Service();
+       
     }
     public void TypeChatOnValueChange(string valueIn)
     {
@@ -89,7 +92,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
             chatDisplay.text += "\n" + msgs;
-            print(msgs);
+            //print(msgs);
         }
     }
 
@@ -127,12 +130,9 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public void OnConnected()
     {
         print("Connected");
-     
         joinChatButton.SetActive(false);
         chatClient.Subscribe(new string[] { "RegionChannel" });
         chatClient.SetOnlineStatus(ChatUserStatus.Online);
-
-
     }
     public void OnUserUnsubscribed(string channel, string user)
     {
@@ -144,18 +144,24 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         if (privateReceiver == "")
         {
             chatClient.PublishMessage("RegionChannel", currentChat);
+            print(currentChat);
+            GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+            chat.transform.GetChild(0).GetComponent<Text>().text = currentChat;
             chatField.text = "";
-            currentChat = "";
+            currentChat = "";        
+            //chatText.text = currentChat;
         }
     }
    public void SubmitPrivateChatOnClick()
-    {
-      
+    {      
         if (privateReceiver != "")
         {
             chatClient.SendPrivateMessage(privateReceiver, currentChat);
             chatField.text = "";
             currentChat = "";
+            GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+            chat.transform.GetChild(0).GetComponent<Text>().text = currentChat;
+            //chatText.text = chatDisplay.text;
         }
     }
 

@@ -55,7 +55,7 @@ public class RoomInManager : MonoBehaviour
 
             GuestBookInfo info = JsonUtility.FromJson<GuestBookInfo>(jsonData);
 
-            GuestBookItem guestBookItem = guestBook .GetComponent<GuestBookItem>();
+            GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
 
             guestBookItem.myGuestBookNum = info.myGuestBookNum;
             guestBookItem.guestBookText.text = info.guestBookText;
