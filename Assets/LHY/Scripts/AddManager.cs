@@ -43,7 +43,10 @@ public class AddManager : MonoBehaviour
     //오브젝트들이 생성되는 장소
     public Transform SpawnPos;
 
+    public Camera cam;
     //침대오브젝트
+    public Canvas rotate;
+
     public GameObject[] bedItems;
     //의자오브젝트
     public GameObject[] chairItems;
@@ -146,6 +149,7 @@ public class AddManager : MonoBehaviour
     private void Update()
     {
         //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
+        
     }
     public void OnSave()
     {
@@ -160,6 +164,11 @@ public class AddManager : MonoBehaviour
         // 파일로 저장
         File.WriteAllText(path, jsonData);
         print(jsonData);
+    }
+
+    public void OnRotate()
+    {
+        GameManager.instance.selected.transform.Rotate(0, 90, 0);
     }
 
     public void OnSave2()

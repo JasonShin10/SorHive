@@ -55,6 +55,7 @@ public class MapGround : Map
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
                     startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
                     GameManager.instance.name = selectObj.name;
+                    GameManager.instance.selected = selectObj.gameObject;
                     //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
                     selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
                 }
@@ -211,6 +212,7 @@ public class MapGround : Map
                     SaveJson(selectObj.gameObject);
 
                     selectObj = null;
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
 
                 }
                 else
