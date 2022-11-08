@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public string name;
+    public GameObject selected;
     // Start is called before the first frame update
     void Start()
     {

@@ -58,8 +58,7 @@ public class Furniture : MonoBehaviour
 
     public void Delete()
     {
-        
-        Destroy(gameObject);
+          Destroy(gameObject);
     }
 
 
