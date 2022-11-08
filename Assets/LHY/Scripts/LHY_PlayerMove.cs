@@ -66,7 +66,7 @@ public class LHY_PlayerMove : MonoBehaviour
 
         P_jump();
 
-        dir.y = yVelocity;
+         dir.y = yVelocity;
         cc.Move(dir * speed * Time.deltaTime);
 
     }
