@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UserInfo
@@ -14,6 +16,12 @@ public class LoginInfo
 {
     public string id;
     public string password;
+}
+
+[serializable]
+public class PostTokenData
+{
+    public string accessToken;
 }
 
 public class UserSetting : MonoBehaviour
@@ -44,6 +52,20 @@ public class UserSetting : MonoBehaviour
         userdata.nickName = inputnickName.text;
         userdata.id = inputid.text;
         userdata.password = inputpassword.text;
+
+        HttpRequester requester = new HttpRequester();
+        //url 경로
+        requester.url = "http://13.125.174.193:8080/api/v1/auth/signup";
+        requester.requestType = RequestType.POST;
+        print("test");
+
+        requester.postData = JsonUtility.ToJson(userdata, true);
+        print(requester.postData);
+
+        HttpManager.instance.SendRequest(requester);
+
+        //requester.onComplete = On
+
         if(inputpasschack.text != userdata.password)
         {
             nonPasstext.SetActive(true);
@@ -62,6 +84,23 @@ public class UserSetting : MonoBehaviour
         LoginInfo logdata = new LoginInfo();
         logdata.id = logID.text;
         logdata.password = logPassword.text;
+
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
+        requester.requestType = RequestType.POST;
+
+        requester.onComplete = OnClickDownload;
+
+        HttpManager.instance.SendRequest(requester);
     }
 
+    private void OnClickDownload(DownloadHandler handler)
+    {
+        PostTokenData postTokenData = JsonUtility.FromJson<PostTokenData>(handler.text);
+
+        print(postTokenData.accessToken);
+
+        PlayerPrefs.SetString("token", postTokenData.accessToken);
+        print("조회 완료");
+    }
 }
