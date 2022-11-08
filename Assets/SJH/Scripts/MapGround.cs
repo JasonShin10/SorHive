@@ -60,6 +60,7 @@ public class MapGround : Map
                     selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
                 }
             }
+            //AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -211,8 +212,10 @@ public class MapGround : Map
                     selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
                     SaveJson(selectObj.gameObject);
 
-                    selectObj = null;
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3( 0,selectObj.GetComponent<MeshRenderer>().bounds.size.y *2f,0));
+                    
+                    selectObj = null;
 
                 }
                 else
