@@ -19,7 +19,7 @@ public class GuestBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(guestBox.transform.position , player.transform.position); 
+        float distance = Vector3.Distance(guestBox.transform.position, player.transform.position); 
         if (distance > 3)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
@@ -32,6 +32,7 @@ public class GuestBook : MonoBehaviour
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
             //gameObject.transform.GetChild(2).gameObject.SetActive(true);
         }
+
         //print(distance);
     }
 
@@ -39,5 +40,11 @@ public class GuestBook : MonoBehaviour
     {
         SceneManager.LoadScene("GuestBookLoadScene");
         //guestBoxWrite.SetActive(true);
+    }
+
+    public void OnCancle()
+    {
+        gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        gameObject.transform.GetChild(1).gameObject.SetActive(true);
     }
 }
