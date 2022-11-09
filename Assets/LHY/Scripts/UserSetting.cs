@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class UserInfo
 {
-    public string nickName;
-    public string id;
+    public string memberName;
+    public string memberId;
     public string password;
 }
 
 public class LoginInfo
 {
-    public string id;
+    public string memberId;
     public string password;
 }
 
@@ -49,8 +49,8 @@ public class UserSetting : MonoBehaviour
     public void OnClickSave()
     {
         UserInfo userdata = new UserInfo();
-        userdata.nickName = inputnickName.text;
-        userdata.id = inputid.text;
+        userdata.memberName = inputnickName.text;
+        userdata.memberId = inputid.text;
         userdata.password = inputpassword.text;
 
         HttpRequester requester = new HttpRequester();
@@ -82,12 +82,15 @@ public class UserSetting : MonoBehaviour
     public void OnClickLogin()
     {
         LoginInfo logdata = new LoginInfo();
-        logdata.id = logID.text;
+        logdata.memberId = logID.text;
         logdata.password = logPassword.text;
 
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
-        requester.requestType = RequestType.POST;
+        requester.requestType = RequestType.PUT;
+
+        requester.putData = JsonUtility.ToJson(logdata, true);
+        print(requester.putData);
 
         requester.onComplete = OnClickDownload;
 
