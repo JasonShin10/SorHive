@@ -12,6 +12,7 @@ public class PostData
     public string title;
     public string body;
 }
+
 [Serializable]
 public class PostDataArray
 {
