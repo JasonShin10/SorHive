@@ -46,13 +46,15 @@ public class HttpManager : MonoBehaviour
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                webRequest.SetRequestHeader("accessToken", accessToken);
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;
             case RequestType.GET:
                 webRequest = UnityWebRequest.Get(requester.url);
                 if (accessToken != null)
                 {
-                    webRequest.SetRequestHeader("accesstoken", accessToken);
+                    webRequest.SetRequestHeader("accessToken", accessToken);
                 }
                 break;
             case RequestType.PUT:
@@ -87,5 +89,7 @@ public class HttpManager : MonoBehaviour
             print("통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
         yield return null;
+
+        webRequest.Dispose();
     }
 }

@@ -4,6 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[Serializable]
+public class PostData
+{
+    public int userId;
+    public int id;
+    public string title;
+    public string body;
+}
+[Serializable]
+public class PostDataArray
+{
+    public List<PostData> data;
+}
+
 public enum RequestType
 {
     POST,
@@ -13,7 +27,7 @@ public enum RequestType
 }
 
 
-public class HttpRequester : MonoBehaviour
+public class HttpRequester
 {
     //url
     public string url;

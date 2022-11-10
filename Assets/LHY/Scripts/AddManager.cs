@@ -4,14 +4,16 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using Newtonsoft.Json.Linq;
 
 [System.Serializable]
 public class ObjectInfo
 {
-    public int folderNumber;
-    public int objNumber;
-    public int matNumber;
-    public int floorMatNumber;
+    public int wallNumber;
+    public int floorNumber;
+    public int furnitureCategoryNumber;
+    public int furnitureNumber;
     public GameObject obj;
     public GameObject room;
     public Vector3 position;
@@ -19,9 +21,17 @@ public class ObjectInfo
     public Vector3 angle;
     public Vector3 boxPosition;
 }
+[System.Serializable]
 public class ArrayJson<T>
 {
-    public List<T> data;
+    public List<T> furniture;
+}
+
+[System.Serializable]
+public class LoginInfo2
+{
+    public string memberId;
+    public string password;
 }
 
 
@@ -146,10 +156,40 @@ public class AddManager : MonoBehaviour
         OnLoad2();
 
     }
+
+    public void OnClickLogin()
+    {
+        LoginInfo2 logdata = new LoginInfo2();
+        logdata.memberId = "john12";
+        logdata.password = "qwer1234!";
+
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
+        requester.requestType = RequestType.PUT;
+        requester.postData = JsonUtility.ToJson(logdata);
+
+
+        requester.onComplete = OnClickDownload;
+
+        HttpManager.instance.SendRequest(requester);
+    }
+
+    private void OnClickDownload(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        string token = json["data"]["accessToken"].ToString();
+        print(token);
+
+        PlayerPrefs.SetString("token", token);
+        print("조회 완료");
+    }
     private void Update()
     {
-        //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);
-        
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            OnClickLogin();
+        }
+        //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);      
     }
     public void OnSave()
     {
@@ -160,12 +200,42 @@ public class AddManager : MonoBehaviour
         objectInfo.angle = ang;
         string jsonData = JsonUtility.ToJson(objectInfo, true);
         // 저장경로
-        string path = Application.dataPath + "/data.txt";
+        string path = Application.dataPath + "/furniture.txt";
         // 파일로 저장
         File.WriteAllText(path, jsonData);
         print(jsonData);
     }
 
+    public void OnSaveSignIn()
+    {
+        ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
+        arrayJson.furniture = objectInfoList;
+        //서버에 게시물 조회 요청(/posts/1 , Get)
+        HttpRequester requester = new HttpRequester();
+        /// POST, 완료되었을 때 호출되는 함수
+        requester.url = "http://13.125.174.193:8080/api/v1/room";
+        requester.requestType = RequestType.POST;
+
+        //post data 셋팅
+        
+        requester.postData = JsonUtility.ToJson(arrayJson,true);  
+        requester.onComplete = OnCompleteSignIn;
+
+        //HttpManager에게 요청
+        HttpManager.instance.SendRequest(requester);
+    }
+
+    public void OnCompleteSignIn(DownloadHandler handler)
+    {
+        string s = "{\"furniture\":" + handler.text + "}";
+        PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
+        //for(int i = 0; i< array.data.Count; i++)
+        //{
+        //    print(array.data[i].id);
+
+        //}
+       
+    }
     public void OnRotate()
     {
         GameManager.instance.selected.transform.Rotate(0, 90, 0);
@@ -174,7 +244,7 @@ public class AddManager : MonoBehaviour
     public void OnSave2()
     {
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-        arrayJson.data = objectInfoList;
+        arrayJson.furniture = objectInfoList;
         //objectInfoList.Add(objectInfo);
 
         //ArrayJson -> json
@@ -188,10 +258,8 @@ public class AddManager : MonoBehaviour
         {
             //폴더를 만든다.
             Directory.CreateDirectory(path);
-        }
-
-         
-        File.WriteAllText(path + "/data.txt", jsonData);
+        }     
+        File.WriteAllText(path + "/furniture.txt", jsonData);
         //RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
         //Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
         //RenderTexture.active = renderTexture;
@@ -212,7 +280,7 @@ public class AddManager : MonoBehaviour
     public void OnLoad()
     {
         //저장된 정보 불러오고
-        string path = Application.dataPath + "/data.txt";
+        string path = Application.dataPath + "/furniture.txt";
         string jsonData = File.ReadAllText(path);
         //json -> objectInfo 에 셋팅
         objectInfo = JsonUtility.FromJson<ObjectInfo>(jsonData);
@@ -224,23 +292,23 @@ public class AddManager : MonoBehaviour
     {
         //파일로 불러오기
         string path = Application.dataPath + "/Data";
-        string jsonData = File.ReadAllText(path + "/data.txt");
+        string jsonData = File.ReadAllText(path + "/furniture.txt");
 
         //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>
         ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(jsonData);
         //arrayJson를 참고해서 오브젝트 생성
-        for (int i = 0; i < arrayJson.data.Count; i++)
+        for (int i = 0; i < arrayJson.furniture.Count; i++)
         {
-            CreateObject(arrayJson.data[i]);
+            CreateObject(arrayJson.furniture[i]);
         }
 
     }
 
     public void CreateObject(ObjectInfo info)
     {
-        if (info.folderNumber == 0)
+        if (info.furnitureCategoryNumber == 0)
         {
-            info.obj = bedItems[info.objNumber];
+            info.obj = bedItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
 
             createObj.transform.position = info.position;
@@ -250,9 +318,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 1)
+        if (info.furnitureCategoryNumber == 1)
         {
-            info.obj = chairItems[info.objNumber];
+            info.obj = chairItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -261,9 +329,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 2)
+        if (info.furnitureCategoryNumber == 2)
         {
-            info.obj = DeskItem[info.objNumber];
+            info.obj = DeskItem[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -272,9 +340,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 3)
+        if (info.furnitureCategoryNumber == 3)
         {
-            info.obj = WallHangItem[info.objNumber];
+            info.obj = WallHangItem[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -282,9 +350,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 4)
+        if (info.furnitureCategoryNumber == 4)
         {
-            info.obj = closetItems[info.objNumber];
+            info.obj = closetItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -292,9 +360,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 5)
+        if (info.furnitureCategoryNumber == 5)
         {
-            info.obj = coffee_tableItems[info.objNumber];
+            info.obj = coffee_tableItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -302,9 +370,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 6)
+        if (info.furnitureCategoryNumber == 6)
         {
-            info.obj = entertainmentItems[info.objNumber];
+            info.obj = entertainmentItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -312,9 +380,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 7)
+        if (info.furnitureCategoryNumber == 7)
         {
-            info.obj = electrionicsItems[info.objNumber];
+            info.obj = electrionicsItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -322,9 +390,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 8)
+        if (info.furnitureCategoryNumber == 8)
         {
-            info.obj = flowerItems[info.objNumber];
+            info.obj = flowerItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -332,9 +400,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 9)
+        if (info.furnitureCategoryNumber == 9)
         {
-            info.obj = kitchenChairItems[info.objNumber];
+            info.obj = kitchenChairItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -342,9 +410,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 10)
+        if (info.furnitureCategoryNumber == 10)
         {
-            info.obj = kitchenTableItems[info.objNumber];
+            info.obj = kitchenTableItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -352,9 +420,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 11)
+        if (info.furnitureCategoryNumber == 11)
         {
-            info.obj = lamp[info.objNumber];
+            info.obj = lamp[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -362,9 +430,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 12)
+        if (info.furnitureCategoryNumber == 12)
         {
-            info.obj = loungeChairItems[info.objNumber];
+            info.obj = loungeChairItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -372,9 +440,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 13)
+        if (info.furnitureCategoryNumber == 13)
         {
-            info.obj = musical_instrumentItems[info.objNumber];
+            info.obj = musical_instrumentItems[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -382,9 +450,9 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 14)
+        if (info.furnitureCategoryNumber == 14)
         {
-            info.obj = office_chair[info.objNumber];
+            info.obj = office_chair[info.furnitureNumber];
             GameObject createObj = Instantiate(info.obj);
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -392,16 +460,16 @@ public class AddManager : MonoBehaviour
             objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
-        if (info.folderNumber == 15)
+        if (info.furnitureCategoryNumber == 15)
         {
             info.room = GameObject.Find("Wall_B");
-            info.room.GetComponent<MeshRenderer>().material = mats[info.matNumber];
+            info.room.GetComponent<MeshRenderer>().material = mats[info.wallNumber];
             objectInfoList.Add(info);
         }
-        if (info.folderNumber == 16)
+        if (info.furnitureCategoryNumber == 16)
         {
             info.room = GameObject.Find("Floor.007");
-            info.room.GetComponent<MeshRenderer>().material = floor[info.floorMatNumber];
+            info.room.GetComponent<MeshRenderer>().material = floor[info.floorNumber];
             objectInfoList.Add(info);
         }
         
@@ -410,6 +478,11 @@ public class AddManager : MonoBehaviour
     {
 
 
+    }
+
+    public void OnClickButton(int index)
+    {
+        currButtonNum = index;
     }
 
     public void Button0()

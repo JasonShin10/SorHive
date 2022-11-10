@@ -1,0 +1,100 @@
+{
+    "furniture": [
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 1,
+            "furnitureNumber": 1,
+            "obj": {
+                "instanceID": 27360
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 12.0,
+                "y": 29.000999450683595,
+                "z": 6.0
+            },
+            "scale": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 8.1062319168268e-7,
+                "y": 0.6001603603363037,
+                "z": 0.6001603603363037
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 2,
+            "furnitureNumber": 3,
+            "obj": {
+                "instanceID": 28122
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 6.0,
+                "y": 29.0,
+                "z": 10.0
+            },
+            "scale": {
+                "x": 3.0,
+                "y": 3.0,
+                "z": 3.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0005236417055130005,
+                "y": 0.24554811418056489,
+                "z": 0.24554811418056489
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 3,
+            "furnitureNumber": 4,
+            "obj": {
+                "instanceID": 27760
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": -0.41099995374679568,
+                "y": 33.0,
+                "z": 8.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ]
+}

@@ -26,7 +26,7 @@ public class WallMaterial : MonoBehaviour
     void SaveJson()
     {
         AddManager.instance.objectInfo = new ObjectInfo();
-        //AddManager.instance.objectInfo.matNumber = 
+        //AddManager.instance.objectInfo.wallNumber = 
 
     }
 

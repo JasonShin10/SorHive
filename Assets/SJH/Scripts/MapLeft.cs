@@ -173,8 +173,8 @@ public class MapLeft : Map
         AddManager.instance.pos = obj.transform.position;
         AddManager.instance.sca = obj.transform.localScale;
         AddManager.instance.ang = obj.transform.eulerAngles;
-        AddManager.instance.objectInfo.objNumber = AddManager.instance.currButtonNum;
-        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.furnitureNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfo.furnitureCategoryNumber = num;
         AddManager.instance.objectInfo.obj = AddManager.instance.obj;
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;

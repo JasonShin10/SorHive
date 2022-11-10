@@ -267,7 +267,7 @@ public class MapGround : Map
             if (AddManager.instance.objectInfoList[i].room == objRoom)
             {
                 //정보수정
-                AddManager.instance.objectInfoList[i].floorMatNumber = AddManager.instance.currButtonNum;
+                AddManager.instance.objectInfoList[i].floorNumber = AddManager.instance.currButtonNum;
 
                 return;
             }
@@ -275,8 +275,8 @@ public class MapGround : Map
 
         AddManager.instance.objectInfo = new ObjectInfo();
         AddManager.instance.objectInfo.room = objRoom;
-        AddManager.instance.objectInfo.folderNumber = num;
-        AddManager.instance.objectInfo.floorMatNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfo.furnitureCategoryNumber = num;
+        AddManager.instance.objectInfo.floorNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
     void SaveJson(GameObject obj)
@@ -297,8 +297,8 @@ public class MapGround : Map
         AddManager.instance.pos = obj.transform.position;
         AddManager.instance.sca = obj.transform.localScale;
         AddManager.instance.ang = obj.transform.eulerAngles;
-        AddManager.instance.objectInfo.objNumber = AddManager.instance.currButtonNum;
-        AddManager.instance.objectInfo.folderNumber = num;
+        AddManager.instance.objectInfo.furnitureNumber = AddManager.instance.currButtonNum;
+        AddManager.instance.objectInfo.furnitureCategoryNumber = num;
         AddManager.instance.objectInfo.obj = AddManager.instance.obj;
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
