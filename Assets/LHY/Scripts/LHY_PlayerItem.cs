@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class PlayerInfo
+{
+    public int CharacterFaceType;
+    public int CharacterEyebrowsType;
+    public int CharacterEyelashestype;
+    public int CharacterHairtype;
+}
+
 public class LHY_PlayerItem : MonoBehaviour
 {
     //플레이어 닉네임
@@ -17,11 +25,11 @@ public class LHY_PlayerItem : MonoBehaviour
     public GameObject[] hairType;
 
     //플레이어의 얼굴 정보
-    public int CharacterFaceType;
-    public int CharacterEyebrowsType;
-    public int CharacterEyelashestype;
+    public int FaceType;
+    public int EyebrowsType;
+    public int Eyelashestype;
 
-    public int hairtype;
+    public int Hairtype;
 
 
     void Start()
@@ -36,24 +44,35 @@ public class LHY_PlayerItem : MonoBehaviour
         {
             faceType[i].SetActive(false);
         }
-        faceType[CharacterFaceType].SetActive(true);
+        faceType[FaceType].SetActive(true);
 
         for (int i = 0; i < eyeBrowsType.Length; i++)
         {
             eyeBrowsType[i].SetActive(false);
         }
-        eyeBrowsType[CharacterEyebrowsType].SetActive(true);
+        eyeBrowsType[EyebrowsType].SetActive(true);
 
         for (int i = 0; i < eyelashesType.Length; i++)
         {
             eyelashesType[i].SetActive(false);
         }
-        eyelashesType[CharacterEyelashestype].SetActive(true);
+        eyelashesType[Eyelashestype].SetActive(true);
 
         for (int i = 0; i < hairType.Length; i++)
         {
             hairType[i].SetActive(false);
         }
-        hairType[hairtype].SetActive(true);
+        hairType[Hairtype].SetActive(true);
+    }
+
+    public void OnClickSaveCustomData()
+    {
+        PlayerInfo playerdata = new PlayerInfo();
+        playerdata.CharacterFaceType = FaceType;
+        playerdata.CharacterEyebrowsType = EyebrowsType;
+        playerdata.CharacterEyelashestype = Eyelashestype;
+        playerdata.CharacterHairtype = Hairtype;
+
+        HttpRequester requester = new HttpRequester();
     }
 }
