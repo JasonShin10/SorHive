@@ -24,7 +24,7 @@ public class ObjectInfo
 [System.Serializable]
 public class ArrayJson<T>
 {
-    public List<T> furniture;
+    public List<T> furnitures;
 }
 
 [System.Serializable]
@@ -155,6 +155,11 @@ public class AddManager : MonoBehaviour
         //furniture.onClick.AddListener(Button10);
         OnLoad2();
 
+        //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
+        JObject json = new JObject();
+        json["byte"] = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        File.WriteAllText(Application.dataPath + "/test.txt", json.ToString());
+
     }
 
     public void OnClickLogin()
@@ -163,14 +168,12 @@ public class AddManager : MonoBehaviour
         logdata.memberId = "john12";
         logdata.password = "qwer1234!";
 
+        
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
-        requester.postData = JsonUtility.ToJson(logdata);
-
-
+        requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
-
         HttpManager.instance.SendRequest(requester);
     }
 
@@ -189,7 +192,7 @@ public class AddManager : MonoBehaviour
         {
             OnClickLogin();
         }
-        //print(transform.GetChild(0).transform.GetChild(10).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject.name);      
+        
     }
     public void OnSave()
     {
@@ -209,7 +212,7 @@ public class AddManager : MonoBehaviour
     public void OnSaveSignIn()
     {
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-        arrayJson.furniture = objectInfoList;
+        arrayJson.furnitures = objectInfoList;
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
@@ -233,8 +236,7 @@ public class AddManager : MonoBehaviour
         //{
         //    print(array.data[i].id);
 
-        //}
-       
+        //}       
     }
     public void OnRotate()
     {
@@ -244,7 +246,7 @@ public class AddManager : MonoBehaviour
     public void OnSave2()
     {
         ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
-        arrayJson.furniture = objectInfoList;
+        arrayJson.furnitures = objectInfoList;
         //objectInfoList.Add(objectInfo);
 
         //ArrayJson -> json
@@ -297,9 +299,9 @@ public class AddManager : MonoBehaviour
         //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>
         ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(jsonData);
         //arrayJson를 참고해서 오브젝트 생성
-        for (int i = 0; i < arrayJson.furniture.Count; i++)
+        for (int i = 0; i < arrayJson.furnitures.Count; i++)
         {
-            CreateObject(arrayJson.furniture[i]);
+            CreateObject(arrayJson.furnitures[i]);
         }
 
     }

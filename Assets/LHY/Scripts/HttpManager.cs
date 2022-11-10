@@ -25,17 +25,18 @@ public class HttpManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)
     {
         StartCoroutine(Send(requester));
     }
-
-
     IEnumerator Send(HttpRequester requester)
     {
+        
+        WWWForm form = new WWWForm();
+        form.AddField("furnitures", requester.postData);
+        
         UnityWebRequest webRequest = null;
         //requestType 에 따라서 호출해줘야한다.
         string accessToken = PlayerPrefs.GetString("token");
@@ -44,11 +45,12 @@ public class HttpManager : MonoBehaviour
 
             case RequestType.POST:
                 print("post");
+
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                webRequest.SetRequestHeader("accessToken", accessToken);
+                //webRequest.SetRequestHeader("accessToken", accessToken);
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;
             case RequestType.GET:
@@ -67,7 +69,6 @@ public class HttpManager : MonoBehaviour
                 webRequest.uploadHandler = new UploadHandlerRaw(pdata);
                 print("333");
                 webRequest.SetRequestHeader("Content-Type", "application/json");
-
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
@@ -76,7 +77,6 @@ public class HttpManager : MonoBehaviour
         //서버에 요청을 보내고 응답이 올때까지 기다린다.
         yield return webRequest.SendWebRequest();
         print("webRequest");
-
         //만약에 응답이 성공했다면
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
@@ -87,8 +87,6 @@ public class HttpManager : MonoBehaviour
             {
                 requester.onComplete(webRequest.downloadHandler);
             }
-
-
         }
         //그렇지않다면
         else
