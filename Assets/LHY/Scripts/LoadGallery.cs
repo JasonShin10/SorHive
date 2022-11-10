@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
+public class avatarImageInfo
+{
+    public string avatarImage;
+}
+
 public class LoadGallery : MonoBehaviour
 {
     public RawImage image;
