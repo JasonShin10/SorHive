@@ -21,9 +21,7 @@ public class ObjectInfo
     public Vector3 angle;
     public Vector3 boxPosition;
 }
-
-
-
+[System.Serializable]
 public class FurnitureInfo
 {
     public byte[] onlineRoomImage;
@@ -43,6 +41,32 @@ public class LoginInfo2
     public string memberId;
     public string password;
 }
+[System.Serializable]
+public class RoomStatus
+{
+    public int status;
+    public string message;
+    public RoomData data;
+}
+[System.Serializable]
+public class RoomData
+{
+    public int id;
+    public RoomCreator roomCreator;
+}
+[System.Serializable]
+public class RoomCreator
+{
+    public RoomValue memberCode;
+    public string name;
+    public List<ObjectInfo> furnitures;
+}
+[System.Serializable]
+public class RoomValue
+{
+    public int value;
+}
+
 
 
 
@@ -238,7 +262,15 @@ public class AddManager : MonoBehaviour
     public void OnCompleteGetPostAll(DownloadHandler handler)
     {
         sHandler = handler.text;
-        PostDataArray array = JsonUtility.FromJson<PostDataArray>(sHandler);
+        RoomStatus roomStatue = JsonUtility.FromJson<RoomStatus>(sHandler);
+        
+        //PostDataArray array = JsonUtility.FromJson<PostDataArray>(sHandler);
+        //for(int i=0; i<array.data.Count; i++)
+        //{
+
+        //}
+        
+        print(roomStatue.message);
         OnLoadJson(sHandler);
         //PostData postData = JsonUtility.FromJson<PostData>(handler.text);
         //string s = "{\"furniture\":" + handler.text + "}";
