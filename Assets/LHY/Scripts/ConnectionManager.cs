@@ -65,6 +65,11 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         //SceneManager.LoadScene("MainScenes");
     }
 
+    public void OnclickGoMain()
+    {
+        PhotonNetwork.LoadLevel("MainScenes");
+    }
+
     void Update()
     {
         
