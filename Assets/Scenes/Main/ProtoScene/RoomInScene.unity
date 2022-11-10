@@ -8362,7 +8362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1572685340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8377,10 +8377,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenShotName: 
   objectInfo:
-    folderNumber: 0
-    objNumber: 0
-    matNumber: 0
-    floorMatNumber: 0
+    wallNumber: 0
+    floorNumber: 0
+    furnitureCategoryNumber: 0
+    furnitureNumber: 0
     obj: {fileID: 0}
     room: {fileID: 0}
     position: {x: 0, y: 0, z: 0}
@@ -8410,6 +8410,7 @@ MonoBehaviour:
   shelf: []
   mats: []
   floor: []
+  objActive: []
   obj: {fileID: 0}
   pos: {x: 0, y: 0, z: 0}
   sca: {x: 0, y: 0, z: 0}

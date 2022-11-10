@@ -34,8 +34,8 @@ public class HttpManager : MonoBehaviour
     IEnumerator Send(HttpRequester requester)
     {
         
-        WWWForm form = new WWWForm();
-        form.AddField("furnitures", requester.postData);
+        //WWWForm form = new WWWForm();
+        //form.AddField("furnitures", requester.postData);
         
         UnityWebRequest webRequest = null;
         //requestType 에 따라서 호출해줘야한다.
