@@ -50,14 +50,16 @@ public class HttpManager : MonoBehaviour
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                //webRequest.SetRequestHeader("accessToken", accessToken);
+                
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;
             case RequestType.GET:
                 webRequest = UnityWebRequest.Get(requester.url);
                 if (accessToken != null)
                 {
-                    webRequest.SetRequestHeader("accessToken", accessToken);
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                   
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
                 }
                 break;
             case RequestType.PUT:
@@ -81,7 +83,7 @@ public class HttpManager : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             print(webRequest.downloadHandler.text);
-
+           
             //완료되었다고 requester.onComplete를 실행
             if (requester.onComplete != null)
             {

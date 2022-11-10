@@ -159,7 +159,10 @@ public class AddManager : MonoBehaviour
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
 
-        OnLoad2();
+        //OnLoad2();
+        print(1);
+        GetPostAll();
+        //OnLoadJson();
         objActive.AddRange(GameObject.FindGameObjectsWithTag("Furniture"));
         scene = SceneManager.GetActiveScene();
         if(scene.name == "RoomInScene")
@@ -221,7 +224,27 @@ public class AddManager : MonoBehaviour
         File.WriteAllText(path, jsonData);
         print(jsonData);
     }
+    public void GetPostAll()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://13.125.174.193:8080/api/v1/room/1";
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetPostAll;
+        
 
+        HttpManager.instance.SendRequest(requester);
+    }
+    string sHandler;
+    public void OnCompleteGetPostAll(DownloadHandler handler)
+    {
+        sHandler = handler.text;
+        PostDataArray array = JsonUtility.FromJson<PostDataArray>(sHandler);
+        OnLoadJson(sHandler);
+        //PostData postData = JsonUtility.FromJson<PostData>(handler.text);
+        //string s = "{\"furniture\":" + handler.text + "}";
+        print("조회 완료");
+    }
+    #region Post
     public void OnSaveSignIn()
     {
         FurnitureInfo info = new FurnitureInfo();
@@ -246,11 +269,10 @@ public class AddManager : MonoBehaviour
     {
         string s = "{\"furniture\":" + handler.text + "}";
         PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
-        //for(int i = 0; i< array.data.Count; i++)
-        //{
-        //    print(array.data[i].id);
-        //}       
+      
     }
+
+    #endregion
     public void OnRotate()
     {
         GameManager.instance.selected.transform.Rotate(0, 90, 0);
@@ -302,7 +324,18 @@ public class AddManager : MonoBehaviour
         //물체생성
         CreateObject(objectInfo);
     }
-
+    
+    public void OnLoadJson(string s)
+    {
+        //string jsonData = File.ReadAllText(sHandler);
+        print(sHandler);
+        ArrayJson<ObjectInfo> arrayJson = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(sHandler);
+        //arrayJson를 참고해서 오브젝트 생성
+        for (int i = 0; i < arrayJson.furnitures.Count; i++)
+        {
+            CreateObject(arrayJson.furnitures[i]);
+        }
+    }
     public void OnLoad2()
     {
         //파일로 불러오기
