@@ -13,6 +13,8 @@ public class PlayerInfo
 
 public class LHY_PlayerItem : MonoBehaviour
 {
+    public static LHY_PlayerItem instance;
+
     //플레이어 닉네임
     public Text UserNickname;
 
@@ -28,8 +30,12 @@ public class LHY_PlayerItem : MonoBehaviour
     public int FaceType;
     public int EyebrowsType;
     public int Eyelashestype;
-
     public int Hairtype;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
 
     void Start()
