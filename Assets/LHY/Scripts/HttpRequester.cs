@@ -27,7 +27,7 @@ public enum RequestType
 }
 
 
-public class HttpRequester
+public class HttpRequester : MonoBehaviour
 {
     //url
     public string url;
