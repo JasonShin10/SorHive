@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
-public class avatarImageInfo
+public class AvatarImageInfo
 {
-    public string avatarImage;
+    public byte[] avatarImage;
 }
 
 public class LoadGallery : MonoBehaviour
 {
     public RawImage image;
 
+    public byte[] avatarImg;
+
     public void OnClickImageLoad()
     {
         NativeGallery.GetImageFromGallery((file) =>
         {
-            FileInfo selected = new FileInfo(file);
+            FileInfo selected = new FileInfo(file);          
 
             //이미지 용량제한하기
             if(selected.Length > 50000000)
@@ -55,12 +57,25 @@ public class LoadGallery : MonoBehaviour
 
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
-
-        image.texture = tex;
+        avatarImg = File.ReadAllBytes(savePath + filename + ".png");
+        image.texture = tex; 
     }
 
     public void OnCilckImageSave()
     {
-        
+        AvatarImageInfo avatarImageInfo = new AvatarImageInfo();
+        avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
+        //avatarImageInfo.avatarImage = avatarImg;
+
+        HttpRequester requester = new HttpRequester();
+        //url경로
+        requester.url = "http://13.125.174.193:8080/api/v1/avatar/image";
+        requester.requestType = RequestType.POST;
+
+        requester.postData = JsonUtility.ToJson(avatarImageInfo);
+        print(requester.postData);
+
+        HttpManager.instance.SendRequest(requester);
+        print("sucssasSand");
     }
 }
