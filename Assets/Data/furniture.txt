@@ -1,3 +1,196 @@
 {
-    "furnitures": []
+    "furnitures": [
+        {
+            "wallNumber": 4,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 15,
+            "furnitureNumber": 0,
+            "obj": {
+                "instanceID": 0
+            },
+            "room": {
+                "instanceID": 26344
+            },
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 4,
+            "furnitureCategoryNumber": 16,
+            "furnitureNumber": 0,
+            "obj": {
+                "instanceID": 0
+            },
+            "room": {
+                "instanceID": -1250
+            },
+            "position": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "scale": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 0,
+            "furnitureNumber": 1,
+            "obj": {
+                "instanceID": 32150
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 10.0,
+                "y": 29.0,
+                "z": 3.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0000013113021850585938,
+                "y": 0.9521415829658508,
+                "z": 0.9521415829658508
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 1,
+            "furnitureNumber": 2,
+            "obj": {
+                "instanceID": 33466
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 5.0,
+                "y": 29.000999450683595,
+                "z": 8.0
+            },
+            "scale": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0000626564069534652,
+                "y": 0.7454952001571655,
+                "z": 0.7454952001571655
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 2,
+            "furnitureNumber": 2,
+            "obj": {
+                "instanceID": 33552
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": 12.0,
+                "y": 29.0,
+                "z": 10.0
+            },
+            "scale": {
+                "x": 3.0,
+                "y": 3.0,
+                "z": 3.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -5.364418029785156e-7,
+                "y": 0.24871663749217988,
+                "z": 0.24871663749217988
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 3,
+            "furnitureNumber": 2,
+            "obj": {
+                "instanceID": -165552
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "position": {
+                "x": -0.41100001335144045,
+                "y": 35.0,
+                "z": 6.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        }
+    ]
 }
