@@ -16,35 +16,41 @@ public class GuestBook : MonoBehaviour
         
     }
     float box = 3;
+    public bool cancel = false;
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(guestBox.transform.position, player.transform.position); 
+        // 거리가 3보다 크면 cancle을 false로 바꿔준다.
+        
         if (distance > 3)
         {
+            cancel = false;
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
-        else
+        else if (distance < 3 && cancel ==false)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            //gameObject.transform.GetChild(2).gameObject.SetActive(true);
+            
         }
 
-        //print(distance);
+        print(distance);
+        
     }
 
     public void OnGuestBookWrite()
     {
         SceneManager.LoadScene("GuestBookLoadScene");
-        //guestBoxWrite.SetActive(true);
+        
     }
 
     public void OnCancle()
     {
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        cancel = true;
+        gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        gameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 }
