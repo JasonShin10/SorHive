@@ -62,7 +62,7 @@ public class MapGround : Map
             }
             //AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(false);
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -70,7 +70,6 @@ public class MapGround : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    #region 방생성
                     if (AddManager.instance.AddBed == true)
                     {
        
@@ -197,12 +196,10 @@ public class MapGround : Map
                         SaveMat(GameObject.Find("Floor.007"));
                         AddManager.instance.AddFloor = false;
                     }
-                    #endregion
                 }
 
             }
         }
-        #region 마우스 놓았을때
         if (Input.GetMouseButtonUp(0))
         {
             if (selectObj)
@@ -257,7 +254,6 @@ public class MapGround : Map
 
             }
         }
-        #endregion
     }
     void FloorMat()
     {
@@ -283,7 +279,6 @@ public class MapGround : Map
         AddManager.instance.objectInfo.floorNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
-    #region Json저장
     void SaveJson(GameObject obj)
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
@@ -308,25 +303,19 @@ public class MapGround : Map
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
-        AddManager.instance.objectInfo.name = AddManager.instance.obj.name;
         AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);   
     }
-    #endregion 
+
     void RemoveJson(GameObject obj)
     {
-       
-        for (int i = 0; i <= AddManager.instance.objectInfoList.Count; i++)
+        ObjectInfo info;
+        for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-                //AddManager.instance.objectInfoList.RemoveAt(i);
-            if (AddManager.instance.objectInfoList[i].obj != null)
+            if (AddManager.instance.objectInfoList[i].obj == obj)
             {
-                if (AddManager.instance.objectInfoList[i].obj.name == obj.gameObject.name)
-                {
-                    //print(AddManager.instance.objectInfoList);
-                     AddManager.instance.objectInfoList.RemoveAt(i);
-                      return;
-                }
+                AddManager.instance.objectInfoList.RemoveAt(i);
+                return;
             }
         }
 
@@ -336,9 +325,8 @@ public class MapGround : Map
     {
         currCube = Instantiate(item);
         //SaveJson(currCube.gameObject);
-        currCube.name = item.name;
-        //currCube.name = "d" + select;
-        //select += 1;
+        currCube.name = "d" + select;
+        select += 1;
         currCube.layer = LayerMask.NameToLayer("Obj");
         int x = (int)(hit.point.x);
         int z = (int)(hit.point.z);

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -4066166006859987207}
   - component: {fileID: -2984178618215668662}
   - component: {fileID: -6886853115447252441}
-  - component: {fileID: 388622538186788527}
   m_Layer: 6
   m_Name: entertainment_017
   m_TagString: Furniture
@@ -145,16 +144,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9726126, y: 1.8117477, z: 0.48014775}
   m_Center: {x: 0.0000007301569, y: 0.905873, z: 0.013442084}
---- !u!114 &388622538186788527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106689587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b66deff149ae242ac91c9712383f87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}

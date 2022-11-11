@@ -14,7 +14,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     bool isConnected;
     [SerializeField] string username;
     public Text chatText;
-    
+
     public void UsernameOnValueChange(string valueIn)
     {
         username = valueIn;
