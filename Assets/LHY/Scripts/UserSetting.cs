@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -97,13 +98,23 @@ public class UserSetting : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
     }
 
+/*    private void OnClickDownload(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        string token = json["data"]["accessToken"].ToString();
+        print(token);
+
+        PlayerPrefs.SetString("token", token);
+        print("조회 완료");
+    }*/
+
     private void OnClickDownload(DownloadHandler handler)
     {
-        PostTokenData postTokenData = JsonUtility.FromJson<PostTokenData>(handler.text);
+        JObject json = JObject.Parse(handler.text);
+        string token = json["data"]["accessToken"].ToString();
+        print("postTokenData"+ token);
 
-        print(postTokenData.accessToken);
-
-        PlayerPrefs.SetString("token", postTokenData.accessToken);
+        PlayerPrefs.SetString("token", token);
         print("조회 완료");
     }
 }

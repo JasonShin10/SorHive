@@ -162,6 +162,7 @@ public class AddManager : MonoBehaviour
     
     void Start()
     {
+        
         bedItems = Resources.LoadAll<GameObject>("bed");
         chairItems = Resources.LoadAll<GameObject>("armchair");
         DeskItem = Resources.LoadAll<GameObject>("office_desk");
@@ -217,8 +218,9 @@ public class AddManager : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
     }
 
+    
     private void OnClickDownload(DownloadHandler handler)
-    {
+    {       
         JObject json = JObject.Parse(handler.text);
         string token = json["data"]["accessToken"].ToString();
         print(token);
@@ -789,7 +791,7 @@ public class AddManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScenes");
     }
-
+    
 
     public void OnAddBed()
     {
