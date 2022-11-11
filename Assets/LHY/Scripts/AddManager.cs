@@ -159,7 +159,7 @@ public class AddManager : MonoBehaviour
     public bool AddFloor = false;
     public int currButtonNum = 0;
     Scene scene;
-    
+    public int n;
     void Start()
     {
         bedItems = Resources.LoadAll<GameObject>("bed");
@@ -232,6 +232,9 @@ public class AddManager : MonoBehaviour
         {
             OnClickLogin();
         }
+
+        print(n);
+     
         
     }
     public void OnSave()
@@ -284,6 +287,9 @@ public class AddManager : MonoBehaviour
         ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
         objectInfoList = objectInfo.furnitures;
 
+        print(objectInfoList.Count);
+        n = objectInfoList.Count;
+      
         for (int i = 0; i < objectInfoList.Count; i++)
         {
             CreateObject(objectInfoList[i]);
@@ -296,11 +302,13 @@ public class AddManager : MonoBehaviour
         //}
 
         //print(roomStatue.message);
-        OnLoadJson(sHandler);
+        //OnLoadJson(sHandler);
         //PostData postData = JsonUtility.FromJson<PostData>(handler.text);
         //string s = "{\"furniture\":" + handler.text + "}";
         print("조회 완료");
     }
+    
+  
     #region Post
     public void OnSaveSignIn()
     {
@@ -409,6 +417,8 @@ public class AddManager : MonoBehaviour
 
     }
 
+
+
     public void CreateObject(ObjectInfo info)
     {
         if (info.furnitureCategoryNumber == 0)
@@ -420,7 +430,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
             createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 1)
@@ -431,7 +441,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
             createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 2)
@@ -442,7 +452,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
             createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 3)
@@ -452,7 +462,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 4)
@@ -462,7 +472,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 5)
@@ -472,7 +482,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 6)
@@ -482,7 +492,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 7)
@@ -492,7 +502,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 8)
@@ -502,7 +512,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 9)
@@ -512,7 +522,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 10)
@@ -522,7 +532,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 11)
@@ -532,7 +542,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 12)
@@ -542,7 +552,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 13)
@@ -552,7 +562,7 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 14)
@@ -562,20 +572,20 @@ public class AddManager : MonoBehaviour
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
             //info.obj.GetComponent<Furniture>().located = true;
         }
         if (info.furnitureCategoryNumber == 15)
         {
             info.room = GameObject.Find("Wall_B");
             info.room.GetComponent<MeshRenderer>().material = mats[info.wallNumber];
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
         }
         if (info.furnitureCategoryNumber == 16)
         {
             info.room = GameObject.Find("Floor.007");
             info.room.GetComponent<MeshRenderer>().material = floor[info.floorNumber];
-            objectInfoList.Add(info);
+            //objectInfoList.Add(info);
         }
         
     }

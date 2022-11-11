@@ -18,8 +18,7 @@ public class PlayerObject : MonoBehaviour
         // 거리가 3보다 크면 cancle을 false로 바꿔준다.
 
         if (distance > 3)
-        {
-            
+        { 
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
             gameObject.transform.GetChild(2).gameObject.SetActive(false);
