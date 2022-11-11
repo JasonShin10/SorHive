@@ -75,7 +75,7 @@ public class MapRight : Map
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             
@@ -189,7 +189,7 @@ public class MapRight : Map
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
-        
+        AddManager.instance.objectInfo.name = obj.gameObject.name;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
 
     }

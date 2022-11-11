@@ -11120,6 +11120,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1106732742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106732743}
+  - component: {fileID: 1106732744}
+  m_Layer: 0
+  m_Name: Http
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106732743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106732742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.000061035156, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1106732744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106732742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a988dd56195cf4c47b3a1350a2d053cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1111846098
 GameObject:
   m_ObjectHideFlags: 0
@@ -17171,6 +17215,8 @@ GameObject:
   - component: {fileID: 1651319038}
   - component: {fileID: 1651319037}
   - component: {fileID: 1651319036}
+  - component: {fileID: 1651319039}
+  - component: {fileID: 1651319040}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -17239,6 +17285,92 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1651319039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651319035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b1e33a595b5a140baed5e85dbb23bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1651319040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651319035}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a856385e0d9a3f4cb81c621611e4af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenShotName: 
+  objectInfo:
+    wallNumber: 0
+    floorNumber: 0
+    furnitureCategoryNumber: 0
+    furnitureNumber: 0
+    obj: {fileID: 0}
+    room: {fileID: 0}
+    name: 
+    position: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+    angle: {x: 0, y: 0, z: 0}
+    boxPosition: {x: 0, y: 0, z: 0}
+  objectInfoList: []
+  SpawnPos: {fileID: 0}
+  cam: {fileID: 0}
+  rotate: {fileID: 0}
+  bedItems: []
+  chairItems: []
+  DeskItem: []
+  WallHangItem: []
+  closetItems: []
+  clothesItems: []
+  coffee_tableItems: []
+  entertainmentItems: []
+  electrionicsItems: []
+  flowerItems: []
+  kitchenChairItems: []
+  kitchenTableItems: []
+  lamp: []
+  loungeChairItems: []
+  musical_instrumentItems: []
+  office_chair: []
+  shelf: []
+  mats: []
+  floor: []
+  objActive: []
+  obj: {fileID: 0}
+  pos: {x: 0, y: 0, z: 0}
+  sca: {x: 0, y: 0, z: 0}
+  ang: {x: 0, y: 0, z: 0}
+  AddBed: 0
+  AddChair: 0
+  AddDesk: 0
+  AddWallHang: 0
+  AddCloset: 0
+  AddClothes: 0
+  AddCoffeeTable: 0
+  AddEntertainment: 0
+  AddElectrionic: 0
+  AddFlower: 0
+  AddKitchenChair: 0
+  AddKitchenTable: 0
+  AddLamp: 0
+  AddLoungeChair: 0
+  AddInstrument: 0
+  AddOfficeChair: 0
+  AddShelf: 0
+  AddMaterial: 0
+  AddFloor: 0
+  currButtonNum: 0
+  n: 0
 --- !u!1 &1655997687
 GameObject:
   m_ObjectHideFlags: 0
