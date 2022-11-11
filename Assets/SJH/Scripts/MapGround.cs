@@ -303,17 +303,19 @@ public class MapGround : Map
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
+        AddManager.instance.objectInfo.name = AddManager.instance.obj.name;
         AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);   
     }
 
     void RemoveJson(GameObject obj)
     {
-        ObjectInfo info;
+       
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if (AddManager.instance.objectInfoList[i].obj == obj)
+            if (AddManager.instance.objectInfoList[i].position == obj.transform.position + new Vector3(-3, 5, -2)) 
             {
+                print(AddManager.instance.objectInfoList);
                 AddManager.instance.objectInfoList.RemoveAt(i);
                 return;
             }

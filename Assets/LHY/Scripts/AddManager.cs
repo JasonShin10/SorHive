@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 
+
+
+#region Json
 [System.Serializable]
 public class ObjectInfo
 {
@@ -16,6 +19,7 @@ public class ObjectInfo
     public int furnitureNumber;
     public GameObject obj;
     public GameObject room;
+    public string name;
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
@@ -24,8 +28,8 @@ public class ObjectInfo
 [System.Serializable]
 public class FurnitureInfo
 {
-    public byte[] onlineRoomImage;
-    public byte[] offlineRoomImage;
+    
+    public byte[] roomImage;
     public List<ObjectInfo> furnitures;
 }
 
@@ -66,7 +70,7 @@ public class RoomValue
 {
     public int value;
 }
-
+#endregion
 
 
 
@@ -92,7 +96,7 @@ public class AddManager : MonoBehaviour
     public Camera cam;
     //침대오브젝트
     public Canvas rotate;
-
+    #region 오브젝트 배열
     public GameObject[] bedItems;
     //의자오브젝트
     public GameObject[] chairItems;
@@ -130,7 +134,7 @@ public class AddManager : MonoBehaviour
     public Material[] mats;
     //바닥 머티리얼
     public Material[] floor;
-
+    #endregion
     public List<GameObject> objActive = new List<GameObject>();
     MeshRenderer rb;
 
@@ -138,6 +142,7 @@ public class AddManager : MonoBehaviour
     public Vector3 pos;
     public Vector3 sca;
     public Vector3 ang;
+    #region boolUI
     public bool AddBed = false;
     public bool AddChair = false;
     public bool AddDesk = false;
@@ -157,11 +162,13 @@ public class AddManager : MonoBehaviour
     public bool AddShelf = false;
     public bool AddMaterial = false;
     public bool AddFloor = false;
+    #endregion
     public int currButtonNum = 0;
     Scene scene;
     public int n;
     void Start()
     {
+        #region Resources불러오기
         bedItems = Resources.LoadAll<GameObject>("bed");
         chairItems = Resources.LoadAll<GameObject>("armchair");
         DeskItem = Resources.LoadAll<GameObject>("office_desk");
@@ -182,7 +189,7 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
-
+        #endregion 
         //OnLoad2();
         print(1);
         GetPostAll();
@@ -203,7 +210,7 @@ public class AddManager : MonoBehaviour
         json["byte"] = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
         File.WriteAllText(Application.dataPath + "/test.txt", json.ToString());
     }
-
+    #region 임시로그인
     public void OnClickLogin()
     {
         LoginInfo2 logdata = new LoginInfo2();
@@ -226,6 +233,7 @@ public class AddManager : MonoBehaviour
         PlayerPrefs.SetString("token", token);
         print("조회 완료");
     }
+    #endregion 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -233,24 +241,10 @@ public class AddManager : MonoBehaviour
             OnClickLogin();
         }
 
-        print(n);
-     
-        
+        //print(n);
+
     }
-    public void OnSave()
-    {
-        objectInfo = new ObjectInfo();
-        objectInfo.obj = obj;
-        objectInfo.position = pos;
-        objectInfo.scale = sca;
-        objectInfo.angle = ang;
-        string jsonData = JsonUtility.ToJson(objectInfo, true);
-        // 저장경로
-        string path = Application.dataPath + "/furniture.txt";
-        // 파일로 저장
-        File.WriteAllText(path, jsonData);
-        print(jsonData);
-    }
+    #region Get
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
@@ -307,14 +301,13 @@ public class AddManager : MonoBehaviour
         //string s = "{\"furniture\":" + handler.text + "}";
         print("조회 완료");
     }
-    
-  
+    #endregion
+
     #region Post
     public void OnSaveSignIn()
     {
         FurnitureInfo info = new FurnitureInfo();
-        info.onlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
-        info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");        
         info.furnitures = objectInfoList;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
         //arrayJson.furnitures = objectInfoList;
@@ -338,9 +331,20 @@ public class AddManager : MonoBehaviour
     }
 
     #endregion
-    public void OnRotate()
+    #region Json로컬저장
+    public void OnSave()
     {
-        GameManager.instance.selected.transform.Rotate(0, 90, 0);
+        objectInfo = new ObjectInfo();
+        objectInfo.obj = obj;
+        objectInfo.position = pos;
+        objectInfo.scale = sca;
+        objectInfo.angle = ang;
+        string jsonData = JsonUtility.ToJson(objectInfo, true);
+        // 저장경로
+        string path = Application.dataPath + "/furniture.txt";
+        // 파일로 저장
+        File.WriteAllText(path, jsonData);
+        print(jsonData);
     }
 
     public void OnSave2()
@@ -378,7 +382,8 @@ public class AddManager : MonoBehaviour
         //File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
         //EditorApplication.ExecuteMenuItem("Assets/Refresh");
     }
-
+    #endregion 
+    #region Json로컬로드
     public void OnLoad()
     {
         //저장된 정보 불러오고
@@ -414,11 +419,10 @@ public class AddManager : MonoBehaviour
         {
             CreateObject(arrayJson.furnitures[i]);
         }
-
     }
+    #endregion
 
-
-
+    #region createObject
     public void CreateObject(ObjectInfo info)
     {
         if (info.furnitureCategoryNumber == 0)
@@ -589,12 +593,13 @@ public class AddManager : MonoBehaviour
         }
         
     }
+    #endregion
     public void CreateMat(ObjectInfo info)
     {
 
 
     }
-
+    #region Button
     public void OnClickButton(int index)
     {
         currButtonNum = index;
@@ -819,13 +824,14 @@ public class AddManager : MonoBehaviour
         currButtonNum = 44;
     }
 
-
+    #endregion 
     public void mainScene()
     {
         SceneManager.LoadScene("MainScenes");
+        
     }
 
-
+    #region OnFurniture
     public void OnAddBed()
     {
         AddBed = true;
@@ -1235,5 +1241,9 @@ public class AddManager : MonoBehaviour
     {
         AddFloor = true;
     }
-
+    #endregion
+    public void OnRotate()
+    {
+        GameManager.instance.selected.transform.Rotate(0, 90, 0);
+    }
 }
