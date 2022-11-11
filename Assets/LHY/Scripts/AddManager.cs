@@ -244,7 +244,21 @@ public class AddManager : MonoBehaviour
         //print(n);
 
     }
-    #region Get
+    public void GetRoomAll()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://13.125.174.193:8080/api/v1/member/j";
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetRoomAll;
+    }
+
+    public void OnCompleteGetRoomAll(DownloadHandler handler)
+    {
+        sHandler = handler.text;
+        print(sHandler);
+    
+    }
+    #region GetRoom
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
@@ -302,6 +316,7 @@ public class AddManager : MonoBehaviour
         print("조회 완료");
     }
     #endregion
+
     #region createObject
     public void CreateObject(ObjectInfo info)
     {
