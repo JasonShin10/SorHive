@@ -262,15 +262,40 @@ public class AddManager : MonoBehaviour
     public void OnCompleteGetPostAll(DownloadHandler handler)
     {
         sHandler = handler.text;
-        RoomStatus roomStatue = JsonUtility.FromJson<RoomStatus>(sHandler);
+
+        JObject jsonData = JObject.Parse(sHandler);
+
+        //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
+
+        //for(int i = 0; i < jarry.Count; i++)
+        //{
+        //    ObjectInfo info = new ObjectInfo();
+
+        //    info.wallNumber = jarry[i]["wallNumber"].ToObject<int>();
+
+        //    objectInfoList.Add(info);
+        //}
+
+        //int status = jsonData["status"].ToObject<int>();
+        string furnituersData = "{\"furnitures\":" + jsonData["data"]["furnitures"].ToString() + "}";
         
+        print(furnituersData);
+
+        ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
+        objectInfoList = objectInfo.furnitures;
+
+        for (int i = 0; i < objectInfoList.Count; i++)
+        {
+            CreateObject(objectInfoList[i]);
+        }
+
         //PostDataArray array = JsonUtility.FromJson<PostDataArray>(sHandler);
         //for(int i=0; i<array.data.Count; i++)
         //{
 
         //}
-        
-        print(roomStatue.message);
+
+        //print(roomStatue.message);
         OnLoadJson(sHandler);
         //PostData postData = JsonUtility.FromJson<PostData>(handler.text);
         //string s = "{\"furniture\":" + handler.text + "}";
