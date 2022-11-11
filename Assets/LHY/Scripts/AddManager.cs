@@ -28,8 +28,8 @@ public class ObjectInfo
 [System.Serializable]
 public class FurnitureInfo
 {
-    
-    public byte[] roomImage;
+    public byte[] offlineRoomImage;
+    public byte[] onlineRoomImage;
     public List<ObjectInfo> furnitures;
 }
 
@@ -302,12 +302,304 @@ public class AddManager : MonoBehaviour
         print("조회 완료");
     }
     #endregion
+    #region createObject
+    public void CreateObject(ObjectInfo info)
+    {
+        if (info.furnitureCategoryNumber == 0)
+        {
+            info.obj = bedItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 1)
+        {
+            info.obj = chairItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+            createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 2)
+        {
+            info.obj = DeskItem[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 3)
+        {
+            info.obj = WallHangItem[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 4)
+        {
+            info.obj = closetItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 5)
+        {
+            info.obj = coffee_tableItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 6)
+        {
+            info.obj = entertainmentItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 7)
+        {
+            info.obj = electrionicsItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 8)
+        {
+            info.obj = flowerItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 9)
+        {
+            info.obj = kitchenChairItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 10)
+        {
+            info.obj = kitchenTableItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 11)
+        {
+            info.obj = lamp[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 12)
+        {
+            info.obj = loungeChairItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 13)
+        {
+            info.obj = musical_instrumentItems[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 14)
+        {
+            info.obj = office_chair[info.furnitureNumber];
+            GameObject createObj = Instantiate(info.obj);
+            if (createObj.gameObject.name == info.name)
+            {
+                createObj.gameObject.name = info.name + 1;
+            }
+            else
+            {
+                createObj.gameObject.name = info.name;
+            }
+            createObj.transform.position = info.position;
+            createObj.transform.localScale = info.scale;
+            createObj.transform.eulerAngles = info.angle;
+            //objectInfoList.Add(info);
+            //info.obj.GetComponent<Furniture>().located = true;
+        }
+        if (info.furnitureCategoryNumber == 15)
+        {
+            info.room = GameObject.Find("Wall_B");
+            info.room.GetComponent<MeshRenderer>().material = mats[info.wallNumber];
+            //objectInfoList.Add(info);
+        }
+        if (info.furnitureCategoryNumber == 16)
+        {
+            info.room = GameObject.Find("Floor.007");
+            info.room.GetComponent<MeshRenderer>().material = floor[info.floorNumber];
+            //objectInfoList.Add(info);
+        }
+        
+    }
+    #endregion
 
     #region Post
     public void OnSaveSignIn()
     {
         FurnitureInfo info = new FurnitureInfo();
-        info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");        
+        info.onlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
         info.furnitures = objectInfoList;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
         //arrayJson.furnitures = objectInfoList;
@@ -422,178 +714,6 @@ public class AddManager : MonoBehaviour
     }
     #endregion
 
-    #region createObject
-    public void CreateObject(ObjectInfo info)
-    {
-        if (info.furnitureCategoryNumber == 0)
-        {
-            info.obj = bedItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 1)
-        {
-            info.obj = chairItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 2)
-        {
-            info.obj = DeskItem[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 3)
-        {
-            info.obj = WallHangItem[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 4)
-        {
-            info.obj = closetItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 5)
-        {
-            info.obj = coffee_tableItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 6)
-        {
-            info.obj = entertainmentItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 7)
-        {
-            info.obj = electrionicsItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 8)
-        {
-            info.obj = flowerItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 9)
-        {
-            info.obj = kitchenChairItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 10)
-        {
-            info.obj = kitchenTableItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 11)
-        {
-            info.obj = lamp[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 12)
-        {
-            info.obj = loungeChairItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 13)
-        {
-            info.obj = musical_instrumentItems[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 14)
-        {
-            info.obj = office_chair[info.furnitureNumber];
-            GameObject createObj = Instantiate(info.obj);
-            createObj.transform.position = info.position;
-            createObj.transform.localScale = info.scale;
-            createObj.transform.eulerAngles = info.angle;
-            //objectInfoList.Add(info);
-            //info.obj.GetComponent<Furniture>().located = true;
-        }
-        if (info.furnitureCategoryNumber == 15)
-        {
-            info.room = GameObject.Find("Wall_B");
-            info.room.GetComponent<MeshRenderer>().material = mats[info.wallNumber];
-            //objectInfoList.Add(info);
-        }
-        if (info.furnitureCategoryNumber == 16)
-        {
-            info.room = GameObject.Find("Floor.007");
-            info.room.GetComponent<MeshRenderer>().material = floor[info.floorNumber];
-            //objectInfoList.Add(info);
-        }
-        
-    }
-    #endregion
     public void CreateMat(ObjectInfo info)
     {
 
@@ -1244,6 +1364,6 @@ public class AddManager : MonoBehaviour
     #endregion
     public void OnRotate()
     {
-        GameManager.instance.selected.transform.Rotate(0, 90, 0);
+        GameManager.instance.selected.transform.Rotate(0, -90, 0);
     }
 }
