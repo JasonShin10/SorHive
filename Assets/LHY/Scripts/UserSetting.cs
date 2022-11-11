@@ -6,12 +6,20 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+[System.Serializable]
 public class UserInfo
 {
     public string memberName;
     public string memberId;
     public string password;
 }
+
+[System.Serializable]
+public class ArrayJsonID<T>
+{
+    public List<T> data;
+}
+
 
 public class LoginInfo
 {

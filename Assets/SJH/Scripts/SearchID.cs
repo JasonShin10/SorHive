@@ -15,10 +15,10 @@ public class SearchID : MonoBehaviour
     public GameObject SearchBar;
 
     public int totalElements;
-    
-    public ObjectInfo objectInfo;
-    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
- 
+    public Text search;
+    public UserInfo userInfo;
+    public List<UserInfo> userInfoList = new List<UserInfo>();
+
     //public GameObject ContentHolder;
 
     //public GameObject[] Element;
@@ -32,9 +32,9 @@ public class SearchID : MonoBehaviour
         totalElements = ContentHolder.transform.childCount;
         Element = new GameObject[totalElements];
 
-        for (int i = 0; i< totalElements; i++)
+        for (int i = 0; i < totalElements; i++)
         {
-            Element[i] = ContentHolder.transform.GetChild(i).gameObject; 
+            Element[i] = ContentHolder.transform.GetChild(i).gameObject;
         }
         OnClickLogin();
         //GetRoomAll();
@@ -46,8 +46,8 @@ public class SearchID : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-          
-          GetRoomAll();
+
+            GetRoomAll();
         }
     }
 
@@ -102,13 +102,36 @@ public class SearchID : MonoBehaviour
         //}
 
         //int status = jsonData["status"].ToObject<int>();
-        string furnituersData = "{\"data\":" + jsonData["data"].ToString() + "}";
+        string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
+        ArrayJsonID<UserInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserInfo>>(userData);
+        userInfoList = userInfo.data;
+        print(userInfo);
 
-        print(furnituersData);
 
-        ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
-        objectInfoList = objectInfo.furnitures;
         print("조회완료");
 
+    }
+    public void CreateObject(UserInfo info)
+    {
+        search.text = info.memberId;
+        //if (info.furnitureCategoryNumber == 0)
+        //{
+        //    info.obj = bedItems[info.furnitureNumber];
+        //    GameObject createObj = Instantiate(info.obj);
+        //    if (createObj.gameObject.name == info.name)
+        //    {
+        //        createObj.gameObject.name = info.name + 1;
+        //    }
+        //    else
+        //    {
+        //        createObj.gameObject.name = info.name;
+        //    }
+        //    createObj.transform.position = info.position;
+        //    createObj.transform.localScale = info.scale;
+        //    createObj.transform.eulerAngles = info.angle;
+        //    createObj.GetComponent<BoxCollider>().center = info.boxPosition;
+        //    //objectInfoList.Add(info);
+        //    //info.obj.GetComponent<Furniture>().located = true;
+        //}
     }
 }
