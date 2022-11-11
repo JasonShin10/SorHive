@@ -24,6 +24,7 @@ public class HttpManager : MonoBehaviour
             //나를 파괴하겠다.
             Destroy(gameObject);
         }
+        //PlayerPrefs.SetString("token", "");
     }
     //서버에게 요청
     //url(posts/1), GET
@@ -50,6 +51,7 @@ public class HttpManager : MonoBehaviour
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                print(accessToken);
                 
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;

@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInfo
 {
-    public int CharacterFaceType;
-    public int CharacterEyebrowsType;
-    public int CharacterEyelashestype;
-    public int CharacterHairtype;
+    public int faceType;
+    public int eyeBrowsType;
+    public int eyeType;
+    public int hairType;
+    public byte[] memberAvatarImage;
 }
 
 public class LHY_PlayerItem : MonoBehaviour
@@ -74,18 +76,20 @@ public class LHY_PlayerItem : MonoBehaviour
     public void OnClickSaveCustomData()
     {
         PlayerInfo playerdata = new PlayerInfo();
-        playerdata.CharacterFaceType = FaceType;
-        playerdata.CharacterEyebrowsType = EyebrowsType;
-        playerdata.CharacterEyelashestype = Eyelashestype;
-        playerdata.CharacterHairtype = Hairtype;
+        playerdata.faceType = FaceType;
+        playerdata.eyeBrowsType = EyebrowsType;
+        playerdata.eyeType = Eyelashestype;
+        playerdata.hairType = Hairtype;
+        playerdata.memberAvatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/AvatarImage/avatar0.png");
 
         HttpRequester requester = new HttpRequester();
-        requester.url = "";
+        requester.url = "http://13.125.174.193:8080/api/v1/auth/avatar/create";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(playerdata, true);
         print(requester.postData);
 
+        HttpManager.instance.SendRequest(requester);
       
     }
 }
