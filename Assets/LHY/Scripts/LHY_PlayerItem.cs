@@ -80,5 +80,12 @@ public class LHY_PlayerItem : MonoBehaviour
         playerdata.CharacterHairtype = Hairtype;
 
         HttpRequester requester = new HttpRequester();
+        requester.url = "";
+        requester.requestType = RequestType.POST;
+
+        requester.postData = JsonUtility.ToJson(playerdata, true);
+        print(requester.postData);
+
+      
     }
 }

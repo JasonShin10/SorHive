@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.Networking;
+using Newtonsoft.Json.Linq;
 
 public class AvatarImageInfo
 {
     public byte[] avatarImage;
+    public string avatarImageName;
 }
 
 public class LoadGallery : MonoBehaviour
 {
     public RawImage image;
+    public LHY_PlayerItem playerItem;
 
     public byte[] avatarImg;
+    public string avatarImgName;
 
     public void OnClickImageLoad()
     {
@@ -58,13 +63,20 @@ public class LoadGallery : MonoBehaviour
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
         avatarImg = File.ReadAllBytes(savePath + filename + ".png");
+        avatarImgName = filename;
         image.texture = tex; 
     }
 
     public void OnCilckImageSave()
     {
+        string accessToken = PlayerPrefs.GetString("token");
+        print("accessToken::"+ accessToken);
+
         AvatarImageInfo avatarImageInfo = new AvatarImageInfo();
         avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
+        avatarImageInfo.avatarImageName = Path.GetFileName(Application.dataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
+
+        print(avatarImageInfo.avatarImageName);
         //avatarImageInfo.avatarImage = avatarImg;
 
         HttpRequester requester = new HttpRequester();
@@ -73,10 +85,26 @@ public class LoadGallery : MonoBehaviour
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(avatarImageInfo, true);
-        //requester.onComplete = 
         print(requester.postData);
+        requester.onComplete = OnClickDownload;
 
         HttpManager.instance.SendRequest(requester);
+
         print("sucssasSand");
     }
+
+    private void OnClickDownload(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        int face  = (int)json["data"]["face"];
+        int eyebrows = (int)json["data"]["eyebrows"];
+        int eye = (int)json["data"]["eye"];
+
+        playerItem.FaceType = face;
+        playerItem.EyebrowsType = eyebrows;
+        playerItem.Eyelashestype = eye;
+
+        print("조회 완료");
+    }
+
 }

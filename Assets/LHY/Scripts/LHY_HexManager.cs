@@ -15,7 +15,6 @@ public class LHY_HexManager : MonoBehaviour
     void Start()
     {
         GameObject Room = Instantiate(roomItemFactory, hexPos[count]);
-
     }
 
     // Update is called once per frame
