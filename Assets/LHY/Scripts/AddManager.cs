@@ -244,20 +244,7 @@ public class AddManager : MonoBehaviour
         //print(n);
 
     }
-    public void GetRoomAll()
-    {
-        HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/j";
-        requester.requestType = RequestType.GET;
-        requester.onComplete = OnCompleteGetRoomAll;
-    }
 
-    public void OnCompleteGetRoomAll(DownloadHandler handler)
-    {
-        sHandler = handler.text;
-        print(sHandler);
-
-    }
     #region GetRoom
     public void GetPostAll()
     {
@@ -632,6 +619,7 @@ public class AddManager : MonoBehaviour
 
     public void OnCompleteSignIn(DownloadHandler handler)
     {
+        print(handler);
         string s = "{\"furniture\":" + handler.text + "}";
         PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
 

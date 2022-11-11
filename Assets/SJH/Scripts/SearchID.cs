@@ -10,14 +10,15 @@ using Newtonsoft.Json.Linq;
 
 public class SearchID : MonoBehaviour
 {
-    public static SearchID instance;
-    private void Awake()
-    {
-        if (!instance)
-        {
-            instance = this;
-        }
-    }
+    public GameObject ContentHolder;
+    public GameObject[] Element;
+    public GameObject SearchBar;
+
+    public int totalElements;
+    
+    public ObjectInfo objectInfo;
+    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
+ 
     //public GameObject ContentHolder;
 
     //public GameObject[] Element;
@@ -28,6 +29,14 @@ public class SearchID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        totalElements = ContentHolder.transform.childCount;
+        Element = new GameObject[totalElements];
+
+        for (int i = 0; i< totalElements; i++)
+        {
+            Element[i] = ContentHolder.transform.GetChild(i).gameObject; 
+        }
+        OnClickLogin();
         //GetRoomAll();
         //totalElements = ContentHolder.transform.childCount;
     }
@@ -37,7 +46,7 @@ public class SearchID : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-          OnClickLogin();
+          
           GetRoomAll();
         }
     }
@@ -71,13 +80,35 @@ public class SearchID : MonoBehaviour
         requester.url = "http://13.125.174.193:8080/api/v1/member/j";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
-        print(1);
+        HttpManager.instance.SendRequest(requester);
     }
     string sHandler;
     public void OnCompleteGetRoomAll(DownloadHandler handler)
     {
+        print(2);
         sHandler = handler.text;
         print(sHandler);
+        JObject jsonData = JObject.Parse(sHandler);
+
+        //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
+
+        //for(int i = 0; i < jarry.Count; i++)
+        //{
+        //    ObjectInfo info = new ObjectInfo();
+
+        //    info.wallNumber = jarry[i]["wallNumber"].ToObject<int>();
+
+        //    objectInfoList.Add(info);
+        //}
+
+        //int status = jsonData["status"].ToObject<int>();
+        string furnituersData = "{\"data\":" + jsonData["data"].ToString() + "}";
+
+        print(furnituersData);
+
+        ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
+        objectInfoList = objectInfo.furnitures;
+        print("조회완료");
 
     }
 }
