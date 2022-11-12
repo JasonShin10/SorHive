@@ -25,6 +25,10 @@ public class HttpManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public string id;
+
+    public string userId;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)

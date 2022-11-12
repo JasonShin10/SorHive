@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using UnityEngine.EventSystems;
 
 
 public class SearchID : MonoBehaviour
@@ -14,9 +15,12 @@ public class SearchID : MonoBehaviour
     public GameObject[] Element;
     public GameObject SearchBar;
     public GameObject IDFactory;
+    public GameObject myPage;
+    public Button myPageButton;
     public int totalElements;
     //public Text search;
     public UserInfo userInfo;
+    public string id;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
 
     //public GameObject ContentHolder;
@@ -43,7 +47,7 @@ public class SearchID : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
 
             GetRoomAll();
@@ -80,6 +84,8 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
         HttpManager.instance.SendRequest(requester);
+
+
     }
     string sHandler;
     public void OnCompleteGetRoomAll(DownloadHandler handler)
@@ -109,6 +115,14 @@ public class SearchID : MonoBehaviour
         {
             CreateObject(userInfoList[i]);
         }
+        totalElements = ContentHolder.childCount;
+        Element = new GameObject[totalElements];
+
+        for (int i = 0; i < totalElements; i++)
+        {
+            Element[i] = ContentHolder.GetChild(i).gameObject;
+            ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+        }
         print("조회완료");
 
     }
@@ -124,13 +138,15 @@ public class SearchID : MonoBehaviour
 
     public void Search()
     {
-        totalElements = ContentHolder.childCount;
-        Element = new GameObject[totalElements];
+        //totalElements = ContentHolder.childCount;
+        //Element = new GameObject[totalElements];
 
-        for (int i = 0; i < totalElements; i++)
-        {
-            Element[i] = ContentHolder.GetChild(i).gameObject;
-        }
+        //for (int i = 0; i < totalElements; i++)
+        //{
+        //    Element[i] = ContentHolder.GetChild(i).gameObject;
+        //    ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(SceneLoad);
+        //}
+        
         string searchText = SearchBar.GetComponent<InputField>().text;
         int searchTextLength = searchText.Length;
 
@@ -139,6 +155,7 @@ public class SearchID : MonoBehaviour
      foreach(GameObject ele in Element)
         {
             searchedElements += 1;
+            //ele.transform.GetComponent<Button>().onClick.AddListener(SceneLoad);
             if(ele.transform.GetChild(0).GetComponent<Text>().text.Length >= searchTextLength)
             {
                 if(searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0,searchTextLength))
@@ -153,4 +170,23 @@ public class SearchID : MonoBehaviour
             }
         }
     }
+
+    public void OnClickVisit()
+    {
+        myPageButton.onClick.Invoke();
+        myPage.transform.GetChild(2).gameObject.SetActive(false);
+        myPage.transform.GetChild(8).gameObject.SetActive(true);
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        print(clickObject.GetComponentInChildren<Text>().text);
+        string id = clickObject.GetComponentInChildren<Text>().text;
+        HttpManager.instance.id = id;
+        
+    }
+
+    public void OnClickFollowing()
+    {
+
+    }
+
+
 }

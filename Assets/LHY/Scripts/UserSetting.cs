@@ -18,6 +18,7 @@ public class UserInfo
 public class UserGetInfo
 {
     public string id;
+    public int memberCode;
 }
 
 [System.Serializable]

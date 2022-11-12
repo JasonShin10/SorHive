@@ -28,8 +28,8 @@ public class ObjectInfo
 [System.Serializable]
 public class FurnitureInfo
 {
-    public byte[] offlineRoomImage;
-    public byte[] onlineRoomImage;
+    public byte[] roomImage;
+    //public byte[] onlineRoomImage;
     public List<ObjectInfo> furnitures;
 }
 
@@ -192,9 +192,9 @@ public class AddManager : MonoBehaviour
         rb = GetComponent<MeshRenderer>();
         #endregion 
         //OnLoad2();
-       // OnClickLogin();
+        OnClickLogin();
         print(1);
-       // GetPostAll();
+        GetPostAll();
         //OnLoadJson();
         objActive.AddRange(GameObject.FindGameObjectsWithTag("Furniture"));
         scene = SceneManager.GetActiveScene();
@@ -216,7 +216,8 @@ public class AddManager : MonoBehaviour
     public void OnClickLogin()
     {
         LoginInfo2 logdata = new LoginInfo2();
-        logdata.memberId = "john1230";
+        //logdata.memberId = "john1230";
+        logdata.memberId = HttpManager.instance.id;
         logdata.password = "qwer1234!";
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
@@ -266,7 +267,7 @@ public class AddManager : MonoBehaviour
     public void OnCompleteGetPostAll(DownloadHandler handler)
     {
         sHandler = handler.text;
-
+        print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
 
         //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
@@ -288,7 +289,7 @@ public class AddManager : MonoBehaviour
         ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
         objectInfoList = objectInfo.furnitures;
 
-        print(objectInfoList.Count);
+        
         n = objectInfoList.Count;
 
         for (int i = 0; i < objectInfoList.Count; i++)
@@ -606,8 +607,8 @@ public class AddManager : MonoBehaviour
     public void OnSaveSignIn()
     {
         FurnitureInfo info = new FurnitureInfo();
-        info.onlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
-        info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
         info.furnitures = objectInfoList;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
         //arrayJson.furnitures = objectInfoList;

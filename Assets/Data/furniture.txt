@@ -6,7 +6,7 @@
             "furnitureCategoryNumber": 0,
             "furnitureNumber": 1,
             "obj": {
-                "instanceID": -1140836
+                "instanceID": 28520
             },
             "room": {
                 "instanceID": 0
@@ -31,6 +31,39 @@
                 "x": -0.0000013113021850585938,
                 "y": 0.9521415829658508,
                 "z": 0.9521415829658508
+            }
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 1,
+            "furnitureNumber": 2,
+            "obj": {
+                "instanceID": -1348828
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "name": "armchair_002",
+            "position": {
+                "x": 4.0,
+                "y": 29.000999450683595,
+                "z": 9.0
+            },
+            "scale": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -0.0000626564069534652,
+                "y": 0.7454952001571655,
+                "z": 0.7454952001571655
             }
         }
     ]
