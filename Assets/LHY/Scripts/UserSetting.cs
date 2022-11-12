@@ -15,6 +15,12 @@ public class UserInfo
 }
 
 [System.Serializable]
+public class UserGetInfo
+{
+    public string id;
+}
+
+[System.Serializable]
 public class ArrayJsonID<T>
 {
     public List<T> data;

@@ -88,6 +88,7 @@ public class AddManager : MonoBehaviour
         {
             instance = this;
         }
+        OnClickLogin();
     }
 
     //오브젝트들이 생성되는 장소
@@ -192,7 +193,7 @@ public class AddManager : MonoBehaviour
         #endregion 
         //OnLoad2();
         print(1);
-        GetPostAll();
+       // GetPostAll();
         //OnLoadJson();
         objActive.AddRange(GameObject.FindGameObjectsWithTag("Furniture"));
         scene = SceneManager.GetActiveScene();
@@ -238,7 +239,8 @@ public class AddManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OnClickLogin();
+            //OnClickLogin();
+            GetPostAll();
         }
 
         //print(n);
@@ -249,7 +251,7 @@ public class AddManager : MonoBehaviour
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/room/1";
+        requester.url = "http://13.125.174.193:8080/api/v1/room/6";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 

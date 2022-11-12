@@ -4435,6 +4435,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407231490}
   m_CullTransparentMesh: 1
+--- !u!1 &414423767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414423769}
+  - component: {fileID: 414423768}
+  m_Layer: 0
+  m_Name: SearchManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &414423768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414423767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5b1e33a595b5a140baed5e85dbb23bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ContentHolder: {fileID: 1328427140}
+  Element: []
+  SearchBar: {fileID: 1245949176}
+  IDFactory: {fileID: 8662952664602427011, guid: 4d6133522bf31824897c96d3dd0d360e, type: 3}
+  totalElements: 0
+  userInfo:
+    memberName: 
+    memberId: 
+    password: 
+  userInfoList: []
+--- !u!4 &414423769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414423767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.6191406, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &435956970
 GameObject:
   m_ObjectHideFlags: 0
@@ -12205,7 +12259,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1846457557}
   m_HandleRect: {fileID: 1846457556}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -13383,7 +13437,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 414423768}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: Search
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
@@ -14373,7 +14439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000012162569}
+  m_AnchoredPosition: {x: 0, y: -0.00013787525}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1328427141
@@ -17874,7 +17940,6 @@ GameObject:
   - component: {fileID: 1651319038}
   - component: {fileID: 1651319037}
   - component: {fileID: 1651319036}
-  - component: {fileID: 1651319039}
   - component: {fileID: 1651319040}
   m_Layer: 5
   m_Name: Canvas
@@ -17944,35 +18009,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1651319039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651319035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b1e33a595b5a140baed5e85dbb23bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ContentHolder: {fileID: 0}
-  Element: []
-  SearchBar: {fileID: 0}
-  totalElements: 0
-  objectInfo:
-    wallNumber: 0
-    floorNumber: 0
-    furnitureCategoryNumber: 0
-    furnitureNumber: 0
-    obj: {fileID: 0}
-    room: {fileID: 0}
-    name: 
-    position: {x: 0, y: 0, z: 0}
-    scale: {x: 0, y: 0, z: 0}
-    angle: {x: 0, y: 0, z: 0}
-    boxPosition: {x: 0, y: 0, z: 0}
-  objectInfoList: []
 --- !u!114 &1651319040
 MonoBehaviour:
   m_ObjectHideFlags: 0

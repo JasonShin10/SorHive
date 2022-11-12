@@ -10,14 +10,14 @@ using Newtonsoft.Json.Linq;
 
 public class SearchID : MonoBehaviour
 {
-    public GameObject ContentHolder;
+    public Transform ContentHolder;
     public GameObject[] Element;
     public GameObject SearchBar;
-
+    public GameObject IDFactory;
     public int totalElements;
-    public Text search;
+    //public Text search;
     public UserInfo userInfo;
-    public List<UserInfo> userInfoList = new List<UserInfo>();
+    public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
 
     //public GameObject ContentHolder;
 
@@ -29,16 +29,16 @@ public class SearchID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalElements = ContentHolder.transform.childCount;
+        totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
 
         for (int i = 0; i < totalElements; i++)
         {
-            Element[i] = ContentHolder.transform.GetChild(i).gameObject;
+            Element[i] = ContentHolder.GetChild(i).gameObject;
         }
         OnClickLogin();
-        //GetRoomAll();
-        //totalElements = ContentHolder.transform.childCount;
+        GetRoomAll();
+       
     }
 
     // Update is called once per frame
@@ -103,35 +103,54 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
-        ArrayJsonID<UserInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserInfo>>(userData);
+        ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
         print(userInfo);
-
-
+        for(int i =0; i< userInfoList.Count; i++)
+        {
+            CreateObject(userInfoList[i]);
+        }
         print("조회완료");
 
     }
-    public void CreateObject(UserInfo info)
+    public void CreateObject(UserGetInfo info)
     {
-        search.text = info.memberId;
-        //if (info.furnitureCategoryNumber == 0)
-        //{
-        //    info.obj = bedItems[info.furnitureNumber];
-        //    GameObject createObj = Instantiate(info.obj);
-        //    if (createObj.gameObject.name == info.name)
-        //    {
-        //        createObj.gameObject.name = info.name + 1;
-        //    }
-        //    else
-        //    {
-        //        createObj.gameObject.name = info.name;
-        //    }
-        //    createObj.transform.position = info.position;
-        //    createObj.transform.localScale = info.scale;
-        //    createObj.transform.eulerAngles = info.angle;
-        //    createObj.GetComponent<BoxCollider>().center = info.boxPosition;
-        //    //objectInfoList.Add(info);
-        //    //info.obj.GetComponent<Furniture>().located = true;
-        //}
+        //search.text = info.id;
+        
+        GameObject idImage = Instantiate(IDFactory, ContentHolder);
+        IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
+        idImageItem.id.text = info.id;
+        
+    }
+
+    public void Search()
+    {
+        totalElements = ContentHolder.childCount;
+        Element = new GameObject[totalElements];
+        for (int i = 0; i < totalElements; i++)
+        {
+            Element[i] = ContentHolder.GetChild(i).gameObject;
+        }
+        string searchText = SearchBar.GetComponent<InputField>().text;
+        int searchTextLength = searchText.Length;
+
+        int searchedElements = 0;
+
+        foreach(GameObject ele in Element)
+        {
+            searchedElements += 1;
+            if(ele.transform.GetChild(0).GetComponent<Text>().text.Length >= searchTextLength)
+            {
+                if(searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0,searchTextLength))
+                {
+                    ele.SetActive(true);
+
+                }
+                else
+                {
+                    ele.SetActive(false);
+                }
+            }
+        }
     }
 }

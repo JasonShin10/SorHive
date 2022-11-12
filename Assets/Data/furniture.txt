@@ -1,86 +1,20 @@
 {
     "furnitures": [
         {
-            "wallNumber": 2,
-            "floorNumber": 0,
-            "furnitureCategoryNumber": 15,
-            "furnitureNumber": 1,
-            "obj": {
-                "instanceID": 0
-            },
-            "room": {
-                "instanceID": 968048
-            },
-            "name": "",
-            "position": {
-                "x": -0.41099992394447329,
-                "y": 36.0,
-                "z": 10.0
-            },
-            "scale": {
-                "x": 2.0,
-                "y": 2.0,
-                "z": 2.0
-            },
-            "angle": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            },
-            "boxPosition": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "wallNumber": 0,
-            "floorNumber": 0,
-            "furnitureCategoryNumber": 3,
-            "furnitureNumber": 2,
-            "obj": {
-                "instanceID": 30910
-            },
-            "room": {
-                "instanceID": 0
-            },
-            "name": "",
-            "position": {
-                "x": -0.9444732666015625,
-                "y": 11.0,
-                "z": 15.0
-            },
-            "scale": {
-                "x": 3.0,
-                "y": 4.0,
-                "z": 2.0
-            },
-            "angle": {
-                "x": 0.0,
-                "y": 10.0,
-                "z": 0.0
-            },
-            "boxPosition": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
             "wallNumber": 0,
             "floorNumber": 0,
             "furnitureCategoryNumber": 1,
-            "furnitureNumber": 2,
+            "furnitureNumber": 1,
             "obj": {
-                "instanceID": 31116
+                "instanceID": -599212
             },
             "room": {
                 "instanceID": 0
             },
-            "name": "armchair_002",
+            "name": "armchair_001",
             "position": {
-                "x": 10.0,
-                "y": 29.000999450683595,
+                "x": 8.0,
+                "y": 29.0,
                 "z": 9.0
             },
             "scale": {
@@ -94,9 +28,9 @@
                 "z": 0.0
             },
             "boxPosition": {
-                "x": -0.0000626564069534652,
-                "y": 0.7454952001571655,
-                "z": 0.7454952001571655
+                "x": 8.1062319168268e-7,
+                "y": 0.6001603603363037,
+                "z": 0.6001603603363037
             }
         }
     ]
