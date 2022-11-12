@@ -29,16 +29,15 @@ public class SearchID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        totalElements = ContentHolder.childCount;
-        Element = new GameObject[totalElements];
+        //totalElements = ContentHolder.childCount;
+        //Element = new GameObject[totalElements];
 
-        for (int i = 0; i < totalElements; i++)
-        {
-            Element[i] = ContentHolder.GetChild(i).gameObject;
-        }
+        //for (int i = 0; i < totalElements; i++)
+        //{
+        //    Element[i] = ContentHolder.GetChild(i).gameObject;
+        //}
         OnClickLogin();
-        GetRoomAll();
-       
+        GetRoomAll();     
     }
 
     // Update is called once per frame
@@ -127,6 +126,7 @@ public class SearchID : MonoBehaviour
     {
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
+
         for (int i = 0; i < totalElements; i++)
         {
             Element[i] = ContentHolder.GetChild(i).gameObject;
@@ -136,7 +136,7 @@ public class SearchID : MonoBehaviour
 
         int searchedElements = 0;
 
-        foreach(GameObject ele in Element)
+     foreach(GameObject ele in Element)
         {
             searchedElements += 1;
             if(ele.transform.GetChild(0).GetComponent<Text>().text.Length >= searchTextLength)

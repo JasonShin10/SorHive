@@ -88,7 +88,7 @@ public class AddManager : MonoBehaviour
         {
             instance = this;
         }
-        OnClickLogin();
+        
     }
 
     //오브젝트들이 생성되는 장소
@@ -192,6 +192,7 @@ public class AddManager : MonoBehaviour
         rb = GetComponent<MeshRenderer>();
         #endregion 
         //OnLoad2();
+       // OnClickLogin();
         print(1);
        // GetPostAll();
         //OnLoadJson();
@@ -215,7 +216,7 @@ public class AddManager : MonoBehaviour
     public void OnClickLogin()
     {
         LoginInfo2 logdata = new LoginInfo2();
-        logdata.memberId = "john12";
+        logdata.memberId = "john1230";
         logdata.password = "qwer1234!";
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
@@ -230,7 +231,6 @@ public class AddManager : MonoBehaviour
         JObject json = JObject.Parse(handler.text);
         string token = json["data"]["accessToken"].ToString();
         print(token);
-
         PlayerPrefs.SetString("token", token);
         print("조회 완료");
     }
@@ -242,6 +242,10 @@ public class AddManager : MonoBehaviour
             //OnClickLogin();
             GetPostAll();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            OnClickLogin();
+        }
 
         //print(n);
 
@@ -251,7 +255,7 @@ public class AddManager : MonoBehaviour
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/room/6";
+        requester.url = "http://13.125.174.193:8080/api/v1/room/2";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 
