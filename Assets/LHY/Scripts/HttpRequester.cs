@@ -43,4 +43,5 @@ public class HttpRequester : MonoBehaviour
     //응답이 왔을 때 호출해 줄 함수(Action)
     //Action : 함수를 넣을 수 있는 자료형
     public Action<DownloadHandler> onComplete;
+    public Action<DownloadHandlerTexture> onImgComplete;
 }

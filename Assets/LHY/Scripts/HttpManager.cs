@@ -25,9 +25,9 @@ public class HttpManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public bool img = false;
     public string id;
-
+    public int memberCode;
     public string userId;
     //서버에게 요청
     //url(posts/1), GET
@@ -37,11 +37,12 @@ public class HttpManager : MonoBehaviour
     }
     IEnumerator Send(HttpRequester requester)
     {
-        
+
         //WWWForm form = new WWWForm();
         //form.AddField("furnitures", requester.postData);
-        
+
         UnityWebRequest webRequest = null;
+        UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
@@ -54,16 +55,29 @@ public class HttpManager : MonoBehaviour
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                
+
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;
             case RequestType.GET:
-                webRequest = UnityWebRequest.Get(requester.url);
-                if (accessToken != null)
+                if (img == true)
                 {
-                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                   
-                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                    webTexture = UnityWebRequestTexture.GetTexture(requester.url);
+                    if (accessToken != null)
+                    {
+                        webTexture.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                        webTexture.SetRequestHeader("Content-Type", "application/json");
+                    }
+                }
+                else
+                {
+                    webRequest = UnityWebRequest.Get(requester.url);
+                    if (accessToken != null)
+                    {
+                        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                        webRequest.SetRequestHeader("Content-Type", "application/json");
+                    }
                 }
                 break;
             case RequestType.PUT:
@@ -84,22 +98,43 @@ public class HttpManager : MonoBehaviour
         yield return webRequest.SendWebRequest();
         print("webRequest");
         //만약에 응답이 성공했다면
-        if (webRequest.result == UnityWebRequest.Result.Success)
+        if (img == true)
         {
-            print(webRequest.downloadHandler.text);
-           
-            //완료되었다고 requester.onComplete를 실행
-            if (requester.onComplete != null)
+            if (webTexture.result == UnityWebRequest.Result.Success)
             {
-                requester.onComplete(webRequest.downloadHandler);
+                print(webTexture.downloadHandler.text);
+
+                //완료되었다고 requester.onComplete를 실행
+                if (requester.onImgComplete != null)
+                {
+                    requester.onImgComplete((DownloadHandlerTexture)webTexture.downloadHandler);
+                }
+            }
+            else
+            {
+                //서버통신 실패....ㅠ
+                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+            }
+        }
+        else
+        {
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                print(webRequest.downloadHandler.text);
+
+                //완료되었다고 requester.onComplete를 실행
+                if (requester.onComplete != null)
+                {
+                    requester.onComplete(webRequest.downloadHandler);
+                }
+            }
+            else
+            {
+                //서버통신 실패....ㅠ
+                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
             }
         }
         //그렇지않다면
-        else
-        {
-            //서버통신 실패....ㅠ
-            print("통신 실패" + webRequest.result + "\n" + webRequest.error);
-        }
         yield return null;
 
         webRequest.Dispose();

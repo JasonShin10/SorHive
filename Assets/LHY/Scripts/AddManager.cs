@@ -218,6 +218,7 @@ public class AddManager : MonoBehaviour
         LoginInfo2 logdata = new LoginInfo2();
         //logdata.memberId = "john1230";
         logdata.memberId = HttpManager.instance.id;
+        print(HttpManager.instance.id);
         logdata.password = "qwer1234!";
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
@@ -256,7 +257,7 @@ public class AddManager : MonoBehaviour
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/room/2";
+        requester.url = "http://13.125.174.193:8080/api/v1/room/" + HttpManager.instance.memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 

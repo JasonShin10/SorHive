@@ -39,7 +39,7 @@
             "furnitureCategoryNumber": 1,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": -1348828
+                "instanceID": 29828
             },
             "room": {
                 "instanceID": 0
