@@ -18,14 +18,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/ProtoScene/FeedUpLoadScene.unity
     guid: 148b75846c7e62d4d8693e1fe7cb7207
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/MainScenes.unity
-    guid: eee960e29016f274887b3e492f4d5a2a
-  - enabled: 1
     path: Assets/Scenes/Main/ProtoScene/RoomChange.unity
     guid: e2ac2dfcdc4fa8e41a54bd2e7fc781e6
   - enabled: 1
     path: Assets/Scenes/Main/ProtoScene/RoomInScene.unity
     guid: c54cd07128ac3024bb28e9ee4018cc7c
+  - enabled: 1
+    path: Assets/Scenes/LHY/MainScenes.unity
+    guid: a41ed15f954d0a54fa41eb51c46a62db
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -35,7 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main/ProtoScene/GuestBookLoadScene.unity
     guid: 0c04c4f5e797eec4aa8b33dfd462193b
-  - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/FriendScene.unity
-    guid: 2969d4f3163550544af479cd8ea934a9
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

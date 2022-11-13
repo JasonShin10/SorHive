@@ -39,6 +39,7 @@ public class ArrayJson<T>
     public List<T> furnitures;
 }
 
+
 [System.Serializable]
 public class LoginInfo2
 {
