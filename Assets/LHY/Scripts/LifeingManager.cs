@@ -35,15 +35,29 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject llifeingItemFactory;
 
-  
+    public bool isUpLoad = true;
+
+    private void Awake()
+    {
+        GetMambersList();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         //GetPostAll();
-        GetMambersList();
-        GetPostAll();
+       
+  
+     /*   for (int i = 0; i < 7; i++)
+        {
+            GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
+            LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+            lifeingRoomItem.roomImg = friendList[i].roomImage;
+            lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+            lifeingRoomItem.memberName.text = friendList[i].memberName;
+
+        }*/
         //StartCoroutine(GetTextureA(avatarImage));
 
 
@@ -52,7 +66,20 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isUpLoad == true)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
+                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+                lifeingRoomItem.roomImg = friendList[i].roomImage;
+                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.memberName.text = friendList[i].memberName;
+                isUpLoad = false;
+            }
+        }
+        
     }
 
 
@@ -87,18 +114,7 @@ public class LifeingManager : MonoBehaviour
 
      public void GetPostAll()
      {
-
-        for (int i = 0; i < 7; i++)
-        {
-
-
-            GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
-            LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-            lifeingRoomItem.roomImg = friendList[i].roomImage;
-            lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-            lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-        }
+        
      }
 
    
