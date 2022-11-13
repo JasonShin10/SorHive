@@ -5,37 +5,25 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/ConnectionScene.unity
-    guid: dd65840d14292d541864324a024e8b26
+    path: Assets/Scenes/Main/AlphaScene/ConnectionScene.unity
+    guid: 01632f22615370a4bbccd0a3abf9cf8f
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/CreatCharactorScene.unity
-    guid: 1d70bfbe426626648b0cfee3b90031ec
+    path: Assets/Scenes/Main/AlphaScene/CreatCharactorScene.unity
+    guid: 1a3921b18d7cb1649839b639bce999f3
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/FeedUpLoadScene.unity
-    guid: 148b75846c7e62d4d8693e1fe7cb7207
+    path: Assets/Scenes/Main/AlphaScene/FeedUpLoadScene.unity
+    guid: 454d178378e97b344a3b051c7907c034
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/RoomChange.unity
-    guid: e2ac2dfcdc4fa8e41a54bd2e7fc781e6
+    path: Assets/Scenes/Main/AlphaScene/GuestBookLoadScene.unity
+    guid: 0f4be22c17a7f9248a6796ece3b8547d
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/RoomInScene.unity
-    guid: c54cd07128ac3024bb28e9ee4018cc7c
+    path: Assets/Scenes/Main/AlphaScene/MainScenes.unity
+    guid: 11fc0d660db86af408623f0c7f9cd7ce
   - enabled: 1
-    path: Assets/Scenes/LHY/MainScenes.unity
-    guid: a41ed15f954d0a54fa41eb51c46a62db
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Photon/PhotonChat/Demos/DemoChat/DemoChat-Scene.unity
-    guid: ec07267f6a28fb044ac89845274e79af
+    path: Assets/Scenes/Main/AlphaScene/RoomChange.unity
+    guid: 010a121086d743c42b006f804a17f5b2
   - enabled: 1
-    path: Assets/Scenes/Main/ProtoScene/GuestBookLoadScene.unity
-    guid: 0c04c4f5e797eec4aa8b33dfd462193b
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    path: Assets/Scenes/Main/AlphaScene/RoomInScene.unity
+    guid: 38bbd3c9a3826cd4c882f93d9ac102f1
   m_configObjects: {}

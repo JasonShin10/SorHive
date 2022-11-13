@@ -45,8 +45,7 @@ public class LifeingRoomItem : MonoBehaviour
 
     IEnumerator GetTextureR(RawImage roomImage, RawImage avatarImage)
     {
-        if(lifeingManager.isUpLoad == true)
-        {
+        
             //lifeingRoomItem.roomImage = friendList[i].roomImage
             var urlR = roomImg;
             var urlA = avatarImg;
@@ -70,7 +69,7 @@ public class LifeingRoomItem : MonoBehaviour
             
 
             //yield return WaitForSeconds(0.1);
-        }
+        
 
 
     }

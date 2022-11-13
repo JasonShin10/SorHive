@@ -35,8 +35,8 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject llifeingItemFactory;
 
-    public bool isUpLoad = false;
-    public bool end = false;
+    public bool isUpLoad = true;
+    //public bool end = false;
     private void Awake()
     {
         GetMambersList();
@@ -46,20 +46,9 @@ public class LifeingManager : MonoBehaviour
     void Start()
     {
         //GetPostAll();
-        if (isUpLoad == false && end == true)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+     
 
-                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-                lifeingRoomItem.roomImg = friendList[i].roomImage;
-                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-                lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-            }
-            isUpLoad = true;
-        }
+      
 
         /*   for (int i = 0; i < 7; i++)
            {
@@ -79,8 +68,21 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isUpLoad == true)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
-       
+                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+                lifeingRoomItem.roomImg = friendList[i].roomImage;
+                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.memberName.text = friendList[i].memberName;
+
+                isUpLoad = false;
+            }
+        }
+
         /*
                 if (isUpLoad == true)
                 {
@@ -118,7 +120,7 @@ public class LifeingManager : MonoBehaviour
 
         LIfeingData<LifeingItemInfo> lIfeingInfo = JsonUtility.FromJson<LIfeingData<LifeingItemInfo>>(lifingsData);
         friendList = lIfeingInfo.userData;
-        end = true;
+       
 
 
         //print("¡¶¿ÃΩºø°º≠ ø»" + jsonData);
