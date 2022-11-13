@@ -35,8 +35,8 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject llifeingItemFactory;
 
-    public bool isUpLoad = true;
-
+    public bool isUpLoad = false;
+    public bool end = false;
     private void Awake()
     {
         GetMambersList();
@@ -46,27 +46,7 @@ public class LifeingManager : MonoBehaviour
     void Start()
     {
         //GetPostAll();
-       
-  
-     /*   for (int i = 0; i < 7; i++)
-        {
-            GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
-
-            LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-            lifeingRoomItem.roomImg = friendList[i].roomImage;
-            lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-            lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-        }*/
-        //StartCoroutine(GetTextureA(avatarImage));
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(isUpLoad == true)
+        if (isUpLoad == false && end == true)
         {
             for (int i = 0; i < 7; i++)
             {
@@ -76,10 +56,45 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.roomImg = friendList[i].roomImage;
                 lifeingRoomItem.avatarImg = friendList[i].avatarImage;
                 lifeingRoomItem.memberName.text = friendList[i].memberName;
-                isUpLoad = false;
+
             }
+            isUpLoad = true;
         }
-        
+
+        /*   for (int i = 0; i < 7; i++)
+           {
+               GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+
+               LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+               lifeingRoomItem.roomImg = friendList[i].roomImage;
+               lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+               lifeingRoomItem.memberName.text = friendList[i].memberName;
+
+           }*/
+        //StartCoroutine(GetTextureA(avatarImage));
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+       
+        /*
+                if (isUpLoad == true)
+                {
+                    for (int i = 0; i < 7; i++)
+                    {
+                        GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+                        LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+
+                        //StartCoroutine(GetTextureR(i, lifeingRoomItem.roomImage, lifeingRoomItem.avatarImage));              
+                        lifeingRoomItem.memberName.text = friendList[i].memberName;
+                        isUpLoad = false;
+                    }
+                }*/
+
     }
 
 
@@ -98,25 +113,50 @@ public class LifeingManager : MonoBehaviour
     {
         JObject jsonData = JObject.Parse(handler.text);
         string lifingsData = "{\"userData\":" + jsonData["data"]["memberSummary"].ToString() + "}";
-        
+
         print(lifingsData);
 
         LIfeingData<LifeingItemInfo> lIfeingInfo = JsonUtility.FromJson<LIfeingData<LifeingItemInfo>>(lifingsData);
-        friendList = lIfeingInfo.userData;    
-              
+        friendList = lIfeingInfo.userData;
+        end = true;
+
 
         //print("¡¶¿ÃΩºø°º≠ ø»" + jsonData);
 
-        
 
-       // ArrayJson<LifeingItemInfo> lifeingInfo = JsonUtility.FromJson<ArrayJson<LifeingItemInfo>>(mamberList);
+
+        // ArrayJson<LifeingItemInfo> lifeingInfo = JsonUtility.FromJson<ArrayJson<LifeingItemInfo>>(mamberList);
     }
 
-     public void GetPostAll()
+    /* IEnumerator GetTextureR(int count, RawImage roomImage, RawImage avatarImage)
      {
-        
-     }
+         //lifeingRoomItem.roomImage = friendList[i].roomImage
+         var urlR = friendList[count].roomImage;
+         var urlA = friendList[count].avatarImage;
 
-   
+
+         UnityWebRequest wwwR = UnityWebRequestTexture.GetTexture(urlR);
+         yield return wwwR.SendWebRequest();
+
+         UnityWebRequest wwwA = UnityWebRequestTexture.GetTexture(urlA);
+         yield return wwwA.SendWebRequest();
+
+         if (wwwR.result != UnityWebRequest.Result.Success)
+             Debug.Log(wwwR.error);
+         else
+             roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+
+         if (wwwA.result != UnityWebRequest.Result.Success)
+             Debug.Log(wwwA.error);
+         else
+             avatarImage.texture = ((DownloadHandlerTexture)wwwA.downloadHandler).texture;
+     }*/
+
+    public void GetPostAll()
+    {
+
+    }
+
+
 
 }
