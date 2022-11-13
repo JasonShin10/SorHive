@@ -2571,6 +2571,7 @@ MonoBehaviour:
   memberCode: 0
   userId: 
   roomId: 0
+  fakeId: 
 --- !u!4 &542845203
 Transform:
   m_ObjectHideFlags: 0
@@ -3553,7 +3554,7 @@ GameObject:
   - component: {fileID: 694250347}
   - component: {fileID: 694250346}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: ChatButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3578,7 +3579,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 365, y: 674}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 189.1, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &694250346
 MonoBehaviour:
@@ -3623,7 +3624,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 694250347}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1434626200}
+        m_TargetAssemblyTypeName: GuestBookManager, Assembly-CSharp
+        m_MethodName: OnClickChat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &694250347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4470,7 +4483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00007045676}
+  m_AnchoredPosition: {x: 0, y: 0.000061077066}
   m_SizeDelta: {x: 600, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &967461264
@@ -7204,11 +7217,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 23
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 75
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7850,6 +7863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photos: []
+  chat: {fileID: 712589448}
   upLoadText: 
   mytext: {fileID: 0}
 --- !u!4 &1434626201
@@ -10273,7 +10287,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 94783565}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999414
+  m_Size: 0.78749675
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
