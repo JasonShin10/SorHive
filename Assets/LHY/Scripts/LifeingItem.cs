@@ -89,7 +89,7 @@ public class LifeingItem : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url°æ·Î
-        requester.url = "http://13.125.174.193:8080/api/v1/lifing/image";
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
@@ -109,7 +109,7 @@ public class LifeingItem : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
 
-        requester.url = "http://13.125.174.193:8080/api/v1/lifing";
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(lifeing, true);

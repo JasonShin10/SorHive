@@ -86,7 +86,7 @@ public class LifeingManager : MonoBehaviour
     public void GetMambersList()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/list/0";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/list/0";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 

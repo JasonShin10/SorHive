@@ -88,7 +88,7 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.id = logdata.memberId;
         HttpManager.instance.memberCode = 6;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
+        requester.url = "http://52.79.209.232:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
         requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
@@ -109,7 +109,7 @@ public class SearchID : MonoBehaviour
     {
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/random";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/random";
         requester.requestType = RequestType.GET;
         //requester.onImgComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
@@ -145,7 +145,7 @@ public class SearchID : MonoBehaviour
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/follower ";
+        requester.url = "http://52.79.209.232:8080/api/v1/follower ";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         HttpManager.instance.SendRequest(requester);
@@ -178,7 +178,7 @@ public class SearchID : MonoBehaviour
     public void GetRoomAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/id/j";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/id/j";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
         HttpManager.instance.SendRequest(requester);
@@ -304,7 +304,7 @@ public class SearchID : MonoBehaviour
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
-        requester.url = "http://13.125.174.193:8080/api/v1/follow/" + memberCode;
+        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + memberCode;
         requester.requestType = RequestType.POST;
         //post data 셋팅
         requester.postData = JsonUtility.ToJson(info, true);

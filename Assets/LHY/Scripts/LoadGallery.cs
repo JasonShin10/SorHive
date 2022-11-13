@@ -81,7 +81,7 @@ public class LoadGallery : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url°æ·Î
-        requester.url = "http://13.125.174.193:8080/api/v1/avatar/image";
+        requester.url = "http://52.79.209.232:8080/api/v1/avatar/image";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(avatarImageInfo, true);

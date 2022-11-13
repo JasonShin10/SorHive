@@ -72,8 +72,8 @@ public class RoomInManager : MonoBehaviour
     //{
     //    HttpRequester requester = new HttpRequester();
     //    print(HttpManager.instance.memberCode);
-    //    //requester.url = "http://13.125.174.193:8080/api/v1/room/" + HttpManager.instance.memberCode;
-    //    requester.url = "http://13.125.174.193:8080/api/v1/room/" + 1;
+    //    //requester.url = "http://52.79.209.232:8080/api/v1/room/" + HttpManager.instance.memberCode;
+    //    requester.url = "http://52.79.209.232:8080/api/v1/room/" + 1;
 
     //    requester.requestType = RequestType.GET;
     //    requester.onComplete = OnCompleteGetPostGuestBookAll;

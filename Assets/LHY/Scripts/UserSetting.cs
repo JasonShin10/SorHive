@@ -71,7 +71,7 @@ public class UserSetting : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url °æ·Î
-        requester.url = "http://13.125.174.193:8080/api/v1/auth/signup";
+        requester.url = "http://52.79.209.232:8080/api/v1/auth/signup";
         requester.requestType = RequestType.POST;
         print("test");
 
@@ -102,7 +102,7 @@ public class UserSetting : MonoBehaviour
         logdata.password = logPassword.text;
 
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/auth/login";
+        requester.url = "http://52.79.209.232:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
 
         requester.putData = JsonUtility.ToJson(logdata, true);
