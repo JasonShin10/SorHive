@@ -45,8 +45,7 @@ public class LifeingRoomItem : MonoBehaviour
 
     IEnumerator GetTextureR(RawImage roomImage, RawImage avatarImage)
     {
-        if(lifeingManager.isUpLoad == true)
-        {
+        
             //lifeingRoomItem.roomImage = friendList[i].roomImage
             var urlR = roomImg;
             var urlA = avatarImg;
@@ -61,16 +60,19 @@ public class LifeingRoomItem : MonoBehaviour
             if (wwwR.result != UnityWebRequest.Result.Success)
                 Debug.Log(wwwR.error);
             else
+        {       
                 roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
-
+        print("done");
+        }
             if (wwwA.result != UnityWebRequest.Result.Success)
                 Debug.Log(wwwA.error);
             else
+        {
                 avatarImage.texture = ((DownloadHandlerTexture)wwwA.downloadHandler).texture;
-            
-
-            //yield return WaitForSeconds(0.1);
+        print("done");
         }
+        //yield return WaitForSeconds(0.1);
+
 
 
     }

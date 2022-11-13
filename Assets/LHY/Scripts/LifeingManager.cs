@@ -39,27 +39,15 @@ public class LifeingManager : MonoBehaviour
     public bool end = false;
     private void Awake()
     {
-        GetMambersList();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GetMambersList();
         //GetPostAll();
-        if (isUpLoad == false && end == true)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
-
-                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-                lifeingRoomItem.roomImg = friendList[i].roomImage;
-                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-                lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-            }
-            isUpLoad = true;
-        }
+   
+            
 
         /*   for (int i = 0; i < 7; i++)
            {
@@ -79,8 +67,19 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
        
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+
+            //    LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+            //    lifeingRoomItem.roomImg = friendList[i].roomImage;
+            //    lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+            //    lifeingRoomItem.memberName.text = friendList[i].memberName;
+            //}
+          
+        
+
         /*
                 if (isUpLoad == true)
                 {
@@ -118,13 +117,11 @@ public class LifeingManager : MonoBehaviour
 
         LIfeingData<LifeingItemInfo> lIfeingInfo = JsonUtility.FromJson<LIfeingData<LifeingItemInfo>>(lifingsData);
         friendList = lIfeingInfo.userData;
-        end = true;
+        
+        
 
 
         //print("¡¶¿ÃΩºø°º≠ ø»" + jsonData);
-
-
-
         // ArrayJson<LifeingItemInfo> lifeingInfo = JsonUtility.FromJson<ArrayJson<LifeingItemInfo>>(mamberList);
     }
 

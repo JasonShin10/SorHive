@@ -93,7 +93,7 @@ public class GuestBookManager : MonoBehaviour
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
-        requester.url = "http://13.125.174.193:8080/api/v1/guestbook ";
+        requester.url = "http://52.79.209.232:8080/api/v1/guestbook ";
         requester.requestType = RequestType.POST;
         //post data 셋팅
         requester.postData = JsonUtility.ToJson(info, true);
