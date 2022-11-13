@@ -42,7 +42,7 @@ public class HttpManager : MonoBehaviour
         //form.AddField("furnitures", requester.postData);
 
         UnityWebRequest webRequest = null;
-        UnityWebRequest webTexture = null;
+        //UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
@@ -59,18 +59,18 @@ public class HttpManager : MonoBehaviour
                 webRequest.SetRequestHeader("Content-Type", "application/json");
                 break;
             case RequestType.GET:
-                if (img == true)
-                {
-                    webTexture = UnityWebRequestTexture.GetTexture(requester.url);
-                    if (accessToken != null)
-                    {
-                        webTexture.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                //if (img == true)
+                //{
+                //    webTexture = UnityWebRequestTexture.GetTexture(requester.url);
+                //    if (accessToken != null)
+                //    {
+                //        webTexture.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
-                        webTexture.SetRequestHeader("Content-Type", "application/json");
-                    }
-                }
-                else
-                {
+                //        webTexture.SetRequestHeader("Content-Type", "application/json");
+                //    }
+                //}
+                //else
+                //{
                     webRequest = UnityWebRequest.Get(requester.url);
                     if (accessToken != null)
                     {
@@ -78,7 +78,7 @@ public class HttpManager : MonoBehaviour
 
                         webRequest.SetRequestHeader("Content-Type", "application/json");
                     }
-                }
+                //}
                 break;
             case RequestType.PUT:
                 print("aaa");
@@ -98,26 +98,26 @@ public class HttpManager : MonoBehaviour
         yield return webRequest.SendWebRequest();
         print("webRequest");
         //만약에 응답이 성공했다면
-        if (img == true)
-        {
-            if (webTexture.result == UnityWebRequest.Result.Success)
-            {
-                print(webTexture.downloadHandler.text);
+        //if (img == true)
+        //{
+        //    if (webTexture.result == UnityWebRequest.Result.Success)
+        //    {
+        //        print(webTexture.downloadHandler.text);
 
-                //완료되었다고 requester.onComplete를 실행
-                if (requester.onImgComplete != null)
-                {
-                    requester.onImgComplete((DownloadHandlerTexture)webTexture.downloadHandler);
-                }
-            }
-            else
-            {
-                //서버통신 실패....ㅠ
-                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
-            }
-        }
-        else
-        {
+        //        //완료되었다고 requester.onComplete를 실행
+        //        if (requester.onImgComplete != null)
+        //        {
+        //            requester.onImgComplete((DownloadHandlerTexture)webTexture.downloadHandler);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //서버통신 실패....ㅠ
+        //        print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+        //    }
+        //}
+        //else
+        //{
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
                 print(webRequest.downloadHandler.text);
@@ -133,7 +133,7 @@ public class HttpManager : MonoBehaviour
                 //서버통신 실패....ㅠ
                 print("통신 실패" + webRequest.result + "\n" + webRequest.error);
             }
-        }
+        //}
         //그렇지않다면
         yield return null;
 
