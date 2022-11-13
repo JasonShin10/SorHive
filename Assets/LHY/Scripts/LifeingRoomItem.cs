@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LifeingRoomItem : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class LifeingRoomItem : MonoBehaviour
     public RawImage roomImage;
     public Text memberName;
     public RawImage ProfileImage;
+
+  
 
     public string roomImg;
     public string avatarImg;
@@ -21,12 +24,19 @@ public class LifeingRoomItem : MonoBehaviour
     {
         StartCoroutine(GetTextureR(roomImage, avatarImage));
         ProfileImage.texture = roomImage.texture;
+      
+        //for()
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OnClickStoryViewScene()
+    {
+        SceneManager.LoadScene("StoryViewScene");
     }
 
     IEnumerator GetTextureR(RawImage roomImage, RawImage avatarImage)
