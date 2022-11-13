@@ -54,6 +54,25 @@ namespace CustomUtils
 
         }
 
+        public void ScreenShotClick1()
+        {
+            RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+            Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+            RenderTexture.active = renderTexture;
+
+            Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
+
+            /*  // sprite = Sprite.Create(texture,)
+              Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+              sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+
+            texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            texture.Apply();
+
+            File.WriteAllBytes($"{Application.dataPath + "/Resources/AvatarImage"} /{screenShotName}.png", texture.EncodeToPNG());
+            EditorApplication.ExecuteMenuItem("Assets/Refresh");
+        }
+
         private void Start()
         {
             
