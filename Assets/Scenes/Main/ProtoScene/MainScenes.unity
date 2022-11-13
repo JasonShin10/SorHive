@@ -4684,6 +4684,7 @@ MonoBehaviour:
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
   myPageButton: {fileID: 20717873}
+  img: {fileID: 0}
   totalElements: 0
   userInfo:
     memberName: 
@@ -9478,6 +9479,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891397629}
   m_CullTransparentMesh: 1
+--- !u!1 &891734227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891734228}
+  m_Layer: 0
+  m_Name: JManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891734228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891734227}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -969.234, y: -94.52992, z: 4.0613465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &917249526
 GameObject:
   m_ObjectHideFlags: 0
@@ -11687,6 +11719,7 @@ MonoBehaviour:
   id: 
   memberCode: 0
   userId: 
+  roomId: 0
 --- !u!1 &1111846098
 GameObject:
   m_ObjectHideFlags: 0
@@ -18257,6 +18290,7 @@ MonoBehaviour:
     scale: {x: 0, y: 0, z: 0}
     angle: {x: 0, y: 0, z: 0}
     boxPosition: {x: 0, y: 0, z: 0}
+    roomId: 0
   objectInfoList: []
   SpawnPos: {fileID: 0}
   cam: {fileID: 0}

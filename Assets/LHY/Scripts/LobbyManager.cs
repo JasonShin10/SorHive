@@ -83,6 +83,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickRoomIn()
     {
         myRoom = 1;
+
         SceneManager.LoadScene("RoomInScene");
         //CreateRoom();
         //JoinRoom();
@@ -100,6 +101,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         else if(myRoom == 1)
         {
+            
             SceneManager.LoadScene("RoomInScene");
             //PhotonNetwork.LoadLevel("RoomInScene");
         }

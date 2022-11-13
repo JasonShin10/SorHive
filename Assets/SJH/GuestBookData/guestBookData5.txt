@@ -1,6 +1,0 @@
-{
-    "myGuestBookNum": 0,
-    "UserID": "",
-    "guestBookText": "asdasd",
-    "comments": []
-}

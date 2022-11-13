@@ -13,7 +13,8 @@ public class GuestBook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        print(HttpManager.instance.userId);
+        print(HttpManager.instance.id);
     }
     float box = 3;
     public bool cancel = false;
@@ -34,11 +35,20 @@ public class GuestBook : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            
-        }
+            if (HttpManager.instance.userId == HttpManager.instance.id)
+            {
+                gameObject.transform.GetChild(1).transform.GetChild(2).gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.transform.GetChild(1).transform.GetChild(2).gameObject.SetActive(true);
+            }
 
+        }
+        print(HttpManager.instance.userId);
+        print(HttpManager.instance.id);
         //print(distance);
-        
+
     }
 
     public void OnGuestBookWrite()

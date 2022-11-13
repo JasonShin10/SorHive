@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 
 public class SearchID : MonoBehaviour
 {
+    
     public Transform ContentHolder;
     public GameObject[] Element;
     public GameObject SearchBar;
@@ -45,24 +46,37 @@ public class SearchID : MonoBehaviour
         OnClickLogin();
         //GetRoomImage();
         GetFollower();
-        GetRoomAll();     
+        GetRoomAll();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
+        print(HttpManager.instance.id);
+        print(HttpManager.instance.userId);
+        if(HttpManager.instance.id == HttpManager.instance.userId)
+        {
+            myPage.transform.GetChild(2).gameObject.SetActive(true);
+            myPage.transform.GetChild(8).gameObject.SetActive(false);
+        }
+        else
+        {
+            myPage.transform.GetChild(2).gameObject.SetActive(false);
+            myPage.transform.GetChild(8).gameObject.SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            
+
             // GetRoomAll();
             //GetRoomImage();
             GetFollower();
-            GetRoomAll();
+            //GetRoomAll();
         }
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             OnClickLogin();
         }
+        
     }
 
     public void OnClickLogin()
@@ -70,6 +84,7 @@ public class SearchID : MonoBehaviour
         LoginInfo2 logdata = new LoginInfo2();
         logdata.memberId = "john12";
         logdata.password = "qwer1234!";
+        HttpManager.instance.userId = logdata.memberId;
         HttpManager.instance.id = logdata.memberId;
         HttpManager.instance.memberCode = 6;
         HttpRequester requester = new HttpRequester();
@@ -96,7 +111,7 @@ public class SearchID : MonoBehaviour
         HttpRequester requester = new HttpRequester();
         requester.url = "http://13.125.174.193:8080/api/v1/member/random";
         requester.requestType = RequestType.GET;
-        requester.onImgComplete = OnCompleteGetRoomImage;
+        //requester.onImgComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
 
     }
@@ -130,7 +145,7 @@ public class SearchID : MonoBehaviour
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/random";
+        requester.url = "http://13.125.174.193:8080/api/v1/follower ";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         HttpManager.instance.SendRequest(requester);
@@ -155,19 +170,17 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
-     
+
         print("조회완료");
 
     }
     public void GetRoomAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/member/j";
+        requester.url = "http://13.125.174.193:8080/api/v1/member/id/j";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
         HttpManager.instance.SendRequest(requester);
-
-
     }
     string sHandler;
     public void OnCompleteGetRoomAll(DownloadHandler handler)
@@ -193,7 +206,7 @@ public class SearchID : MonoBehaviour
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
         print(userInfo);
-        for(int i =0; i< userInfoList.Count; i++)
+        for (int i = 0; i < userInfoList.Count; i++)
         {
             CreateObject(userInfoList[i]);
         }
@@ -211,12 +224,13 @@ public class SearchID : MonoBehaviour
     public void CreateObject(UserGetInfo info)
     {
         //search.text = info.id;
-        
+
         GameObject idImage = Instantiate(IDFactory, ContentHolder);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = info.id;
         memberCode = info.memberCode;
-        
+        idImage.gameObject.SetActive(false);
+
     }
 
     public void Search()
@@ -229,26 +243,33 @@ public class SearchID : MonoBehaviour
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
         //    ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(SceneLoad);
         //}
-        
         string searchText = SearchBar.GetComponent<InputField>().text;
         int searchTextLength = searchText.Length;
 
         int searchedElements = 0;
 
-     foreach(GameObject ele in Element)
+        foreach (GameObject ele in Element)
         {
             searchedElements += 1;
             //ele.transform.GetComponent<Button>().onClick.AddListener(SceneLoad);
-            if(ele.transform.GetChild(0).GetComponent<Text>().text.Length >= searchTextLength)
+            if (ele.transform.GetChild(0).GetComponent<Text>().text.Length >= searchTextLength)
             {
-                if(searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0,searchTextLength))
+                if (searchText.Length == 0)
                 {
-                    ele.SetActive(true);
-
+                    ele.SetActive(false);
                 }
                 else
                 {
-                    ele.SetActive(false);
+
+                    if (searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0, searchTextLength))
+                    {
+                        ele.SetActive(true);
+
+                    }
+                    else
+                    {
+                        ele.SetActive(false);
+                    }
                 }
             }
         }
@@ -257,16 +278,14 @@ public class SearchID : MonoBehaviour
     public void OnClickVisit()
     {
         myPageButton.onClick.Invoke();
-        myPage.transform.GetChild(2).gameObject.SetActive(false);
-        myPage.transform.GetChild(8).gameObject.SetActive(true);
+        //myPage.transform.GetChild(2).gameObject.SetActive(false);
+        //myPage.transform.GetChild(8).gameObject.SetActive(true);
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject.GetComponentInChildren<Text>().text);
         id = clickObject.GetComponentInChildren<Text>().text;
         HttpManager.instance.id = id;
+        HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
-        
-       
-        
     }
 
     public void OnClickFollowing()
@@ -278,7 +297,7 @@ public class SearchID : MonoBehaviour
         UserGetInfo info = new UserGetInfo();
         info.id = id;
         //info.memberCode = memberCode;
-  
+
         //arrayJson.furnitures = objectInfoList;
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
@@ -298,6 +317,12 @@ public class SearchID : MonoBehaviour
         //string s = "{\"furniture\":" + handler.text + "}";
         //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
 
+    }
+
+   public void OnRoomIn()
+    {
+        HttpManager.instance.id = HttpManager.instance.fakeId;
+        LobbyManager.instence.OnClickRoomIn();
     }
 
 }

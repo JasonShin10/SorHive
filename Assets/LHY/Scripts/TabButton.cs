@@ -12,6 +12,7 @@ public class TabButton : MonoBehaviour
     {
         if (onTabSelected != null)
         {
+            
             onTabSelected.Invoke();
         }
     }
@@ -26,6 +27,7 @@ public class TabButton : MonoBehaviour
 
     public void OnSelectTab(TabButton button)
     {
+        
         TabController.Instance.SelectedButton(button);
     }
 }

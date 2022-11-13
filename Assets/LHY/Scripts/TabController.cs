@@ -27,7 +27,11 @@ public class TabController : MonoBehaviour
 
     private void Start()
     {
+        
         SelectedButton(transform.GetChild(0).GetComponent<TabButton>());
+        
+
+        
     }
 
     public void SelectedButton(TabButton _button)
@@ -39,6 +43,10 @@ public class TabController : MonoBehaviour
         }
 
         tabButton = _button;
+      
+            //HttpManager.instance.id = HttpManager.instance.userId;
         tabButton.Select();
+
+        
     }
 }

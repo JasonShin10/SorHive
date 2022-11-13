@@ -11,6 +11,15 @@ using Newtonsoft.Json.Linq;
 
 #region Json
 [System.Serializable]
+public class GuestBookJsonInfo
+{
+    public int roomId;
+    //public byte[] onlineRoomImage;
+    public string content;
+    public string memberId;
+}
+
+[System.Serializable]
 public class ObjectInfo
 {
     public int wallNumber;
@@ -24,6 +33,7 @@ public class ObjectInfo
     public Vector3 scale;
     public Vector3 angle;
     public Vector3 boxPosition;
+    public int roomId;
 }
 [System.Serializable]
 public class FurnitureInfo
@@ -33,11 +43,21 @@ public class FurnitureInfo
     public List<ObjectInfo> furnitures;
 }
 
+
+
 [System.Serializable]
 public class ArrayJson<T>
 {
     public List<T> furnitures;
+   
 }
+
+public class ArrayGuestJson<T>
+{
+    public List<T> guestBookDataList;
+}
+
+
 
 [System.Serializable]
 public class LoginInfo2
@@ -82,6 +102,8 @@ public class AddManager : MonoBehaviour
 
     public ObjectInfo objectInfo;
     public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
+    public GuestBookJsonInfo guestBookJsonInfo;
+    public List<GuestBookJsonInfo> guestBookJsonInfoList = new List<GuestBookJsonInfo>();
     private void Awake()
     {
         if (!instance)
@@ -138,7 +160,7 @@ public class AddManager : MonoBehaviour
     #endregion
     public List<GameObject> objActive = new List<GameObject>();
     MeshRenderer rb;
-
+    
     public GameObject obj;
     public Vector3 pos;
     public Vector3 sca;
@@ -192,7 +214,7 @@ public class AddManager : MonoBehaviour
         rb = GetComponent<MeshRenderer>();
         #endregion 
         //OnLoad2();
-        OnClickLogin();
+        //OnClickLogin();
         print(1);
         GetPostAll();
         //OnLoadJson();
@@ -217,6 +239,7 @@ public class AddManager : MonoBehaviour
     {
         LoginInfo2 logdata = new LoginInfo2();
         //logdata.memberId = "john1230";
+        HttpManager.instance.userId = "john1230";
         logdata.memberId = HttpManager.instance.id;
         print(HttpManager.instance.id);
         logdata.password = "qwer1234!";
@@ -257,7 +280,10 @@ public class AddManager : MonoBehaviour
     public void GetPostAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/room/" + HttpManager.instance.memberCode;
+        print(HttpManager.instance.memberCode);
+        //requester.url = "http://13.125.174.193:8080/api/v1/room/" + HttpManager.instance.memberCode;
+        requester.url = "http://13.125.174.193:8080/api/v1/room/" + 1;
+
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 
@@ -270,9 +296,17 @@ public class AddManager : MonoBehaviour
         sHandler = handler.text;
         print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
-
+        print(jsonData);
         //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
+        int jarry = jsonData["data"]["roomId"].ToObject<int>();
+        HttpManager.instance.roomId = jarry;
+        print(jarry);
+        //for (int i =0; i< jarry.Count; i++)
+        //{
+            //int roomIdData = jarry[0]["roomId"].ToObject<int>();
+        //print(roomIdData);
 
+        //}
         //for(int i = 0; i < jarry.Count; i++)
         //{
         //    ObjectInfo info = new ObjectInfo();
@@ -284,13 +318,35 @@ public class AddManager : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string furnituersData = "{\"furnitures\":" + jsonData["data"]["furnitures"].ToString() + "}";
+        string guestBookData = "{\"guestBookDataList\":" + jsonData["data"]["guestBookDataList"].ToString() + "}";
+        //string roomIdData = jsonData["data"]["roomId"].ToObject<int>();
 
+        //string data = "{"+ jsonData["data"].ToString() + "}";
         print(furnituersData);
-
+        //print(roomIdData);
+        //HttpManager.instance.roomId = roomIdData;
         ArrayJson<ObjectInfo> objectInfo = JsonUtility.FromJson<ArrayJson<ObjectInfo>>(furnituersData);
         objectInfoList = objectInfo.furnitures;
+        //HttpManager.instance.roomId = objectInfo.
+        //string roomIdData = jsonData["data"]["roomId"].ToObject<int>();
 
-        
+        //string data = "{"+ jsonData["data"].ToString() + "}";
+        print(guestBookData);
+        //print(roomIdData);
+        //HttpManager.instance.roomId = roomIdData;
+        ArrayGuestJson<GuestBookJsonInfo> guestBookInfo = JsonUtility.FromJson<ArrayGuestJson<GuestBookJsonInfo>>(guestBookData);
+
+        guestBookJsonInfoList = guestBookInfo.guestBookDataList;
+        //HttpManager.instance.roomId = objectInfo.
+
+
+        //n = objectInfoList.Count;
+
+        for (int i = 0; i < guestBookJsonInfoList.Count; i++)
+        {
+            RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
+        }
+
         n = objectInfoList.Count;
 
         for (int i = 0; i < objectInfoList.Count; i++)
@@ -313,6 +369,7 @@ public class AddManager : MonoBehaviour
     #endregion
 
     #region createObject
+
     public void CreateObject(ObjectInfo info)
     {
         if (info.furnitureCategoryNumber == 0)

@@ -25,10 +25,19 @@ public class HttpManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    [System.Serializable]
+    public class GuestBookJsonInfo
+    {
+        public int roomId;
+        //public byte[] onlineRoomImage;
+        public string content;
+    }
     public bool img = false;
     public string id;
     public int memberCode;
     public string userId;
+    public int roomId;
+    public string fakeId;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)

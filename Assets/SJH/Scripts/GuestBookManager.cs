@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using Newtonsoft.Json.Linq;
+
 
 //방명록정보
 public class GuestBookInfo
@@ -25,12 +28,12 @@ public class GuestBookInfo
 public class GuestBookManager : MonoBehaviour
 {
     public Texture[] photos;
-
+    public GameObject chat;
     //public GameObject GBoxManager;
 
     //임시 오브젝트 정보 담을 변수
     GuestBookInfo guestBookInfo = new GuestBookInfo();
-
+    public string upLoadText;
 
     //개시물 번호
     public static int GuestBookNum = 0; //서버에 올라갈 때 이 피드가 몇번째로 올라간 피드인지 확인하기 위함 
@@ -52,7 +55,7 @@ public class GuestBookManager : MonoBehaviour
     public void OnClickfill()
     {
         //사용자가 입력한 Text를 스트링값으로 변환해 저장한다.
-        string upLoadText = mytext.text;
+        upLoadText = mytext.text;
         
         //GuestInfo에 피드 텍스트를 upLoadText의 입력값과 동기화한다.
         guestBookInfo.guestBookText = upLoadText;             
@@ -77,15 +80,58 @@ public class GuestBookManager : MonoBehaviour
         print(GuestBookNum);
         SceneManager.LoadScene("RoomInScene");
     }
-   /* public void OnClickLoad()
+    #region GuestBookPost
+    public void OnSaveGuestBook()
     {
-        if (FeedNum != 0)
-        {
-            for(int i =0; i< FeedNum; i++)
-            {
-                //불 러오기               
-            }
+        GuestBookJsonInfo info = new GuestBookJsonInfo();
+        info.content = upLoadText;
+        print(upLoadText);
+        //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        info.roomId = HttpManager.instance.roomId;
+        //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
+        //arrayJson.furnitures = objectInfoList;
+        //서버에 게시물 조회 요청(/posts/1 , Get)
+        HttpRequester requester = new HttpRequester();
+        /// POST, 완료되었을 때 호출되는 함수
+        requester.url = "http://13.125.174.193:8080/api/v1/guestbook ";
+        requester.requestType = RequestType.POST;
+        //post data 셋팅
+        requester.postData = JsonUtility.ToJson(info, true);
+        requester.onComplete = OnCompleteSaveGuestBook;
+        //HttpManager에게 요청
+        HttpManager.instance.SendRequest(requester);
+    }
+    #endregion
+    /* public void OnClickLoad()
+     {
+         if (FeedNum != 0)
+         {
+             for(int i =0; i< FeedNum; i++)
+             {
+                 //불 러오기               
+             }
 
+         }
+     }*/
+    public void OnCompleteSaveGuestBook(DownloadHandler handler)
+    {
+        print(handler);
+        string s = "{\"furniture\":" + handler.text + "}";
+        PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
+
+    }
+
+    public void OnClickChat()
+    {
+        if(chat.activeSelf)
+        {
+
+        chat.SetActive(false);
         }
-    }*/
+        else
+        {
+            chat.SetActive(true);
+        }
+    }
+
 }
