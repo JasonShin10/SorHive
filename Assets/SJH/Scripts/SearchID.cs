@@ -43,7 +43,7 @@ public class SearchID : MonoBehaviour
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
         //}
         OnClickLogin();
-        //3GetRoomImage();
+        //GetRoomImage();
         GetFollower();
         GetRoomAll();     
     }
@@ -53,8 +53,15 @@ public class SearchID : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+            
+            // GetRoomAll();
+            //GetRoomImage();
+            GetFollower();
+            GetRoomAll();
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
             OnClickLogin();
-           // GetRoomAll();
         }
     }
 
@@ -85,11 +92,13 @@ public class SearchID : MonoBehaviour
 
     public void GetRoomImage()
     {
+        //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/following";
+        requester.url = "http://13.125.174.193:8080/api/v1/member/random";
         requester.requestType = RequestType.GET;
         requester.onImgComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
+
     }
     public void OnCompleteGetRoomImage(DownloadHandlerTexture handler)
     {
@@ -121,7 +130,7 @@ public class SearchID : MonoBehaviour
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/following";
+        requester.url = "http://13.125.174.193:8080/api/v1/member/random";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         HttpManager.instance.SendRequest(requester);
