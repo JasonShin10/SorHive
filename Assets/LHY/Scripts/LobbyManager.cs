@@ -6,6 +6,11 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
+using System;
+using Newtonsoft.Json.Linq;
+
+
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -13,7 +18,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public Text userName;
 
-    Dictionary<string, int> roomCache = new Dictionary<string, int>();
+    //Dictionary<string, int> roomCache = new Dictionary<string, int>();
 
     public int myRoom = 0;
 
@@ -29,6 +34,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //roomCache["a"];
         CreateFeedUI();
+       
 
     }
 
@@ -145,6 +151,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }*/
 
     public int FeedNum = 1;
+
+
+    
+
+
 
     public void CreateFeedUI()
     {

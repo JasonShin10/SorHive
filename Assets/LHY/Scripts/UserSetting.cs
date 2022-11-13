@@ -130,6 +130,7 @@ public class UserSetting : MonoBehaviour
         print("postTokenData"+ token);
 
         PlayerPrefs.SetString("token", token);
+        //PlayerPrefs.SetString("memberId",)
         print("조회 완료");
     }
 }
