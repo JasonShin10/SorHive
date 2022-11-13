@@ -27,11 +27,7 @@ public class TabController : MonoBehaviour
 
     private void Start()
     {
-        
         SelectedButton(transform.GetChild(0).GetComponent<TabButton>());
-        
-
-        
     }
 
     public void SelectedButton(TabButton _button)

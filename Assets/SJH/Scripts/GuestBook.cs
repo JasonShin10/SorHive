@@ -45,8 +45,8 @@ public class GuestBook : MonoBehaviour
             }
 
         }
-        print(HttpManager.instance.userId);
-        print(HttpManager.instance.id);
+        //print(HttpManager.instance.userId);
+        //print(HttpManager.instance.id);
         //print(distance);
 
     }

@@ -761,6 +761,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 414423768}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickIdReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &20717874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1456,6 +1468,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 76490884}
           m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 414423768}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickIdReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11720,6 +11744,7 @@ MonoBehaviour:
   memberCode: 0
   userId: 
   roomId: 0
+  fakeId: 
 --- !u!1 &1111846098
 GameObject:
   m_ObjectHideFlags: 0
@@ -12515,7 +12540,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1846457557}
   m_HandleRect: {fileID: 1846457556}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -14695,7 +14720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00013787525}
+  m_AnchoredPosition: {x: 0, y: -0.00007724762}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1328427141
@@ -14713,10 +14738,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 130
+    m_Top: 50
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -16139,6 +16164,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 414423768}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickIdReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1416258731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16735,27 +16772,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 0
-  hexPos:
-  - {fileID: 1087143691}
-  - {fileID: 83252968}
-  - {fileID: 200424608}
-  - {fileID: 1038172910}
-  - {fileID: 2143778597}
-  - {fileID: 1300779111}
-  - {fileID: 407231491}
-  - {fileID: 1607706352}
-  - {fileID: 820007841}
-  - {fileID: 1810358252}
-  - {fileID: 1133549624}
-  - {fileID: 1965248509}
-  - {fileID: 1731698043}
-  - {fileID: 1541300287}
-  - {fileID: 279233588}
-  - {fileID: 180558009}
-  - {fileID: 1389216541}
-  - {fileID: 604891023}
-  - {fileID: 1807628404}
-  roomItemFactory: {fileID: 0}
 --- !u!114 &1501535019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18292,6 +18308,11 @@ MonoBehaviour:
     boxPosition: {x: 0, y: 0, z: 0}
     roomId: 0
   objectInfoList: []
+  guestBookJsonInfo:
+    roomId: 0
+    content: 
+    memberId: 
+  guestBookJsonInfoList: []
   SpawnPos: {fileID: 0}
   cam: {fileID: 0}
   rotate: {fileID: 0}
@@ -18542,6 +18563,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1656943263}
           m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 414423768}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickIdReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -20860,27 +20893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   count: 0
-  hexPos:
-  - {fileID: 1918766464}
-  - {fileID: 183556589}
-  - {fileID: 1095287018}
-  - {fileID: 2023836711}
-  - {fileID: 994603983}
-  - {fileID: 1734709967}
-  - {fileID: 2034762521}
-  - {fileID: 931039892}
-  - {fileID: 1284643953}
-  - {fileID: 2010983875}
-  - {fileID: 1233186580}
-  - {fileID: 2106642666}
-  - {fileID: 2099829635}
-  - {fileID: 291893466}
-  - {fileID: 654472413}
-  - {fileID: 2044673251}
-  - {fileID: 2132959344}
-  - {fileID: 1901650213}
-  - {fileID: 1415662658}
-  roomItemFactory: {fileID: 0}
 --- !u!1 &1823815999
 GameObject:
   m_ObjectHideFlags: 0

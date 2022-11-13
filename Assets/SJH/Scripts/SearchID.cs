@@ -169,6 +169,7 @@ public class SearchID : MonoBehaviour
         //}
 
         //int status = jsonData["status"].ToObject<int>();
+        
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
 
         print("조회완료");
@@ -205,6 +206,7 @@ public class SearchID : MonoBehaviour
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
+        
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
@@ -323,6 +325,11 @@ public class SearchID : MonoBehaviour
     {
         HttpManager.instance.id = HttpManager.instance.fakeId;
         LobbyManager.instence.OnClickRoomIn();
+    }
+
+    public void OnClickIdReset()
+    {
+        HttpManager.instance.id = HttpManager.instance.userId;
     }
 
 }

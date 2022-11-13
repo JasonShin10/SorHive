@@ -6689,6 +6689,8 @@ MonoBehaviour:
   id: 
   memberCode: 0
   userId: 
+  roomId: 0
+  fakeId: 
 --- !u!4 &186154366
 Transform:
   m_ObjectHideFlags: 0
@@ -10466,7 +10468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 100
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10518,7 +10520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020836, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: orthographic size
-      value: 14.6
+      value: 13.55
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020837, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: sCame
@@ -38454,7 +38456,13 @@ MonoBehaviour:
     scale: {x: 0, y: 0, z: 0}
     angle: {x: 0, y: 0, z: 0}
     boxPosition: {x: 0, y: 0, z: 0}
+    roomId: 0
   objectInfoList: []
+  guestBookJsonInfo:
+    roomId: 0
+    content: 
+    memberId: 
+  guestBookJsonInfoList: []
   SpawnPos: {fileID: 1499650478}
   cam: {fileID: 1077398339}
   rotate: {fileID: 0}
