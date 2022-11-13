@@ -7133,7 +7133,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
         m_MethodName: Search
         m_Mode: 1
@@ -8208,9 +8208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b1e33a595b5a140baed5e85dbb23bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentHolder: {fileID: 958814637}
+  ContentHolder: {fileID: 1669234738}
   Element: []
-  SearchBar: {fileID: 0}
+  SearchBar: {fileID: 1025712225}
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
   myPageButton: {fileID: 20717873}
