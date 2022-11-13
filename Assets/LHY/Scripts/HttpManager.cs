@@ -24,7 +24,8 @@ public class HttpManager : MonoBehaviour
             //나를 파괴하겠다.
             Destroy(gameObject);
         }
-        //PlayerPrefs.SetString("token", "");
+       //PlayerPrefs.SetString("token", "");
+        //print("aaa"+PlayerPrefs.GetString("token"));
     }
     //서버에게 요청
     //url(posts/1), GET

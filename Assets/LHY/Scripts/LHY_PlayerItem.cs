@@ -83,7 +83,7 @@ public class LHY_PlayerItem : MonoBehaviour
         playerdata.memberAvatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/AvatarImage/avatar0.png");
 
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://13.125.174.193:8080/api/v1/auth/avatar/create";
+        requester.url = "http://13.125.174.193:8080/api/v1/avatar/create";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(playerdata, true);
