@@ -70,7 +70,7 @@ namespace CustomUtils
             texture.Apply();
 
             File.WriteAllBytes($"{Application.dataPath + "/Resources/AvatarImage"} /{screenShotName}.png", texture.EncodeToPNG());
-            EditorApplication.ExecuteMenuItem("Assets/Refresh");
+            //EditorApplication.ExecuteMenuItem("Assets/Refresh");
         }
 
         private void Start()
