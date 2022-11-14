@@ -111,8 +111,6 @@ public class LifeingManager : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/member/list/0";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
-
-
         HttpManager.instance.SendRequest(requester);
     }
 

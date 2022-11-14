@@ -22,6 +22,7 @@ public class UserGetInfo
     public int followingCount;
     public int followerCount;
     public int feedCount;
+    
 }
 
 [System.Serializable]

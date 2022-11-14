@@ -7,4 +7,5 @@ public class IdImageItem : MonoBehaviour
 {
     public Text id;
     public Text memberCode;
+    
 }

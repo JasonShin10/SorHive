@@ -272,6 +272,7 @@ public class SearchID : MonoBehaviour
         GameObject idImage = Instantiate(IDFactory, ContentHolder);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = info.id;
+        
         idImageItem.memberCode.text =info.memberCode.ToString();
         //memberCode = info.memberCode;
         idImage.gameObject.SetActive(false);
@@ -316,6 +317,40 @@ public class SearchID : MonoBehaviour
             }
         }
     }
+    public void GetMember()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/member/" + id;
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetMember;
+        HttpManager.instance.SendRequest(requester);
+    }
+    public void OnCompleteGetMember(DownloadHandler handler)
+    {
+        print(2);
+        sHandler = handler.text;
+        print(sHandler);
+        JObject jsonData = JObject.Parse(sHandler);
+     
+        string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
+        ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
+        userInfoList = userInfo.data;
+
+        print(userInfo);
+        for (int i = 0; i < userInfoList.Count; i++)
+        {
+            CreateObject(userInfoList[i]);
+        }
+        totalElements = ContentHolder.childCount;
+        Element = new GameObject[totalElements];
+
+        for (int i = 0; i < totalElements; i++)
+        {
+            Element[i] = ContentHolder.GetChild(i).gameObject;
+            ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+        }
+        print("조회완료");
+    }
 
     public void OnClickVisit()
     {
@@ -327,9 +362,11 @@ public class SearchID : MonoBehaviour
         //id = clickObject.GetComponentInChildren<Text>().text;
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
+
     }
 
     public void OnClickFollowing()

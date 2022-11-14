@@ -87,7 +87,7 @@ public class HttpManager : MonoBehaviour
                 if (accessToken != null)
                 {
                     webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-
+                    
                     webRequest.SetRequestHeader("Content-Type", "application/json");
                 }
                 //}
@@ -154,7 +154,7 @@ public class HttpManager : MonoBehaviour
 
     void Update()
     {
-        //print(HttpManager.instance.memberCode);
+        print(HttpManager.instance.memberCode);
        // print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
     }
