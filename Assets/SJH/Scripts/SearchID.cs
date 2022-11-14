@@ -19,12 +19,17 @@ public class SearchID : MonoBehaviour
     public GameObject myPage;
     public Button myPageButton;
     public RawImage img;
+    public Text following;
+    public Text follower;
+    public Text feedNum;
     public int totalElements;
     //public Text search;
     public UserInfo userInfo;
     public string id;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
+    public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
+    public UserGetInfo userGetInfo;
 
     //public GameObject ContentHolder;
 
@@ -44,6 +49,7 @@ public class SearchID : MonoBehaviour
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
         //}
         OnClickLogin();
+        GetThree();
         //GetRoomImage();
         GetFollower();
         GetRoomAll();
@@ -145,7 +151,7 @@ public class SearchID : MonoBehaviour
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follower ";
+        requester.url = "http://52.79.209.232:8080/api/v1/follower";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         HttpManager.instance.SendRequest(requester);
@@ -175,6 +181,44 @@ public class SearchID : MonoBehaviour
         print("조회완료");
 
     }
+
+    public void GetThree()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/mypage";
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetThree;
+        HttpManager.instance.SendRequest(requester);
+    }
+    public void OnCompleteGetThree(DownloadHandler handler)
+    {
+        print(2);
+        sHandler = handler.text;
+        print(sHandler);
+        JObject jsonData = JObject.Parse(sHandler);
+        //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
+
+        //for(int i = 0; i < jarry.Count; i++)
+        //{
+        //    ObjectInfo info = new ObjectInfo();
+
+        //    info.wallNumber = jarry[i]["wallNumber"].ToObject<int>();
+
+        //    objectInfoList.Add(info);
+        //}
+
+        //int status = jsonData["status"].ToObject<int>();
+        string userData = jsonData["data"].ToString();
+        UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
+        follower.text = "팔로워" + " " + userThree.followerCount;
+        following.text = "팔로잉" + " " + userThree.followingCount;
+        feedNum.text = "게시물" + " " + userThree.feedCount;
+        userGetInfo.followingCount = userThree.followingCount;
+        userGetInfo.feedCount = userThree.feedCount;
+        print(userData);
+    
+        print("조회완료");
+    }
     public void GetRoomAll()
     {
         HttpRequester requester = new HttpRequester();
@@ -190,7 +234,6 @@ public class SearchID : MonoBehaviour
         sHandler = handler.text;
         print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
-
         //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
 
         //for(int i = 0; i < jarry.Count; i++)
@@ -221,25 +264,21 @@ public class SearchID : MonoBehaviour
             ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
         }
         print("조회완료");
-
     }
     public void CreateObject(UserGetInfo info)
     {
         //search.text = info.id;
-
         GameObject idImage = Instantiate(IDFactory, ContentHolder);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = info.id;
         memberCode = info.memberCode;
         idImage.gameObject.SetActive(false);
-
     }
 
     public void Search()
     {
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
-
         //for (int i = 0; i < totalElements; i++)
         //{
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
@@ -266,7 +305,6 @@ public class SearchID : MonoBehaviour
                     if (searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0, searchTextLength))
                     {
                         ele.SetActive(true);
-
                     }
                     else
                     {
@@ -318,7 +356,6 @@ public class SearchID : MonoBehaviour
         print(handler);
         //string s = "{\"furniture\":" + handler.text + "}";
         //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
-
     }
 
    public void OnRoomIn()
