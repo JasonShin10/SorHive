@@ -70,15 +70,17 @@ public class LifeingManager : MonoBehaviour
     {
         if (isUpLoad == true)
         {
-            for (int i = 0; i < 7; i++)
-            {
-                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
+
+            for (int i = 0; i < friendList.Count; i++)
+            {
+
+                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+                
                 LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
                 lifeingRoomItem.roomImg = friendList[i].roomImage;
                 lifeingRoomItem.avatarImg = friendList[i].avatarImage;
                 lifeingRoomItem.memberName.text = friendList[i].memberName;
-
                 isUpLoad = false;
             }
         }

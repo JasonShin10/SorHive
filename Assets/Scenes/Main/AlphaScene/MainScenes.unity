@@ -8215,6 +8215,9 @@ MonoBehaviour:
   myPage: {fileID: 750030783}
   myPageButton: {fileID: 20717873}
   img: {fileID: 0}
+  following: {fileID: 283539230}
+  follower: {fileID: 1331776265}
+  feedNum: {fileID: 783292692}
   totalElements: 0
   userInfo:
     memberName: 
@@ -8223,6 +8226,13 @@ MonoBehaviour:
   id: 
   memberCode: 0
   userInfoList: []
+  userThreeList: []
+  userGetInfo:
+    id: 
+    memberCode: 0
+    followingCount: 0
+    followerCount: 0
+    feedCount: 0
 --- !u!4 &1146731189
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ public class UserGetInfo
 {
     public string id;
     public int memberCode;
+    public int followingCount;
+    public int followerCount;
+    public int feedCount;
 }
 
 [System.Serializable]
@@ -111,6 +114,7 @@ public class UserSetting : MonoBehaviour
         requester.onComplete = OnClickDownload;
 
         HttpManager.instance.SendRequest(requester);
+        HttpManager.instance.userId = logID.text;
     }
 
 /*    private void OnClickDownload(DownloadHandler handler)
