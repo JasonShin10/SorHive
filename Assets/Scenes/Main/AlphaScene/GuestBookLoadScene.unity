@@ -1471,4 +1471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photos: []
+  chat: {fileID: 0}
+  upLoadText: 
   mytext: {fileID: 926244966}

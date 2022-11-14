@@ -48,7 +48,7 @@ public class SearchID : MonoBehaviour
         //{
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
         //}
-        OnClickLogin();
+        //OnClickLogin();
         GetThree();
         //GetRoomImage();
         GetFollower();
@@ -58,8 +58,8 @@ public class SearchID : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(HttpManager.instance.id);
-        print(HttpManager.instance.userId);
+        //print(HttpManager.instance.id);
+        //print(HttpManager.instance.userId);
         if(HttpManager.instance.id == HttpManager.instance.userId)
         {
             myPage.transform.GetChild(2).gameObject.SetActive(true);
@@ -80,7 +80,7 @@ public class SearchID : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            OnClickLogin();
+            //OnClickLogin();
         }
         
     }
@@ -213,6 +213,7 @@ public class SearchID : MonoBehaviour
         follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
         feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
+        HttpManager.instance.memberCode = userThree.memberCode;
         userGetInfo.followingCount = userThree.followingCount;
         userGetInfo.feedCount = userThree.feedCount;
         print(userData);
@@ -271,7 +272,8 @@ public class SearchID : MonoBehaviour
         GameObject idImage = Instantiate(IDFactory, ContentHolder);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = info.id;
-        memberCode = info.memberCode;
+        idImageItem.memberCode.text =info.memberCode.ToString();
+        //memberCode = info.memberCode;
         idImage.gameObject.SetActive(false);
     }
 
@@ -322,7 +324,9 @@ public class SearchID : MonoBehaviour
         //myPage.transform.GetChild(8).gameObject.SetActive(true);
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject.GetComponentInChildren<Text>().text);
-        id = clickObject.GetComponentInChildren<Text>().text;
+        //id = clickObject.GetComponentInChildren<Text>().text;
+        id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
+        memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;

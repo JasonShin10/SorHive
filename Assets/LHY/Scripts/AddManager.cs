@@ -231,7 +231,7 @@ public class AddManager : MonoBehaviour
     {
         LoginInfo2 logdata = new LoginInfo2();
         //logdata.memberId = "john1230";
-        HttpManager.instance.userId = "john1230";
+        HttpManager.instance.userId = "john12";
         logdata.memberId = HttpManager.instance.id;
         print(HttpManager.instance.id);
         logdata.password = "qwer1234!";

@@ -30,7 +30,6 @@ public class ArrayJsonID<T>
     public List<T> data;
 }
 
-
 public class LoginInfo
 {
     public string memberId;
@@ -62,6 +61,10 @@ public class UserSetting : MonoBehaviour
 
     public GameObject LoginPage;
     public GameObject SigninPage;
+void Start()
+{
+    PlayerPrefs.DeleteAll();
+}
 
 
 
@@ -100,6 +103,7 @@ public class UserSetting : MonoBehaviour
 
     public void OnClickLogin()
     {
+        
         LoginInfo logdata = new LoginInfo();
         logdata.memberId = logID.text;
         logdata.password = logPassword.text;
@@ -115,6 +119,7 @@ public class UserSetting : MonoBehaviour
 
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;
+        HttpManager.instance.id = logID.text;
     }
 
 /*    private void OnClickDownload(DownloadHandler handler)

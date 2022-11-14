@@ -38,11 +38,12 @@ public class HttpManager : MonoBehaviour
     public string userId;
     public int roomId;
     public string fakeId;
-
+    public string accessToken;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)
     {
+        
         StartCoroutine(Send(requester));
     }
     IEnumerator Send(HttpRequester requester)
@@ -54,6 +55,7 @@ public class HttpManager : MonoBehaviour
         UnityWebRequest webRequest = null;
         //UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
+        
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
         {
@@ -81,13 +83,13 @@ public class HttpManager : MonoBehaviour
                 //}
                 //else
                 //{
-                    webRequest = UnityWebRequest.Get(requester.url);
-                    if (accessToken != null)
-                    {
-                        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                webRequest = UnityWebRequest.Get(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
-                        webRequest.SetRequestHeader("Content-Type", "application/json");
-                    }
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
                 //}
                 break;
             case RequestType.PUT:
@@ -128,25 +130,34 @@ public class HttpManager : MonoBehaviour
         //}
         //else
         //{
-            if (webRequest.result == UnityWebRequest.Result.Success)
-            {
-                print(webRequest.downloadHandler.text);
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            print(webRequest.downloadHandler.text);
 
-                //완료되었다고 requester.onComplete를 실행
-                if (requester.onComplete != null)
-                {
-                    requester.onComplete(webRequest.downloadHandler);
-                }
-            }
-            else
+            //완료되었다고 requester.onComplete를 실행
+            if (requester.onComplete != null)
             {
-                //서버통신 실패....ㅠ
-                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+                requester.onComplete(webRequest.downloadHandler);
             }
+        }
+        else
+        {
+            //서버통신 실패....ㅠ
+            print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+        }
         //}
         //그렇지않다면
         yield return null;
 
         webRequest.Dispose();
     }
+
+    void Update()
+    {
+        //print(HttpManager.instance.memberCode);
+       // print(HttpManager.instance.id);
+        //print(HttpManager.instance.userId);
+    }
+
+  
 }
