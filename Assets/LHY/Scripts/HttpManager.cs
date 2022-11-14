@@ -154,7 +154,7 @@ public class HttpManager : MonoBehaviour
 
     void Update()
     {
-        print(HttpManager.instance.memberCode);
+        //print(HttpManager.instance.memberCode);
        // print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
     }

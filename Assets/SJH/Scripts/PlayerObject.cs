@@ -23,19 +23,19 @@ public class PlayerObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (scene.name == "RoomInScene")
-        {
-            float distance = Vector3.Distance(transform.position, player.transform.position);
-            // 거리가 3보다 크면 cancle을 false로 바꿔준다.
+        //if (scene.name == "RoomInScene")
+        //{
+        //    float distance = Vector3.Distance(transform.position, player.transform.position);
+        //    // 거리가 3보다 크면 cancle을 false로 바꿔준다.
 
-            if (distance > 3)
-            {
-                image.transform.GetChild(7).gameObject.SetActive(false);
-            }
-            else if (distance < 3)
-            {
-                image.transform.GetChild(7).gameObject.SetActive(true);
-            }
-        }
+        //    if (distance > 3)
+        //    {
+        //        image.transform.GetChild(7).gameObject.SetActive(false);
+        //    }
+        //    else if (distance < 3)
+        //    {
+        //        image.transform.GetChild(7).gameObject.SetActive(true);
+        //    }
+        //}
     }
 }
