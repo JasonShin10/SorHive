@@ -74,6 +74,8 @@ public class LifeingManager : MonoBehaviour
 
             for (int i = 0; i < friendList.Count; i++)
             {
+                if(llifeingItemFactory != null)
+                {
 
                 GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
                 
@@ -83,6 +85,7 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.memberName.text = friendList[i].memberName;
                 isUpLoad = false;
             }
+                }
         }
 
         /*
