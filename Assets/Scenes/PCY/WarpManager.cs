@@ -68,8 +68,8 @@ public class WarpManager : MonoBehaviour
         // StartCoroutine(GetTexture(img));
 
         timer = 0.0;
-        waitingTime = 3;
-        waitingTime2 = 5;
+        waitingTime = 1;
+        waitingTime2 = 3;
 
         print("start");
         while (7 > count) {
