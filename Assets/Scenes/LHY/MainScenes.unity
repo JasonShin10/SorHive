@@ -3999,7 +3999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &302719181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13784,12 +13784,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d263cae16247e44ae6474746566c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1712544761}
+  image:
+  - {fileID: 0}
   lifingImg: 
-  lifingImgName: 
+  lifingImgName: []
   lifingNo: 1
   lifingCategoryNo: -1
   lifingText: {fileID: 1813460037}
+  lifeingImageList: []
 --- !u!1 &1219502384
 GameObject:
   m_ObjectHideFlags: 0
@@ -19243,15 +19245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    memberCode: 0
-    memberName: 
-    memberId: 
-    avatarImage: 
-    roomImage: 
-    lifingNo: 0
-    lifingCategoryNo: 0
-    lifingYn: 0
   friendList: []
   hexPos: []
   llifeingItemFactory: {fileID: 0}
@@ -25215,15 +25208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info:
-    memberCode: 0
-    memberName: 
-    memberId: 
-    avatarImage: 
-    roomImage: 
-    lifingNo: 0
-    lifingCategoryNo: 0
-    lifingYn: 0
   friendList: []
   hexPos:
   - {fileID: 1087143691}

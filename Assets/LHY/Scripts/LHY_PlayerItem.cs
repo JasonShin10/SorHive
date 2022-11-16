@@ -48,7 +48,7 @@ public class LHY_PlayerItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        OnClickTypeChange();
     }
 
     public void OnClickTypeChange()

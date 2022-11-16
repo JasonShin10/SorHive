@@ -8,7 +8,7 @@ public class HttpManager : MonoBehaviour
 {
     public static HttpManager instance;
 
-
+    public GameObject LoadingCanvas;
 
     private void Awake()
     {
@@ -71,6 +71,7 @@ public class HttpManager : MonoBehaviour
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
                 webRequest.SetRequestHeader("Content-Type", "application/json");
+                LoadingCanvas.SetActive(true);
                 break;
             case RequestType.GET:
                 //if (img == true)
@@ -92,6 +93,7 @@ public class HttpManager : MonoBehaviour
 
                         webRequest.SetRequestHeader("Content-Type", "application/json");
                     }
+                LoadingCanvas.SetActive(true);
                 //}
                 break;
             case RequestType.PUT:
@@ -134,6 +136,7 @@ public class HttpManager : MonoBehaviour
         //{
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
+                LoadingCanvas.SetActive(false);
                 print(webRequest.downloadHandler.text);
 
                 //완료되었다고 requester.onComplete를 실행
@@ -144,6 +147,7 @@ public class HttpManager : MonoBehaviour
             }
             else
             {
+                LoadingCanvas.SetActive(false);
                 //서버통신 실패....ㅠ
                 print("통신 실패" + webRequest.result + "\n" + webRequest.error);
             }
