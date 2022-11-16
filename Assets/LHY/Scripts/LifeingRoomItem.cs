@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class LifeingRoomItem : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class LifeingRoomItem : MonoBehaviour
     public RawImage roomImage;
     public Text memberName;
     public RawImage ProfileImage;
+
+    public string lifingYn;
+    public int lifingNo;
+    public int lifingCategoryNo;
+    public string memberId;
 
 
 
@@ -27,7 +33,21 @@ public class LifeingRoomItem : MonoBehaviour
         lifeingManager = lifeingmanager.GetComponent<LifeingManager>();
         StartCoroutine(GetTextureR(roomImage, avatarImage));
         ProfileImage.texture = roomImage.texture;
-      
+
+        if(lifingYn == "N")
+        {
+            return;
+        }
+        else if (lifingYn == "Y")
+        {
+            var temp = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo +".png");
+
+            Texture2D tex = new Texture2D(0, 0);
+            tex.LoadImage(temp);
+
+            roomImage.texture = tex;
+        }
+
 
         //for()
     }
@@ -69,8 +89,5 @@ public class LifeingRoomItem : MonoBehaviour
             
 
             //yield return WaitForSeconds(0.1);
-        
-
-
     }
 }

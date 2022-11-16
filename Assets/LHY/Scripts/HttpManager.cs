@@ -8,6 +8,8 @@ public class HttpManager : MonoBehaviour
 {
     public static HttpManager instance;
 
+
+
     private void Awake()
     {
         //만약에 instance가 null이라면
@@ -50,6 +52,8 @@ public class HttpManager : MonoBehaviour
 
         //WWWForm form = new WWWForm();
         //form.AddField("furnitures", requester.postData);
+
+
 
         UnityWebRequest webRequest = null;
         //UnityWebRequest webTexture = null;

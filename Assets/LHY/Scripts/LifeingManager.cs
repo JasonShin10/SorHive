@@ -15,19 +15,21 @@ public class LifeingItemInfo
     public string avatarImage;
     public string roomImage;
     public int lifingNo;
-    public char lifingYn;
+    public int lifingCategoryNo;
+    public string lifingYn;
 }
 
 [System.Serializable]
 public class LIfeingData<T>
 {
     public List<T> userData;
+    public List<T> LifeingImagesData;
 }
 
 
 public class LifeingManager : MonoBehaviour
 {
-    public LifeingItemInfo info;
+    //public LifeingItemInfo info;
 
     public List<LifeingItemInfo> friendList = new List<LifeingItemInfo>();
 
@@ -46,9 +48,25 @@ public class LifeingManager : MonoBehaviour
     void Start()
     {
         //GetPostAll();
-     
 
-      
+        if (isUpLoad == true)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+
+                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+                lifeingRoomItem.roomImg = friendList[i].roomImage;
+                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.memberName.text = friendList[i].memberName;
+                lifeingRoomItem.lifingYn = friendList[i].lifingYn;
+                lifeingRoomItem.lifingCategoryNo = friendList[i].lifingCategoryNo;
+                lifeingRoomItem.lifingNo = friendList[i].lifingNo;
+
+                isUpLoad = false;
+            }
+        }
+
 
         /*   for (int i = 0; i < 7; i++)
            {
@@ -68,20 +86,7 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isUpLoad == true)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
-
-                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-                lifeingRoomItem.roomImg = friendList[i].roomImage;
-                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-                lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-                isUpLoad = false;
-            }
-        }
+        
 
         /*
                 if (isUpLoad == true)

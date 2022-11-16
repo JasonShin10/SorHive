@@ -43,6 +43,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        
     }
 
+    public string[] curUsersNames;
+
     //방 생성
     public void CreateRoom()
     {
@@ -54,7 +56,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         roomOptions.IsVisible = true;
 
         //방 생성 요청(해당 옵션을 이용해서)
-        PhotonNetwork.CreateRoom(userName.text, roomOptions);
+        //PhotonNetwork.CreateRoom (userName.text, roomOptions);
+        PhotonNetwork.JoinOrCreateRoom(userName.text, roomOptions, default, curUsersNames);
     }
 
     //방이 생성되면 호출 되는 함수
@@ -99,7 +102,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         myRoom = 1;
 
         SceneManager.LoadScene("RoomInScene");
-        //CreateRoom();
+        CreateRoom();
         //JoinRoom();
     }
 
@@ -117,7 +120,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         {
             
             SceneManager.LoadScene("RoomInScene");
-            //PhotonNetwork.LoadLevel("RoomInScene");
+            PhotonNetwork.LoadLevel("RoomInScene");
         }
         else if (myRoom == 2)
         {

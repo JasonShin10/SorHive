@@ -48,6 +48,11 @@ public class LHY_PlayerItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void OnClickTypeChange()
+    {
         for (int i = 0; i < faceType.Length; i++)
         {
             faceType[i].SetActive(false);
