@@ -19,6 +19,7 @@ public class UserGetInfo
 {
     public string id;
     public string memberId;
+    public int followId;
     public int memberCode;
     public int followingCount;
     public int followerCount;

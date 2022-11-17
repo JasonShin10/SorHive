@@ -18,12 +18,14 @@ public class SearchID : MonoBehaviour
     public GameObject SearchBar;
     public GameObject IDFactory;
     public GameObject myPage;
+    public Button deleteFollowing;
     public Button myPageButton;
     public RawImage Img;
     public Text following;
     public Text follower;
     public Text feedNum;
     public int totalElements;
+    public int followId;
     //public Text search;
     public UserInfo userInfo;
     public string id;
@@ -332,7 +334,22 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
+    }
 
+    public void OnClickFollowingVisit()
+    {
+        deleteFollowing.onClick.Invoke();
+        //myPage.transform.GetChild(2).gameObject.SetActive(false);
+        //myPage.transform.GetChild(8).gameObject.SetActive(true);
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        print(clickObject.GetComponentInChildren<Text>().text);
+        //id = clickObject.GetComponentInChildren<Text>().text;
+        id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
+        memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+
+        HttpManager.instance.id = id;
+        HttpManager.instance.fakeId = id;
+        HttpManager.instance.memberCode = memberCode;
     }
 
     public void OnClickFollowing()
@@ -373,9 +390,10 @@ public class SearchID : MonoBehaviour
         sHandler = handler.text;
         
         JObject jsonData = JObject.Parse(sHandler);
-        string userData = "{\"followingData\":" + jsonData["data"]["followerData"].ToString() + "}";
+        string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
+        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
-        userInfoList = userInfo.followingData;
+        userInfoList = userInfo.followerData;
 
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
@@ -388,7 +406,7 @@ public class SearchID : MonoBehaviour
         for (int i = 0; i < totalElements; i++)
         {
             Element[i] = FollowingContentHolder.GetChild(i).gameObject;
-            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickFollowingVisit);
             FollowingContentHolder.GetChild(i).gameObject.SetActive(true);
         }
 
@@ -407,10 +425,12 @@ public class SearchID : MonoBehaviour
         sHandler = handler.text;
 
         JObject jsonData = JObject.Parse(sHandler);
-        string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
+        string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
+        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
+        
         userInfoList = userInfo.followerData;
-
+        
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
@@ -422,7 +442,7 @@ public class SearchID : MonoBehaviour
         for (int i = 0; i < totalElements; i++)
         {
             Element[i] = FollowingContentHolder.GetChild(i).gameObject;
-            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickFollowingVisit);
             FollowingContentHolder.GetChild(i).gameObject.SetActive(true);
         }
         print("조회완료");
@@ -457,5 +477,13 @@ public class SearchID : MonoBehaviour
         followingList.SetActive(true);
     }
 
+    public void OnclickDeleteFollowing()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/follower/ +  ";
+        requester.requestType = RequestType.DELETE;
+        requester.onComplete = OnCompleteGetFollower;
+        HttpManager.instance.SendRequest(requester);
+    }
    
 }
