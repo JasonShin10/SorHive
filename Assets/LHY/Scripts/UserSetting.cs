@@ -22,7 +22,7 @@ public class UserGetInfo
     public int followingCount;
     public int followerCount;
     public int feedCount;
-
+    
 }
 
 [System.Serializable]
@@ -62,10 +62,10 @@ public class UserSetting : MonoBehaviour
 
     public GameObject LoginPage;
     public GameObject SigninPage;
-    void Start()
-    {
-        PlayerPrefs.DeleteAll();
-    }
+void Start()
+{
+    PlayerPrefs.DeleteAll();
+}
 
 
 
@@ -89,13 +89,13 @@ public class UserSetting : MonoBehaviour
 
         //requester.onComplete = On
 
-        if (inputpasschack.text != userdata.password)
+        if(inputpasschack.text != userdata.password)
         {
             nonPasstext.SetActive(true);
             print("비밀번호가 맞지 않습니다. 다시 입력해 주세요");
         }
         else
-        {
+        { 
             SigninPage.SetActive(false);
             LoginPage.SetActive(true);
         }
@@ -104,7 +104,7 @@ public class UserSetting : MonoBehaviour
 
     public void OnClickLogin()
     {
-
+        
         LoginInfo logdata = new LoginInfo();
         logdata.memberId = logID.text;
         logdata.password = logPassword.text;
@@ -121,24 +121,27 @@ public class UserSetting : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
+        
     }
 
-    /*    private void OnClickDownload(DownloadHandler handler)
-        {
-            JObject json = JObject.Parse(handler.text);
-            string token = json["data"]["accessToken"].ToString();
-            print(token);
+/*    private void OnClickDownload(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        string token = json["data"]["accessToken"].ToString();
+        print(token);
 
-            PlayerPrefs.SetString("token", token);
-            print("조회 완료");
-        }*/
+        PlayerPrefs.SetString("token", token);
+        print("조회 완료");
+    }*/
 
     private void OnClickDownload(DownloadHandler handler)
     {
         JObject json = JObject.Parse(handler.text);
         string token = json["data"]["accessToken"].ToString();
-        print("postTokenData" + token);
-
+        int memberCode = json["data"]["memberCode"].ToObject<int>();
+        HttpManager.instance.memberCode = memberCode;
+        print("postTokenData"+ token);
+        
         PlayerPrefs.SetString("token", token);
         //PlayerPrefs.SetString("memberId",)
         print("조회 완료");

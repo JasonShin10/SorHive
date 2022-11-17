@@ -768,6 +768,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickIdReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickRoomImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &20717874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8227,7 +8251,7 @@ MonoBehaviour:
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
   myPageButton: {fileID: 20717873}
-  img: {fileID: 0}
+  Img: {fileID: 920263051}
   following: {fileID: 283539230}
   follower: {fileID: 1331776265}
   feedNum: {fileID: 783292692}
@@ -8237,6 +8261,7 @@ MonoBehaviour:
     memberId: 
     password: 
   id: 
+  roomImgString: 
   memberCode: 0
   userInfoList: []
   userThreeList: []
@@ -8246,6 +8271,8 @@ MonoBehaviour:
     followingCount: 0
     followerCount: 0
     feedCount: 0
+  img:
+    memberRoomImage: 
 --- !u!4 &1146731189
 Transform:
   m_ObjectHideFlags: 0
