@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 8445532267099512129}
   - component: {fileID: 8445532267099512134}
   - component: {fileID: 8445532267099512190}
+  - component: {fileID: 828119514637233483}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8445532267099512135}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cf508bb45ae7f947b5debb5afb060d4, type: 3}
   m_Name: 
@@ -438,6 +439,28 @@ MonoBehaviour:
   EyebrowsType: 0
   Eyelashestype: 0
   Hairtype: 0
+--- !u!114 &828119514637233483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445532267099512135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &3566376850499732635
 PrefabInstance:
   m_ObjectHideFlags: 0

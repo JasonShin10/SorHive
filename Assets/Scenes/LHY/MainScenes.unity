@@ -372,15 +372,15 @@ RectTransform:
   m_GameObject: {fileID: 17623653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1786512, y: 0.17865118, z: 0.1786512}
+  m_LocalScale: {x: 1, y: 8.941775, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 363110870}
-  m_RootOrder: 2
+  m_Father: {fileID: 1831802959}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12.815706, y: -248.02739}
+  m_AnchoredPosition: {x: -49.06842, y: -4748.0586}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &17694934
@@ -416,7 +416,7 @@ RectTransform:
   m_Children:
   - {fileID: 1501535017}
   m_Father: {fileID: 1831802959}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1025,7 +1025,7 @@ RectTransform:
   m_Children:
   - {fileID: 525713728}
   m_Father: {fileID: 363110870}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4404,7 +4404,6 @@ RectTransform:
   m_Children:
   - {fileID: 147533236}
   - {fileID: 1691256758}
-  - {fileID: 17623656}
   - {fileID: 73693050}
   - {fileID: 1881943992}
   m_Father: {fileID: 1227652449}
@@ -10309,7 +10308,6 @@ MonoBehaviour:
   myRoom: 0
   feedListContent: {fileID: 984640305}
   feedUIFactory: {fileID: 7061890509986261700, guid: 7eff84ead31556446ac4a00847e0296b, type: 3}
-  curUsersNames: []
   FeedNum: 1
 --- !u!1 &882063731
 GameObject:
@@ -14107,7 +14105,7 @@ RectTransform:
   - {fileID: 1111846099}
   - {fileID: 750030784}
   m_Father: {fileID: 1831802959}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19248,6 +19246,7 @@ MonoBehaviour:
   friendList: []
   hexPos: []
   llifeingItemFactory: {fileID: 0}
+  roomId: {fileID: 0}
   isUpLoad: 1
 --- !u!1 &1656943258
 GameObject:
@@ -22099,6 +22098,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 0.11183462, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 17623656}
   - {fileID: 1227652449}
   - {fileID: 17694935}
   m_Father: {fileID: 302719184}
@@ -22723,7 +22723,7 @@ RectTransform:
   m_Children:
   - {fileID: 664242100}
   m_Father: {fileID: 363110870}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -25230,6 +25230,7 @@ MonoBehaviour:
   - {fileID: 604891023}
   - {fileID: 1807628404}
   llifeingItemFactory: {fileID: 80758513339916642, guid: c6629baacf05e8845abc95438f141e15, type: 3}
+  roomId: {fileID: 17623654}
   isUpLoad: 1
 --- !u!1 &2007666816
 GameObject:

@@ -37,6 +37,8 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject llifeingItemFactory;
 
+    public Text roomId;
+
     public bool isUpLoad = true;
     //public bool end = false;
     private void Awake()
@@ -47,25 +49,10 @@ public class LifeingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
         //GetPostAll();
 
-        if (isUpLoad == true)
-        {
-            for (int i = 0; i < 7; i++)
-            {
-                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
-                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-                lifeingRoomItem.roomImg = friendList[i].roomImage;
-                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-                lifeingRoomItem.memberName.text = friendList[i].memberName;
-                lifeingRoomItem.lifingYn = friendList[i].lifingYn;
-                lifeingRoomItem.lifingCategoryNo = friendList[i].lifingCategoryNo;
-                lifeingRoomItem.lifingNo = friendList[i].lifingNo;
-
-                isUpLoad = false;
-            }
-        }
 
 
         /*   for (int i = 0; i < 7; i++)
@@ -86,7 +73,27 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isUpLoad == true)
+        {
+            for (int i = 0; i < friendList.Count; i++)
+            {
+                print(friendList.Count);
+                GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+
+                LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+                lifeingRoomItem.roomImg = friendList[i].roomImage;
+                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.memberName.text = friendList[i].memberName;
+                lifeingRoomItem.lifingYn = friendList[i].lifingYn;
+                lifeingRoomItem.lifingCategoryNo = friendList[i].lifingCategoryNo;
+                lifeingRoomItem.lifingNo = friendList[i].lifingNo;
+
+                roomId.text = friendList[0].memberId;
+
+                isUpLoad = false;
+            }
+        }
+       
 
         /*
                 if (isUpLoad == true)
@@ -135,30 +142,7 @@ public class LifeingManager : MonoBehaviour
         // ArrayJson<LifeingItemInfo> lifeingInfo = JsonUtility.FromJson<ArrayJson<LifeingItemInfo>>(mamberList);
     }
 
-    /* IEnumerator GetTextureR(int count, RawImage roomImage, RawImage avatarImage)
-     {
-         //lifeingRoomItem.roomImage = friendList[i].roomImage
-         var urlR = friendList[count].roomImage;
-         var urlA = friendList[count].avatarImage;
-
-
-         UnityWebRequest wwwR = UnityWebRequestTexture.GetTexture(urlR);
-         yield return wwwR.SendWebRequest();
-
-         UnityWebRequest wwwA = UnityWebRequestTexture.GetTexture(urlA);
-         yield return wwwA.SendWebRequest();
-
-         if (wwwR.result != UnityWebRequest.Result.Success)
-             Debug.Log(wwwR.error);
-         else
-             roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
-
-         if (wwwA.result != UnityWebRequest.Result.Success)
-             Debug.Log(wwwA.error);
-         else
-             avatarImage.texture = ((DownloadHandlerTexture)wwwA.downloadHandler).texture;
-     }*/
-
+  
     public void GetPostAll()
     {
 
