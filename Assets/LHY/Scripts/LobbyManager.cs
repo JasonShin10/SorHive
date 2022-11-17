@@ -34,7 +34,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //roomCache["a"];
         //CreateFeedUI();
-       
+        CreateRoom();
+        //JoinRoom();
 
     }
 
@@ -43,19 +44,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
        
     }
 
+    //public string[] curUsersNames;
+
     //방 생성
     public void CreateRoom()
     {
         //방 옵션을 설정
         RoomOptions roomOptions = new RoomOptions();
         //최대인원
-        roomOptions.MaxPlayers = 19;
+        roomOptions.MaxPlayers = 2;
         //룸 리스트에 보이지 않게? 보이게?
         roomOptions.IsVisible = true;
 
         //방 생성 요청(해당 옵션을 이용해서)
-        PhotonNetwork.CreateRoom(userName.text, roomOptions);
+        //PhotonNetwork.CreateRoom (userName.text, roomOptions);
+
+        PhotonNetwork.CreateRoom("AAA", roomOptions);
     }
+
 
     //방이 생성되면 호출 되는 함수
     public override void OnCreatedRoom()
@@ -75,7 +81,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //방 참가
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRoom(userName.text);
+        PhotonNetwork.JoinRoom("AAA");
     }
 
     public void OnClickRoomWarp()
@@ -96,34 +102,35 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickRoomIn()
     {
-        myRoom = 1;
+        //myRoom = 1;
 
-        SceneManager.LoadScene("RoomInScene");
-        //CreateRoom();
-        //JoinRoom();
+        //PhotonNetwork.LoadLevel("RoomInScene");
+        //SceneManager.LoadScene("RoomInScene");
+   
     }
 
     //방 참가가 완료되었을때 호출되는 함수
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        print("OnJoinedRoom");
-        if (myRoom == 0)
-        {
-            SceneManager.LoadScene("RoomChange");
-            //PhotonNetwork.LoadLevel("RoomChange");
-        }
-        else if(myRoom == 1)
-        {
-            
-            SceneManager.LoadScene("RoomInScene");
-            //PhotonNetwork.LoadLevel("RoomInScene");
-        }
-        else if (myRoom == 2)
-        {
-            //벌집타기 씬
-            //hotonNetwork.LoadLevel("RoomInScene");
-        }
+        PhotonNetwork.LoadLevel("RoomInScene");
+        /* print("OnJoinedRoom");
+         if (myRoom == 0)
+         {
+             SceneManager.LoadScene("RoomChange");
+             //PhotonNetwork.LoadLevel("RoomChange");
+         }
+         else if(myRoom == 1)
+         {
+
+             //SceneManager.LoadScene("RoomInScene");
+             PhotonNetwork.LoadLevel("RoomInScene");
+         }
+         else if (myRoom == 2)
+         {
+             //벌집타기 씬
+             //hotonNetwork.LoadLevel("RoomInScene");
+         }*/
     }
 
     //방 참가가 실패 되었을 때 호출되는 함수
@@ -165,31 +172,31 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
 
-    //public void CreateFeedUI()
-    //{
-    //    FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
-    //    //피드의 정보를 불러오고
-    //    //LoadFeedData();
-    //    // FeedManager.FeedNum;
-    //    for(int i = 1; i <= FeedNum; i++)
-    //    {
-    //        string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
+  /*  public void CreateFeedUI()
+    {
+        FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
+        //피드의 정보를 불러오고
+        //LoadFeedData();
+        // FeedManager.FeedNum;
+        for(int i = 1; i <= FeedNum; i++)
+        {
+            string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
-    //        print(FeedNum+"피드개수");
+            print(FeedNum+"피드개수");
 
-    //        string jsonData = File.ReadAllText(path);
+            string jsonData = File.ReadAllText(path);
 
-    //        //피드 아이템을 만들어준다.
-    //        GameObject feed = Instantiate(feedUIFactory, feedListContent);
+            //피드 아이템을 만들어준다.
+            GameObject feed = Instantiate(feedUIFactory, feedListContent);
 
-    //        FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
+            FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
 
-    //        FeedItem feedItem = feed.GetComponent<FeedItem>();
+            FeedItem feedItem = feed.GetComponent<FeedItem>();
             
-    //        feedItem.myfeedNum = info.myfeedNum;
-    //        feedItem.feedText.text = info.feedText;
-    //        feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/" + info.feedtextureNum);
-    //        //feedItem.feedtexture.texture = info.feedtexture;
-    //    }
-    //}
+            feedItem.myfeedNum = info.myfeedNum;
+            feedItem.feedText.text = info.feedText;
+            feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/" + info.feedtextureNum);
+            //feedItem.feedtexture.texture = info.feedtexture;
+        }
+    }*/
 }

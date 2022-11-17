@@ -34,8 +34,6 @@ public class LHY_PlayerItem : MonoBehaviour
     public int Eyelashestype;
     public int Hairtype;
 
-    public bool PlayerSettingLoad = false;
-
     private void Awake()
     {
         instance = this;
@@ -50,37 +48,35 @@ public class LHY_PlayerItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerSettingLoad == false)
-        {
-            for (int i = 0; i < faceType.Length; i++)
-            {
-                faceType[i].SetActive(false);
-            }
-            faceType[FaceType].SetActive(true);
-
-            for (int i = 0; i < eyeBrowsType.Length; i++)
-            {
-                eyeBrowsType[i].SetActive(false);
-            }
-            eyeBrowsType[EyebrowsType].SetActive(true);
-
-            for (int i = 0; i < eyelashesType.Length; i++)
-            {
-                eyelashesType[i].SetActive(false);
-            }
-            eyelashesType[Eyelashestype].SetActive(true);
-
-            for (int i = 0; i < hairType.Length; i++)
-            {
-                hairType[i].SetActive(false);
-            }
-            hairType[Hairtype].SetActive(true);
-            
-            PlayerSettingLoad = true;
-        }
-      
+        OnClickTypeChange();
     }
 
+    public void OnClickTypeChange()
+    {
+        for (int i = 0; i < faceType.Length; i++)
+        {
+            faceType[i].SetActive(false);
+        }
+        faceType[FaceType].SetActive(true);
+
+        for (int i = 0; i < eyeBrowsType.Length; i++)
+        {
+            eyeBrowsType[i].SetActive(false);
+        }
+        eyeBrowsType[EyebrowsType].SetActive(true);
+
+        for (int i = 0; i < eyelashesType.Length; i++)
+        {
+            eyelashesType[i].SetActive(false);
+        }
+        eyelashesType[Eyelashestype].SetActive(true);
+
+        for (int i = 0; i < hairType.Length; i++)
+        {
+            hairType[i].SetActive(false);
+        }
+        hairType[Hairtype].SetActive(true);
+    }
 
     public void OnClickSaveCustomData()
     {
@@ -101,6 +97,4 @@ public class LHY_PlayerItem : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
       
     }
-
-
 }

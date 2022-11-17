@@ -43,7 +43,7 @@ public class LifeingItem : MonoBehaviour
         //갤러리를 연다
         NativeGallery.GetImagesFromGallery((files) =>
         {
-            for (int i = 0; i < files.Length; i++)
+            for(int i = 0; i < files.Length; i++)
             {
                 //List<FileInfo> selectedes = new List<FileInfo(files[i]);
                 FileInfo selectede = new FileInfo(files[i]);
@@ -57,13 +57,13 @@ public class LifeingItem : MonoBehaviour
                 if (!string.IsNullOrEmpty(files[i]))
                 {
                     //불러와라.
-                    StartCoroutine(LoadImage(i, files[i]));
+                    StartCoroutine(LoadImage(i ,files[i]));
                 }
             }
         });
     }
 
-    IEnumerator LoadImage(int i, string path)
+    IEnumerator LoadImage(int i,string path)
     {
         yield return null;
 
@@ -104,7 +104,7 @@ public class LifeingItem : MonoBehaviour
 
         lifeingImageList.Add(lifeingImageInfo);
 
-        // LIfeingData<LifeingImageInfo> lIfeingImagesData = JsonUtility.ToJson<LIfeingData<LifeingImageInfo>>(lifeingImageInfo);
+       // LIfeingData<LifeingImageInfo> lIfeingImagesData = JsonUtility.ToJson<LIfeingData<LifeingImageInfo>>(lifeingImageInfo);
         requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
         print(requester.postData);
 

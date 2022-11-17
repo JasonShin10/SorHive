@@ -19,10 +19,6 @@ public class UserGetInfo
 {
     public string id;
     public int memberCode;
-    public int followingCount;
-    public int followerCount;
-    public int feedCount;
-    
 }
 
 [System.Serializable]
@@ -30,6 +26,7 @@ public class ArrayJsonID<T>
 {
     public List<T> data;
 }
+
 
 public class LoginInfo
 {
@@ -62,10 +59,6 @@ public class UserSetting : MonoBehaviour
 
     public GameObject LoginPage;
     public GameObject SigninPage;
-void Start()
-{
-    PlayerPrefs.DeleteAll();
-}
 
 
 
@@ -104,7 +97,6 @@ void Start()
 
     public void OnClickLogin()
     {
-        
         LoginInfo logdata = new LoginInfo();
         logdata.memberId = logID.text;
         logdata.password = logPassword.text;
@@ -119,8 +111,6 @@ void Start()
         requester.onComplete = OnClickDownload;
 
         HttpManager.instance.SendRequest(requester);
-        HttpManager.instance.userId = logID.text;
-        HttpManager.instance.id = logID.text;
     }
 
 /*    private void OnClickDownload(DownloadHandler handler)

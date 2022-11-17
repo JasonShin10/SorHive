@@ -231,7 +231,7 @@ public class AddManager : MonoBehaviour
     {
         LoginInfo2 logdata = new LoginInfo2();
         //logdata.memberId = "john1230";
-        HttpManager.instance.userId = "john12";
+        HttpManager.instance.userId = "john1230";
         logdata.memberId = HttpManager.instance.id;
         print(HttpManager.instance.id);
         logdata.password = "qwer1234!";
@@ -310,6 +310,7 @@ public class AddManager : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string furnituersData = "{\"furnitures\":" + jsonData["data"]["furnitures"].ToString() + "}";
+        string guestBookData = "{\"guestBookDataList\":" + jsonData["data"]["guestBookDataList"].ToString() + "}";
         //string roomIdData = jsonData["data"]["roomId"].ToObject<int>();
 
         //string data = "{"+ jsonData["data"].ToString() + "}";
@@ -322,26 +323,21 @@ public class AddManager : MonoBehaviour
         //string roomIdData = jsonData["data"]["roomId"].ToObject<int>();
 
         //string data = "{"+ jsonData["data"].ToString() + "}";
+        print(guestBookData);
         //print(roomIdData);
         //HttpManager.instance.roomId = roomIdData;
-        //HttpManager.instance.roomId = objectInfo.
-
-        if(scene.name == "RoomInScene")
-        {
-        string guestBookData = "{\"guestBookDataList\":" + jsonData["data"]["guestBookDataList"].ToString() + "}";
-        print(guestBookData);
         ArrayGuestJson<GuestBookJsonInfo> guestBookInfo = JsonUtility.FromJson<ArrayGuestJson<GuestBookJsonInfo>>(guestBookData);
 
         guestBookJsonInfoList = guestBookInfo.guestBookDataList;
+        //HttpManager.instance.roomId = objectInfo.
+
+
+        //n = objectInfoList.Count;
 
         for (int i = 0; i < guestBookJsonInfoList.Count; i++)
         {
             RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
         }
-        }
-        //n = objectInfoList.Count;
-      
-        
 
         n = objectInfoList.Count;
 
