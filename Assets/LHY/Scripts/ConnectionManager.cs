@@ -15,6 +15,9 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        //PhotonNetwork.AutomaticallySyncScene = true;
+        
+
         ID.onValueChanged.AddListener(OnValueChanged);
         Password.onValueChanged.AddListener(OnPassValueChanged);
     }
@@ -37,18 +40,21 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+
+    
+
     //마스터 서버 접속 성공시 호출(Lobby에 진입 할 수 없는 상태)
     public override void OnConnected()
     {
         base.OnConnected();
-        print("OnConneted");
+        Debug.Log("OnConneted");
     }
 
     //마스터 서버 접속성공시 호출(Lobby에 진입할 수 있는 상태)
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
-        print("OnConnectedToMaster");
+        Debug.Log("OnConnectedToMaster");
 
         //로비 진입
         PhotonNetwork.JoinLobby();
@@ -60,15 +66,20 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnJoinedLobby();
         print("OnJoinedLobby");
         //Lobby씬 으로 이동
-        PhotonNetwork.LoadLevel("CreatCharactorScene");
-       // PhotonNetwork.LoadLevel("MainScenes");
+        //PhotonNetwork.LoadLevel("CreatCharactorScene");
+        PhotonNetwork.LoadLevel("MainScenes");
         //SceneManager.LoadScene("MainScenes");
     }
 
     public void OnclickGoMain()
     {
-        PhotonNetwork.LoadLevel("MainScenes");
+        //PhotonNetwork.LoadLevel("MainScenes");
     }
+
+  /*  public void OnClickConnect()
+    {
+        //PhotonNetwork.ConnectUsingSettings();
+    }*/
 
     void Update()
     {

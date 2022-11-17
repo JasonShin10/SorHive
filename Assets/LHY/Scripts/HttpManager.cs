@@ -8,6 +8,8 @@ public class HttpManager : MonoBehaviour
 {
     public static HttpManager instance;
 
+    public GameObject LoadingCanvas;
+
     private void Awake()
     {
         //만약에 instance가 null이라면
@@ -38,12 +40,11 @@ public class HttpManager : MonoBehaviour
     public string userId;
     public int roomId;
     public string fakeId;
-    public string accessToken;
+
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)
     {
-        
         StartCoroutine(Send(requester));
     }
     IEnumerator Send(HttpRequester requester)
@@ -52,10 +53,11 @@ public class HttpManager : MonoBehaviour
         //WWWForm form = new WWWForm();
         //form.AddField("furnitures", requester.postData);
 
+
+
         UnityWebRequest webRequest = null;
         //UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
-        
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
         {
@@ -69,6 +71,7 @@ public class HttpManager : MonoBehaviour
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
                 webRequest.SetRequestHeader("Content-Type", "application/json");
+                LoadingCanvas.SetActive(true);
                 break;
             case RequestType.GET:
                 //if (img == true)
@@ -83,13 +86,14 @@ public class HttpManager : MonoBehaviour
                 //}
                 //else
                 //{
-                webRequest = UnityWebRequest.Get(requester.url);
-                if (accessToken != null)
-                {
-                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                    
-                    webRequest.SetRequestHeader("Content-Type", "application/json");
-                }
+                    webRequest = UnityWebRequest.Get(requester.url);
+                    if (accessToken != null)
+                    {
+                        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                        webRequest.SetRequestHeader("Content-Type", "application/json");
+                    }
+                LoadingCanvas.SetActive(true);
                 //}
                 break;
             case RequestType.PUT:
@@ -130,34 +134,27 @@ public class HttpManager : MonoBehaviour
         //}
         //else
         //{
-        if (webRequest.result == UnityWebRequest.Result.Success)
-        {
-            print(webRequest.downloadHandler.text);
-
-            //완료되었다고 requester.onComplete를 실행
-            if (requester.onComplete != null)
+            if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                requester.onComplete(webRequest.downloadHandler);
+                LoadingCanvas.SetActive(false);
+                print(webRequest.downloadHandler.text);
+
+                //완료되었다고 requester.onComplete를 실행
+                if (requester.onComplete != null)
+                {
+                    requester.onComplete(webRequest.downloadHandler);
+                }
             }
-        }
-        else
-        {
-            //서버통신 실패....ㅠ
-            print("통신 실패" + webRequest.result + "\n" + webRequest.error);
-        }
+            else
+            {
+                LoadingCanvas.SetActive(false);
+                //서버통신 실패....ㅠ
+                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+            }
         //}
         //그렇지않다면
         yield return null;
 
         webRequest.Dispose();
     }
-
-    void Update()
-    {
-        //print(HttpManager.instance.memberCode);
-       // print(HttpManager.instance.id);
-        //print(HttpManager.instance.userId);
-    }
-
-  
 }
