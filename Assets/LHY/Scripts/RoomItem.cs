@@ -6,18 +6,16 @@ using UnityEngine.Networking;
 
 public class RoomItem : MonoBehaviour
 {
+
     public RawImage roomImage;
     public RawImage avatarImage;
     public Text nickNameText;
     public RawImage ProfileImage;
     public int memberCode;
-    public string roomImgPath;
-    public string avatarImgPath;
-
-    public Text roomInfo;
 
     void Start()
     {
+
     }
 
     void Update()
@@ -33,31 +31,28 @@ public class RoomItem : MonoBehaviour
     public void WarpButtonClick()
     {
         // 네트워크 단계
-        // StartCoroutine(WarpGetTextureR(roomImage, avatarImage));
-        WarpManager.instance.loadRoom(memberCode);
+        print(memberCode);
+        GameObject.Find("Hex").GetComponent<WarpManager>().loadRoom(memberCode);
         // 이미지, 코드 설정 완료 후 작용 단계
     }
 
-    // public IEnumerator WarpGetTextureR(RawImage roomImage, RawImage avatarImage)
-    // {
-    //     //lifeingRoomItem.roomImage = friendList[i].roomImage
-    //     var urlR = roomImgPath;
-    //     var urlA = avatarImgPath;
-    //     UnityWebRequest wwwR = UnityWebRequestTexture.GetTexture(urlR);
-    //     yield return wwwR.SendWebRequest();
+    public void UpdateRoom(string roomPath)
+    {
+        StartCoroutine(DownloadRoomImg(roomPath));
+    }
 
-    //     UnityWebRequest wwwA = UnityWebRequestTexture.GetTexture(urlA);
-    //     yield return wwwA.SendWebRequest();
-
-    //     if (wwwR.result != UnityWebRequest.Result.Success)
-    //         Debug.Log(wwwR.error);
-    //     else
-    //         roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
-
-    //     if (wwwA.result != UnityWebRequest.Result.Success)
-    //         Debug.Log(wwwA.error);
-    //     else
-    //         avatarImage.texture = ((DownloadHandlerTexture)wwwA.downloadHandler).texture;
-    // }
+    private IEnumerator DownloadRoomImg(string roomPath)
+    {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(roomPath);
+        yield return www.SendWebRequest();
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            GetComponent<RawImage>().texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        }
+    }
 
 }

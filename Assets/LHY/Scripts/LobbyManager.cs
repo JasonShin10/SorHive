@@ -33,7 +33,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     void Start()
     {
         //roomCache["a"];
-        CreateFeedUI();
+        //CreateFeedUI();
        
 
     }
@@ -165,31 +165,31 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
 
 
-    public void CreateFeedUI()
-    {
-        FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
-        //피드의 정보를 불러오고
-        //LoadFeedData();
-        // FeedManager.FeedNum;
-        for(int i = 1; i <= FeedNum; i++)
-        {
-            string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
+    //public void CreateFeedUI()
+    //{
+    //    FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
+    //    //피드의 정보를 불러오고
+    //    //LoadFeedData();
+    //    // FeedManager.FeedNum;
+    //    for(int i = 1; i <= FeedNum; i++)
+    //    {
+    //        string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
-            print(FeedNum+"피드개수");
+    //        print(FeedNum+"피드개수");
 
-            string jsonData = File.ReadAllText(path);
+    //        string jsonData = File.ReadAllText(path);
 
-            //피드 아이템을 만들어준다.
-            GameObject feed = Instantiate(feedUIFactory, feedListContent);
+    //        //피드 아이템을 만들어준다.
+    //        GameObject feed = Instantiate(feedUIFactory, feedListContent);
 
-            FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
+    //        FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
 
-            FeedItem feedItem = feed.GetComponent<FeedItem>();
+    //        FeedItem feedItem = feed.GetComponent<FeedItem>();
             
-            feedItem.myfeedNum = info.myfeedNum;
-            feedItem.feedText.text = info.feedText;
-            feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/" + info.feedtextureNum);
-            //feedItem.feedtexture.texture = info.feedtexture;
-        }
-    }
+    //        feedItem.myfeedNum = info.myfeedNum;
+    //        feedItem.feedText.text = info.feedText;
+    //        feedItem.feedtexture.texture = Resources.Load<Texture>("01.Pictures/" + info.feedtextureNum);
+    //        //feedItem.feedtexture.texture = info.feedtexture;
+    //    }
+    //}
 }
