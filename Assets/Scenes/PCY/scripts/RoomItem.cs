@@ -6,11 +6,6 @@ using UnityEngine.Networking;
 
 public class RoomItem : MonoBehaviour
 {
-
-    public RawImage roomImage;
-    public RawImage avatarImage;
-    public Text nickNameText;
-    public RawImage ProfileImage;
     public int memberCode;
 
     void Start()

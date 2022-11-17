@@ -167,7 +167,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: bee_3012
+  m_Text: default
 --- !u!1 &1505439628908275734
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,25 +291,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: OnClickButton
+      - m_Target: {fileID: 471672837821835912}
+        m_TargetAssemblyTypeName: RoomItem, Assembly-CSharp
+        m_MethodName: WarpButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -340,10 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e6c806c208088469181bf66ebaad3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 1505439629294333507}
-  avatarImage: {fileID: 0}
-  nickNameText: {fileID: 1505439628364985370}
-  ProfileImage: {fileID: 3647322996506924135}
   memberCode: 0
 --- !u!1 &1505439629294333511
 GameObject:
@@ -483,15 +467,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505439629294333511}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00e6c806c208088469181bf66ebaad3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomImage: {fileID: 1505439629294333507}
-  avatarImage: {fileID: 1505439629559406825}
-  nickNameText: {fileID: 1505439628364985370}
-  ProfileImage: {fileID: 3647322996506924135}
   memberCode: 0
 --- !u!1 &1505439629559406827
 GameObject:
