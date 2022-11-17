@@ -15,6 +15,8 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        OnCilckConnect();
+
         ID.onValueChanged.AddListener(OnValueChanged);
         Password.onValueChanged.AddListener(OnPassValueChanged);
     }
@@ -50,25 +52,28 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnConnectedToMaster();
         print("OnConnectedToMaster");
 
-        //로비 진입
-        PhotonNetwork.JoinLobby();
+       
     }
 
     //로비진입 성공시 호출
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
+
+        //로비 진입
+        PhotonNetwork.JoinLobby();
+
         print("OnJoinedLobby");
         //Lobby씬 으로 이동
-        PhotonNetwork.LoadLevel("CreatCharactorScene");
+        PhotonNetwork.LoadLevel("MainScenes");
        // PhotonNetwork.LoadLevel("MainScenes");
         //SceneManager.LoadScene("MainScenes");
     }
 
-    public void OnclickGoMain()
+  /*  public void OnclickGoMain()
     {
         PhotonNetwork.LoadLevel("MainScenes");
-    }
+    }*/
 
     void Update()
     {
