@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
-public class LHY_PlayerMove : MonoBehaviour
+public class LHY_PlayerMove : MonoBehaviourPun, IPunObservable
 {
     public float speed = 5;
 
@@ -12,6 +13,7 @@ public class LHY_PlayerMove : MonoBehaviour
     public CharacterController cc;
 
     public bool buttonClicked = false;
+
     #region jump
     //플레이어가 점프 버튼을 눌렀는지 확인하는 변수를 선언한다.
     public bool isjump = false;
@@ -27,6 +29,16 @@ public class LHY_PlayerMove : MonoBehaviour
     float yVelocity = 0;
     #endregion
 
+    public PhotonView pv;
+
+    //도착 위치
+    Vector3 receivePos;
+    //회전되야 하는 값
+    Quaternion receiveRot;
+
+    public float lerpSpeed = 100;
+
+
 
     private void Awake()
     {
@@ -37,15 +49,30 @@ public class LHY_PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        pv = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveJump();
-        P_jump();
-        
+        if (photonView.IsMine == true)
+        {
+            MoveJump();
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, receivePos, lerpSpeed * Time.deltaTime);
+            //transform.rotation = Quaternion.Lerp(transform.rotation, receiveRot, lerpSpeed * Time.deltaTime);
+        }
+     
+
+      
+        //P_jump();
+
+        //MoveUpdate();
+
+
+
 
     }
 
@@ -144,5 +171,22 @@ public class LHY_PlayerMove : MonoBehaviour
     {
         buttonClicked = true;
         
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        //데이터 보내기
+        if(stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+
+        //데이터 받기
+        else if(stream.IsReading)
+        {
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
+        }
     }
 }

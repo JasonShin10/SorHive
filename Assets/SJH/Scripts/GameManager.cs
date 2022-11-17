@@ -1,9 +1,14 @@
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
+
+    public Transform setPlayer;
+
+    public Quaternion quaternion;
 
 
     private void Awake()
@@ -19,7 +24,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        PhotonNetwork.SerializationRate = 60;
+
+        PhotonNetwork.SendRate = 60;
+
+        PhotonNetwork.Instantiate("PLayer", setPlayer.transform.position, quaternion);
     }
 
     // Update is called once per frame
@@ -27,6 +36,12 @@ public class GameManager : MonoBehaviour
     {
         //Select();
        
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        print(newPlayer.NickName + "이 방에 참여했따!!!");
     }
 
     //public void Select()
