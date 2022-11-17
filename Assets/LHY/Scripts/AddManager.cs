@@ -85,6 +85,11 @@ public class RoomValue
 {
     public int value;
 }
+[System.Serializable]
+public class RoomImage
+{
+    public string memberRoomImage;
+}
 #endregion
 
 public class AddManager : MonoBehaviour

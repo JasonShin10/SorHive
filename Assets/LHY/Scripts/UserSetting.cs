@@ -121,6 +121,7 @@ void Start()
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
+        
     }
 
 /*    private void OnClickDownload(DownloadHandler handler)
@@ -137,8 +138,10 @@ void Start()
     {
         JObject json = JObject.Parse(handler.text);
         string token = json["data"]["accessToken"].ToString();
+        int memberCode = json["data"]["memberCode"].ToObject<int>();
+        HttpManager.instance.memberCode = memberCode;
         print("postTokenData"+ token);
-
+        
         PlayerPrefs.SetString("token", token);
         //PlayerPrefs.SetString("memberId",)
         print("조회 완료");

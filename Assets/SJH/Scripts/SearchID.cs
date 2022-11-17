@@ -18,7 +18,7 @@ public class SearchID : MonoBehaviour
     public GameObject IDFactory;
     public GameObject myPage;
     public Button myPageButton;
-    public RawImage img;
+    public RawImage Img;
     public Text following;
     public Text follower;
     public Text feedNum;
@@ -26,11 +26,12 @@ public class SearchID : MonoBehaviour
     //public Text search;
     public UserInfo userInfo;
     public string id;
+    public string roomImgString;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
     public UserGetInfo userGetInfo;
-
+    public RoomImage img;
     //public GameObject ContentHolder;
 
     //public GameObject[] Element;
@@ -50,7 +51,7 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         GetThree();
-        //GetRoomImage();
+        GetRoomImage();
         GetFollower();
         GetRoomAll();
     }
@@ -115,39 +116,33 @@ public class SearchID : MonoBehaviour
     {
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/random";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/" + HttpManager.instance.memberCode;
         requester.requestType = RequestType.GET;
-        //requester.onImgComplete = OnCompleteGetRoomImage;
+        requester.onComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
 
     }
-    public void OnCompleteGetRoomImage(DownloadHandlerTexture handler)
+    public void OnCompleteGetRoomImage(DownloadHandler handler)
     {
-        print(2);
-        img.GetComponent<RawImage>().texture = handler.texture;
-        //sHandler = handler.text;
-        print(sHandler);
-        HttpManager.instance.img = false;
-        //JObject jsonData = JObject.Parse(sHandler);
-
-        ////JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
-
-        ////for(int i = 0; i < jarry.Count; i++)
-        ////{
-        ////    ObjectInfo info = new ObjectInfo();
-
-        ////    info.wallNumber = jarry[i]["wallNumber"].ToObject<int>();
-
-        ////    objectInfoList.Add(info);
-        ////}
-
-        ////int status = jsonData["status"].ToObject<int>();
-        //string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
-
-        //print("조회완료");
-
+        JObject jsonData = JObject.Parse(handler.text);
+        string userData = jsonData["data"]["memberRoomImage"].ToString();
+        //RoomImage roomImg = JsonUtility.FromJson<RoomImage>(userData);
+        roomImgString = userData;
+        //StartCoroutine(GetTextureR(Img));
     }
+    IEnumerator GetTextureR(RawImage roomImage)
+    {
+        //lifeingRoomItem.roomImage = friendList[i].roomImage
+        var urlR = roomImgString;        
 
+        UnityWebRequest wwwR = UnityWebRequestTexture.GetTexture(urlR);
+        yield return wwwR.SendWebRequest();       
+
+        if (wwwR.result != UnityWebRequest.Result.Success)
+            Debug.Log(wwwR.error);
+        else
+            roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+    }
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
@@ -410,4 +405,8 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.id = HttpManager.instance.userId;
     }
 
+    public void OnClickRoomImage()
+    {
+        StartCoroutine(GetTextureR(Img));
+    }
 }
