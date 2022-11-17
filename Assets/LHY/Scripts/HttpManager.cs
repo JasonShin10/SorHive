@@ -8,8 +8,6 @@ public class HttpManager : MonoBehaviour
 {
     public static HttpManager instance;
 
-    public GameObject LoadingCanvas;
-
     private void Awake()
     {
         //만약에 instance가 null이라면
@@ -40,11 +38,12 @@ public class HttpManager : MonoBehaviour
     public string userId;
     public int roomId;
     public string fakeId;
-
+    public string accessToken;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)
     {
+        
         StartCoroutine(Send(requester));
     }
     IEnumerator Send(HttpRequester requester)
@@ -53,11 +52,10 @@ public class HttpManager : MonoBehaviour
         //WWWForm form = new WWWForm();
         //form.AddField("furnitures", requester.postData);
 
-
-
         UnityWebRequest webRequest = null;
         //UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
+        
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
         {
@@ -71,7 +69,6 @@ public class HttpManager : MonoBehaviour
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
                 webRequest.SetRequestHeader("Content-Type", "application/json");
-                LoadingCanvas.SetActive(true);
                 break;
             case RequestType.GET:
                 //if (img == true)
@@ -86,14 +83,13 @@ public class HttpManager : MonoBehaviour
                 //}
                 //else
                 //{
-                    webRequest = UnityWebRequest.Get(requester.url);
-                    if (accessToken != null)
-                    {
-                        webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-
-                        webRequest.SetRequestHeader("Content-Type", "application/json");
-                    }
-                LoadingCanvas.SetActive(true);
+                webRequest = UnityWebRequest.Get(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                    
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
                 //}
                 break;
             case RequestType.PUT:
@@ -134,27 +130,100 @@ public class HttpManager : MonoBehaviour
         //}
         //else
         //{
-            if (webRequest.result == UnityWebRequest.Result.Success)
-            {
-                LoadingCanvas.SetActive(false);
-                print(webRequest.downloadHandler.text);
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            print(webRequest.downloadHandler.text);
 
-                //완료되었다고 requester.onComplete를 실행
-                if (requester.onComplete != null)
-                {
-                    requester.onComplete(webRequest.downloadHandler);
-                }
-            }
-            else
+            //완료되었다고 requester.onComplete를 실행
+            if (requester.onComplete != null)
             {
-                LoadingCanvas.SetActive(false);
-                //서버통신 실패....ㅠ
-                print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+                requester.onComplete(webRequest.downloadHandler);
             }
+        }
+        else
+        {
+            //서버통신 실패....ㅠ
+            print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+        }
         //}
         //그렇지않다면
         yield return null;
 
         webRequest.Dispose();
     }
+
+    public IEnumerator SendWarp(HttpRequester requester, int centerMemberCode)
+    {
+        print("send");
+
+        UnityWebRequest webRequest = null;
+
+        string accessToken = PlayerPrefs.GetString("token");
+        print(accessToken);
+        switch (requester.requestType)
+        {
+            case RequestType.POST:
+                print("post");
+                webRequest = UnityWebRequest.Post(requester.url, requester.postData);
+                byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler = new UploadHandlerRaw(data);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+                break;
+            case RequestType.GET:
+                print("get");
+                webRequest = UnityWebRequest.Get(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
+                break;
+            case RequestType.PUT:
+                print("put");
+                webRequest = UnityWebRequest.Put(requester.url, requester.putData);
+                byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                webRequest.uploadHandler = new UploadHandlerRaw(pdata);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+                break;
+            case RequestType.DELETE:
+                webRequest = UnityWebRequest.Delete(requester.url);
+                break;
+        }
+
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            print("네트워크 통신 성공");
+            print(webRequest.downloadHandler.text);
+
+            if (requester.onComplete != null)
+            {
+                print("onComplete실행");
+                requester.onComplete(webRequest.downloadHandler);
+            }
+        }
+        else
+        {
+            print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
+        }
+        webRequest.Dispose();
+        print("webRequest끝 reload시작");
+        StartCoroutine(WarpManager.instance.DownloadImg());
+        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
+        WarpManager.instance.reloadRoom(centerMemberCode);
+    }
+
+    void Update()
+    {
+        //print(HttpManager.instance.memberCode);
+       // print(HttpManager.instance.id);
+        //print(HttpManager.instance.userId);
+    }
+
+  
 }
