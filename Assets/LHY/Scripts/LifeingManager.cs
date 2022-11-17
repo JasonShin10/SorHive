@@ -108,7 +108,6 @@ public class LifeingManager : MonoBehaviour
                         isUpLoad = false;
                     }
                 }*/
-
     }
 
 

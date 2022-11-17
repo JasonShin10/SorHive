@@ -26,6 +26,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public GameObject feedUIFactory;
 
+    public bool creat = false;
+
     private void Awake()
     {
         instence = this;
@@ -34,14 +36,26 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //roomCache["a"];
         //CreateFeedUI();
-        CreateRoom();
+        creat = true;
         //JoinRoom();
 
     }
 
     void Update()
     {
-       
+        if(userName.text != null)
+        {
+            creat = false;
+
+            if (creat == false)
+            {
+                CreateRoom();
+                creat = true;
+            }
+        }
+
+      
+        
     }
 
     //public string[] curUsersNames;
@@ -59,6 +73,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //방 생성 요청(해당 옵션을 이용해서)
         //PhotonNetwork.CreateRoom (userName.text, roomOptions);
 
+        //PhotonNetwork.CreateRoom(userName.text, roomOptions);
         PhotonNetwork.CreateRoom("AAA", roomOptions);
     }
 
@@ -81,6 +96,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     //방 참가
     public void JoinRoom()
     {
+        //PhotonNetwork.JoinRoom(userName.text); 
         PhotonNetwork.JoinRoom("AAA");
     }
 
