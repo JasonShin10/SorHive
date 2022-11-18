@@ -32,6 +32,7 @@ public class LHY_PlayerMove : MonoBehaviourPun, IPunObservable
     public PhotonView pv;
 
     //도착 위치
+    [SerializeField]
     Vector3 receivePos;
     //회전되야 하는 값
     Quaternion receiveRot;
@@ -185,7 +186,7 @@ public class LHY_PlayerMove : MonoBehaviourPun, IPunObservable
         //데이터 받기
         else if(stream.IsReading)
         {
-            transform.position = (Vector3)stream.ReceiveNext();
+            receivePos = (Vector3)stream.ReceiveNext();
             transform.rotation = (Quaternion)stream.ReceiveNext();
         }
     }

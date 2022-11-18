@@ -401,6 +401,7 @@ MonoBehaviour:
   JumpPow: 3.5
   Gravity: 10
   pv: {fileID: 0}
+  receivePos: {x: 0, y: 0, z: 0}
   lerpSpeed: 100
 --- !u!114 &8445532267099512190
 MonoBehaviour:
@@ -460,7 +461,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 8445532267099512134}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
