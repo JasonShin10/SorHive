@@ -43,7 +43,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if(userName.text != null)
+      
+        
+    }
+
+    public void OnClickRoomIn()
+    {
+        if (userName.text != null)
         {
             creat = false;
 
@@ -54,8 +60,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             }
         }
 
-      
-        
     }
 
     //public string[] curUsersNames;
@@ -116,14 +120,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //JoinRoom();
     }
 
-    public void OnClickRoomIn()
+    /*public void OnClickRoomIn()
     {
         //myRoom = 1;
 
         //PhotonNetwork.LoadLevel("RoomInScene");
         //SceneManager.LoadScene("RoomInScene");
    
-    }
+    }*/
 
     //방 참가가 완료되었을때 호출되는 함수
     public override void OnJoinedRoom()
