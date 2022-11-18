@@ -50,19 +50,19 @@ public class LifeingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetMambersList();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (HttpManager.instance.secondId == true)
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             GetMambersList();
-            
-            userSetting = true;
         }
-        if (isUpLoad == true && userSetting == true)
+
+      
+        if (isUpLoad == true)
         {
             for (int i = 0; i < friendList.Count; i++)
             {

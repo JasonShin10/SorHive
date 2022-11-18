@@ -5260,6 +5260,7 @@ MonoBehaviour:
   fakeId: 
   accessToken: 
   firstId: 0
+  secondId: 0
 --- !u!4 &408994556
 Transform:
   m_ObjectHideFlags: 0
@@ -19679,7 +19680,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651319035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
@@ -19689,6 +19690,7 @@ MonoBehaviour:
   llifeingItemFactory: {fileID: 0}
   roomId: {fileID: 0}
   isUpLoad: 1
+  userSetting: 0
 --- !u!114 &1651319040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25805,6 +25807,7 @@ MonoBehaviour:
   llifeingItemFactory: {fileID: 80758513339916642, guid: c6629baacf05e8845abc95438f141e15, type: 3}
   roomId: {fileID: 17623654}
   isUpLoad: 1
+  userSetting: 0
 --- !u!1 &2007666816
 GameObject:
   m_ObjectHideFlags: 0

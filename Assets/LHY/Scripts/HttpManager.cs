@@ -110,7 +110,7 @@ public class HttpManager : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             LoadingCanvas.SetActive(false);
-            print(webRequest.downloadHandler.text);
+            print(requester.requestName + ":" + webRequest.downloadHandler.text);
 
             //완료되었다고 requester.onComplete를 실행
             if (requester.onComplete != null)

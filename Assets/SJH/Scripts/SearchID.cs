@@ -56,6 +56,9 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         //GetFollower();
+        GetThree();
+        GetRoomImage();
+        GetRoomAll();
     }
     public void StartGet()
     {
@@ -66,11 +69,11 @@ public class SearchID : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HttpManager.instance.firstId == true)
-        {
-            StartGet();
-            HttpManager.instance.firstId = false;
-        }
+        //if(HttpManager.instance.firstId == true)
+        //{
+        //    StartGet();
+        //    HttpManager.instance.firstId = false;
+        //}
         //print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
         if(HttpManager.instance.id == HttpManager.instance.userId)
@@ -202,10 +205,10 @@ public class SearchID : MonoBehaviour
     public void GetRoomAll()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/id/j";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/search/j";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
-        requester.requestName = "GetMambersList";
+        requester.requestName = "GetRoomAll";
         HttpManager.instance.SendRequest(requester);
     }
     string sHandler;
@@ -407,7 +410,7 @@ public class SearchID : MonoBehaviour
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
-        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
+        followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
         userInfoList = userInfo.followerData;
 
         print(userInfo);

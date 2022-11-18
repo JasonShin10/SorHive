@@ -34,13 +34,13 @@ public class LifeingRoomItem : MonoBehaviour
         StartCoroutine(GetTextureR(roomImage, avatarImage));
         ProfileImage.texture = roomImage.texture;
 
-        if(lifingYn == "N")
+        if (lifingYn == "N")
         {
             return;
         }
         else if (lifingYn == "Y")
         {
-            var temp = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo +".png");
+            var temp = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo + ".png");
 
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(temp);
