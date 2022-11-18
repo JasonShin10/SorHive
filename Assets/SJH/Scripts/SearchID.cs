@@ -13,16 +13,19 @@ public class SearchID : MonoBehaviour
 {
     
     public Transform ContentHolder;
+    public Transform FollowingContentHolder;
     public GameObject[] Element;
     public GameObject SearchBar;
     public GameObject IDFactory;
     public GameObject myPage;
+    public Button deleteFollowing;
     public Button myPageButton;
     public RawImage Img;
     public Text following;
     public Text follower;
     public Text feedNum;
     public int totalElements;
+    public int followId;
     //public Text search;
     public UserInfo userInfo;
     public string id;
@@ -32,6 +35,8 @@ public class SearchID : MonoBehaviour
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
     public UserGetInfo userGetInfo;
     public RoomImage img;
+    public GameObject followingList;
+    
     //public GameObject ContentHolder;
 
     //public GameObject[] Element;
@@ -52,7 +57,7 @@ public class SearchID : MonoBehaviour
         //OnClickLogin();
         GetThree();
         GetRoomImage();
-        GetFollower();
+        //GetFollower();
         GetRoomAll();
     }
 
@@ -143,39 +148,7 @@ public class SearchID : MonoBehaviour
         else
             roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
     }
-    public void GetFollower()
-    {
-        HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follower";
-        requester.requestType = RequestType.GET;
-        requester.onComplete = OnCompleteGetFollower;
-        HttpManager.instance.SendRequest(requester);
-    }
-    public void OnCompleteGetFollower(DownloadHandler handler)
-    {
-        print(2);
-        sHandler = handler.text;
-        print(sHandler);
-        JObject jsonData = JObject.Parse(sHandler);
-
-        //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
-
-        //for(int i = 0; i < jarry.Count; i++)
-        //{
-        //    ObjectInfo info = new ObjectInfo();
-
-        //    info.wallNumber = jarry[i]["wallNumber"].ToObject<int>();
-
-        //    objectInfoList.Add(info);
-        //}
-
-        //int status = jsonData["status"].ToObject<int>();
-        
-        string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
-
-        print("조회완료");
-
-    }
+    
 
     public void GetThree()
     {
@@ -249,7 +222,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i]);
+            CreateObject(userInfoList[i],ContentHolder);
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -261,12 +234,12 @@ public class SearchID : MonoBehaviour
         }
         print("조회완료");
     }
-    public void CreateObject(UserGetInfo info)
+    public void CreateObject(UserGetInfo info ,Transform Content)
     {
         //search.text = info.id;
-        GameObject idImage = Instantiate(IDFactory, ContentHolder);
+        GameObject idImage = Instantiate(IDFactory, Content);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
-        idImageItem.id.text = info.id;
+        idImageItem.id.text = info.memberId;
         
         idImageItem.memberCode.text =info.memberCode.ToString();
         //memberCode = info.memberCode;
@@ -334,7 +307,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i]);
+            CreateObject(userInfoList[i], ContentHolder);
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -361,7 +334,22 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
+    }
 
+    public void OnClickFollowingVisit()
+    {
+        deleteFollowing.onClick.Invoke();
+        //myPage.transform.GetChild(2).gameObject.SetActive(false);
+        //myPage.transform.GetChild(8).gameObject.SetActive(true);
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        print(clickObject.GetComponentInChildren<Text>().text);
+        //id = clickObject.GetComponentInChildren<Text>().text;
+        id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
+        memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+
+        HttpManager.instance.id = id;
+        HttpManager.instance.fakeId = id;
+        HttpManager.instance.memberCode = memberCode;
     }
 
     public void OnClickFollowing()
@@ -387,6 +375,79 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
     }
 
+    public void GetFollowing()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/following";
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetFollowing;
+        HttpManager.instance.SendRequest(requester);
+    }
+
+    public void OnCompleteGetFollowing(DownloadHandler handler)
+    {
+
+        sHandler = handler.text;
+        
+        JObject jsonData = JObject.Parse(sHandler);
+        string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
+        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
+        ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
+        userInfoList = userInfo.followerData;
+
+        print(userInfo);
+        for (int i = 0; i < userInfoList.Count; i++)
+        {
+            CreateObject(userInfoList[i], FollowingContentHolder);
+        }
+        totalElements = FollowingContentHolder.childCount;
+        Element = new GameObject[totalElements];
+
+        for (int i = 0; i < totalElements; i++)
+        {
+            Element[i] = FollowingContentHolder.GetChild(i).gameObject;
+            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickFollowingVisit);
+            FollowingContentHolder.GetChild(i).gameObject.SetActive(true);
+        }
+
+        print("조회완료");
+    }
+    public void GetFollower()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/follower";
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetFollower;
+        HttpManager.instance.SendRequest(requester);
+    }
+    public void OnCompleteGetFollower(DownloadHandler handler)
+    {
+        sHandler = handler.text;
+
+        JObject jsonData = JObject.Parse(sHandler);
+        string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
+        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
+        ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
+        
+        userInfoList = userInfo.followerData;
+        
+        print(userInfo);
+        for (int i = 0; i < userInfoList.Count; i++)
+        {
+            CreateObject(userInfoList[i], FollowingContentHolder);
+        }
+        totalElements = FollowingContentHolder.childCount;
+        Element = new GameObject[totalElements];
+
+        for (int i = 0; i < totalElements; i++)
+        {
+            Element[i] = FollowingContentHolder.GetChild(i).gameObject;
+            FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickFollowingVisit);
+            FollowingContentHolder.GetChild(i).gameObject.SetActive(true);
+        }
+        print("조회완료");
+    }
+
     public void OnCompleteSignIn(DownloadHandler handler)
     {
         print(handler);
@@ -403,10 +464,26 @@ public class SearchID : MonoBehaviour
     public void OnClickIdReset()
     {
         HttpManager.instance.id = HttpManager.instance.userId;
+        followingList.SetActive(false);
     }
 
     public void OnClickRoomImage()
     {
         StartCoroutine(GetTextureR(Img));
     }
+
+    public void OnClickFollowingList()
+    {
+        followingList.SetActive(true);
+    }
+
+    public void OnclickDeleteFollowing()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/follower/ +  ";
+        requester.requestType = RequestType.DELETE;
+        requester.onComplete = OnCompleteGetFollower;
+        HttpManager.instance.SendRequest(requester);
+    }
+   
 }

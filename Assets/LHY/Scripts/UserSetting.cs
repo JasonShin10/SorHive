@@ -18,6 +18,8 @@ public class UserInfo
 public class UserGetInfo
 {
     public string id;
+    public string memberId;
+    public int followId;
     public int memberCode;
     public int followingCount;
     public int followerCount;
@@ -29,6 +31,8 @@ public class UserGetInfo
 public class ArrayJsonID<T>
 {
     public List<T> data;
+    public List<T> followerData;
+    public List<T> followingData;
 }
 
 public class LoginInfo
