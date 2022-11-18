@@ -59,7 +59,7 @@ public class LifeingManager : MonoBehaviour
         if (HttpManager.instance.secondId == true)
         {
             GetMambersList();
-            HttpManager.instance.secondId = false;
+            
             userSetting = true;
         }
         if (isUpLoad == true && userSetting == true)
@@ -109,6 +109,7 @@ public class LifeingManager : MonoBehaviour
         requester.requestName = "GetMambersList";
 
         HttpManager.instance.SendRequest(requester);
+        HttpManager.instance.secondId = false;
     }
 
     public void OnCompleteGetPostAll(DownloadHandler handler)
@@ -120,7 +121,6 @@ public class LifeingManager : MonoBehaviour
 
         LIfeingData<LifeingItemInfo> lIfeingInfo = JsonUtility.FromJson<LIfeingData<LifeingItemInfo>>(lifingsData);
         friendList = lIfeingInfo.userData;
-       
 
 
         //print("¡¶¿ÃΩºø°º≠ ø»" + jsonData);
