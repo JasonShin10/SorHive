@@ -197,6 +197,7 @@ public class SearchID : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/member/id/j";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
+        requester.requestName = "GetMambersList";
         HttpManager.instance.SendRequest(requester);
     }
     string sHandler;
@@ -397,8 +398,8 @@ public class SearchID : MonoBehaviour
         
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
-        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
+        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
         userInfoList = userInfo.followerData;
 
         print(userInfo);

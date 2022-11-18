@@ -84,6 +84,7 @@ void Start()
         //url °æ·Î
         requester.url = "http://52.79.209.232:8080/api/v1/auth/signup";
         requester.requestType = RequestType.POST;
+
         print("test");
 
         requester.postData = JsonUtility.ToJson(userdata, true);
