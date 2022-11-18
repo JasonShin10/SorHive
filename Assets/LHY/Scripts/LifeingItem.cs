@@ -80,7 +80,7 @@ public class LifeingItem : MonoBehaviour
 
         byte[] fileData = File.ReadAllBytes(path);
         string filename = Path.GetFileName(path).Split('.')[0];
-        string savePath = Application.persistentDataPath + "/avatarImage";
+        string savePath = Application.persistentDataPath + "/lifeingImages";
 
         if (!Directory.Exists(savePath))
         {

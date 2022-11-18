@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/AlphaScene/CreatCharactorScene.unity
     guid: 1a3921b18d7cb1649839b639bce999f3
   - enabled: 1
-    path: Assets/Scenes/LHY/MainScenes.unity
-    guid: a41ed15f954d0a54fa41eb51c46a62db
-  - enabled: 1
     path: Assets/Scenes/Main/AlphaScene/FeedUpLoadScene.unity
     guid: 454d178378e97b344a3b051c7907c034
+  - enabled: 1
+    path: Assets/Scenes/Main/AlphaScene/MainScenes.unity
+    guid: 11fc0d660db86af408623f0c7f9cd7ce
   - enabled: 1
     path: Assets/Scenes/Main/AlphaScene/WarpScene.unity
     guid: 93380bc9cd2f0e24c9e059b61a3611f7

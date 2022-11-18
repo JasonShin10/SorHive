@@ -85,7 +85,7 @@ public class LHY_PlayerItem : MonoBehaviour
         playerdata.eyeBrowsType = EyebrowsType;
         playerdata.eyeType = Eyelashestype;
         playerdata.hairType = Hairtype;
-        playerdata.memberAvatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/AvatarImage/avatar0.png");
+        playerdata.memberAvatarImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/AvatarImage/avatar0.png");
 
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/avatar/create";
