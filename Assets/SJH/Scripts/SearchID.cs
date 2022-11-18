@@ -56,6 +56,8 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         //GetFollower();
+        memberCode = HttpManager.instance.memberCode;
+        print(memberCode);
         GetThree();
         GetRoomImage();
         GetRoomAll();
@@ -133,7 +135,7 @@ public class SearchID : MonoBehaviour
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
         print(HttpManager.instance.memberCode);
-        requester.url = "http://52.79.209.232:8080/api/v1/member/" + HttpManager.instance.memberCode;
+        requester.url = "http://52.79.209.232:8080/api/v1/member/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
@@ -165,8 +167,9 @@ public class SearchID : MonoBehaviour
     public void GetThree()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/mypage";
-        requester.requestName = "OnSaveSignIn";
+        print(memberCode);
+        requester.url = "http://52.79.209.232:8080/api/v1/member/" + memberCode;
+        
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetThree;
         HttpManager.instance.SendRequest(requester);
@@ -237,7 +240,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i],ContentHolder);
+            CreateObject(userInfoList[i],ContentHolder, userInfoList[i].id);
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -249,12 +252,12 @@ public class SearchID : MonoBehaviour
         }
         print("조회완료");
     }
-    public void CreateObject(UserGetInfo info ,Transform Content)
+    public void CreateObject(UserGetInfo info ,Transform Content, string id)
     {
         //search.text = info.id;
         GameObject idImage = Instantiate(IDFactory, Content);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
-        idImageItem.id.text = info.memberId;
+        idImageItem.id.text = id;
         
         idImageItem.memberCode.text =info.memberCode.ToString();
         //memberCode = info.memberCode;
@@ -323,7 +326,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i], ContentHolder);
+            CreateObject(userInfoList[i], ContentHolder, userInfoList[i].id);
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -346,6 +349,7 @@ public class SearchID : MonoBehaviour
         //id = clickObject.GetComponentInChildren<Text>().text;
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        GetThree();
         
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
@@ -354,7 +358,7 @@ public class SearchID : MonoBehaviour
 
     public void OnClickFollowingVisit()
     {
-        deleteFollowing.onClick.Invoke();
+        myPageButton.onClick.Invoke();
         //myPage.transform.GetChild(2).gameObject.SetActive(false);
         //myPage.transform.GetChild(8).gameObject.SetActive(true);
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
@@ -362,6 +366,7 @@ public class SearchID : MonoBehaviour
         //id = clickObject.GetComponentInChildren<Text>().text;
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        GetThree();
 
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
@@ -370,7 +375,7 @@ public class SearchID : MonoBehaviour
 
     public void OnClickFollowing()
     {
-        OnSaveSignIn();
+        //OnSaveSignIn();
     }
     public void OnSaveSignIn()
     {
@@ -416,7 +421,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i], FollowingContentHolder);
+            CreateObject(userInfoList[i], FollowingContentHolder, userInfoList[i].memberId);
         }
         totalElements = FollowingContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -453,7 +458,7 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
-            CreateObject(userInfoList[i], FollowingContentHolder);
+            CreateObject(userInfoList[i], FollowingContentHolder, userInfoList[i].memberId);
         }
         totalElements = FollowingContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -482,6 +487,8 @@ public class SearchID : MonoBehaviour
 
     public void OnClickIdReset()
     {
+        GetThree();
+        memberCode = HttpManager.instance.memberCode;
         HttpManager.instance.id = HttpManager.instance.userId;
         followingList.SetActive(false);
     }
