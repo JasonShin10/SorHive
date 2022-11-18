@@ -487,8 +487,8 @@ public class SearchID : MonoBehaviour
 
     public void OnClickIdReset()
     {
+        //memberCode = HttpManager.instance.memberCode;
         GetThree();
-        memberCode = HttpManager.instance.memberCode;
         HttpManager.instance.id = HttpManager.instance.userId;
         followingList.SetActive(false);
     }
