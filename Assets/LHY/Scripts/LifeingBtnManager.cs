@@ -10,6 +10,7 @@ public class LifeingBtnManager : MonoBehaviour
 
     public GameObject[] lifingCategoryfage;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,15 @@ public class LifeingBtnManager : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < lifingCategoryfage.Length; i++)
+        if(lifeingItem.lifingCategoryNo != -1)
         {
-            lifingCategoryfage[i].SetActive(false);
+            for (int i = 0; i < lifingCategoryfage.Length; i++)
+            {
+                lifingCategoryfage[i].SetActive(false);
+            }
+            lifingCategoryfage[lifeingItem.lifingCategoryNo].SetActive(true);
         }
-        lifingCategoryfage[lifeingItem.lifingCategoryNo].SetActive(true);
+      
     }
 
     //카테고리 번호

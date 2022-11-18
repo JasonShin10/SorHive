@@ -14,6 +14,14 @@ public class LifeingImageInfo
     public string lifingImageName;
 }
 
+[System.Serializable]
+public class LifeingImagesData
+{
+    public string lifingContent; 
+    public List<LifeingImageInfo> lifingImages;
+}
+
+
 
 [System.Serializable]
 public class LifeingInfo
@@ -63,13 +71,7 @@ public class LifeingItem : MonoBehaviour
                     StartCoroutine(LoadImage(i ,files[i]));
                 }
 
-                LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
-                lifeingImageInfo.lifingImage = lifingImg;
-                lifeingImageInfo.lifingImageName = lifingImgName;
-
-                //lifeingImageInfo[i].
-
-                lifeingImageList.Add(lifeingImageInfo);
+             
             }
         });
     }
@@ -81,16 +83,12 @@ public class LifeingItem : MonoBehaviour
         byte[] fileData = File.ReadAllBytes(path);
         string filename = Path.GetFileName(path).Split('.')[0];
         string savePath = Application.persistentDataPath + "/lifeingImages";
-
         if (!Directory.Exists(savePath))
         {
             Directory.CreateDirectory(savePath);
         }
-
         File.WriteAllBytes(savePath + filename + i + ".png", fileData);
-
         var temp = File.ReadAllBytes(savePath + filename + i + ".png");
-
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
 
@@ -98,26 +96,39 @@ public class LifeingItem : MonoBehaviour
         lifingImgName = Path.GetFileName(savePath + filename + i + ".png").Split('.')[0];
         image.texture = tex;
 
-        
+        LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+        lifeingImageInfo.lifingImage = lifingImg;
+        lifeingImageInfo.lifingImageName = lifingImgName;
+
+        //lifeingImageInfo[i].
+
+        lifeingImageList.Add(lifeingImageInfo);
+
+
+
     }
 
     public void OnCilckImageSave()
     {
+        LifeingImagesData imagesData = new LifeingImagesData();
+        imagesData.lifingContent = lifingText.text;
+        imagesData.lifingImages = lifeingImageList;
+        //print(JsonUtility.ToJson(imagesData));
+     
 
-     /*   LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
-        lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
-        lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];*/
+        /*   LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+           lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
+           lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];*/
 
         //print(lifeingImageInfo.lifingImageName);
 
         HttpRequester requester = new HttpRequester();
         //url°æ·Î
-        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image";
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image/ai";
         requester.requestType = RequestType.POST;
-
        
 
-        requester.postData  = JsonUtility.ToJson(lifeingImageList, true);
+        requester.postData = JsonUtility.ToJson(imagesData, true);
         //requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
         print(requester.postData);
 
