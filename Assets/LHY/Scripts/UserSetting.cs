@@ -90,10 +90,10 @@ void Start()
         print(requester.postData);
 
         HttpManager.instance.SendRequest(requester);
-
+        requester.requestName = "save";
         //requester.onComplete = On
 
-        if(inputpasschack.text != userdata.password)
+        if (inputpasschack.text != userdata.password)
         {
             nonPasstext.SetActive(true);
             print("비밀번호가 맞지 않습니다. 다시 입력해 주세요");
@@ -121,6 +121,7 @@ void Start()
         print(requester.putData);
 
         requester.onComplete = OnClickDownload;
+        requester.requestName = "login";
 
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;

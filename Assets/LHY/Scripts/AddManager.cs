@@ -280,7 +280,7 @@ public class AddManager : MonoBehaviour
         print(HttpManager.instance.memberCode);
         requester.url = "http://52.79.209.232:8080/api/v1/room/" + HttpManager.instance.memberCode;
         //requester.url = "http://52.79.209.232:8080/api/v1/room/" + 1;
-
+        requester.requestName = "GetPostAll";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
 
@@ -672,6 +672,7 @@ public class AddManager : MonoBehaviour
         /// POST, 완료되었을 때 호출되는 함수
         requester.url = "http://52.79.209.232:8080/api/v1/room";
         requester.requestType = RequestType.POST;
+        requester.requestName = "OnSaveSignIn";
         //post data 셋팅
         requester.postData = JsonUtility.ToJson(info, true);
         requester.onComplete = OnCompleteSignIn;

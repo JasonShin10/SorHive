@@ -105,6 +105,7 @@ public class SearchID : MonoBehaviour
         requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
         HttpManager.instance.SendRequest(requester);
+        
     }
 
     private void OnClickDownload(DownloadHandler handler)
@@ -125,7 +126,7 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
-
+        requester.requestName = "GetRoomImage";
     }
     public void OnCompleteGetRoomImage(DownloadHandler handler)
     {
@@ -154,9 +155,11 @@ public class SearchID : MonoBehaviour
     {
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/mypage";
+        requester.requestName = "OnSaveSignIn";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetThree;
         HttpManager.instance.SendRequest(requester);
+        requester.requestName = "GetThree";
     }
     public void OnCompleteGetThree(DownloadHandler handler)
     {
@@ -292,6 +295,7 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetMember;
         HttpManager.instance.SendRequest(requester);
+        requester.requestName = "GetMember";
     }
     public void OnCompleteGetMember(DownloadHandler handler)
     {
@@ -373,6 +377,7 @@ public class SearchID : MonoBehaviour
         requester.onComplete = OnCompleteSignIn;
         //HttpManager에게 요청
         HttpManager.instance.SendRequest(requester);
+        requester.requestName = "OnSaveSignIn";
     }
 
     public void GetFollowing()
@@ -382,6 +387,7 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollowing;
         HttpManager.instance.SendRequest(requester);
+        requester.requestName = "GetFollowing";
     }
 
     public void OnCompleteGetFollowing(DownloadHandler handler)
@@ -419,6 +425,7 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         HttpManager.instance.SendRequest(requester);
+        requester.requestName = "GetFollower";
     }
     public void OnCompleteGetFollower(DownloadHandler handler)
     {
@@ -483,6 +490,7 @@ public class SearchID : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/follower/ +  ";
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteGetFollower;
+        requester.requestName = "OnclickDeleteFollowing()";
         HttpManager.instance.SendRequest(requester);
     }
    

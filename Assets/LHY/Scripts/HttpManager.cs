@@ -150,7 +150,7 @@ public class HttpManager : MonoBehaviour
         {
             //LoadingCanvas.SetActive(false);
             //서버통신 실패....ㅠ
-            print("통신 실패" + webRequest.result + "\n" + webRequest.error);
+            print(requester.requestName +  " : 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
         //}
         //그렇지않다면
