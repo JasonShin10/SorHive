@@ -117,12 +117,12 @@ public class LifeingManager : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/member/list/0";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
-
+        requester.requestName = "GetMambersList";
 
         HttpManager.instance.SendRequest(requester);
     }
 
-    private void OnCompleteGetPostAll(DownloadHandler handler)
+    public void OnCompleteGetPostAll(DownloadHandler handler)
     {
         JObject jsonData = JObject.Parse(handler.text);
         string lifingsData = "{\"userData\":" + jsonData["data"]["memberSummary"].ToString() + "}";

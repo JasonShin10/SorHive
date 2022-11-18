@@ -68,7 +68,7 @@ public class UserSetting : MonoBehaviour
     public GameObject SigninPage;
 void Start()
 {
-    PlayerPrefs.DeleteAll();
+    //PlayerPrefs.DeleteAll();
 }
 
 
