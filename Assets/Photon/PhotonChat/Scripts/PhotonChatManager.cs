@@ -145,6 +145,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         {
             chatClient.PublishMessage("RegionChannel", currentChat);
             print(currentChat);
+
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
             chat.transform.GetChild(0).GetComponent<Text>().text = currentChat;
             chatField.text = "";

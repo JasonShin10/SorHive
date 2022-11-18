@@ -41,7 +41,8 @@ public class HttpManager : MonoBehaviour
     public int roomId;
     public string fakeId;
     public string accessToken;
-    public bool firstId =false;
+    public bool firstId = false;
+    public bool secondId = false;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)
@@ -155,7 +156,6 @@ public class HttpManager : MonoBehaviour
                 if (accessToken != null)
                 {
                     webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-
                     webRequest.SetRequestHeader("Content-Type", "application/json");
                 }
                 break;
