@@ -155,6 +155,7 @@ public class UserSetting : MonoBehaviour
         print(memberCode);
         PlayerPrefs.SetString("token", token);
         HttpManager.instance.firstId = true;
+        HttpManager.instance.secondId = true;
         //PlayerPrefs.SetString("memberId",)
         print("조회 완료");
     }

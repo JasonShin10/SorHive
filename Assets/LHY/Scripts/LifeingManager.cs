@@ -40,10 +40,11 @@ public class LifeingManager : MonoBehaviour
     public Text roomId;
 
     public bool isUpLoad = true;
+    public bool userSetting = false;
     //public bool end = false;
     private void Awake()
     {
-        GetMambersList();
+        
     }
 
     // Start is called before the first frame update
@@ -55,7 +56,13 @@ public class LifeingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isUpLoad == true)
+        if (HttpManager.instance.secondId == true)
+        {
+            GetMambersList();
+            HttpManager.instance.secondId = false;
+            userSetting = true;
+        }
+        if (isUpLoad == true && userSetting == true)
         {
             for (int i = 0; i < friendList.Count; i++)
             {
