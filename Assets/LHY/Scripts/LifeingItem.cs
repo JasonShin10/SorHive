@@ -87,15 +87,15 @@ public class LifeingItem : MonoBehaviour
             Directory.CreateDirectory(savePath);
         }
 
-        File.WriteAllBytes(savePath + filename + ".png", fileData);
+        File.WriteAllBytes(savePath + filename + i + ".png", fileData);
 
-        var temp = File.ReadAllBytes(savePath + filename + ".png");
+        var temp = File.ReadAllBytes(savePath + filename + i + ".png");
 
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
 
-        lifingImg = File.ReadAllBytes(savePath + filename + ".png");
-        lifingImgName = filename;
+        lifingImg = File.ReadAllBytes(savePath + filename + i + ".png");
+        lifingImgName = Path.GetFileName(savePath + filename + i + ".png").Split('.')[0];
         image.texture = tex;
 
         
