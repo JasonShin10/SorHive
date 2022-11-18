@@ -73,7 +73,7 @@ public class WarpManager : MonoBehaviour
     {
         print("reloadRoom");
         // 해야 될 거
-        print("워프한 룸: " + nickNmae[0]);
+        print("워프한 룸: " + memberCode[0]);
         // 트랜스폼을 이용해서 각 방 하나씩 접근 후 설정
         Transform WPM = this.transform.Find("WarpPosManager");
         // 2번째 부터 7번째 자식까지만 순회
@@ -85,15 +85,14 @@ public class WarpManager : MonoBehaviour
             // 각 방의 정보 담는 객체 불러오기
 
             Transform WP = child.transform.GetChild(0);
-            Transform RIM = WP.transform.GetChild(0);
             Transform Character = WP.transform.GetChild(1);
             Transform NNT = WP.transform.GetChild(2).transform.GetChild(0);
 
             // 룸아이템의 멤버코드, 룸이미지를 배열에서 가져와서 변경
             // 다운로드 받기
-            RoomItem roomItem = RIM.GetComponent<RoomItem>();
+            RoomItem roomItem = WP.GetComponent<RoomItem>();
             roomItem.memberCode = memberCode[cnt];
-            RIM.GetComponent<RawImage>().texture = warpRoomImage[cnt].texture;
+            WP.GetComponent<RawImage>().texture = warpRoomImage[cnt].texture;
             Character.GetComponent<RawImage>().texture = warpAvatarImage[cnt].texture;
             NNT.GetComponent<Text>().text = nickNmae[cnt];
 
@@ -106,7 +105,6 @@ public class WarpManager : MonoBehaviour
     }
 
     public IEnumerator DownloadImg(){
-        print("downloadImg");
         int imageIdx = 0;
         while (imageIdx < 7)
         {
@@ -119,7 +117,6 @@ public class WarpManager : MonoBehaviour
 
     private void OnClickSet(DownloadHandler handler){
         JObject json = JObject.Parse(handler.text);
-        print("handler start");
         int tmpCnt = 0;
         while(tmpCnt < 7){
             memberCode[tmpCnt] = int.Parse(json["data"]["memberDtoList"][tmpCnt]["memberCode"].ToString());
@@ -139,7 +136,6 @@ public class WarpManager : MonoBehaviour
         }
         else
         {
-            print((DownloadHandlerTexture)www.downloadHandler);
             warpRoomImage[imageIdx].texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         }
         downLoadRoomCount++;

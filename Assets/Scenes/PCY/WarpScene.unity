@@ -6743,6 +6743,7 @@ MonoBehaviour:
   myRoom: 0
   feedListContent: {fileID: 984640305}
   feedUIFactory: {fileID: 7061890509986261700, guid: 7eff84ead31556446ac4a00847e0296b, type: 3}
+  creat: 0
   FeedNum: 1
 --- !u!1 &877861611
 GameObject:
@@ -9303,7 +9304,10 @@ MonoBehaviour:
   image: {fileID: 1712544761}
   lifingImg: 
   lifingImgName: 
+  lifingNo: 1
+  lifingCategoryNo: -1
   lifingText: {fileID: 0}
+  lifeingImageList: []
 --- !u!1 &1222211887
 GameObject:
   m_ObjectHideFlags: 0
@@ -13472,11 +13476,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651319035}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  friendList: []
+  hexPos: []
+  llifeingItemFactory: {fileID: 0}
+  roomId: {fileID: 0}
+  isUpLoad: 1
+  userSetting: 0
 --- !u!1 &1656943258
 GameObject:
   m_ObjectHideFlags: 0
