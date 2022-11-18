@@ -49,25 +49,7 @@ public class LifeingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
-        //GetPostAll();
-
-
-
-
-        /*   for (int i = 0; i < 7; i++)
-           {
-               GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
-
-               LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-               lifeingRoomItem.roomImg = friendList[i].roomImage;
-               lifeingRoomItem.avatarImg = friendList[i].avatarImage;
-               lifeingRoomItem.memberName.text = friendList[i].memberName;
-
-           }*/
-        //StartCoroutine(GetTextureA(avatarImage));
-
-
+        
     }
 
     // Update is called once per frame

@@ -27,14 +27,16 @@ public class LifeingInfo
 
 public class LifeingItem : MonoBehaviour
 {
-    public RawImage[] image;
+    public RawImage image;
 
     public byte[] lifingImg;
-    public string[] lifingImgName;
+    public string lifingImgName;
 
     public int lifingNo = 1;
     public int lifingCategoryNo = -1;
     public InputField lifingText;
+
+    //public string[] filess;
 
     public List<LifeingImageInfo> lifeingImageList = new List<LifeingImageInfo>();
 
@@ -59,6 +61,10 @@ public class LifeingItem : MonoBehaviour
                     //불러와라.
                     StartCoroutine(LoadImage(i ,files[i]));
                 }
+
+                //lifeingImageInfo[i].
+
+                //lifeingImageList.Add(lifeingImageInfo[i]);
             }
         });
     }
@@ -84,8 +90,8 @@ public class LifeingItem : MonoBehaviour
         tex.LoadImage(temp);
 
         lifingImg = File.ReadAllBytes(savePath + filename + ".png");
-        lifingImgName[i] = filename;
-        image[i].texture = tex;
+        lifingImgName = filename;
+        image.texture = tex;
     }
 
     public void OnCilckImageSave()
@@ -102,7 +108,7 @@ public class LifeingItem : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/lifing/image";
         requester.requestType = RequestType.POST;
 
-        lifeingImageList.Add(lifeingImageInfo);
+       
 
        // LIfeingData<LifeingImageInfo> lIfeingImagesData = JsonUtility.ToJson<LIfeingData<LifeingImageInfo>>(lifeingImageInfo);
         requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
