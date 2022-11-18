@@ -410,7 +410,7 @@ public class SearchID : MonoBehaviour
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
-        followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
+        //followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
         userInfoList = userInfo.followerData;
 
         print(userInfo);
@@ -445,7 +445,7 @@ public class SearchID : MonoBehaviour
 
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
-        followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
+        //followId = jsonData["data"]["followerData"]["followSummary"]["followId"].ToObject<int>();
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         
         userInfoList = userInfo.followerData;
@@ -494,12 +494,13 @@ public class SearchID : MonoBehaviour
     public void OnClickFollowingList()
     {
         followingList.SetActive(true);
+
     }
 
     public void OnclickDeleteFollowing()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follower/ +  ";
+        requester.url = "http://52.79.209.232:8080/api/v1/follower/";
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteGetFollower;
         requester.requestName = "OnclickDeleteFollowing()";
