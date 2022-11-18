@@ -45,6 +45,7 @@ public class LifeingItem : MonoBehaviour
         //갤러리를 연다
         NativeGallery.GetImagesFromGallery((files) =>
         {
+
             for(int i = 0; i < files.Length; i++)
             {
                 //List<FileInfo> selectedes = new List<FileInfo(files[i]);
@@ -62,9 +63,13 @@ public class LifeingItem : MonoBehaviour
                     StartCoroutine(LoadImage(i ,files[i]));
                 }
 
+                LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+                lifeingImageInfo.lifingImage = lifingImg;
+                lifeingImageInfo.lifingImageName = lifingImgName;
+
                 //lifeingImageInfo[i].
 
-                //lifeingImageList.Add(lifeingImageInfo[i]);
+                lifeingImageList.Add(lifeingImageInfo);
             }
         });
     }
@@ -92,16 +97,18 @@ public class LifeingItem : MonoBehaviour
         lifingImg = File.ReadAllBytes(savePath + filename + ".png");
         lifingImgName = filename;
         image.texture = tex;
+
+        
     }
 
     public void OnCilckImageSave()
     {
 
-        LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+     /*   LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
         lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
-        lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
+        lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];*/
 
-        print(lifeingImageInfo.lifingImageName);
+        //print(lifeingImageInfo.lifingImageName);
 
         HttpRequester requester = new HttpRequester();
         //url경로
@@ -110,8 +117,8 @@ public class LifeingItem : MonoBehaviour
 
        
 
-       // LIfeingData<LifeingImageInfo> lIfeingImagesData = JsonUtility.ToJson<LIfeingData<LifeingImageInfo>>(lifeingImageInfo);
-        requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
+        requester.postData  = JsonUtility.ToJson(lifeingImageList, true);
+        //requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
         print(requester.postData);
 
         requester.onComplete = OnClickDownload;
@@ -124,6 +131,8 @@ public class LifeingItem : MonoBehaviour
         JObject json = JObject.Parse(handler.text);
         //lifingNo = (int)json["data"]["lifingNo"];
         lifingCategoryNo = (int)json["data"]["lifingCategoryNo"];
+
+
         print("조회 완료");
     }
 
