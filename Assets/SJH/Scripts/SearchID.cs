@@ -55,15 +55,22 @@ public class SearchID : MonoBehaviour
         //    Element[i] = ContentHolder.GetChild(i).gameObject;
         //}
         //OnClickLogin();
+        //GetFollower();
+    }
+    public void StartGet()
+    {
         GetThree();
         GetRoomImage();
-        //GetFollower();
         GetRoomAll();
     }
-
     // Update is called once per frame
     void Update()
     {
+        if(HttpManager.instance.firstId == true)
+        {
+            StartGet();
+            HttpManager.instance.firstId = false;
+        }
         //print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
         if(HttpManager.instance.id == HttpManager.instance.userId)
@@ -122,6 +129,7 @@ public class SearchID : MonoBehaviour
     {
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
+        print(HttpManager.instance.memberCode);
         requester.url = "http://52.79.209.232:8080/api/v1/member/" + HttpManager.instance.memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomImage;
@@ -163,9 +171,9 @@ public class SearchID : MonoBehaviour
     }
     public void OnCompleteGetThree(DownloadHandler handler)
     {
-        print(2);
+        //print(2);
         sHandler = handler.text;
-        print(sHandler);
+        //print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
         //JArray jarry = jsonData["data"]["furnitures"].ToObject<JArray>();
 

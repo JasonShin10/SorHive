@@ -66,7 +66,12 @@ public class UserSetting : MonoBehaviour
 
     public GameObject LoginPage;
     public GameObject SigninPage;
-void Start()
+    public void Awake()
+    {
+        //PlayerPrefs.DeleteAll();
+    }
+
+    void Start()
 {
     //PlayerPrefs.DeleteAll();
 }
@@ -147,8 +152,9 @@ void Start()
         int memberCode = json["data"]["memberCode"].ToObject<int>();
         HttpManager.instance.memberCode = memberCode;
         print("postTokenData"+ token);
-        
+        print(memberCode);
         PlayerPrefs.SetString("token", token);
+        HttpManager.instance.firstId = true;
         //PlayerPrefs.SetString("memberId",)
         print("조회 완료");
     }

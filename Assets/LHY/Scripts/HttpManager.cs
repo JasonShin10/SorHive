@@ -41,6 +41,7 @@ public class HttpManager : MonoBehaviour
     public int roomId;
     public string fakeId;
     public string accessToken;
+    public bool firstId =false;
     //서버에게 요청
     //url(posts/1), GET
     public void SendRequest(HttpRequester requester)

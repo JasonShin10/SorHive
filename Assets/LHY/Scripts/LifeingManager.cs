@@ -77,7 +77,7 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
-                print(friendList.Count);
+                //print(friendList.Count);
                 GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
                 LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
