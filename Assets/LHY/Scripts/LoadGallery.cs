@@ -80,6 +80,7 @@ public class LoadGallery : MonoBehaviour
         //avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
         //avatarImageInfo.avatarImageName = Path.GetFileName(Application.dataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
 
+        print(avatarImageInfo.avatarImage);
         print(avatarImageInfo.avatarImageName);
         //avatarImageInfo.avatarImage = avatarImg;
 
@@ -88,7 +89,7 @@ public class LoadGallery : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/avatar/image";
         requester.requestType = RequestType.POST;
 
-        requester.postData = JsonUtility.ToJson(avatarImageInfo, true);
+        requester.postData = JsonUtility.ToJson(avatarImageInfo);
         print(requester.postData);
         requester.onComplete = OnClickDownload;
 
