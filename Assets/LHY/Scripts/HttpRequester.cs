@@ -44,4 +44,6 @@ public class HttpRequester : MonoBehaviour
     //Action : 함수를 넣을 수 있는 자료형
     public Action<DownloadHandler> onComplete;
     //public Action<DownloadHandlerTexture> onImgComplete;
+
+    public string requestName = "";
 }
