@@ -39,22 +39,33 @@ public class LifeingManager : MonoBehaviour
 
     public Text roomId;
 
-    public bool isUpLoad = true;
+    public bool isUpLoad = false;
+
+
     //public bool end = false;
     private void Awake()
     {
-        GetMambersList();
+       
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //HttpManager.instance.firstId = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(HttpManager.instance.firstId == true)
+        {
+            GetMambersList();
+            HttpManager.instance.firstId = false;
+            isUpLoad = true;
+        }
+        
+
         if (isUpLoad == true)
         {
             for (int i = 0; i < friendList.Count; i++)
@@ -102,6 +113,7 @@ public class LifeingManager : MonoBehaviour
         requester.requestName = "GetMambersList";
 
         HttpManager.instance.SendRequest(requester);
+        
     }
 
     public void OnCompleteGetPostAll(DownloadHandler handler)
