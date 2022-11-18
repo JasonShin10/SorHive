@@ -63,7 +63,7 @@ public class LoadGallery : MonoBehaviour
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
         avatarImg = File.ReadAllBytes(savePath + filename + ".png");
-        avatarImgName = filename;
+        avatarImgName = Path.GetFileName(savePath + filename + ".png").Split('.')[0];
         image.texture = tex; 
     }
 
@@ -73,8 +73,12 @@ public class LoadGallery : MonoBehaviour
         print("accessToken::"+ accessToken);
 
         AvatarImageInfo avatarImageInfo = new AvatarImageInfo();
-        avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
-        avatarImageInfo.avatarImageName = Path.GetFileName(Application.dataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
+        avatarImageInfo.avatarImage = avatarImg;
+        avatarImageInfo.avatarImageName = avatarImgName;
+
+        //PC
+        //avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
+        //avatarImageInfo.avatarImageName = Path.GetFileName(Application.dataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
 
         print(avatarImageInfo.avatarImageName);
         //avatarImageInfo.avatarImage = avatarImg;
@@ -92,7 +96,7 @@ public class LoadGallery : MonoBehaviour
 
         print("sucssasSand");
     }
-
+     
     private void OnClickDownload(DownloadHandler handler)
     {
         JObject json = JObject.Parse(handler.text);
