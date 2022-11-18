@@ -13957,7 +13957,7 @@ MonoBehaviour:
   SearchBar: {fileID: 1025712225}
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
-  deleteFollowing: {fileID: 0}
+  deleteFollowing: {fileID: 919770226}
   myPageButton: {fileID: 20717873}
   Img: {fileID: 920263051}
   following: {fileID: 283539230}
