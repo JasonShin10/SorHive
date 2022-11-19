@@ -134,7 +134,7 @@ public class SearchID : MonoBehaviour
     {
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
-        print(HttpManager.instance.memberCode);
+        //print(HttpManager.instance.memberCode);
         requester.url = "http://52.79.209.232:8080/api/v1/member/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomImage;
@@ -147,7 +147,7 @@ public class SearchID : MonoBehaviour
         string userData = jsonData["data"]["memberRoomImage"].ToString();
         //RoomImage roomImg = JsonUtility.FromJson<RoomImage>(userData);
         roomImgString = userData;
-        //StartCoroutine(GetTextureR(Img));
+        StartCoroutine(GetTextureR(Img));
     }
     IEnumerator GetTextureR(RawImage roomImage)
     {
@@ -335,6 +335,7 @@ public class SearchID : MonoBehaviour
         {
             Element[i] = ContentHolder.GetChild(i).gameObject;
             ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+            
         }
         print("조회완료");
     }
@@ -349,8 +350,10 @@ public class SearchID : MonoBehaviour
         //id = clickObject.GetComponentInChildren<Text>().text;
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        GetRoomImage();
+        //StartCoroutine(GetTextureR(Img));
         GetThree();
-        
+        //GetRoomImage();
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
@@ -367,7 +370,7 @@ public class SearchID : MonoBehaviour
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
         GetThree();
-
+        //GetRoomImage();
         HttpManager.instance.id = id;
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
@@ -487,14 +490,16 @@ public class SearchID : MonoBehaviour
 
     public void OnClickIdReset()
     {
-        //memberCode = HttpManager.instance.memberCode;
+        memberCode = HttpManager.instance.userMemberCode;
         GetThree();
+        //GetRoomImage();
         HttpManager.instance.id = HttpManager.instance.userId;
         followingList.SetActive(false);
     }
 
     public void OnClickRoomImage()
     {
+        
         StartCoroutine(GetTextureR(Img));
     }
 

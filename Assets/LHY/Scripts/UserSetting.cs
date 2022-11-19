@@ -151,6 +151,7 @@ public class UserSetting : MonoBehaviour
         string token = json["data"]["accessToken"].ToString();
         int memberCode = json["data"]["memberCode"].ToObject<int>();
         HttpManager.instance.memberCode = memberCode;
+        HttpManager.instance.userMemberCode = memberCode;
         print("postTokenData"+ token);
         print(memberCode);
         PlayerPrefs.SetString("token", token);
