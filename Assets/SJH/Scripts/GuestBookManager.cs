@@ -126,8 +126,8 @@ public class GuestBookManager : MonoBehaviour
     {
         if(chat.activeSelf)
         {
-
-        chat.SetActive(false);
+            chat.SetActive(false);
+            PhotonChatManager.instance.SendChatToServer();
         }
         else
         {

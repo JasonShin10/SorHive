@@ -10,6 +10,7 @@ public class GuestBook : MonoBehaviour
     public ScrollRect guestBoxUI;
     public GameObject guestBox;
     public GameObject guestBoxWrite;
+    float distance = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class GuestBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(guestBox.transform.position, player.transform.position); 
+        distance = Vector3.Distance(guestBox.transform.position, player.transform.position); 
         // 거리가 3보다 크면 cancle을 false로 바꿔준다.
         
         if (distance > 3)

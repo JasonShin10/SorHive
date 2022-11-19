@@ -90,7 +90,7 @@ public class HttpManager : MonoBehaviour
                 break;
             case RequestType.PUT:
                 print("aaa");
-                webRequest = UnityWebRequest.Put(requester.url, requester.putData);
+                webRequest = UnityWebRequest.Put(requester.url.ToString(), requester.putData.ToString());
                 print("1111");
                 byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
                 print("222");
