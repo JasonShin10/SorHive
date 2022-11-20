@@ -96,7 +96,8 @@ public class AddManager : MonoBehaviour
 {
     [SerializeField] string screenShotName;
     public static AddManager instance;
-
+    public Transform deletetObj;
+    public Button deleteButton;
     public ObjectInfo objectInfo;
     public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
     public GuestBookJsonInfo guestBookJsonInfo;
@@ -209,6 +210,7 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
+        
         #endregion 
         //OnLoad2();
         //OnClickLogin();
@@ -226,6 +228,7 @@ public class AddManager : MonoBehaviour
                 objActive[i].GetComponent<BoxCollider>().center = new Vector3(objActive[i].GetComponent<BoxCollider>().center.x, objActive[i].GetComponent<BoxCollider>().center.y, 0);
             }
         }
+        
         //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
         JObject json = new JObject();
         json["byte"] = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
@@ -1434,5 +1437,10 @@ public class AddManager : MonoBehaviour
     public void OnRotate()
     {
         GameManager.instance.selected.transform.Rotate(0, -90, 0);
+    }
+
+    public void OnDestroyObject()
+    {
+        
     }
 }
