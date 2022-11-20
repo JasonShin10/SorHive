@@ -423,7 +423,7 @@ public class SearchID : MonoBehaviour
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
         for (int i = 0; i < userFollowList.Count; i++)
         {
-            int j = userFollowList.FindIndex(memberCode => memberCode == userFollowList.Count);
+            int j = userFollowList.FindIndex(a => a== memberCode);
             if (j == -1)
             {
                 UserFollowingCheckUI();
