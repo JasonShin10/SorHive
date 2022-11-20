@@ -69,7 +69,13 @@ namespace CustomUtils
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
 
-            File.WriteAllBytes($"{Application.persistentDataPath + "/Resources/AvatarImage"} /{screenShotName}.png", texture.EncodeToPNG());
+            string savePath = Application.persistentDataPath + "/Resources/AvatarImage";
+            if(!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            File.WriteAllBytes($"{savePath}/{screenShotName}.png", texture.EncodeToPNG());
             //EditorApplication.ExecuteMenuItem("Assets/Refresh");
         }
 

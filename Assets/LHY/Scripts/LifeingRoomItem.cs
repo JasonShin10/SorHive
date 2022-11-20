@@ -18,8 +18,6 @@ public class LifeingRoomItem : MonoBehaviour
     public int lifingCategoryNo;
     public string memberId;
 
-
-
     public string roomImg;
     public string avatarImg;
 
@@ -40,7 +38,7 @@ public class LifeingRoomItem : MonoBehaviour
         }
         else if (lifingYn == "Y")
         {
-            var temp = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo + ".png");
+            var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo + ".png");
 
             Texture2D tex = new Texture2D(0, 0);
             tex.LoadImage(temp);
