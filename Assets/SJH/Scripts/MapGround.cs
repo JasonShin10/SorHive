@@ -295,7 +295,7 @@ public class MapGround : Map
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if (AddManager.instance.objectInfoList[i].obj == obj)
+            if (AddManager.instance.objectInfoList[i].obj.name == obj.name)
             {
                 //정보수정
                 AddManager.instance.objectInfoList[i].position = obj.transform.position;

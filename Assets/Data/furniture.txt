@@ -6,7 +6,7 @@
             "furnitureCategoryNumber": 1,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": -2456938
+                "instanceID": -2943724
             },
             "room": {
                 "instanceID": 0
@@ -14,7 +14,7 @@
             "name": "armchair_002",
             "position": {
                 "x": 11.0,
-                "y": 29.000999450683595,
+                "y": 29.0,
                 "z": 5.0
             },
             "scale": {
@@ -37,19 +37,53 @@
         {
             "wallNumber": 0,
             "floorNumber": 0,
+            "furnitureCategoryNumber": 1,
+            "furnitureNumber": 1,
+            "obj": {
+                "instanceID": -2943740
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "name": "armchair_001",
+            "position": {
+                "x": 3.0,
+                "y": 29.0,
+                "z": 3.0
+            },
+            "scale": {
+                "x": 2.5,
+                "y": 2.5,
+                "z": 2.5
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": 8.1062319168268e-7,
+                "y": 0.6001603603363037,
+                "z": 0.6001603603363037
+            },
+            "roomId": 0
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
             "furnitureCategoryNumber": 3,
             "furnitureNumber": 3,
             "obj": {
-                "instanceID": -2456954
+                "instanceID": -2943756
             },
             "room": {
                 "instanceID": 0
             },
             "name": "window_003",
             "position": {
-                "x": -0.41099998354911806,
-                "y": 35.0,
-                "z": 6.0
+                "x": -0.41100001335144045,
+                "y": 36.0,
+                "z": 7.0
             },
             "scale": {
                 "x": 2.0,
