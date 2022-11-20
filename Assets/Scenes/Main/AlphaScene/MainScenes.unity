@@ -24130,9 +24130,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 862627459}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: OnClickRoomIn
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnRoomIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

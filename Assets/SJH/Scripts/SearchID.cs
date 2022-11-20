@@ -150,11 +150,11 @@ public class SearchID : MonoBehaviour
             int j = userFollowList.FindIndex(a => a == memberCode);
             if (j == -1)
             {
-                UserFollowingCheckUI();
+                followingCheck = false;
             }
             else
             {
-                followingCheck = false;
+                UserFollowingCheckUI();
                 return;
             }
 
@@ -572,7 +572,8 @@ public class SearchID : MonoBehaviour
 
     public void OnRoomIn()
     {
-        HttpManager.instance.id = HttpManager.instance.fakeId;
+        //HttpManager.instance.id = HttpManager.instance.fakeId;
+        HttpManager.instance.memberCode = memberCode;
         LobbyManager.instence.OnClickRoomIn();
     }
 

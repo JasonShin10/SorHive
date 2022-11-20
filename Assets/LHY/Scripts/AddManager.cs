@@ -46,7 +46,7 @@ public class FurnitureInfo
 [System.Serializable]
 public class ArrayJson<T>
 {
-    public List<T> furnitures;   
+    public List<T> furnitures;
 }
 
 public class ArrayGuestJson<T>
@@ -107,7 +107,7 @@ public class AddManager : MonoBehaviour
         {
             instance = this;
         }
-        
+
     }
 
     //오브젝트들이 생성되는 장소
@@ -157,7 +157,7 @@ public class AddManager : MonoBehaviour
     #endregion
     public List<GameObject> objActive = new List<GameObject>();
     MeshRenderer rb;
-    
+
     public GameObject obj;
     public Vector3 pos;
     public Vector3 sca;
@@ -300,7 +300,7 @@ public class AddManager : MonoBehaviour
         print(jarry);
         //for (int i =0; i< jarry.Count; i++)
         //{
-            //int roomIdData = jarry[0]["roomId"].ToObject<int>();
+        //int roomIdData = jarry[0]["roomId"].ToObject<int>();
         //print(roomIdData);
 
         //}
@@ -338,12 +338,15 @@ public class AddManager : MonoBehaviour
 
 
         //n = objectInfoList.Count;
-
-        for (int i = 0; i < guestBookJsonInfoList.Count; i++)
+        if (scene.name == "RoomInScene")
         {
-            RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
-        }
+            for (int i = 0; i < guestBookJsonInfoList.Count; i++)
+            {
+                RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
+            }
 
+        }
+       
         n = objectInfoList.Count;
 
         for (int i = 0; i < objectInfoList.Count; i++)

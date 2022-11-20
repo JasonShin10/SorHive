@@ -321,12 +321,12 @@ public class MapGround : Map
                 //AddManager.instance.objectInfoList.RemoveAt(i);
             if (AddManager.instance.objectInfoList[i].obj != null)
             {
-                if (AddManager.instance.objectInfoList[i].obj.name == obj.gameObject.name)
-                {
+                //if (AddManager.instance.objectInfoList[i].obj.name == obj.gameObject.name)
+                //{
                     //print(AddManager.instance.objectInfoList);
                      AddManager.instance.objectInfoList.RemoveAt(i);
-                      return;
-                }
+                      
+                //}
             }
         }
 
