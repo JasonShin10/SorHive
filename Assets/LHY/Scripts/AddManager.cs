@@ -34,6 +34,7 @@ public class ObjectInfo
     public Vector3 angle;
     public Vector3 boxPosition;
     public int roomId;
+    public string wallTag;
 }
 [System.Serializable]
 public class FurnitureInfo
@@ -46,7 +47,7 @@ public class FurnitureInfo
 [System.Serializable]
 public class ArrayJson<T>
 {
-    public List<T> furnitures;   
+    public List<T> furnitures;
 }
 
 public class ArrayGuestJson<T>
@@ -96,7 +97,8 @@ public class AddManager : MonoBehaviour
 {
     [SerializeField] string screenShotName;
     public static AddManager instance;
-
+    public Transform deletetObj;
+    public Button deleteButton;
     public ObjectInfo objectInfo;
     public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
     public GuestBookJsonInfo guestBookJsonInfo;
@@ -107,7 +109,7 @@ public class AddManager : MonoBehaviour
         {
             instance = this;
         }
-        
+
     }
 
     //오브젝트들이 생성되는 장소
@@ -157,7 +159,7 @@ public class AddManager : MonoBehaviour
     #endregion
     public List<GameObject> objActive = new List<GameObject>();
     MeshRenderer rb;
-    
+
     public GameObject obj;
     public Vector3 pos;
     public Vector3 sca;
@@ -209,6 +211,7 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
+        
         #endregion 
         //OnLoad2();
         //OnClickLogin();
@@ -226,6 +229,7 @@ public class AddManager : MonoBehaviour
                 objActive[i].GetComponent<BoxCollider>().center = new Vector3(objActive[i].GetComponent<BoxCollider>().center.x, objActive[i].GetComponent<BoxCollider>().center.y, 0);
             }
         }
+        
         //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
         JObject json = new JObject();
         json["byte"] = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
@@ -300,7 +304,7 @@ public class AddManager : MonoBehaviour
         print(jarry);
         //for (int i =0; i< jarry.Count; i++)
         //{
-            //int roomIdData = jarry[0]["roomId"].ToObject<int>();
+        //int roomIdData = jarry[0]["roomId"].ToObject<int>();
         //print(roomIdData);
 
         //}
@@ -338,12 +342,15 @@ public class AddManager : MonoBehaviour
 
 
         //n = objectInfoList.Count;
-
-        for (int i = 0; i < guestBookJsonInfoList.Count; i++)
+        if (scene.name == "RoomInScene")
         {
-            RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
-        }
+            for (int i = 0; i < guestBookJsonInfoList.Count; i++)
+            {
+                RoomInManager.instance.CreateObject(guestBookJsonInfoList[i]);
+            }
 
+        }
+       
         n = objectInfoList.Count;
 
         for (int i = 0; i < objectInfoList.Count; i++)
@@ -437,6 +444,10 @@ public class AddManager : MonoBehaviour
             else
             {
                 createObj.gameObject.name = info.name;
+            }
+            if(createObj.gameObject.CompareTag("WallLeft"))
+            {
+                createObj.gameObject.tag = "WallLeft";
             }
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -1431,5 +1442,10 @@ public class AddManager : MonoBehaviour
     public void OnRotate()
     {
         GameManager.instance.selected.transform.Rotate(0, -90, 0);
+    }
+
+    public void OnDestroyObject()
+    {
+        
     }
 }

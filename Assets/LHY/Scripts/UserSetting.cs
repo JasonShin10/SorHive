@@ -17,6 +17,7 @@ public class UserInfo
 [System.Serializable]
 public class UserGetInfo
 {
+    
     public string id;
     public string memberId;
     public int followId;

@@ -401,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &17694935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -677,6 +677,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickRoomImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1692025996}
         m_TargetAssemblyTypeName: TabController, Assembly-CSharp
         m_MethodName: SelectedButton
@@ -692,18 +704,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
         m_MethodName: OnClickIdReset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1146731188}
-        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickRoomImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -766,7 +766,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 276490500}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9721,7 +9721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &750030784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11706,7 +11706,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickFollowing
+        m_MethodName: OnclickDeleteFollowing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14375,6 +14375,7 @@ MonoBehaviour:
   ContentHolder: {fileID: 1669234738}
   FollowingContentHolder: {fileID: 1572615797}
   Element: []
+  FollowingElement: []
   SearchBar: {fileID: 1025712225}
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
@@ -14392,9 +14393,11 @@ MonoBehaviour:
     password: 
   id: 
   roomImgString: 
+  followingCheck: 0
   memberCode: 0
   userInfoList: []
   userThreeList: []
+  userFollowList: 
   userGetInfo:
     id: 
     memberId: 
@@ -18614,7 +18617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1478686864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24656,9 +24659,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 862627459}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: OnClickRoomIn
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnRoomIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27253,7 +27256,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD314\uB85C\uC789"
+  m_Text: "\uD314\uB85C\uC789 \uCDE8\uC18C"
 --- !u!222 &2047029478
 CanvasRenderer:
   m_ObjectHideFlags: 0

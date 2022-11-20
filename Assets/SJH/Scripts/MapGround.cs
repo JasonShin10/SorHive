@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MapGround : Map
 {
@@ -14,6 +15,8 @@ public class MapGround : Map
     public Material[] floorMats;
     GameObject currCube;
     GameObject floor;
+    Button delete;
+    Transform removeSelectObj;
     Vector3 startPos;
     Quaternion startLocation;
     MeshRenderer rb;
@@ -35,12 +38,14 @@ public class MapGround : Map
         }
         floorMats = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
-
-
+        delete = AddManager.instance.deleteButton;
+        delete.GetComponent<Button>().onClick.AddListener(OnRemoveJson);
+        
     }
     UnityEngine.Transform selectObj;
     void Update()
     {
+      
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -216,8 +221,9 @@ public class MapGround : Map
                     SaveJson(selectObj.gameObject);
 
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
-                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3( 0,selectObj.GetComponent<MeshRenderer>().bounds.size.y *2f,0));
-                    
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3( -1.5f,selectObj.GetComponent<MeshRenderer>().bounds.size.y *2f,-1.5f));
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(8, selectObj.GetComponent<MeshRenderer>().bounds.size.y * 2f, 8));
                     selectObj = null;
 
                 }
@@ -235,6 +241,7 @@ public class MapGround : Map
         }
         if (selectObj != null)
         {
+            AddManager.instance.deletetObj = selectObj;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             int layer = 1 << LayerMask.NameToLayer("Ground");
@@ -288,7 +295,7 @@ public class MapGround : Map
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if (AddManager.instance.objectInfoList[i].obj == obj)
+            if (AddManager.instance.objectInfoList[i].obj.name == obj.name)
             {
                 //정보수정
                 AddManager.instance.objectInfoList[i].position = obj.transform.position;
@@ -321,17 +328,49 @@ public class MapGround : Map
                 //AddManager.instance.objectInfoList.RemoveAt(i);
             if (AddManager.instance.objectInfoList[i].obj != null)
             {
-                if (AddManager.instance.objectInfoList[i].obj.name == obj.gameObject.name)
-                {
+                //if (AddManager.instance.objectInfoList[i].obj.name == obj.gameObject.name)
+                //{
                     //print(AddManager.instance.objectInfoList);
                      AddManager.instance.objectInfoList.RemoveAt(i);
-                      return;
-                }
+                      
+                //}
             }
         }
 
     }
 
+    public void OnRemoveJson()
+    {
+        print("OnRemoveJson");
+        int count = AddManager.instance.objectInfoList.Count;
+        //for (int i = 0; i < count; i++)
+        //{
+        //    //AddManager.instance.objectInfoList.RemoveAt(i);
+        //if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
+        //{
+
+        //    AddManager.instance.objectInfoList.RemoveAt(i);
+        //}
+        //else if (AddManager.instance.objectInfoList[i].obj.name == removeSelectObj.gameObject.name)
+        //{
+        //}
+        //}
+        for (int i = AddManager.instance.objectInfoList.Count - 1; i >= 0; i--)
+        {
+            if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
+            }
+            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
+            }
+            //전부삭제
+            //AddManager.instance.objectInfoList.RemoveAt(i);
+        }
+        AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
+    }
+    
     void Room(GameObject item)
     {
         currCube = Instantiate(item);
