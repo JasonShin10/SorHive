@@ -32,6 +32,7 @@ public class SearchID : MonoBehaviour
     public string id;
     public string roomImgString;
     public bool followingCheck = false;
+    public bool userFollowingList = true;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
@@ -260,6 +261,7 @@ public class SearchID : MonoBehaviour
         for (int i = 0; i < userInfoList.Count; i++)
         {
             CreateObject(userInfoList[i], ContentHolder, userInfoList[i].id);
+           
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -346,7 +348,9 @@ public class SearchID : MonoBehaviour
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
+          
             userFollowList.Add(userInfoList[i].memberCode);
+          
         }
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
@@ -421,19 +425,19 @@ public class SearchID : MonoBehaviour
   
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
-        for (int i = 0; i < userFollowList.Count; i++)
-        {
-            int j = userFollowList.FindIndex(a => a== memberCode);
+        
+            int j = userFollowList.FindIndex(a => a == memberCode);
             if (j == -1)
             {
-                return;
+                followingCheck = false;
             }
             else
             {
                 UserFollowingCheckUI();
+                return;
             }
- 
-        }
+
+        
         GetRoomImage();
         GetThree();
         HttpManager.instance.id = id;
