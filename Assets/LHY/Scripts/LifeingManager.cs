@@ -31,6 +31,8 @@ public class LifeingManager : MonoBehaviour
 {
     //public LifeingItemInfo info;
 
+    public LifeingManager instance;
+
     public List<LifeingItemInfo> friendList = new List<LifeingItemInfo>();
 
     public Transform[] hexPos;
@@ -44,7 +46,7 @@ public class LifeingManager : MonoBehaviour
     //public bool end = false;
     private void Awake()
     {
-        
+        instance = this;
     }
 
     // Start is called before the first frame update
@@ -97,6 +99,13 @@ public class LifeingManager : MonoBehaviour
                         isUpLoad = false;
                     }
                 }*/
+    }
+
+    public void ReLoadMambersList()
+    {
+        GetMambersList();
+
+        isUpLoad = true;
     }
 
 

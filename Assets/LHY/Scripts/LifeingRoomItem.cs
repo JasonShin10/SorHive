@@ -24,6 +24,10 @@ public class LifeingRoomItem : MonoBehaviour
 
     public LifeingManager lifeingManager;
 
+    public bool LifeingLoad = false;
+
+    public bool roomY = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,19 +36,7 @@ public class LifeingRoomItem : MonoBehaviour
         StartCoroutine(GetTextureR(roomImage, avatarImage));
         ProfileImage.texture = roomImage.texture;
 
-        if (lifingYn == "N")
-        {
-            return;
-        }
-        else if (lifingYn == "Y")
-        {
-            var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/02.Story/StoryRoom/" + lifingNo + "_" + lifingNo + ".png");
 
-            Texture2D tex = new Texture2D(0, 0);
-            tex.LoadImage(temp);
-
-            roomImage.texture = tex;
-        }
 
 
         //for()
@@ -53,6 +45,33 @@ public class LifeingRoomItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (lifingYn == "Y")
+        {
+            if (LifeingLoad == false)
+            {
+                roomY = true;
+                print("라이핑 룸스토리 있음!!");
+                //Texture2D tex = new Texture2D(0, 0);
+                //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
+                var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
+
+                print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
+                //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
+
+                Texture2D tex = new Texture2D(0, 0);
+                tex.LoadImage(temp);
+
+                //tex.LoadImage(temp);
+
+                roomImage.texture = tex;
+                LifeingLoad = true;
+            }
+
+        }
+        else
+        {
+            return;
+        }
 
     }
 
@@ -75,10 +94,14 @@ public class LifeingRoomItem : MonoBehaviour
             UnityWebRequest wwwA = UnityWebRequestTexture.GetTexture(urlA);
             yield return wwwA.SendWebRequest();
 
+        if (roomY == false)
+        {
             if (wwwR.result != UnityWebRequest.Result.Success)
                 Debug.Log(wwwR.error);
             else
                 roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+        }
+      
 
             if (wwwA.result != UnityWebRequest.Result.Success)
                 Debug.Log(wwwA.error);

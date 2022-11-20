@@ -34,7 +34,20 @@ namespace CustomUtils
         //Sprite sprite;
 
         public Camera sCame;
-    
+
+        public LifeingItem lifeingItem;
+
+   
+        private void Start()
+        {
+           
+        }
+
+        private void Update()
+        {
+           
+        }
+
         public void ScreenShotClick()
         {
             RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
@@ -50,7 +63,7 @@ namespace CustomUtils
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
 
-            File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+            File.WriteAllBytes($"{Application.persistentDataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
 
         }
 
@@ -79,10 +92,33 @@ namespace CustomUtils
             //EditorApplication.ExecuteMenuItem("Assets/Refresh");
         }
 
-        private void Start()
+        public void ScreenShotClick2()
         {
-            
+            RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+            Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+            RenderTexture.active = renderTexture;
+
+            Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
+
+            /*  // sprite = Sprite.Create(texture,)
+              Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+              sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+
+            texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            texture.Apply();
+
+            string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifeingItem.lifingCategoryNo + "_" + lifeingItem.lifingNo + ".png", texture.EncodeToPNG());
+
+            print(lifeingItem.lifingCategoryNo + "/" + lifeingItem.lifingNo);
+            //EditorApplication.ExecuteMenuItem("Assets/Refresh");
         }
+
 
         //이미지를 스프라이트로 저장하자
 
