@@ -34,6 +34,7 @@ public class ObjectInfo
     public Vector3 angle;
     public Vector3 boxPosition;
     public int roomId;
+    public string wallTag;
 }
 [System.Serializable]
 public class FurnitureInfo
@@ -443,6 +444,10 @@ public class AddManager : MonoBehaviour
             else
             {
                 createObj.gameObject.name = info.name;
+            }
+            if(createObj.gameObject.CompareTag("WallLeft"))
+            {
+                createObj.gameObject.tag = "WallLeft";
             }
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
