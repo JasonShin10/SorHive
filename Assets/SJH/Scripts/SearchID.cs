@@ -426,11 +426,11 @@ public class SearchID : MonoBehaviour
             int j = userFollowList.FindIndex(a => a== memberCode);
             if (j == -1)
             {
-                UserFollowingCheckUI();
+                return;
             }
             else
             {
-                return;
+                UserFollowingCheckUI();
             }
  
         }
@@ -563,6 +563,8 @@ public class SearchID : MonoBehaviour
         print("조회완료");
     }
 
+ 
+
     public void OnCompleteSignIn(DownloadHandler handler)
     {
         print(handler);
@@ -604,7 +606,7 @@ public class SearchID : MonoBehaviour
     public void OnclickDeleteFollowing()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follower/" + memberCode;
+        requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteGetFollower;
         requester.requestName = "OnclickDeleteFollowing()";

@@ -272,12 +272,12 @@ public class MapRight : Map
             {
                 AddManager.instance.objectInfoList.RemoveAt(i);
             }
-            else if (AddManager.instance.objectInfoList[i].obj.name == removeSelectObj.gameObject.name)
+            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
             {
                 AddManager.instance.objectInfoList.RemoveAt(i);
             }
         }
-        removeSelectObj.GetComponent<Furniture>().Delete();
+        AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
     }
     public LineRenderer line;
 }
