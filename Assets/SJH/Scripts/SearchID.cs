@@ -32,7 +32,7 @@ public class SearchID : MonoBehaviour
     public string id;
     public string roomImgString;
     public bool followingCheck = false;
-    public bool userFollowingList = true;
+    
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
@@ -148,16 +148,6 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
         requester.requestName = "GetRoomImage";
      
-            int j = userFollowList.FindIndex(a => a == memberCode);
-            if (j == -1)
-            {
-                followingCheck = false;
-            }
-            else
-            {
-                UserFollowingCheckUI();
-                return;
-            }
 
         
     }
@@ -167,6 +157,17 @@ public class SearchID : MonoBehaviour
         string userData = jsonData["data"]["memberRoomImage"].ToString();
         //RoomImage roomImg = JsonUtility.FromJson<RoomImage>(userData);
         roomImgString = userData;
+            int j = userFollowList.FindIndex(a => a == memberCode);
+            if (j == -1)
+            {
+                followingCheck = false;
+            }
+            else
+            {
+            followingCheck = true;
+            UserFollowingCheckUI();
+                return;
+            }
         StartCoroutine(GetTextureR(Img));
     }
     IEnumerator GetTextureR(RawImage roomImage)
@@ -433,6 +434,7 @@ public class SearchID : MonoBehaviour
             }
             else
             {
+        followingCheck = true;
                 UserFollowingCheckUI();
                 return;
             }
@@ -447,7 +449,6 @@ public class SearchID : MonoBehaviour
 
     public void UserFollowingCheckUI()
     {
-        followingCheck = true;
         myPage.transform.GetChild(2).gameObject.SetActive(false);
         myPage.transform.GetChild(8).gameObject.SetActive(false);
         myPage.transform.GetChild(12).gameObject.SetActive(true);
