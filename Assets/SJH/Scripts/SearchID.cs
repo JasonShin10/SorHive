@@ -257,7 +257,14 @@ public class SearchID : MonoBehaviour
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
-     
+        
+        //for (int i = 0; i < userInfoList.Count; i++)
+        //{
+
+        //    userFollowList.Add(userInfoList[i].memberCode);
+
+        //}
+
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
@@ -347,12 +354,12 @@ public class SearchID : MonoBehaviour
         userInfoList = userInfo.data;
 
         print(userInfo);
-        for (int i = 0; i < userInfoList.Count; i++)
-        {
+        //for (int i = 0; i < userInfoList.Count; i++)
+        //{
           
-            userFollowList.Add(userInfoList[i].memberCode);
+        //    userFollowList.Add(userInfoList[i].memberCode);
           
-        }
+        //}
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
 
