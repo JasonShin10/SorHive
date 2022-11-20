@@ -68,6 +68,10 @@ public class LifeingBtnManager : MonoBehaviour
     {
         lifeingItem.lifingCategoryNo = 7;
     }
+    public void OnClickCategoryNo8()
+    {
+        lifeingItem.lifingCategoryNo = 8;
+    }
 
     //라이핑 이미지 번호
     public void OnClickLifeingImageNo0()

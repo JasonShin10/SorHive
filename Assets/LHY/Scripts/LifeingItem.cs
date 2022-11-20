@@ -51,10 +51,29 @@ public class LifeingItem : MonoBehaviour
     public void OnClickImageLoad()
     {
         //갤러리를 연다
-        NativeGallery.GetImagesFromGallery((files) =>
+        NativeGallery.GetImageFromGallery((file) =>
+        {
+                //List<FileInfo> selectedes = new List<FileInfo(files[i]);
+                FileInfo selectede = new FileInfo(file);
+
+                //이미지 용량 제한하기
+                if (selectede.Length > 50000000)
+                {
+                    return;
+                }
+                //만약 이미지가 있다면 이미지 불러오기 
+                if (!string.IsNullOrEmpty(file))
+                {
+                    //불러와라.
+                    StartCoroutine(LoadImage(file));
+                }
+        });
+    }
+
+  /*  NativeGallery.GetImagesFromGallery((files) =>
         {
 
-            for(int i = 0; i < files.Length; i++)
+            for(int i = 0; i<files.Length; i++)
             {
                 //List<FileInfo> selectedes = new List<FileInfo(files[i]);
                 FileInfo selectede = new FileInfo(files[i]);
@@ -68,15 +87,14 @@ public class LifeingItem : MonoBehaviour
                 if (!string.IsNullOrEmpty(files[i]))
                 {
                     //불러와라.
-                    StartCoroutine(LoadImage(i ,files[i]));
-                }
+                    StartCoroutine(LoadImage(i, files[i]));
+}
 
              
             }
-        });
-    }
+        });*/
 
-    IEnumerator LoadImage(int i,string path)
+    IEnumerator LoadImage(string path)
     {
         yield return null;
 
@@ -87,13 +105,13 @@ public class LifeingItem : MonoBehaviour
         {
             Directory.CreateDirectory(savePath);
         }
-        File.WriteAllBytes(savePath + filename + i + ".png", fileData);
-        var temp = File.ReadAllBytes(savePath + filename + i + ".png");
+        File.WriteAllBytes(savePath + filename + ".png", fileData);
+        var temp = File.ReadAllBytes(savePath + filename + ".png");
         Texture2D tex = new Texture2D(0, 0);
         tex.LoadImage(temp);
 
-        lifingImg = File.ReadAllBytes(savePath + filename + i + ".png");
-        lifingImgName = Path.GetFileName(savePath + filename + i + ".png").Split('.')[0];
+        lifingImg = File.ReadAllBytes(savePath + filename + ".png");
+        lifingImgName = Path.GetFileName(savePath + filename + ".png").Split('.')[0];
         image.texture = tex;
 
         LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
@@ -110,15 +128,20 @@ public class LifeingItem : MonoBehaviour
 
     public void OnCilckImageSave()
     {
-        LifeingImagesData imagesData = new LifeingImagesData();
+        //여러개 배열
+       /* LifeingImagesData imagesData = new LifeingImagesData();
         imagesData.lifingContent = lifingText.text;
-        imagesData.lifingImages = lifeingImageList;
+        imagesData.lifingImages = lifeingImageList;*/
         //print(JsonUtility.ToJson(imagesData));
      
 
-        /*   LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
-           lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
-           lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];*/
+        LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+        lifeingImageInfo.lifingImage = lifingImg;
+        lifeingImageInfo.lifingImageName = lifingImgName;
+        
+        //PC버전
+        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
+        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
 
         //print(lifeingImageInfo.lifingImageName);
 
@@ -128,8 +151,8 @@ public class LifeingItem : MonoBehaviour
         requester.requestType = RequestType.POST;
        
 
-        requester.postData = JsonUtility.ToJson(imagesData, true);
-        //requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
+        //requester.postData = JsonUtility.ToJson(imagesData, true);
+        requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
         print(requester.postData);
 
         requester.onComplete = OnClickDownload;
@@ -149,7 +172,7 @@ public class LifeingItem : MonoBehaviour
 
     public void OnClickLifeingSave()
     {
-        lifingNo = PlayerPrefs.GetInt("lifeingNo");
+        //lifingNo = PlayerPrefs.GetInt("lifeingNo");
         LifeingInfo lifeing = new LifeingInfo();
         lifeing.lifingNo = lifingNo;
         lifeing.lifingCategoryNo = lifingCategoryNo;
