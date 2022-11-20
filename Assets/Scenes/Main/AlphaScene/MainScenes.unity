@@ -5255,6 +5255,7 @@ MonoBehaviour:
   img: 0
   id: 
   memberCode: 0
+  userMemberCode: 0
   userId: 
   roomId: 0
   fakeId: 
