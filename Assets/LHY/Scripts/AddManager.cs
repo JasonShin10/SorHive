@@ -445,7 +445,7 @@ public class AddManager : MonoBehaviour
             {
                 createObj.gameObject.name = info.name;
             }
-            if(createObj.gameObject.CompareTag("WallLeft"))
+            if(info.wallTag == "WallLeft")
             {
                 createObj.gameObject.tag = "WallLeft";
             }
@@ -690,6 +690,27 @@ public class AddManager : MonoBehaviour
         //HttpManager에게 요청
         HttpManager.instance.SendRequest(requester);
     }
+
+    //public void OnDefaultSaveSignIn()
+    //{
+    //    FurnitureInfo info = new FurnitureInfo();
+    //    info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+    //    //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+    //    info.furnitures = objectInfoList;
+    //    //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
+    //    //arrayJson.furnitures = objectInfoList;
+    //    //서버에 게시물 조회 요청(/posts/1 , Get)
+    //    HttpRequester requester = new HttpRequester();
+    //    /// POST, 완료되었을 때 호출되는 함수
+    //    requester.url = "http://52.79.209.232:8080/api/v1/room";
+    //    requester.requestType = RequestType.POST;
+    //    requester.requestName = "OnSaveSignIn";
+    //    //post data 셋팅
+    //    requester.postData = JsonUtility.ToJson(info, true);
+    //    requester.onComplete = OnCompleteSignIn;
+    //    //HttpManager에게 요청
+    //    HttpManager.instance.SendRequest(requester);
+    //}
 
     public void OnCompleteSignIn(DownloadHandler handler)
     {

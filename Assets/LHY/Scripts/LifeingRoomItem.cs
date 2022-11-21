@@ -53,7 +53,7 @@ public class LifeingRoomItem : MonoBehaviour
                 print("라이핑 룸스토리 있음!!");
                 //Texture2D tex = new Texture2D(0, 0);
                 //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
-                var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
+                var temp = File.ReadAllBytes(Application.dataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
 
                 print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
                 //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;

@@ -20,6 +20,7 @@ public class UserGetInfo
     
     public string id;
     public string memberId;
+    public string memberName;
     public int followId;
     public int memberCode;
     public int followingCount;
@@ -156,8 +157,10 @@ public class UserSetting : MonoBehaviour
         print("postTokenData"+ token);
         print(memberCode);
         PlayerPrefs.SetString("token", token);
-       
+
         //PlayerPrefs.SetString("memberId",)
+
+        Photon.Pun.PhotonNetwork.JoinLobby();
         print("조회 완료");
     }
 }
