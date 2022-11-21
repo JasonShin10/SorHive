@@ -3770,7 +3770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinChatButton: {fileID: 1551578208}
   username: 
-  chatText: {fileID: 0}
+  total_messages: []
   chatPanel: {fileID: 317301358}
   chatField: {fileID: 1031613098}
   chatDisplay: {fileID: 571525639}
@@ -8597,6 +8597,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenShotName: 
+  deletetObj: {fileID: 0}
+  deleteButton: {fileID: 0}
   objectInfo:
     wallNumber: 0
     floorNumber: 0
@@ -8610,6 +8612,7 @@ MonoBehaviour:
     angle: {x: 0, y: 0, z: 0}
     boxPosition: {x: 0, y: 0, z: 0}
     roomId: 0
+    wallTag: 
   objectInfoList: []
   guestBookJsonInfo:
     roomId: 0
