@@ -18,12 +18,13 @@ public class ChatMessageInfo
     public string chatTime;
 }
 
+
 [System.Serializable]
 public class ChatInfo
 {
     public int memberCode1;
     public int memberCode2;
-    public List<ChatMessageInfo> messages;
+    public List<string> messages;
 }
 
 public class PhotonChatManager : MonoBehaviour, IChatClientListener
@@ -34,7 +35,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     bool isConnected = false;
     [SerializeField] string username;
     int response_status = 0;
-    public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
+    public List<string> total_messages = new List<string>();
 
     private void Awake()
     {
@@ -201,7 +202,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
-        total_messages.Add(messages);
+        total_messages.Add(JsonUtility.ToJson(messages));
     }
 
     public void SendChatToServer()
@@ -220,18 +221,18 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             chatData.memberCode2 = toMemberCode;
             chatData.memberCode1 = fromMemberCode;
         }
-
         // 그동안 하나씩 쌓아놓은 메세지 객체들을 보낼 객체에 할당해주고
         // 깨끗하게 비우기
         chatData.messages = total_messages;
-        total_messages.Clear();
 
         // 서버에 보내 저장한다.
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/chatting";
         requester.requestType = RequestType.POST;
-        print(JsonUtility.ToJson(chatData, true));
         requester.postData = JsonUtility.ToJson(chatData, true);
+        print("이게 가는건데 ");
+        print(PlayerPrefs.GetString("token"));
+        print(requester.postData);
 
         // 닉네임 따오는 함수
         // PhotonNetwork.PlayerList[i].NickName
@@ -245,6 +246,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         JObject json = JObject.Parse(handler.text);
         print("handler start");
         response_status = int.Parse(json["status"].ToString());
+        total_messages.Clear();
     }
 
     public void SubmitPrivateChatOnClick()
