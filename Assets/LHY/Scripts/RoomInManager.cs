@@ -57,14 +57,10 @@ public class RoomInManager : MonoBehaviour
 
             //피드 아이템을 만들어준다.
             GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
-
             GuestBookInfo info = JsonUtility.FromJson<GuestBookInfo>(jsonData);
-
             GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
-
             guestBookItem.myGuestBookNum = info.myGuestBookNum;
             guestBookItem.guestBookText.text = info.guestBookText;
-            //feedItem.feedtexture.texture = info.feedtexture;
         }
     }
 

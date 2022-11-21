@@ -24,7 +24,7 @@ public class ChatInfo
 {
     public int memberCode1;
     public int memberCode2;
-    public List<string> messages;
+    public List<ChatMessageInfo> messages;
 }
 
 public class PhotonChatManager : MonoBehaviour, IChatClientListener
@@ -35,7 +35,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     bool isConnected = false;
     [SerializeField] string username;
     int response_status = 0;
-    public List<string> total_messages = new List<string>();
+    public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
 
     private void Awake()
     {
@@ -198,11 +198,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         messages.fromMemberCode = HttpManager.instance.memberCode;
         // 포톤에서 플레이어 리스트로 닉네임 받기.
         // PhotonNetwork.PlayerList[i].NickName
-        messages.toMemberCode = messages.fromMemberCode + 1;
+        messages.toMemberCode = messages.fromMemberCode + 2;
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
-        total_messages.Add(JsonUtility.ToJson(messages));
+        total_messages.Add(messages);
     }
 
     public void SendChatToServer()
@@ -210,7 +210,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
         // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
-        int toMemberCode = fromMemberCode + 1;
+        int toMemberCode = fromMemberCode + 2;
         if (fromMemberCode > toMemberCode)
         {
             chatData.memberCode1 = toMemberCode;

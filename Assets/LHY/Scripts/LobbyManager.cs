@@ -120,6 +120,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //JoinRoom();
     }
 
+    public void OnClickChatPage()
+    {
+        SceneManager.LoadScene("ChatScene");
+    }
+
+
     /*public void OnClickRoomIn()
     {
         //myRoom = 1;
