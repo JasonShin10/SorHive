@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapRight : Map
 {
-   
+    Transform removeSelectObj;
     GameObject currCube;
     GameObject floor;
     float ox;
@@ -125,6 +125,10 @@ public class MapRight : Map
                     selectObj.position = new Vector3(ox, oy, oz);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
                     SaveJson(selectObj.gameObject);
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(-1.5f, selectObj.GetComponent<MeshRenderer>().bounds.size.y, -1.5f));
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(8, selectObj.GetComponent<MeshRenderer>().bounds.size.y, 8));
                     selectObj = null;
                 }
                 else
@@ -133,6 +137,7 @@ public class MapRight : Map
                     selectObj.rotation = startLocation;
                     selectObj.GetComponent<Furniture>().canLocated = false;
                     SaveJson(selectObj.gameObject);
+
                     selectObj = null;
                 }
 
@@ -141,6 +146,7 @@ public class MapRight : Map
 
         if (selectObj != null)
         {
+            AddManager.instance.deletetObj = selectObj;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             
             int layer = 1 << LayerMask.NameToLayer("WallRight");
@@ -199,7 +205,8 @@ public class MapRight : Map
         currCube = Instantiate(item);
 
         //SaveJson(currCube.gameObject);
-        currCube.name = "d" + select;
+        //currCube.name = "d" + select;
+        currCube.name = item.name;
         select += 1;
         currCube.layer = LayerMask.NameToLayer("Obj");
         int y = (int)(hit.point.y);
@@ -241,6 +248,36 @@ public class MapRight : Map
         AddManager.instance.objectInfo.furnitureCategoryNumber = num;
         AddManager.instance.objectInfo.wallNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+    }
+
+    public void OnRemoveJson()
+    {
+        print("OnRemoveJson");
+        int count = AddManager.instance.objectInfoList.Count;
+        //for (int i = 0; i < count; i++)
+        //{
+        //    //AddManager.instance.objectInfoList.RemoveAt(i);
+        //if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
+        //{
+
+        //    AddManager.instance.objectInfoList.RemoveAt(i);
+        //}
+        //else if (AddManager.instance.objectInfoList[i].obj.name == removeSelectObj.gameObject.name)
+        //{
+        //}
+        //}
+        for (int i = AddManager.instance.objectInfoList.Count - 1; i >= 0; i--)
+        {
+            if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
+            }
+            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
+            }
+        }
+        AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
     }
     public LineRenderer line;
 }

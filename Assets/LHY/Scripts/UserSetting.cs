@@ -17,6 +17,7 @@ public class UserInfo
 [System.Serializable]
 public class UserGetInfo
 {
+    
     public string id;
     public string memberId;
     public int followId;
@@ -151,6 +152,7 @@ public class UserSetting : MonoBehaviour
         string token = json["data"]["accessToken"].ToString();
         int memberCode = json["data"]["memberCode"].ToObject<int>();
         HttpManager.instance.memberCode = memberCode;
+        HttpManager.instance.userMemberCode = memberCode;
         print("postTokenData"+ token);
         print(memberCode);
         PlayerPrefs.SetString("token", token);

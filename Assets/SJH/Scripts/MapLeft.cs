@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapLeft : Map
 {
-
+    Transform removeSelectObj;
     GameObject currCube;
     GameObject floor;
     int ox;
@@ -117,6 +117,12 @@ public class MapLeft : Map
                     //print(selectObj.position);
                     //print(ox);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    SaveJson(selectObj.gameObject);
+                    selectObj.gameObject.GetComponent<Furniture>().located = true;
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(-1.5f, selectObj.GetComponent<MeshRenderer>().bounds.size.y, -1.5f));
+                    AddManager.instance.gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(8, selectObj.GetComponent<MeshRenderer>().bounds.size.y, 8));
                     selectObj = null;
                 }
                 else
@@ -124,6 +130,7 @@ public class MapLeft : Map
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
                     selectObj.GetComponent<Furniture>().canLocated = false;
+                    SaveJson(selectObj.gameObject);
                     selectObj = null;
                 }
 
@@ -131,6 +138,7 @@ public class MapLeft : Map
         }
         if (selectObj != null)
         {
+            AddManager.instance.deletetObj = selectObj;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             int layer = 1 << LayerMask.NameToLayer("WallLeft");
@@ -175,6 +183,7 @@ public class MapLeft : Map
         AddManager.instance.ang = obj.transform.eulerAngles;
         AddManager.instance.objectInfo.furnitureNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfo.furnitureCategoryNumber = num;
+        AddManager.instance.objectInfo.wallTag = "WallLeft";
         AddManager.instance.objectInfo.obj = AddManager.instance.obj;
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
@@ -189,7 +198,8 @@ public class MapLeft : Map
         currCube = Instantiate(item);
 
         //SaveJson(currCube.gameObject);
-        currCube.name = "d" + select;
+        //currCube.name = "d" + select;
+        currCube.name = item.name;
         select += 1;
         currCube.gameObject.tag = "WallLeft";
         currCube.transform.rotation = Quaternion.Euler(0, 0, 0);

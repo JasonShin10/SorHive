@@ -37,6 +37,7 @@ public class HttpManager : MonoBehaviour
     public bool img = false;
     public string id;
     public int memberCode;
+    public int userMemberCode;
     public string userId;
     public int roomId;
     public string fakeId;

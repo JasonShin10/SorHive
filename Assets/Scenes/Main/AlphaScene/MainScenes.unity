@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.9221907, g: 0.86226416, b: 1, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -395,13 +395,14 @@ GameObject:
   - component: {fileID: 17694938}
   - component: {fileID: 17694937}
   - component: {fileID: 17694936}
+  - component: {fileID: 17694939}
   m_Layer: 5
   m_Name: BaseSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &17694935
 RectTransform:
   m_ObjectHideFlags: 0
@@ -411,7 +412,7 @@ RectTransform:
   m_GameObject: {fileID: 17694934}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 69}
-  m_LocalScale: {x: 10.326778, y: 92.33972, z: 10.326778}
+  m_LocalScale: {x: 9.964795, y: 89.10295, z: 9.964795}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 17623656}
@@ -419,10 +420,10 @@ RectTransform:
   m_Father: {fileID: 1831802959}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8736.114}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 8488}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &17694936
 MonoBehaviour:
@@ -475,6 +476,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17694934}
   m_CullTransparentMesh: 1
+--- !u!223 &17694939
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17694934}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &17765731
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +606,7 @@ RectTransform:
   m_GameObject: {fileID: 20717869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 8.941775, z: 1}
+  m_LocalScale: {x: 0.92927, y: 8.309324, z: 0.92927}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1692025995}
@@ -592,7 +614,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: 138.29008}
+  m_AnchoredPosition: {x: 391, y: 181.29016}
   m_SizeDelta: {x: 184.5028, y: 199.513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &20717871
@@ -677,6 +699,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnClickRoomImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1692025996}
         m_TargetAssemblyTypeName: TabController, Assembly-CSharp
         m_MethodName: SelectedButton
@@ -692,18 +726,6 @@ MonoBehaviour:
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
         m_MethodName: OnClickIdReset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1146731188}
-        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickRoomImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -766,7 +788,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 276490500}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1066,9 +1088,9 @@ RectTransform:
   m_Father: {fileID: 302719186}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 407.5, y: -841.9}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -100, y: 100}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &57074935
@@ -1127,10 +1149,46 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1880653986}
+        m_TargetAssemblyTypeName: CustomUtils.ScreenShot, Assembly-CSharp
+        m_MethodName: ScreenShotClick2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 302719180}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2005773271}
+        m_TargetAssemblyTypeName: LifeingManager, Assembly-CSharp
+        m_MethodName: GetMambersList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2005773271}
+        m_TargetAssemblyTypeName: LifeingManager, Assembly-CSharp
+        m_MethodName: ReLoadMambersList
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1177,6 +1235,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57074933}
   m_CullTransparentMesh: 1
+--- !u!1 &69059260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69059261}
+  - component: {fileID: 69059263}
+  - component: {fileID: 69059264}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &69059261
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69059260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477062138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &69059263
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69059260}
+  m_CullTransparentMesh: 1
+--- !u!114 &69059264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69059260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &73693049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1391,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 630656176}
   m_HandleRect: {fileID: 630656175}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1504,7 +1635,7 @@ RectTransform:
   m_GameObject: {fileID: 76490879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 8.941775, z: 1}
+  m_LocalScale: {x: 0.92927, y: 8.309324, z: 0.92927}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1692025995}
@@ -1512,7 +1643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -395, y: 145.00012}
+  m_AnchoredPosition: {x: -395, y: 188.00021}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76490881
@@ -1775,6 +1906,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83252967}
   m_CullTransparentMesh: 1
+--- !u!1001 &90068743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 477062138}
+    m_Modifications:
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.2000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.099975586
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -440
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020836, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020836, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: field of view
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020836, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: orthographic size
+      value: 50.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2002645207267020837, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: lifeingItem
+      value: 
+      objectReference: {fileID: 1217469757}
+    - target: {fileID: 2002645207267020838, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+      propertyPath: m_Name
+      value: ScreenShotCamera
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
 --- !u!1 &100029432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1992,7 @@ GameObject:
   - component: {fileID: 100029436}
   - component: {fileID: 100029435}
   - component: {fileID: 100029434}
+  - component: {fileID: 100029438}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -1924,6 +2129,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 100029438}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -1944,6 +2161,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100029432}
   m_CullTransparentMesh: 1
+--- !u!114 &100029438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100029432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1081216158}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &120987557
 GameObject:
   m_ObjectHideFlags: 0
@@ -2495,11 +2727,11 @@ RectTransform:
   m_Father: {fileID: 302719186}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -604}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &182458330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,11 +2978,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &194631826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3000,6 +3232,7 @@ GameObject:
   - component: {fileID: 203019144}
   - component: {fileID: 203019143}
   - component: {fileID: 203019142}
+  - component: {fileID: 203019146}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -3136,6 +3369,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 203019146}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -3156,6 +3401,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203019140}
   m_CullTransparentMesh: 1
+--- !u!114 &203019146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203019140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 968106855}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &218778176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3521,8 +3781,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 7663.102}
-  m_SizeDelta: {x: 980, y: 1820}
+  m_AnchoredPosition: {x: 16.4001, y: 8233.203}
+  m_SizeDelta: {x: 2587.23, y: 3292.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276490502
 MonoBehaviour:
@@ -3747,7 +4007,7 @@ RectTransform:
   m_Father: {fileID: 395919173}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.44158727}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -3825,7 +4085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 249, y: -510}
+  m_AnchoredPosition: {x: 300, y: -574}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283539230
@@ -4047,6 +4307,7 @@ GameObject:
   - component: {fileID: 296474275}
   - component: {fileID: 296474274}
   - component: {fileID: 296474273}
+  - component: {fileID: 296474277}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -4183,6 +4444,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 296474277}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -4203,6 +4476,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296474271}
   m_CullTransparentMesh: 1
+--- !u!114 &296474277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296474271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1322715512}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &302719180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4257,13 +4545,13 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 1920}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &302719183
 Canvas:
   m_ObjectHideFlags: 0
@@ -4273,7 +4561,7 @@ Canvas:
   m_GameObject: {fileID: 302719180}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4283,7 +4571,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 12
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &302719184
 RectTransform:
@@ -4294,7 +4582,7 @@ RectTransform:
   m_GameObject: {fileID: 1651319035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1831802959}
@@ -4304,8 +4592,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &302719185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,7 +4616,7 @@ RectTransform:
   m_GameObject: {fileID: 302719180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1758699631}
@@ -4343,13 +4631,13 @@ RectTransform:
   - {fileID: 182458329}
   - {fileID: 1759591578}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -3, y: 1}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &302719187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4682,8 +4970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.667492, y: 7666.1064}
-  m_SizeDelta: {x: 225.2044, y: 345.689}
+  m_AnchoredPosition: {x: 0, y: 4426.0366}
+  m_SizeDelta: {x: 850.0273, y: 635.631}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363110871
 MonoBehaviour:
@@ -4911,10 +5199,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -826.46924}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2160}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &380713787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5255,6 +5543,7 @@ MonoBehaviour:
   img: 0
   id: 
   memberCode: 0
+  userMemberCode: 0
   userId: 
   roomId: 0
   fakeId: 
@@ -5274,7 +5563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417705912
 GameObject:
@@ -5289,6 +5578,7 @@ GameObject:
   - component: {fileID: 417705916}
   - component: {fileID: 417705915}
   - component: {fileID: 417705914}
+  - component: {fileID: 417705918}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -5425,6 +5715,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 417705918}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -5445,6 +5747,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417705912}
   m_CullTransparentMesh: 1
+--- !u!114 &417705918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417705912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1420264703}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &424397540
 GameObject:
   m_ObjectHideFlags: 0
@@ -5573,7 +5890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -405}
+  m_AnchoredPosition: {x: 0, y: -451}
   m_SizeDelta: {x: 279.6615, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435956972
@@ -5705,7 +6022,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -15.065, y: -0.5}
+  m_AnchoredPosition: {x: -15.065002, y: -0.49999905}
   m_SizeDelta: {x: -31.476, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439792234
@@ -6063,8 +6380,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1671857429}
   m_HandleRect: {fileID: 1671857428}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6335,7 +6652,7 @@ RectTransform:
   m_Father: {fileID: 1342823774}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.000000059604645, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -6378,6 +6695,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474100538}
   m_CullTransparentMesh: 1
+--- !u!1 &477062134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477062138}
+  - component: {fileID: 477062137}
+  - component: {fileID: 477062136}
+  - component: {fileID: 477062135}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &477062135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477062134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &477062136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477062134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!223 &477062137
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477062134}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -7
+  m_TargetDisplay: 0
+--- !u!224 &477062138
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477062134}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 69059261}
+  - {fileID: 1880653987}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 1080}
+  m_SizeDelta: {x: 1080, y: 2160}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &491865461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,10 +7079,10 @@ RectTransform:
   m_Father: {fileID: 750030784}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -667}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -1, y: 201.05688}
+  m_SizeDelta: {x: 160, y: 39.9201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &500282206
 MonoBehaviour:
@@ -7511,6 +7930,7 @@ GameObject:
   - component: {fileID: 600907329}
   - component: {fileID: 600907328}
   - component: {fileID: 600907327}
+  - component: {fileID: 600907330}
   - component: {fileID: 600907326}
   m_Layer: 5
   m_Name: 2
@@ -7648,6 +8068,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 600907330}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -7668,6 +8100,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 600907324}
   m_CullTransparentMesh: 1
+--- !u!114 &600907330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600907324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1967455953}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &604891022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7783,11 +8230,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &612809017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8085,7 +8532,7 @@ RectTransform:
   m_GameObject: {fileID: 640043556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.21438144, y: 0.27046782, z: 0.1786512}
+  m_LocalScale: {x: 0.4314212, y: 0.27046782, z: 0.1786512}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 958814637}
@@ -8093,8 +8540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.1000061, y: 10}
-  m_SizeDelta: {x: 880.34814, y: 1728.8}
+  m_AnchoredPosition: {x: -1.0999756, y: -108}
+  m_SizeDelta: {x: 880.34814, y: 1827.9226}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &640043558
 MonoBehaviour:
@@ -8199,7 +8646,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654472412
 GameObject:
@@ -8320,7 +8767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.8}
+  m_AnchoredPosition: {x: 0, y: 1.7999878}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654474078
@@ -8550,6 +8997,7 @@ GameObject:
   - component: {fileID: 669334574}
   - component: {fileID: 669334573}
   - component: {fileID: 669334572}
+  - component: {fileID: 669334576}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -8686,6 +9134,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 669334576}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -8706,6 +9166,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 669334570}
   m_CullTransparentMesh: 1
+--- !u!114 &669334576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669334570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1213314394}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &670822829
 GameObject:
   m_ObjectHideFlags: 0
@@ -8744,11 +9219,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &670822831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8950,7 +9425,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1452491399}
   m_HandleRect: {fileID: 1452491398}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999999
   m_Size: 0.4520222
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9328,7 +9803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &750030784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9638,7 +10113,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &783292690
 GameObject:
@@ -9675,7 +10150,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -251, y: -510}
+  m_AnchoredPosition: {x: -300, y: -574.00006}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &783292692
@@ -10518,11 +10993,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &862449263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10591,7 +11066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &862627459
 MonoBehaviour:
@@ -10739,11 +11214,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &882063733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11040,8 +11515,9 @@ GameObject:
   m_Component:
   - component: {fileID: 917249527}
   - component: {fileID: 917249531}
-  - component: {fileID: 917249530}
   - component: {fileID: 917249529}
+  - component: {fileID: 917249532}
+  - component: {fileID: 917249530}
   - component: {fileID: 917249528}
   m_Layer: 5
   m_Name: 1
@@ -11179,6 +11655,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 917249532}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -11199,6 +11687,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917249526}
   m_CullTransparentMesh: 1
+--- !u!114 &917249532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917249526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1020490966}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &919770224
 GameObject:
   m_ObjectHideFlags: 0
@@ -11285,7 +11788,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickFollowing
+        m_MethodName: OnclickDeleteFollowing
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11531,7 +12034,7 @@ RectTransform:
   m_GameObject: {fileID: 956576120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7247, y: 1.7247, z: 1.7247}
+  m_LocalScale: {x: 2.3478117, y: 2.3478117, z: 2.3478117}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 774141791}
@@ -11540,7 +12043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 246, y: -509.8}
+  m_AnchoredPosition: {x: 300, y: -572}
   m_SizeDelta: {x: 81.9, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &956576122
@@ -11873,7 +12376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0006058501}
+  m_AnchoredPosition: {x: 0, y: -0.0010009556}
   m_SizeDelta: {x: 0, y: 1687.0745}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &984640306
@@ -12175,8 +12678,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.4252, y: 652.6553}
-  m_SizeDelta: {x: 187.1946, y: 31.3185}
+  m_AnchoredPosition: {x: -1.4252, y: 690}
+  m_SizeDelta: {x: 187.1946, y: 31.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1025712227
 MonoBehaviour:
@@ -13015,7 +13518,7 @@ RectTransform:
   m_GameObject: {fileID: 1076470855}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1330962, y: 1.6014925, z: 0.1791023}
+  m_LocalScale: {x: 1.3634547, y: 1.927076, z: 0.2155138}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1502026572}
@@ -13023,7 +13526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: -176}
+  m_AnchoredPosition: {x: -298, y: -58}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076470857
@@ -13954,10 +14457,11 @@ MonoBehaviour:
   ContentHolder: {fileID: 1669234738}
   FollowingContentHolder: {fileID: 1572615797}
   Element: []
+  FollowingElement: []
   SearchBar: {fileID: 1025712225}
   IDFactory: {fileID: 3462282978235219664, guid: c22c147fa5e04a6499c9da6f35a0c84a, type: 3}
   myPage: {fileID: 750030783}
-  deleteFollowing: {fileID: 0}
+  deleteFollowing: {fileID: 919770226}
   myPageButton: {fileID: 20717873}
   Img: {fileID: 920263051}
   following: {fileID: 283539230}
@@ -13971,9 +14475,11 @@ MonoBehaviour:
     password: 
   id: 
   roomImgString: 
+  followingCheck: 0
   memberCode: 0
   userInfoList: []
   userThreeList: []
+  userFollowList: 
   userGetInfo:
     id: 
     memberId: 
@@ -13998,7 +14504,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1157530000
 GameObject:
@@ -14035,7 +14541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.061982, y: -0.5}
+  m_AnchoredPosition: {x: -10.061981, y: -0.49999905}
   m_SizeDelta: {x: 6.46127, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157530002
@@ -14113,7 +14619,7 @@ RectTransform:
   m_Father: {fileID: 527854438}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.89152825}
+  m_AnchorMin: {x: 0, y: 0.8401605}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -14441,7 +14947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d263cae16247e44ae6474746566c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
+  image: {fileID: 1712544761}
   lifingImg: 
   lifingImgName: 
   lifingNo: 1
@@ -14557,7 +15063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 206, y: -234.99976}
+  m_AnchoredPosition: {x: 206, y: 14.000122}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222211889
@@ -14691,7 +15197,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.00018310547}
+  m_AnchoredPosition: {x: 0, y: 0.00024414062}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1227977571
@@ -14768,7 +15274,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1227977575
 MonoBehaviour:
@@ -14821,11 +15327,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1228765829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15336,7 +15842,7 @@ RectTransform:
   m_GameObject: {fileID: 1298581031}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7247, y: 1.7247, z: 1.7247}
+  m_LocalScale: {x: 2.380086, y: 2.380086, z: 2.380086}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 47161458}
@@ -15345,7 +15851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -13.7, y: -509.8}
+  m_AnchoredPosition: {x: -13.7, y: -573}
   m_SizeDelta: {x: 81.9, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298581033
@@ -15541,6 +16047,7 @@ GameObject:
   - component: {fileID: 1314915562}
   - component: {fileID: 1314915564}
   - component: {fileID: 1314915563}
+  - component: {fileID: 1314915565}
   m_Layer: 5
   m_Name: 3
   m_TagString: Untagged
@@ -15608,6 +16115,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314915561}
   m_CullTransparentMesh: 1
+--- !u!114 &1314915565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314915561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 0}
+  lifeingScreenShot: {fileID: 0}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1322715510
 GameObject:
   m_ObjectHideFlags: 0
@@ -15716,7 +16238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -510}
+  m_AnchoredPosition: {x: -1, y: -574.00006}
   m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1331776265
@@ -16591,6 +17113,7 @@ GameObject:
   - component: {fileID: 1404148446}
   - component: {fileID: 1404148445}
   - component: {fileID: 1404148444}
+  - component: {fileID: 1404148448}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -16727,6 +17250,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1404148448}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -16747,6 +17282,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404148442}
   m_CullTransparentMesh: 1
+--- !u!114 &1404148448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404148442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1026465377}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1410417041
 GameObject:
   m_ObjectHideFlags: 0
@@ -16760,6 +17310,7 @@ GameObject:
   - component: {fileID: 1410417045}
   - component: {fileID: 1410417044}
   - component: {fileID: 1410417043}
+  - component: {fileID: 1410417047}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -16896,6 +17447,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1410417047}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -16916,6 +17479,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410417041}
   m_CullTransparentMesh: 1
+--- !u!114 &1410417047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410417041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 310500747}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1414996753
 GameObject:
   m_ObjectHideFlags: 0
@@ -16952,7 +17530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 335, y: -234.99976}
+  m_AnchoredPosition: {x: 335, y: 14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414996755
@@ -17162,7 +17740,7 @@ RectTransform:
   m_GameObject: {fileID: 1416258726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 8.941775, z: 1}
+  m_LocalScale: {x: 0.92927, y: 8.309324, z: 0.92927}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1692025995}
@@ -17170,7 +17748,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130, y: 145.00012}
+  m_AnchoredPosition: {x: 130, y: 188}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416258728
@@ -18084,8 +18662,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 280371792}
   m_HandleRect: {fileID: 280371791}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1.0000005
+  m_Size: 0.55841273
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18145,7 +18723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1478686864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18653,7 +19231,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502026571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -69}
+  m_LocalPosition: {x: 0, y: 0, z: -69.000015}
   m_LocalScale: {x: 1, y: 0.11183462, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18665,11 +19243,11 @@ RectTransform:
   m_Father: {fileID: 1502729930}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -113}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 1920}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1502026573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18757,17 +19335,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1502729929
 Canvas:
   m_ObjectHideFlags: 0
@@ -18777,7 +19355,7 @@ Canvas:
   m_GameObject: {fileID: 1502729926}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 15541149}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -18797,8 +19375,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502729926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1502026572}
@@ -18809,8 +19387,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 1920}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1502729931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19641,17 +20219,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1080, y: 2160}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1651319038
 Canvas:
   m_ObjectHideFlags: 0
@@ -19661,7 +20239,7 @@ Canvas:
   m_GameObject: {fileID: 1651319035}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -19685,6 +20263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   friendList: []
   hexPos: []
   llifeingItemFactory: {fileID: 0}
@@ -19800,7 +20379,7 @@ RectTransform:
   m_GameObject: {fileID: 1656943258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 8.941775, z: 1}
+  m_LocalScale: {x: 0.92927, y: 8.309324, z: 0.92927}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1692025995}
@@ -19808,7 +20387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -130, y: 145.00012}
+  m_AnchoredPosition: {x: -130, y: 188.00021}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1656943260
@@ -20029,10 +20608,10 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -44}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: -44.000122}
+  m_SizeDelta: {x: 0, y: 2160}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1662141413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20227,8 +20806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00007724762}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: -0.0010315855}
+  m_SizeDelta: {x: 0, y: 4680.5244}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1669234739
 MonoBehaviour:
@@ -20289,7 +20868,7 @@ RectTransform:
   m_Father: {fileID: 1118007164}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.000000059604645, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -20427,18 +21006,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1813460035}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickImageLoad
@@ -20450,6 +21017,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1759591577}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1682833278
 MonoBehaviour:
@@ -21607,11 +22186,11 @@ RectTransform:
   m_Father: {fileID: 302719186}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1788734826
 GameObject:
   m_ObjectHideFlags: 0
@@ -21921,7 +22500,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 474100539}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22047,8 +22626,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1182209513}
   m_HandleRect: {fileID: 1182209512}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.10847177
+  m_Value: 1.0000007
+  m_Size: 0.15983954
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22944,7 +23523,7 @@ RectTransform:
   m_GameObject: {fileID: 1839621656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1149, y: 1.1149, z: 1.1149}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 874975057}
@@ -22953,10 +23532,10 @@ RectTransform:
   m_Father: {fileID: 276490501}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1200}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -424.596}
+  m_SizeDelta: {x: 1000, y: -761.6753}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839621658
 MonoBehaviour:
@@ -23115,6 +23694,7 @@ GameObject:
   - component: {fileID: 1850007535}
   - component: {fileID: 1850007534}
   - component: {fileID: 1850007533}
+  - component: {fileID: 1850007537}
   m_Layer: 5
   m_Name: 2
   m_TagString: Untagged
@@ -23251,6 +23831,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1850007537}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -23271,6 +23863,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850007531}
   m_CullTransparentMesh: 1
+--- !u!114 &1850007537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850007531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 554328282}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1860710848
 GameObject:
   m_ObjectHideFlags: 0
@@ -23398,6 +24005,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860710848}
   m_CullTransparentMesh: 1
+--- !u!114 &1880653986 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2002645207267020837, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+  m_PrefabInstance: {fileID: 90068743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e77b080b0b973a419e71bd52f22943e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1880653987 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
+  m_PrefabInstance: {fileID: 90068743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1881943991
 GameObject:
   m_ObjectHideFlags: 0
@@ -23481,8 +24104,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1072734484}
   m_HandleRect: {fileID: 1072734483}
   m_Direction: 2
-  m_Value: 0.99997795
-  m_Size: 0.9557683
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -23599,11 +24222,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1890787571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23898,6 +24521,7 @@ GameObject:
   - component: {fileID: 1902371414}
   - component: {fileID: 1902371413}
   - component: {fileID: 1902371412}
+  - component: {fileID: 1902371416}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -24034,6 +24658,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1902371416}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -24054,6 +24690,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902371410}
   m_CullTransparentMesh: 1
+--- !u!114 &1902371416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902371410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 246917940}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1906419419
 GameObject:
   m_ObjectHideFlags: 0
@@ -24091,7 +24742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -332, y: 664}
+  m_AnchoredPosition: {x: -300, y: 750}
   m_SizeDelta: {x: 350, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906419421
@@ -24138,9 +24789,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 862627459}
-        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
-        m_MethodName: OnClickRoomIn
+      - m_Target: {fileID: 1146731188}
+        m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
+        m_MethodName: OnRoomIn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24512,8 +25163,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1938968619}
   - component: {fileID: 1938968623}
-  - component: {fileID: 1938968622}
   - component: {fileID: 1938968621}
+  - component: {fileID: 1938968624}
+  - component: {fileID: 1938968622}
   - component: {fileID: 1938968620}
   m_Layer: 5
   m_Name: 3
@@ -24651,6 +25303,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1938968624}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -24671,6 +25335,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938968618}
   m_CullTransparentMesh: 1
+--- !u!114 &1938968624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938968618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1486460413}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &1942830509
 GameObject:
   m_ObjectHideFlags: 0
@@ -24699,7 +25378,7 @@ RectTransform:
   m_GameObject: {fileID: 1942830509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.0194902, y: 7.530535, z: 5.487854}
+  m_LocalScale: {x: 6.997658, y: 7.530535, z: 5.487854}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2064742780}
@@ -24708,10 +25387,10 @@ RectTransform:
   m_Father: {fileID: 1111846099}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 52, y: -7}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -190.04167}
+  m_SizeDelta: {x: 200, y: -1633.3387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942830511
 MonoBehaviour:
@@ -24891,7 +25570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 347, y: 664}
+  m_AnchoredPosition: {x: 331, y: 750}
   m_SizeDelta: {x: 350, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959144774
@@ -25016,7 +25695,7 @@ RectTransform:
   m_GameObject: {fileID: 1962410108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0884, y: 1.0884, z: 1.0884}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 920263050}
@@ -25026,7 +25705,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 1000, y: 1014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1962410112
 CanvasRenderer:
@@ -25552,30 +26231,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 182458328}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1813460035}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnCilckImageSave
@@ -25783,6 +26438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac1215161654fc489eec66ecfccc2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   friendList: []
   hexPos:
   - {fileID: 1087143691}
@@ -25992,6 +26648,7 @@ GameObject:
   - component: {fileID: 2008261806}
   - component: {fileID: 2008261805}
   - component: {fileID: 2008261804}
+  - component: {fileID: 2008261808}
   m_Layer: 5
   m_Name: 1
   m_TagString: Untagged
@@ -26128,6 +26785,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2008261808}
+        m_TargetAssemblyTypeName: LifeingRoomImage, Assembly-CSharp
+        m_MethodName: OnClickSaveRoomImg
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1217469757}
         m_TargetAssemblyTypeName: LifeingItem, Assembly-CSharp
         m_MethodName: OnClickLifeingSave
@@ -26148,6 +26817,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008261802}
   m_CullTransparentMesh: 1
+--- !u!114 &2008261808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008261802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c05c424c4bc86e48960bfc72f755200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeingRoomImage: {fileID: 1069584192}
+  lifeingScreenShot: {fileID: 69059264}
+  lifeingItem: {fileID: 1217469757}
 --- !u!1 &2010983874
 GameObject:
   m_ObjectHideFlags: 0
@@ -26714,7 +27398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD314\uB85C\uC789"
+  m_Text: "\uD314\uB85C\uC789 \uCDE8\uC18C"
 --- !u!222 &2047029478
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26930,11 +27614,11 @@ RectTransform:
   m_Father: {fileID: 1759591578}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -643.63293}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 88.7961}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2082753533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27009,7 +27693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 463.3, y: -235}
+  m_AnchoredPosition: {x: 463.3, y: 13.999878}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083826716
@@ -27220,10 +27904,10 @@ RectTransform:
   m_Father: {fileID: 302719186}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5, y: 852}
-  m_SizeDelta: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: -78}
+  m_SizeDelta: {x: 0, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2098695544
 MonoBehaviour:
