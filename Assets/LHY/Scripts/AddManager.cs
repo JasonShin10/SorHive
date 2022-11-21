@@ -15,8 +15,9 @@ public class GuestBookJsonInfo
 {
     public int roomId;
     //public byte[] onlineRoomImage;
-    public string content;
-    public string memberId;
+    public string guestBookContent;
+    public string guestBookWriteId;
+    public string guestBookId;
 }
 
 [System.Serializable]

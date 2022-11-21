@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using UnityEngine.EventSystems;
 
 public class RoomInManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class RoomInManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreateFeedUI();
+        //CreateFeedUI();
     }
 
     // Update is called once per frame
@@ -134,11 +135,42 @@ public class RoomInManager : MonoBehaviour
     //    //string s = "{\"furniture\":" + handler.text + "}";
     //    print("조회 완료");
     //}
+    public void OnDeleteGuestBook()
+    {
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        HttpManager.instance.guestBookId = int.Parse(clickObject.transform.GetChild(0).GetComponent<Text>().text);
+        GuestBookDelete();
+
+    }
+
+    public void GuestBookDelete()
+    {
+        //서버에 게시물 조회 요청(/posts/1 , Get)
+        HttpRequester requester = new HttpRequester();
+        /// POST, 완료되었을 때 호출되는 함수
+        requester.url = "http://52.79.209.232:8080/api/v1/guestbook/" + HttpManager.instance.guestBookId;
+        requester.requestType = RequestType.GET;
+        //post data 셋팅
+
+        requester.onComplete = OnCompleteDeleteGuestBook;
+        //HttpManager에게 요청
+        HttpManager.instance.SendRequest(requester);
+
+    }
+    public void OnCompleteDeleteGuestBook(DownloadHandler handler)
+    {
+        print(handler);
+        string s = "{\"furniture\":" + handler.text + "}";
+        PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
+
+    }
     public void CreateObject(GuestBookJsonInfo info)
     {
         GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
+        guestBook.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(OnDeleteGuestBook);
         GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
         guestBookItem.guestBookText.text = info.content;
         guestBookItem.UserID.text = info.memberId;
+        guestBookItem.guestBookId.text = info.guestBookId;
     }
 }

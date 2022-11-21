@@ -42,6 +42,7 @@ public class HttpManager : MonoBehaviour
     public int roomId;
     public string fakeId;
     public string accessToken;
+    public int guestBookId;
     public bool firstId = false;
     public bool secondId = false;
     //서버에게 요청
