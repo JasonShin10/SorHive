@@ -32,7 +32,7 @@ public class SearchID : MonoBehaviour
     public string id;
     public string roomImgString;
     public bool followingCheck = false;
-    
+    public int followingIdNum;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
@@ -63,10 +63,11 @@ public class SearchID : MonoBehaviour
         //GetFollower();
         memberCode = HttpManager.instance.memberCode;
         print(memberCode);
+        //GetUserFollowing();
         GetThree();
+        GetFollowing();
         GetRoomImage();
         GetRoomAll();
-        GetUserFollowing();
     }
   
     // Update is called once per frame
@@ -215,7 +216,10 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = jsonData["data"].ToString();
+        string followingId = jsonData["data"]["followSummary"].ToString();
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
+        UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followingId);
+        followingIdNum = userFollowing.followId;
         follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
         feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
@@ -344,7 +348,6 @@ public class SearchID : MonoBehaviour
     }
     public void OnCompleteGetUserFollowing(DownloadHandler handler)
     {
-
         sHandler = handler.text;
         print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
@@ -352,8 +355,13 @@ public class SearchID : MonoBehaviour
         string userData = "{\"data\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
+        for (int i = 0; i < userInfoList.Count; i++)
+        {
 
-        print(userInfo);
+            userFollowList.Add(userInfoList[i].memberCode);
+
+            print(userInfo);
+        }
         //for (int i = 0; i < userInfoList.Count; i++)
         //{
           
@@ -445,8 +453,6 @@ public class SearchID : MonoBehaviour
                 UserFollowingCheckUI();
                 return;
             }
-
-        
         GetRoomImage();
         GetThree();
         HttpManager.instance.id = id;
