@@ -12,6 +12,7 @@ public class LifeingRoomItem : MonoBehaviour
     public RawImage roomImage;
     public Text memberName;
     public RawImage ProfileImage;
+    public GameObject lifeingisTrue;
 
     public string lifingYn;
     public int lifingNo;
@@ -37,7 +38,7 @@ public class LifeingRoomItem : MonoBehaviour
         ProfileImage.texture = roomImage.texture;
 
 
-
+        
 
         //for()
     }
@@ -62,7 +63,7 @@ public class LifeingRoomItem : MonoBehaviour
                 tex.LoadImage(temp);
 
                 //tex.LoadImage(temp);
-
+                lifeingisTrue.SetActive(true);
                 roomImage.texture = tex;
                 LifeingLoad = true;
             }
@@ -70,6 +71,7 @@ public class LifeingRoomItem : MonoBehaviour
         }
         else
         {
+            lifeingisTrue.SetActive(false);
             return;
         }
 
