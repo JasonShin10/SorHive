@@ -63,7 +63,7 @@ namespace CustomUtils
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
 
-            File.WriteAllBytes($"{Application.persistentDataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+            File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
 
         }
 

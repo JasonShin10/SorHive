@@ -356,18 +356,19 @@ public class MapGround : Map
         //}
         for (int i = AddManager.instance.objectInfoList.Count - 1; i >= 0; i--)
         {
-            //if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
-            //{
-            //    AddManager.instance.objectInfoList.RemoveAt(i);
-            //}
-            //else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
-            //{
-            //    AddManager.instance.objectInfoList.RemoveAt(i);
-            //}
-            //傈何昏力
-            AddManager.instance.objectInfoList.RemoveAt(i);
-        }
+            if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
+            }
+            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
+            {
+                AddManager.instance.objectInfoList.RemoveAt(i);
         AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
+                return;
+            }
+            //傈何昏力
+            //AddManager.instance.objectInfoList.RemoveAt(i);
+        }
     }
     
     void Room(GameObject item)

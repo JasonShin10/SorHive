@@ -26,6 +26,8 @@ public class HttpManager : MonoBehaviour
             //나를 파괴하겠다.
             Destroy(gameObject);
         }
+
+        //PlayerPrefs.SetString("token","");
     }
     [System.Serializable]
     public class GuestBookJsonInfo
@@ -42,6 +44,7 @@ public class HttpManager : MonoBehaviour
     public int roomId;
     public string fakeId;
     public string accessToken;
+    public int guestBookId;
     public bool firstId = false;
     public bool secondId = false;
     //서버에게 요청
@@ -101,6 +104,11 @@ public class HttpManager : MonoBehaviour
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
                 break;
         }
         //서버에 요청을 보내고 응답이 올때까지 기다린다.
@@ -111,7 +119,11 @@ public class HttpManager : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             LoadingCanvas.SetActive(false);
+            if (webRequest.downloadHandler != null)
+            {
+
             print(requester.requestName + ":" + webRequest.downloadHandler.text);
+            }
 
             //완료되었다고 requester.onComplete를 실행
             if (requester.onComplete != null)

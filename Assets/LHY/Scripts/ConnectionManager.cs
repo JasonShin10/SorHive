@@ -18,8 +18,11 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.AutomaticallySyncScene = true;
         OnCilckConnect();
 
-        ID.onValueChanged.AddListener(OnValueChanged);
-        Password.onValueChanged.AddListener(OnPassValueChanged);
+        if(ID != null && Password != null)
+        {
+            ID.onValueChanged.AddListener(OnValueChanged);
+            Password.onValueChanged.AddListener(OnPassValueChanged);
+        }   
     }
 
     public void OnValueChanged(string s)
@@ -62,7 +65,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     public void OnClickJoinLobby()
     {
         //로비 진입
-        PhotonNetwork.JoinLobby();
+        //PhotonNetwork.JoinLobby();
     }
 
     //로비진입 성공시 호출
@@ -72,8 +75,8 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
 
         print("OnJoinedLobby");
         //Lobby씬 으로 이동
-        //PhotonNetwork.LoadLevel("CreatCharactorScene");
-        PhotonNetwork.LoadLevel("MainScenes");
+        PhotonNetwork.LoadLevel("CreatCharactorScene");
+        //PhotonNetwork.LoadLevel("MainScenes");
         //SceneManager.LoadScene("MainScenes");
     }
 

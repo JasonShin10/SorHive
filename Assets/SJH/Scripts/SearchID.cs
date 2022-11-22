@@ -25,6 +25,7 @@ public class SearchID : MonoBehaviour
     public Text following;
     public Text follower;
     public Text feedNum;
+    public Text roomOwner;
     public int totalElements;
     public int followId;
     //public Text search;
@@ -32,9 +33,10 @@ public class SearchID : MonoBehaviour
     public string id;
     public string roomImgString;
     public bool followingCheck = false;
-    
+    public int followingIdNum;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
+    public List<UserGetInfo> userFollowingList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
 
     public List<int> userFollowList;
@@ -63,10 +65,11 @@ public class SearchID : MonoBehaviour
         //GetFollower();
         memberCode = HttpManager.instance.memberCode;
         print(memberCode);
+        //GetUserFollowing();
         GetThree();
+        GetFollowing();
         GetRoomImage();
         GetRoomAll();
-        GetUserFollowing();
     }
   
     // Update is called once per frame
@@ -166,7 +169,7 @@ public class SearchID : MonoBehaviour
             {
             followingCheck = true;
             UserFollowingCheckUI();
-                return;
+                //return;
             }
         StartCoroutine(GetTextureR(Img));
     }
@@ -215,7 +218,11 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = jsonData["data"].ToString();
+        string followingId = jsonData["data"]["followSummary"].ToString();
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
+        UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followingId);
+        //followingIdNum = userFollowing.followId;
+        roomOwner.text = userThree.memberName;
         follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
         feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
@@ -344,7 +351,6 @@ public class SearchID : MonoBehaviour
     }
     public void OnCompleteGetUserFollowing(DownloadHandler handler)
     {
-
         sHandler = handler.text;
         print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
@@ -352,8 +358,13 @@ public class SearchID : MonoBehaviour
         string userData = "{\"data\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
+        for (int i = 0; i < userInfoList.Count; i++)
+        {
 
-        print(userInfo);
+            userFollowList.Add(userInfoList[i].memberCode);
+
+            print(userInfo);
+        }
         //for (int i = 0; i < userInfoList.Count; i++)
         //{
           
@@ -443,10 +454,8 @@ public class SearchID : MonoBehaviour
             {
         followingCheck = true;
                 UserFollowingCheckUI();
-                return;
+                //return;
             }
-
-        
         GetRoomImage();
         GetThree();
         HttpManager.instance.id = id;
@@ -492,20 +501,34 @@ public class SearchID : MonoBehaviour
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollowing;
         HttpManager.instance.SendRequest(requester);
+       
         requester.requestName = "GetFollowing";
     }
+    public void GetUserFollowList(List<UserGetInfo> userList)
+    {
+        for (int i = 0; i < userList.Count; i++)
+        {
 
+            userFollowList.Add(userList[i].memberCode);
+
+            print(userInfo);
+        }
+    }
     public void OnCompleteGetFollowing(DownloadHandler handler)
     {
 
         sHandler = handler.text;
-
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         //followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
-        userInfoList = userInfo.followerData;
+        userFollowingList = userInfo.followerData;
 
+        for (int i = 0; i < userFollowingList.Count; i++)
+        {
+            userFollowList.Add(userFollowingList[i].memberCode);
+            print(userInfo);
+        }
         totalElements = FollowingContentHolder.childCount;
         FollowingElement = new GameObject[totalElements];
         for (int i = 0; i < totalElements; i++)
@@ -515,9 +538,9 @@ public class SearchID : MonoBehaviour
             Destroy(FollowingContentHolder.GetChild(i).gameObject);
         }
         print(userInfo);
-        for (int i = 0; i < userInfoList.Count; i++)
+        for (int i = 0; i < userFollowingList.Count; i++)
         {
-            CreateObject(userInfoList[i], FollowingContentHolder, userInfoList[i].memberId);
+            CreateObject(userFollowingList[i], FollowingContentHolder, userFollowingList[i].memberId);
         }
         totalElements = FollowingContentHolder.childCount;
         FollowingElement = new GameObject[totalElements];
@@ -549,7 +572,7 @@ public class SearchID : MonoBehaviour
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
 
         userInfoList = userInfo.followerData;
-
+   
         totalElements = FollowingContentHolder.childCount;
         FollowingElement = new GameObject[totalElements];
         for (int i = 0; i < totalElements; i++)
@@ -618,7 +641,7 @@ public class SearchID : MonoBehaviour
     public void OnclickDeleteFollowing()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
+        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteGetFollower;
         requester.requestName = "OnclickDeleteFollowing()";
