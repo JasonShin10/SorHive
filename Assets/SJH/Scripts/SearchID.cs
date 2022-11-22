@@ -218,10 +218,10 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = jsonData["data"].ToString();
-        string followingId = jsonData["data"]["followSummary"].ToString();
+        followId = jsonData["followId"].ToObject<int>();
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
-        UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followingId);
-        //followingIdNum = userFollowing.followId;
+        //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followingId);
+        //followId = userFollowing.followId;
         roomOwner.text = userThree.memberName;
         follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
@@ -267,11 +267,8 @@ public class SearchID : MonoBehaviour
         
         //for (int i = 0; i < userInfoList.Count; i++)
         //{
-
         //    userFollowList.Add(userInfoList[i].memberCode);
-
         //}
-
         print(userInfo);
         for (int i = 0; i < userInfoList.Count; i++)
         {
@@ -294,6 +291,8 @@ public class SearchID : MonoBehaviour
         GameObject idImage = Instantiate(IDFactory, Content);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = id;
+        
+        
 
         idImageItem.memberCode.text = info.memberCode.ToString();
         //memberCode = info.memberCode;
@@ -302,7 +301,6 @@ public class SearchID : MonoBehaviour
 
     public void Search()
     {
-        
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
         //for (int i = 0; i < totalElements; i++)
@@ -426,6 +424,7 @@ public class SearchID : MonoBehaviour
         //id = clickObject.GetComponentInChildren<Text>().text;
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
         GetRoomImage();
         //StartCoroutine(GetTextureR(Img));
         GetThree();
@@ -444,8 +443,8 @@ public class SearchID : MonoBehaviour
   
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
-        
-            int j = userFollowList.FindIndex(a => a == memberCode);
+        followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
+        int j = userFollowList.FindIndex(a => a == memberCode);
             if (j == -1)
             {
                 followingCheck = false;
@@ -500,8 +499,7 @@ public class SearchID : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollowing;
-        HttpManager.instance.SendRequest(requester);
-       
+        HttpManager.instance.SendRequest(requester);   
         requester.requestName = "GetFollowing";
     }
     public void GetUserFollowList(List<UserGetInfo> userList)
@@ -516,7 +514,6 @@ public class SearchID : MonoBehaviour
     }
     public void OnCompleteGetFollowing(DownloadHandler handler)
     {
-
         sHandler = handler.text;
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
