@@ -472,7 +472,7 @@ public class SearchID : MonoBehaviour
 
     public void OnClickFollowing()
     {
-        //OnSaveSignIn();
+        OnSaveSignIn();
     }
     public void OnSaveSignIn()
     {
