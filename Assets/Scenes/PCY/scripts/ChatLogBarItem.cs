@@ -22,8 +22,6 @@ public class ChatLogBarItem : MonoBehaviour
 
     public RawImage guestProfileImage;
 
-    public RawImage myProfileImage;
-
 
 
     private void Awake()
@@ -35,6 +33,6 @@ public class ChatLogBarItem : MonoBehaviour
     public void OpenChatPage()
     {
         print("개인채팅방 이동");
-        ChatPageManager.instance.OpenChatPage(nickName.text, ChatManager.instance.myId.text, memberCode, guestProfileImage, myProfileImage);
+        ChatPageManager.instance.OpenChatPage(nickName.text, ChatManager.instance.myId.text, memberCode, guestProfileImage);
     }
 }

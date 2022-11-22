@@ -38,18 +38,18 @@ public class ChatPageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 활성화!
-        LoadChat();
+
     }
 
     public void LoadChat()
     {
         print("loadChat");
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/chatting";
+        requester.url = "http://52.79.209.232:8080/api/v1/chatting/" + guestMemberCode.ToString();
+        print(requester.url);
         requester.requestType = RequestType.GET;
         requester.onComplete = OnClickSet;
-        StartCoroutine(HttpManager.instance.DownLoadChatList(requester));
+        StartCoroutine(HttpManager.instance.DownLoadChat(requester));
     }
 
     public void SendChat()
@@ -66,14 +66,16 @@ public class ChatPageManager : MonoBehaviour
     }
 
     [SerializeField] GameObject chatPage;
-    public void OpenChatPage(string guestNickName, string myNickName, int guestMemberCode, RawImage guestProfileImage, RawImage myProfileImage)
+    [SerializeField] GameObject chatListPage;
+    public void OpenChatPage(string guestNickName, string myNickName, int guestMemberCode, RawImage guestProfileImage)
     {
         chatPage.transform.GetChild(0).gameObject.SetActive(true);
-        ChatPageManager.instance.guestNickName.text = guestNickName;
-        ChatPageManager.instance.myNickName.text = myNickName;
-        ChatPageManager.instance.guestMemberCode = guestMemberCode;
-        ChatPageManager.instance.guestProfileImage.texture = guestProfileImage.texture;
-        ChatPageManager.instance.myProfileImage.texture = myProfileImage.texture;
+        chatListPage.transform.GetChild(0).gameObject.SetActive(false);
+        this.guestNickName.text = guestNickName;
+        this.myNickName.text = myNickName;
+        this.guestMemberCode = guestMemberCode;
+        this.guestProfileImage = guestProfileImage;
+        LoadChat();
     }
 
 
@@ -82,11 +84,13 @@ public class ChatPageManager : MonoBehaviour
         JsonString jsonString = JsonUtility.FromJson<JsonString>(handler.text);
         if (jsonString.status == 200)
         {
+            print(jsonString.data.messages.Count);
             for (int i = 0; i < jsonString.data.messages.Count; i++)
             {
+                JsonMessages jsonMessages = JsonUtility.FromJson<JsonMessages>(jsonString.data.messages[i]);
                 GameObject chatItemPrefeb = Instantiate(chatItemUIFactory, chatItemListContent);
                 ChatItem chatItem = chatItemPrefeb.GetComponent<ChatItem>();
-                if (jsonString.data.messages[i].fromMemberCode == guestMemberCode)
+                if (jsonMessages.fromMemberCode == guestMemberCode)
                 {   // 보낸 사람이 상대방일 때
                     chatItem.isMe = false;
                     chatItem.nickName.text = guestNickName.text;
@@ -98,9 +102,8 @@ public class ChatPageManager : MonoBehaviour
                     chatItem.nickName.text = myNickName.text;
                     chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = myProfileImage.texture;
                 }
-                chatItem.writeTime.text = jsonString.data.messages[i].chatTime.ToString();
-                chatItem.chatText.text = jsonString.data.messages[i].message.ToString();
-
+                chatItem.writeTime.text = jsonMessages.chatTime;
+                chatItem.chatText.text = jsonMessages.message;
                 // 왼쪽 오른쪽으로 분리 가능 isMe를 이용해서
             }
         }
@@ -110,6 +113,7 @@ public class ChatPageManager : MonoBehaviour
         }
     }
 
+    [System.Serializable]
     public class JsonMessages
     {
         public int fromMemberCode;
@@ -129,7 +133,7 @@ public class ChatPageManager : MonoBehaviour
         public int memberCode2;
         public string memberName2;
         public string memberRoomImage2;
-        public List<JsonMessages> messages;
+        public List<string> messages;
         public string uploadTime;
     }
     public class JsonString
@@ -146,11 +150,23 @@ public class ChatPageManager : MonoBehaviour
     }
 
     // 돌아가기
-
     public void backToChatListPage()
     {
-        GameObject.Find("GuestBox").gameObject.SetActive(false);
-        SendChatToServer();
+        
+        if (total_messages.Count != 0)
+        {
+            SendChatToServer();
+            total_messages.Clear();
+        }
+        GameObject.Find("ChatPage").transform.GetChild(0).gameObject.SetActive(false);
+
+        Transform chatContent = GameObject.Find("ChatPage").transform.GetChild(0).transform.GetChild(0).transform.GetChild(1);
+        print(chatContent.name);
+        foreach (Transform child in chatContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        GameObject.Find("ChatListPageCanvas").transform.GetChild(0).gameObject.SetActive(true);
     }
 
 

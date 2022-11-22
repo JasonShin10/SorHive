@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class ChatLog
 {
-    public RawImage myProfileImage;
     public RawImage profileImage;
     public string nickName;
     public string lastMessage;
@@ -37,12 +36,15 @@ public class ChatManager : MonoBehaviour
 
     public Transform ChatLogBarListContent;
 
-
     public Text myId;
 
     List<ChatLog> chatLog = new List<ChatLog>();
 
-    //int memberCode = HttpManager.instance.memberCode;
+    public RawImage tmpProfileImage;
+
+    public string myProfileImageUrl;
+
+    int memberCode = HttpManager.instance.memberCode;
 
     int chatLogBarLength = 0;
 
@@ -82,7 +84,24 @@ public class ChatManager : MonoBehaviour
             processNum--;
         }
         while (i < chatLogBarLength) yield return null;
+        ApplyChatList();
     }
+
+    public IEnumerator downloadMyImage()
+    {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(myProfileImageUrl);
+        yield return www.SendWebRequest();
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            ChatPageManager.instance.myProfileImage.texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        }
+        www.Dispose();
+    }
+
 
     private IEnumerator DownloadRoomImg(int imageIdx = 0)
     {            
@@ -113,20 +132,21 @@ public class ChatManager : MonoBehaviour
             chatLogBarItem.lastTime.text = chatLog[i].lastTime;
             chatLogBarItem.memberCode = chatLog[i].guestMemberCode;
             chatLogBar.transform.GetChild(0).GetComponent<RawImage>().texture = chatLog[i].profileImage.texture;
-            chatLogBarItem.guestProfileImage.texture = chatLog[i].profileImage.texture;
-            chatLogBarItem.myProfileImage.texture = chatLog[i].myProfileImage.texture;
+            chatLogBarItem.guestProfileImage = chatLog[i].profileImage;
         }
+        StartCoroutine(downloadMyImage());
     }
 
     private void OnClickSet(DownloadHandler handler)
     {
         JsonString jsonString = JsonUtility.FromJson<JsonString>(handler.text);
-        ChatLog newChatLogBar = new ChatLog();
         chatLogBarLength = jsonString.data.Count;
-        for (int i = 0; i < jsonString.data.Count; i++)
+        for (int i = 0; i < chatLogBarLength; i++)
         {
+            ChatLog newChatLogBar = new ChatLog();
             print(jsonString.data.Count);
-            /*if (int.Parse(jsonString.data[i].memberCode1.ToString()) == memberCode)
+            newChatLogBar.profileImage = tmpProfileImage;
+            if (int.Parse(jsonString.data[i].memberCode1.ToString()) == memberCode)
             {   // 멤버코드1이 자기 자신인 상황이라면
                 myId.text = jsonString.data[i].memberName1;
                 newChatLogBar.guestMemberCode = int.Parse(jsonString.data[i].memberCode2.ToString());
@@ -147,7 +167,7 @@ public class ChatManager : MonoBehaviour
                 newChatLogBar.lastMessage = jsonMessage.message.ToString();
                 newChatLogBar.lastTime = jsonMessage.chatTime.ToString();
             }
-            chatLog.Add(newChatLogBar);*/
+            chatLog.Add(newChatLogBar);
         }
     }
 
