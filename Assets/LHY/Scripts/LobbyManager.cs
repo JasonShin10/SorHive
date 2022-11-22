@@ -16,7 +16,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 {
     public static LobbyManager instence;
 
-    public Text userName;
+    public Text userID;
+
+    public int memberCode;
 
     //Dictionary<string, int> roomCache = new Dictionary<string, int>();
 
@@ -49,7 +51,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickRoomIn()
     {
-        if (userName.text != null)
+        if (userID.text != null)
         {
             creat = false;
 
