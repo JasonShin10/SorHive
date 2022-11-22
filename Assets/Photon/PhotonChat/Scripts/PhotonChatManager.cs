@@ -24,7 +24,7 @@ public class ChatInfo
 {
     public int memberCode1;
     public int memberCode2;
-    public List<ChatMessageInfo> messages;
+    public List<string> messages;
 }
 
 public class PhotonChatManager : MonoBehaviour, IChatClientListener
@@ -35,7 +35,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     bool isConnected = false;
     [SerializeField] string username;
     int response_status = 0;
-    public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
+    public List<string> total_messages = new List<string>();
 
     private void Awake()
     {
@@ -202,7 +202,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
-        total_messages.Add(messages);
+        total_messages.Add(JsonUtility.ToJson(messages, true).ToString());
     }
 
     public void SendChatToServer()
