@@ -38,7 +38,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //roomCache["a"];
         //CreateFeedUI();
-        creat = true;
+        //creat = false;
         //JoinRoom();
 
     }
@@ -53,12 +53,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (userID.text != null)
         {
-            creat = false;
-
             if (creat == false)
             {
                 CreateRoom();
                 creat = true;
+            }
+            else
+            {
+                JoinRoom();
             }
         }
 
@@ -80,7 +82,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.CreateRoom (userName.text, roomOptions);
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
-        PhotonNetwork.CreateRoom("AAA", roomOptions);
+        PhotonNetwork.CreateRoom(userID.text, roomOptions);
     }
 
 
@@ -103,7 +105,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         //PhotonNetwork.JoinRoom(userName.text); 
-        PhotonNetwork.JoinRoom("AAA");
+        PhotonNetwork.JoinRoom(userID.text);
     }
 
     public void OnClickRoomWarp()

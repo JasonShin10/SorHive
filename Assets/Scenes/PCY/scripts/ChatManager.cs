@@ -42,7 +42,7 @@ public class ChatManager : MonoBehaviour
 
     List<ChatLog> chatLog = new List<ChatLog>();
 
-    int memberCode = HttpManager.instance.memberCode;
+    //int memberCode = HttpManager.instance.memberCode;
 
     int chatLogBarLength = 0;
 
@@ -126,7 +126,7 @@ public class ChatManager : MonoBehaviour
         for (int i = 0; i < jsonString.data.Count; i++)
         {
             print(jsonString.data.Count);
-            if (int.Parse(jsonString.data[i].memberCode1.ToString()) == memberCode)
+            /*if (int.Parse(jsonString.data[i].memberCode1.ToString()) == memberCode)
             {   // 멤버코드1이 자기 자신인 상황이라면
                 myId.text = jsonString.data[i].memberName1;
                 newChatLogBar.guestMemberCode = int.Parse(jsonString.data[i].memberCode2.ToString());
@@ -147,7 +147,7 @@ public class ChatManager : MonoBehaviour
                 newChatLogBar.lastMessage = jsonMessage.message.ToString();
                 newChatLogBar.lastTime = jsonMessage.chatTime.ToString();
             }
-            chatLog.Add(newChatLogBar);
+            chatLog.Add(newChatLogBar);*/
         }
     }
 
