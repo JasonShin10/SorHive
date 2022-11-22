@@ -12,7 +12,7 @@ public class ChatLogBarItem : MonoBehaviour
     public Text nickName; //==계정이름(아이디)
 
     //채팅 올린 사람(NickName)
-    public string memberCode; //==계정이름(아이디)
+    public int memberCode; //==계정이름(아이디)
 
     // 마지막으로 쓴 글
     public Text chatLogBarText;
@@ -28,5 +28,13 @@ public class ChatLogBarItem : MonoBehaviour
     {
         nickName.text = "default_nickName";
         chatLogBarText.text = "확인좀 해보자";
+    }
+
+    public void OpenChatPage()
+    {
+        GameObject.Find("ChatPageCanvas").gameObject.SetActive(true);
+        ChatPageManager.instance.guestNickName.text = nickName.text;
+        ChatPageManager.instance.guestMemberCode = memberCode;
+        ChatPageManager.instance.guestProfileImage.texture = profileImage.texture;
     }
 }
