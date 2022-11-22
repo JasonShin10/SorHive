@@ -38,7 +38,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         //roomCache["a"];
         //CreateFeedUI();
-        creat = true;
+        //creat = false;
         //JoinRoom();
 
     }
