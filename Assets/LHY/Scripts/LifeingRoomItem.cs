@@ -14,6 +14,8 @@ public class LifeingRoomItem : MonoBehaviour
     public RawImage ProfileImage;
     public GameObject lifeingisTrue;
 
+    public GameObject LifeingDetailed;
+
     public string lifingYn;
     public int lifingNo;
     public int lifingCategoryNo;
@@ -35,7 +37,7 @@ public class LifeingRoomItem : MonoBehaviour
         GameObject lifeingmanager = GameObject.Find("LifeingPosManager");
         lifeingManager = lifeingmanager.GetComponent<LifeingManager>();
         StartCoroutine(GetTextureR(roomImage, avatarImage));
-        ProfileImage.texture = roomImage.texture;
+        
 
 
         
@@ -46,6 +48,7 @@ public class LifeingRoomItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ProfileImage.texture = roomImage.texture;
         if (lifingYn == "Y")
         {
             if (LifeingLoad == false)
@@ -55,6 +58,7 @@ public class LifeingRoomItem : MonoBehaviour
                 //Texture2D tex = new Texture2D(0, 0);
                 //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
                 var temp = File.ReadAllBytes(Application.dataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
+              
 
                 print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
                 //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
@@ -75,11 +79,6 @@ public class LifeingRoomItem : MonoBehaviour
             return;
         }
 
-    }
-
-    public void OnClickStoryViewScene()
-    {
-        SceneManager.LoadScene("StoryViewScene");
     }
 
     IEnumerator GetTextureR(RawImage roomImage, RawImage avatarImage)
@@ -112,5 +111,9 @@ public class LifeingRoomItem : MonoBehaviour
             
 
             //yield return WaitForSeconds(0.1);
+    }
+    public void OnClickStoryView()
+    {
+        LifeingDetailed.SetActive(true);
     }
 }
