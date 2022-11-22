@@ -265,14 +265,68 @@ public class HttpManager : MonoBehaviour
         }
         webRequest.Dispose();
         StartCoroutine(ChatManager.instance.DownloadImage());
-
-        /*print("webRequest끝 reload시작");
-        StartCoroutine(WarpManager.instance.DownloadImg());
-        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        WarpManager.instance.reloadRoom(centerMemberCode);*/
     }
 
+    public IEnumerator DownLoadChat(HttpRequester requester)
+    {
+        print("DownLoadChat");
+        UnityWebRequest webRequest = null;
 
+        string accessToken = PlayerPrefs.GetString("token");
+        print(accessToken);
+        switch (requester.requestType)
+        {
+            case RequestType.POST:
+                print("post");
+                webRequest = UnityWebRequest.Post(requester.url, requester.postData);
+                byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler = new UploadHandlerRaw(data);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+                break;
+            case RequestType.GET:
+                print("get");
+                webRequest = UnityWebRequest.Get(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
+                break;
+            case RequestType.PUT:
+                print("put");
+                webRequest = UnityWebRequest.Put(requester.url, requester.putData);
+                byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                webRequest.uploadHandler = new UploadHandlerRaw(pdata);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+                break;
+            case RequestType.DELETE:
+                webRequest = UnityWebRequest.Delete(requester.url);
+                break;
+        }
+
+        yield return webRequest.SendWebRequest();
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            print("네트워크 통신 성공");
+            print(webRequest.downloadHandler.text);
+
+            if (requester.onComplete != null)
+            {
+                print("onComplete실행");
+                requester.onComplete(webRequest.downloadHandler);
+            }
+            webRequest.Dispose();
+        }
+        else
+        {
+            print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
+        }
+        webRequest.Dispose();
+    }
 
 
     void Update()

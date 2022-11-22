@@ -381,6 +381,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49021490}
   m_CullTransparentMesh: 1
+--- !u!1 &55580302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 55580303}
+  - component: {fileID: 55580305}
+  - component: {fileID: 55580304}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &55580303
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55580302}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1036746815}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 9.221039, y: 607}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &55580304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55580302}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: c9a5032e2aeb0ac4dbd402a75fb969fa, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &55580305
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55580302}
+  m_CullTransparentMesh: 1
 --- !u!1 &124954172
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,13 +1205,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1674098180}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1674098182}
+        m_TargetAssemblyTypeName: ChatManager, Assembly-CSharp
+        m_MethodName: backToMainPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1656,6 +1729,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565338921}
   m_CullTransparentMesh: 1
+--- !u!1 &606814847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606814848}
+  - component: {fileID: 606814850}
+  - component: {fileID: 606814849}
+  m_Layer: 5
+  m_Name: RawImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &606814848
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606814847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 956546073}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 242, y: -1551}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &606814849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606814847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: c9a5032e2aeb0ac4dbd402a75fb969fa, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &606814850
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606814847}
+  m_CullTransparentMesh: 1
 --- !u!1 &626911666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 235, y: -440.2499}
+  m_AnchoredPosition: {x: 235, y: -440.2461}
   m_SizeDelta: {x: 470, y: 804.2461}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &630388849
@@ -2319,7 +2465,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1505605946}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.94631207
+  m_Size: 0.9996332
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2456,6 +2602,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 205049651}
+  - {fileID: 606814848}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2480,10 +2627,11 @@ MonoBehaviour:
   myNickName: {fileID: 1884272819}
   guestMemberCode: 0
   guestProfileImage: {fileID: 0}
-  myProfileImage: {fileID: 0}
-  chatItemUIFactory: {fileID: 5363952080598810814, guid: a57e1fbf3f1fa054bbd6cd72ca4cba1e, type: 3}
+  myProfileImage: {fileID: 606814849}
+  chatItemUIFactory: {fileID: 3354915721976289110, guid: 091522f6b5453bb42b019365041bfd3d, type: 3}
   chatItemListContent: {fileID: 806345459}
   chatPage: {fileID: 956546068}
+  chatListPage: {fileID: 1651319035}
   total_messages: []
 --- !u!1 &1013280930
 GameObject:
@@ -2601,6 +2749,7 @@ RectTransform:
   - {fileID: 951355956}
   - {fileID: 2065534004}
   - {fileID: 317786042}
+  - {fileID: 55580303}
   m_Father: {fileID: 302719184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3012,7 +3161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.404907, y: -0.000061035156}
+  m_AnchoredPosition: {x: 8.404907, y: 0}
   m_SizeDelta: {x: 937.477, y: 1446.2023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1141876090
@@ -3125,7 +3274,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1456926533}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999845
+  m_Size: 0.9843773
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3757,7 +3906,8 @@ MonoBehaviour:
   myProfileImage: {fileID: 0}
   chatItemUIFactory: {fileID: 3354915721976289110, guid: 091522f6b5453bb42b019365041bfd3d, type: 3}
   chatItemListContent: {fileID: 806345459}
-  chatPage: {fileID: 0}
+  chatPage: {fileID: 956546068}
+  chatListPage: {fileID: 1651319035}
   total_messages: []
 --- !u!4 &1367838644
 Transform:
@@ -4116,7 +4266,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.99999845}
+  m_AnchorMax: {x: 1, y: 0.9843773}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4453,7 +4603,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1367838643}
+      - m_Target: {fileID: 956546074}
         m_TargetAssemblyTypeName: ChatPageManager, Assembly-CSharp
         m_MethodName: backToChatListPage
         m_Mode: 1
@@ -4789,6 +4939,8 @@ MonoBehaviour:
   ChatLogBarUIFactory: {fileID: 3354915721976289110, guid: c87710dea513ab743b42bc156bfad8b9, type: 3}
   ChatLogBarListContent: {fileID: 1141876089}
   myId: {fileID: 1884272819}
+  tmpProfileImage: {fileID: 55580304}
+  myProfileImageUrl: 
 --- !u!1 &1706256226
 GameObject:
   m_ObjectHideFlags: 0
