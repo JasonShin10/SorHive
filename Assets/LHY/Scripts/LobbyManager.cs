@@ -53,12 +53,14 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (userID.text != null)
         {
-            creat = false;
-
             if (creat == false)
             {
                 CreateRoom();
                 creat = true;
+            }
+            else
+            {
+                JoinRoom();
             }
         }
 
