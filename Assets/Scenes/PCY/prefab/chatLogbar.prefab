@@ -253,7 +253,8 @@ MonoBehaviour:
   memberCode: 0
   chatLogBarText: {fileID: 6823100882436307539}
   lastTime: {fileID: 4215923130459373431}
-  profileImage: {fileID: 0}
+  guestProfileImage: {fileID: 0}
+  myProfileImage: {fileID: 0}
 --- !u!114 &2271037423573446259
 MonoBehaviour:
   m_ObjectHideFlags: 0

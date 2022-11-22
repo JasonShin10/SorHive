@@ -26,8 +26,7 @@ public class HttpManager : MonoBehaviour
             //나를 파괴하겠다.
             Destroy(gameObject);
         }
-
-        //PlayerPrefs.SetString("token","");
+        PlayerPrefs.SetString("token","");
     }
     [System.Serializable]
     public class GuestBookJsonInfo

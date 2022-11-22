@@ -4,9 +4,12 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
+
 
 public class ChatLog
 {
+    public RawImage myProfileImage;
     public RawImage profileImage;
     public string nickName;
     public string lastMessage;
@@ -33,6 +36,7 @@ public class ChatManager : MonoBehaviour
     public GameObject ChatLogBarUIFactory;
 
     public Transform ChatLogBarListContent;
+
 
     public Text myId;
 
@@ -109,7 +113,8 @@ public class ChatManager : MonoBehaviour
             chatLogBarItem.lastTime.text = chatLog[i].lastTime;
             chatLogBarItem.memberCode = chatLog[i].guestMemberCode;
             chatLogBar.transform.GetChild(0).GetComponent<RawImage>().texture = chatLog[i].profileImage.texture;
-            chatLogBarItem.profileImage.texture = chatLog[i].profileImage.texture;
+            chatLogBarItem.guestProfileImage.texture = chatLog[i].profileImage.texture;
+            chatLogBarItem.myProfileImage.texture = chatLog[i].myProfileImage.texture;
         }
     }
 
@@ -146,14 +151,10 @@ public class ChatManager : MonoBehaviour
         }
     }
 
-    
-
     public void backToMainPage()
     {
-        
+        SceneManager.LoadScene("MainScenes");
     }
-
-    
 
     public void OnCreateChatLog()
     {

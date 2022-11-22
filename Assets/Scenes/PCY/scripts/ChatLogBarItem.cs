@@ -20,7 +20,9 @@ public class ChatLogBarItem : MonoBehaviour
     //해당 채팅방의 마지막 기록 시간
     public Text lastTime;
 
-    public RawImage profileImage;
+    public RawImage guestProfileImage;
+
+    public RawImage myProfileImage;
 
 
 
@@ -32,9 +34,7 @@ public class ChatLogBarItem : MonoBehaviour
 
     public void OpenChatPage()
     {
-        GameObject.Find("ChatPageCanvas").gameObject.SetActive(true);
-        ChatPageManager.instance.guestNickName.text = nickName.text;
-        ChatPageManager.instance.guestMemberCode = memberCode;
-        ChatPageManager.instance.guestProfileImage.texture = profileImage.texture;
+        print("개인채팅방 이동");
+        ChatPageManager.instance.OpenChatPage(nickName.text, ChatManager.instance.myId.text, memberCode, guestProfileImage, myProfileImage);
     }
 }
