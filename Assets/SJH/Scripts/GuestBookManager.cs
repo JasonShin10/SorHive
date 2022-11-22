@@ -85,7 +85,7 @@ public class GuestBookManager : MonoBehaviour
     public void OnSaveGuestBook()
     {
         GuestBookJsonInfo info = new GuestBookJsonInfo();
-        info.content = upLoadText;
+        info.guestBookContent = upLoadText;
         print(upLoadText);
         //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
         info.roomId = HttpManager.instance.roomId;
