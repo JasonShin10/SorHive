@@ -22,7 +22,6 @@ public class UpDownBGManager : MonoBehaviour
 
     public void OnFeedUpLoad()
     {
-       
         SceneManager.LoadScene("FeedUpLoadScene");
     }
 
@@ -33,11 +32,14 @@ public class UpDownBGManager : MonoBehaviour
         DontDestroyOnLoad(DontDestroy);
     }
 
+    public void OnChatScene()
+    {
+        SceneManager.LoadScene("ChatScene");
+    }
+
     public void OnChatingPage()
     {
-        
-        SceneManager.LoadScene("FeedUpLoadScene");
-        DontDestroyOnLoad(DontDestroy);
+        SceneManager.LoadScene("ChatScene");
     }
 
     public void OnBackMain()

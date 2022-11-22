@@ -11570,7 +11570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6405704031dc245bfa7dd546c4916b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userID: {fileID: 17623654}
+  userID: {fileID: 0}
   memberCode: 0
   myRoom: 0
   feedListContent: {fileID: 984640305}
@@ -13695,7 +13695,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1502729931}
         m_TargetAssemblyTypeName: UpDownBGManager, Assembly-CSharp
         m_MethodName: OnChatingPage
         m_Mode: 1
@@ -28610,7 +28610,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2083826717}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1502729931}
+        m_TargetAssemblyTypeName: UpDownBGManager, Assembly-CSharp
+        m_MethodName: OnChatingPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2083826717
 MonoBehaviour:
   m_ObjectHideFlags: 0

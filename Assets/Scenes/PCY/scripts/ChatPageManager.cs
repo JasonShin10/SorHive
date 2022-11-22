@@ -4,6 +4,10 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using System;
+
+
+
 
 public class ChatPageManager : MonoBehaviour
 {
@@ -24,6 +28,7 @@ public class ChatPageManager : MonoBehaviour
     public int guestMemberCode = 0;
     public RawImage guestProfileImage;
     public RawImage myProfileImage;
+    int response_status;
 
     string inputField;
 
@@ -52,17 +57,25 @@ public class ChatPageManager : MonoBehaviour
 
     }
 
-    public void ReceiverOnValueChange(string valueIn)
-    {
-        inputField = valueIn;
-        print(inputField);
-    }
+    
 
     public void OnCreateChat()
     {
         print("버튼은 눌림");
         GameObject chatLogBar = Instantiate(chatItemUIFactory, chatItemListContent);
     }
+
+    [SerializeField] GameObject chatPage;
+    public void OpenChatPage(string guestNickName, string myNickName, int guestMemberCode, RawImage guestProfileImage, RawImage myProfileImage)
+    {
+        chatPage.transform.GetChild(0).gameObject.SetActive(true);
+        ChatPageManager.instance.guestNickName.text = guestNickName;
+        ChatPageManager.instance.myNickName.text = myNickName;
+        ChatPageManager.instance.guestMemberCode = guestMemberCode;
+        ChatPageManager.instance.guestProfileImage.texture = guestProfileImage.texture;
+        ChatPageManager.instance.myProfileImage.texture = myProfileImage.texture;
+    }
+
 
     private void OnClickSet(DownloadHandler handler)
     {
@@ -132,9 +145,80 @@ public class ChatPageManager : MonoBehaviour
         
     }
 
+    // 돌아가기
+
     public void backToChatListPage()
     {
-        GameObject.Find("ChatPageCanvas").gameObject.SetActive(false);
+        GameObject.Find("GuestBox").gameObject.SetActive(false);
+        SendChatToServer();
     }
+
+
+    // 채팅 보내기
+    public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
+    public void ReceiverOnValueChange(string valueIn)
+    {
+        print(valueIn);
+        if (total_messages.Count != 0 && Input.GetKey(KeyCode.Return))
+        {
+            insertMessageToList(valueIn, DateTime.Now.ToString());
+        }
+    }
+
+    private void insertMessageToList(string currentChat, string nowTime)
+    {
+        ChatMessageInfo messages = new ChatMessageInfo();
+        messages.fromMemberCode = HttpManager.instance.memberCode;
+        messages.toMemberCode = messages.fromMemberCode + 1;
+        messages.message = currentChat;
+        messages.chatTime = nowTime;
+        print("채팅 시간: " + messages.chatTime.ToString());
+        total_messages.Add(messages);
+    }
+
+    public void SendChatToServer()
+    {
+        ChatInfo chatData = new ChatInfo();
+        int fromMemberCode = HttpManager.instance.memberCode;
+        // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
+        int toMemberCode = fromMemberCode + 1;
+        if (fromMemberCode > toMemberCode)
+        {
+            chatData.memberCode1 = toMemberCode;
+            chatData.memberCode2 = fromMemberCode;
+        }
+        else
+        {
+            chatData.memberCode2 = toMemberCode;
+            chatData.memberCode1 = fromMemberCode;
+        }
+        // 그동안 하나씩 쌓아놓은 메세지 객체들을 보낼 객체에 할당해주고
+        // 깨끗하게 비우기
+        chatData.messages = total_messages;
+
+        // 서버에 보내 저장한다.
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/chatting";
+        requester.requestType = RequestType.POST;
+        requester.postData = JsonUtility.ToJson(chatData, true);
+        print("이게 가는건데 ");
+        print(requester.postData);
+
+        // 닉네임 따오는 함수
+        // PhotonNetwork.PlayerList[i].NickName
+
+        requester.onComplete = OnClickUpload;
+        HttpManager.instance.SendRequest(requester);
+    }
+
+    private void OnClickUpload(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        print("handler start");
+        response_status = int.Parse(json["status"].ToString());
+        total_messages.Clear();
+    }
+
+
 
 }
