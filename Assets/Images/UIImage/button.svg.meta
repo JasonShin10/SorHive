@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1298815402eb4784fb6ec7615517ab07
+guid: 8a26780191014544e9f55bb12e4f42c5
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,7 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
-  svgType: 0
+  svgType: 4
   texturedSpriteMeshType: 0
   svgPixelsPerUnit: 100
   gradientResolution: 64
@@ -39,16 +39,16 @@ ScriptedImporter:
   spriteData:
     TessellationDetail: 0
     SpriteRect:
-      name: 
+      name: buttonSprite
       originalName: 
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.50296295, y: 0.4675}
       alignment: 0
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 0
-        height: 0
-      spriteID: 1242d53c079ba1f49ab90b919a4d1923
+        width: 27
+        height: 6
+      spriteID: 0fbfcf9f23b4b504dab5a491bb9ea1d1
     PhysicsOutlines: []
