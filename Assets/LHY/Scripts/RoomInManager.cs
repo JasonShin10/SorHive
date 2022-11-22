@@ -22,7 +22,7 @@ public class RoomInManager : MonoBehaviour
 
     public GameObject GuestBookUIFactory;
 
-  
+    GameObject clickObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -137,7 +137,7 @@ public class RoomInManager : MonoBehaviour
     //}
     public void OnDeleteGuestBook()
     {
-        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        clickObject = EventSystem.current.currentSelectedGameObject;
         HttpManager.instance.guestBookId = int.Parse(clickObject.transform.parent.GetChild(2).GetChild(0).GetComponent<Text>().text);
         GuestBookDelete();
 
@@ -153,16 +153,15 @@ public class RoomInManager : MonoBehaviour
         //post data 셋팅
 
         requester.onComplete = OnCompleteDeleteGuestBook;
+        requester.requestName = "GuestBookDelete";
         //HttpManager에게 요청
         HttpManager.instance.SendRequest(requester);
 
     }
     public void OnCompleteDeleteGuestBook(DownloadHandler handler)
     {
-        print(handler);
-        string s = "{\"furniture\":" + handler.text + "}";
-        PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
-        Destroy(transform.parent);
+
+        Destroy(clickObject.transform.parent);
 
     }
     public void CreateObject(GuestBookJsonInfo info)

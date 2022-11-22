@@ -521,7 +521,7 @@ public class SearchID : MonoBehaviour
         JObject jsonData = JObject.Parse(sHandler);
         string userData = "{\"followerData\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
-        followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
+        //followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
         userFollowingList = userInfo.followerData;
 
         for (int i = 0; i < userFollowingList.Count; i++)
