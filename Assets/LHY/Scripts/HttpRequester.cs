@@ -46,4 +46,9 @@ public class HttpRequester : MonoBehaviour
     //public Action<DownloadHandlerTexture> onImgComplete;
 
     public string requestName = "";
+
+    internal void Dispose()
+    {
+        throw new NotImplementedException();
+    }
 }

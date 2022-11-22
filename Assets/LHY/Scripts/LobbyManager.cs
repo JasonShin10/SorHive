@@ -80,7 +80,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.CreateRoom (userName.text, roomOptions);
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
-        PhotonNetwork.CreateRoom("AAA", roomOptions);
+        PhotonNetwork.CreateRoom(userID.text, roomOptions);
     }
 
 
@@ -103,7 +103,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         //PhotonNetwork.JoinRoom(userName.text); 
-        PhotonNetwork.JoinRoom("AAA");
+        PhotonNetwork.JoinRoom(userID.text);
     }
 
     public void OnClickRoomWarp()
