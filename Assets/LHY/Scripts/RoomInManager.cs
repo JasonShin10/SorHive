@@ -169,8 +169,8 @@ public class RoomInManager : MonoBehaviour
         GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
         guestBook.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(OnDeleteGuestBook);
         GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
-        guestBookItem.guestBookText.text = info.content;
-        guestBookItem.UserID.text = info.memberId;
+        guestBookItem.guestBookText.text = info.guestBookContent;
+        guestBookItem.UserID.text = info.guestBookWriteId;
         guestBookItem.guestBookId.text = info.guestBookId;
     }
 }
