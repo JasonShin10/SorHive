@@ -128,6 +128,10 @@ public class LifeingRoomItem : MonoBehaviour
     }
     public void OnClickStoryView()
     {
-        
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing/"+memberCode;
+        requester.requestType = RequestType.GET;
+        //requester.onComplete = OnCompleteGetPostAll;
+        requester.requestName = "GetMambersList";
     }
 }

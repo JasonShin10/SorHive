@@ -38,7 +38,7 @@ public class HttpManager : MonoBehaviour
     }
     public bool img = false;
     public string id;
-    public int memberCode;
+    public int memberCode = 0;
     public int userMemberCode;
     public string userId;
     public int roomId;
@@ -119,11 +119,7 @@ public class HttpManager : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             LoadingCanvas.SetActive(false);
-            if (webRequest.downloadHandler != null)
-            {
-
             print(requester.requestName + ":" + webRequest.downloadHandler.text);
-            }
 
             //완료되었다고 requester.onComplete를 실행
             if (requester.onComplete != null)
@@ -262,6 +258,7 @@ public class HttpManager : MonoBehaviour
                 print("onComplete실행");
                 requester.onComplete(webRequest.downloadHandler);
             }
+            webRequest.Dispose();
         }
         else
         {
