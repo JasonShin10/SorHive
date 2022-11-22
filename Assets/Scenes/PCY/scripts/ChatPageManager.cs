@@ -94,13 +94,13 @@ public class ChatPageManager : MonoBehaviour
                 {   // 보낸 사람이 상대방일 때
                     chatItem.isMe = false;
                     chatItem.nickName.text = guestNickName.text;
-                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = guestProfileImage.texture;
+                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = myProfileImage.texture;
                 }
                 else
                 {
                     chatItem.isMe = true;
                     chatItem.nickName.text = myNickName.text;
-                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = myProfileImage.texture;
+                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = guestProfileImage.texture;
                 }
                 chatItem.writeTime.text = jsonMessages.chatTime;
                 chatItem.chatText.text = jsonMessages.message;
@@ -142,11 +142,15 @@ public class ChatPageManager : MonoBehaviour
         public string message;
         public JsonData data;
     }
-
+    string tmpMessage = "";
     // Update is called once per frame
     void Update()
     {
-        
+        if (tmpMessage != "" && Input.GetKey(KeyCode.Return))
+        {
+            insertMessageToList(tmpMessage, DateTime.Now.ToString());
+            tmpMessage = "";
+        }
     }
 
     // 돌아가기
@@ -174,18 +178,14 @@ public class ChatPageManager : MonoBehaviour
     public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
     public void ReceiverOnValueChange(string valueIn)
     {
-        print(valueIn);
-        if (total_messages.Count != 0 && Input.GetKey(KeyCode.Return))
-        {
-            insertMessageToList(valueIn, DateTime.Now.ToString());
-        }
+        tmpMessage = valueIn;
     }
 
     private void insertMessageToList(string currentChat, string nowTime)
     {
         ChatMessageInfo messages = new ChatMessageInfo();
         messages.fromMemberCode = HttpManager.instance.memberCode;
-        messages.toMemberCode = messages.fromMemberCode + 1;
+        messages.toMemberCode = guestMemberCode;
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
@@ -217,11 +217,7 @@ public class ChatPageManager : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/chatting";
         requester.requestType = RequestType.POST;
         requester.postData = JsonUtility.ToJson(chatData, true);
-        print("이게 가는건데 ");
         print(requester.postData);
-
-        // 닉네임 따오는 함수
-        // PhotonNetwork.PlayerList[i].NickName
 
         requester.onComplete = OnClickUpload;
         HttpManager.instance.SendRequest(requester);
