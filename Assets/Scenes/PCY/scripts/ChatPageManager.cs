@@ -175,7 +175,7 @@ public class ChatPageManager : MonoBehaviour
 
 
     // 채팅 보내기
-    public List<ChatMessageInfo> total_messages = new List<ChatMessageInfo>();
+    public List<string> total_messages = new List<string>();
     public void ReceiverOnValueChange(string valueIn)
     {
         tmpMessage = valueIn;
@@ -189,11 +189,12 @@ public class ChatPageManager : MonoBehaviour
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
-        total_messages.Add(messages);
+        total_messages.Add(JsonUtility.ToJson(messages, true).ToString());
     }
 
     public void SendChatToServer()
     {
+
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
         // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
