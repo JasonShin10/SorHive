@@ -49,7 +49,7 @@ public class WarpManager : MonoBehaviour
             GameObject Room = Instantiate(roomItemFactory, hexPos[count]);
             count++;
         }
-        loadRoom(1);
+        loadRoom(HttpManager.instance.memberCode);
     }
 
     // Update is called once per frame
