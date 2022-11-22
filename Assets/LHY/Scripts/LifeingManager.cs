@@ -72,12 +72,17 @@ public class LifeingManager : MonoBehaviour
                 GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
                 LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
-                lifeingRoomItem.roomImg = friendList[i].roomImage;
-                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.memberCode = friendList[i].memberCode;
                 lifeingRoomItem.memberName.text = friendList[i].memberName;
-                lifeingRoomItem.lifingYn = friendList[i].lifingYn;
+                lifeingRoomItem.memberId.text = friendList[i].memberId;
+                lifeingRoomItem.avatarImg = friendList[i].avatarImage;
+                lifeingRoomItem.roomImg = friendList[i].roomImage;
+
                 lifeingRoomItem.lifingCategoryNo = friendList[i].lifingCategoryNo;
                 lifeingRoomItem.lifingNo = friendList[i].lifingNo;
+                lifeingRoomItem.lifingYn = friendList[i].lifingYn;
+                
+                //lifeingRoomItem.
 
                 roomId.text = friendList[0].memberId;
 

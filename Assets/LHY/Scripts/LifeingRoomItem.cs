@@ -5,25 +5,29 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System;
 
 public class LifeingRoomItem : MonoBehaviour
 {
+
+    public int memberCode;
+    public Text memberName;
+    public Text memberId;
+    public Text detailID;
     public RawImage avatarImage;
     public RawImage roomImage;
-    public Text memberName;
     public RawImage ProfileImage;
     public GameObject lifeingisTrue;
 
-    public GameObject LifeingDetailed;
 
     public string lifingYn;
-    public int lifingNo;
     public int lifingCategoryNo;
-    public string memberId;
+    public int lifingNo;
 
     public string roomImg;
     public string avatarImg;
 
+    public GameObject LifeingDetailed;
 
     public LifeingManager lifeingManager;
 
@@ -37,18 +41,21 @@ public class LifeingRoomItem : MonoBehaviour
         GameObject lifeingmanager = GameObject.Find("LifeingPosManager");
         lifeingManager = lifeingmanager.GetComponent<LifeingManager>();
         StartCoroutine(GetTextureR(roomImage, avatarImage));
-        
 
+        //LifeingDetailed = GameObject.Find("Lifeing_Item");
 
-        
-
+        detailID.text = memberId.text; 
         //for()
     }
 
     // Update is called once per frame
     void Update()
     {
-        ProfileImage.texture = roomImage.texture;
+        if(roomImage != null)
+        {
+            ProfileImage.texture = roomImage.texture;
+        }
+
         if (lifingYn == "Y")
         {
             if (LifeingLoad == false)
@@ -57,19 +64,26 @@ public class LifeingRoomItem : MonoBehaviour
                 print("라이핑 룸스토리 있음!!");
                 //Texture2D tex = new Texture2D(0, 0);
                 //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
-                var temp = File.ReadAllBytes(Application.dataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
-              
+                try
+                {
+                    var temp = File.ReadAllBytes(Application.dataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
+                    print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
+                    //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
 
-                print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
-                //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
+                    Texture2D tex = new Texture2D(0, 0);
+                    tex.LoadImage(temp);
 
-                Texture2D tex = new Texture2D(0, 0);
-                tex.LoadImage(temp);
-
-                //tex.LoadImage(temp);
-                lifeingisTrue.SetActive(true);
-                roomImage.texture = tex;
-                LifeingLoad = true;
+                    //tex.LoadImage(temp);
+                    lifeingisTrue.SetActive(true);
+                    roomImage.texture = tex;
+                    LifeingLoad = true;
+                }
+                catch (Exception ex)
+                {
+                    print("경로에 무거ㅏ없습니다.");
+                    print(ex);
+                    throw;
+                }
             }
 
         }
@@ -114,6 +128,6 @@ public class LifeingRoomItem : MonoBehaviour
     }
     public void OnClickStoryView()
     {
-        LifeingDetailed.SetActive(true);
+        
     }
 }

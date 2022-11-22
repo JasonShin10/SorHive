@@ -18,8 +18,11 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.AutomaticallySyncScene = true;
         OnCilckConnect();
 
-        ID.onValueChanged.AddListener(OnValueChanged);
-        Password.onValueChanged.AddListener(OnPassValueChanged);
+        if(ID != null && Password != null)
+        {
+            ID.onValueChanged.AddListener(OnValueChanged);
+            Password.onValueChanged.AddListener(OnPassValueChanged);
+        }   
     }
 
     public void OnValueChanged(string s)
