@@ -177,7 +177,6 @@ public class MapLeft : Map
         }
         AddManager.instance.objectInfo = new ObjectInfo();
         AddManager.instance.obj = obj;
-
         AddManager.instance.pos = obj.transform.position;
         AddManager.instance.sca = obj.transform.localScale;
         AddManager.instance.ang = obj.transform.eulerAngles;

@@ -102,6 +102,11 @@ public class HttpManager : MonoBehaviour
                 break;
             case RequestType.DELETE:
                 webRequest = UnityWebRequest.Delete(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
                 break;
         }
         //서버에 요청을 보내고 응답이 올때까지 기다린다.

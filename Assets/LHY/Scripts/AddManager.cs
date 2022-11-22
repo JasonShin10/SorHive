@@ -16,7 +16,7 @@ public class GuestBookJsonInfo
     public int roomId;
     //public byte[] onlineRoomImage;
     public string guestBookContent;
-    public string guestBookWriteId;
+    public string guestBookWriterId;
     public string guestBookId;
 }
 

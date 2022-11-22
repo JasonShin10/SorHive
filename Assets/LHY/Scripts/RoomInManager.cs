@@ -138,7 +138,7 @@ public class RoomInManager : MonoBehaviour
     public void OnDeleteGuestBook()
     {
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
-        HttpManager.instance.guestBookId = int.Parse(clickObject.transform.GetChild(0).GetComponent<Text>().text);
+        HttpManager.instance.guestBookId = int.Parse(clickObject.transform.parent.GetChild(2).GetChild(0).GetComponent<Text>().text);
         GuestBookDelete();
 
     }
@@ -149,7 +149,7 @@ public class RoomInManager : MonoBehaviour
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
         requester.url = "http://52.79.209.232:8080/api/v1/guestbook/" + HttpManager.instance.guestBookId;
-        requester.requestType = RequestType.GET;
+        requester.requestType = RequestType.DELETE;
         //post data 셋팅
 
         requester.onComplete = OnCompleteDeleteGuestBook;
@@ -162,6 +162,7 @@ public class RoomInManager : MonoBehaviour
         print(handler);
         string s = "{\"furniture\":" + handler.text + "}";
         PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
+        Destroy(transform.parent);
 
     }
     public void CreateObject(GuestBookJsonInfo info)
@@ -170,7 +171,7 @@ public class RoomInManager : MonoBehaviour
         guestBook.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(OnDeleteGuestBook);
         GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
         guestBookItem.guestBookText.text = info.guestBookContent;
-        guestBookItem.UserID.text = info.guestBookWriteId;
+        guestBookItem.UserID.text = info.guestBookWriterId;
         guestBookItem.guestBookId.text = info.guestBookId;
     }
 }
