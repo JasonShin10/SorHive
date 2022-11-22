@@ -5526,6 +5526,7 @@ MonoBehaviour:
   roomId: 0
   fakeId: 
   accessToken: 
+  guestBookId: 0
   firstId: 0
   secondId: 0
 --- !u!4 &408994556
@@ -6793,7 +6794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &487353636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14546,6 +14547,7 @@ MonoBehaviour:
   following: {fileID: 283539230}
   follower: {fileID: 1331776265}
   feedNum: {fileID: 783292692}
+  roomOwner: {fileID: 0}
   totalElements: 0
   followId: 0
   userInfo:
@@ -14555,13 +14557,16 @@ MonoBehaviour:
   id: 
   roomImgString: 
   followingCheck: 0
+  followingIdNum: 0
   memberCode: 0
   userInfoList: []
+  userFollowingList: []
   userThreeList: []
   userFollowList: 
   userGetInfo:
     id: 
     memberId: 
+    memberName: 
     followId: 0
     memberCode: 0
     followingCount: 0
@@ -20381,8 +20386,9 @@ MonoBehaviour:
   objectInfoList: []
   guestBookJsonInfo:
     roomId: 0
-    content: 
-    memberId: 
+    guestBookContent: 
+    guestBookWriterId: 
+    guestBookId: 
   guestBookJsonInfoList: []
   SpawnPos: {fileID: 0}
   cam: {fileID: 0}
@@ -28899,7 +28905,6 @@ GameObject:
   - component: {fileID: 2013190638571284059}
   - component: {fileID: 2013190638571284057}
   - component: {fileID: 2013190638571284056}
-  - component: {fileID: 3808897121525224123}
   m_Layer: 5
   m_Name: Lifeing_Item
   m_TagString: Untagged
@@ -29098,24 +29103,3 @@ RectTransform:
   m_AnchoredPosition: {x: 129.5368, y: -59.273987}
   m_SizeDelta: {x: 146.0163, y: 30}
   m_Pivot: {x: 0.5, y: 1}
---- !u!223 &3808897121525224123
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013190638571284058}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
