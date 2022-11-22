@@ -218,10 +218,11 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = jsonData["data"].ToString();
-        followId = jsonData["followId"].ToObject<int>();
+        
+        string followIdData = jsonData["data"]["followSummary"]["followId"].ToString();
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
-        //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followingId);
-        //followId = userFollowing.followId;
+        //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followIdData);
+        followId = int.Parse(followIdData);
         roomOwner.text = userThree.memberName;
         follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
@@ -640,9 +641,14 @@ public class SearchID : MonoBehaviour
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
-        requester.onComplete = OnCompleteGetFollower;
-        requester.requestName = "OnclickDeleteFollowing()";
+        requester.onComplete = OnCompleteDeleteFollowing;
+        requester.requestName = "OnclickDeleteFollowing";
         HttpManager.instance.SendRequest(requester);
     }
+    public void OnCompleteDeleteFollowing(DownloadHandler handler)
+    {
+        
 
+        print("»èÁ¦¿Ï·á");
+    }
 }
