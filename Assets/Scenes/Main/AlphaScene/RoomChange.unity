@@ -12364,7 +12364,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2092327839}
   m_HandleRect: {fileID: 2092327838}
   m_Direction: 0
-  m_Value: 0
+  m_Value: -0.00000005120398
   m_Size: 0.38045734
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16147,7 +16147,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1918797057}
   m_Direction: 2
   m_Value: 0.61171794
-  m_Size: 0.39288607
+  m_Size: 0.39288613
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -38695,7 +38695,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 1920}
+  m_ReferenceResolution: {x: 1080, y: 2160}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -38714,7 +38714,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1077398339}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 103.6
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -42122,7 +42122,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1911534519}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.23932113
+  m_Size: 0.2393211
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

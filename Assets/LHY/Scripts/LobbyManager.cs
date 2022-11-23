@@ -18,7 +18,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public Text userID;
 
-    public int memberCode = HttpManager.instance.memberCode;
+    public int memberCode;
 
     //Dictionary<string, int> roomCache = new Dictionary<string, int>();
 
@@ -40,6 +40,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //CreateFeedUI();
         //creat = false;
         //JoinRoom();
+
+        memberCode = HttpManager.instance.memberCode;
 
     }
 
