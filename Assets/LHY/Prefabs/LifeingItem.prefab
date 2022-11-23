@@ -58,14 +58,16 @@ MonoBehaviour:
   detailID: {fileID: 2335269054384774936}
   avatarImage: {fileID: 1583732345909707258}
   roomImage: {fileID: 1583732345107894096}
-  ProfileImage: {fileID: 993845434041994819}
   lifeingisTrue: {fileID: 1237517780998228446}
   lifingYn: 
   lifingCategoryNo: 0
   lifingNo: 0
   roomImg: 
   avatarImg: 
-  LifeingDetailed: {fileID: 6709264616676184738}
+  profileImage: 
+  lifeingImage: 
+  LifeingDetailed: {fileID: 3117753324141034949, guid: 335a8a240c762264db00db7a277f0dc0, type: 3}
+  LDPos: {fileID: 0}
   lifeingManager: {fileID: 0}
   LifeingLoad: 0
   roomY: 0
@@ -204,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
