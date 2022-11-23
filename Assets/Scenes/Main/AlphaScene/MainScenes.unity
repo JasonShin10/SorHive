@@ -11570,7 +11570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6405704031dc245bfa7dd546c4916b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userID: {fileID: 0}
+  userID: {fileID: 17623654}
   memberCode: 0
   myRoom: 0
   feedListContent: {fileID: 984640305}
