@@ -8,10 +8,17 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 [System.Serializable]
+public class LifeingImageInfoAI
+{
+    public byte[] lifingImage;
+    public string lifingImageName;
+}
+
 public class LifeingImageInfo
 {
     public byte[] lifingImage;
     public string lifingImageName;
+    public string lifingContent;
 }
 
 [System.Serializable]
@@ -29,6 +36,7 @@ public class LifeingInfo
     public int lifingNo;
     public int lifingCategoryNo;
     public string lifingContent;
+    public int lifingId;
 }
 
 
@@ -39,6 +47,8 @@ public class LifeingItem : MonoBehaviour
 
     public byte[] lifingImg;
     public string lifingImgName;
+
+    public int lifingId;
 
     public int lifingNo = 1;
     public int lifingCategoryNo = -1;
@@ -126,7 +136,7 @@ public class LifeingItem : MonoBehaviour
 
     }
 
-    public void OnCilckImageSave()
+    public void OnCilckImageSaveAI()
     {
         //여러개 배열
        /* LifeingImagesData imagesData = new LifeingImagesData();
@@ -135,7 +145,7 @@ public class LifeingItem : MonoBehaviour
         //print(JsonUtility.ToJson(imagesData));
      
 
-        LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+        LifeingImageInfoAI lifeingImageInfo = new LifeingImageInfoAI();
         lifeingImageInfo.lifingImage = lifingImg;
         lifeingImageInfo.lifingImageName = lifingImgName;
         
@@ -160,11 +170,47 @@ public class LifeingItem : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
     }
 
+    public void OnCilckImageSave()
+    {
+        //여러개 배열
+        /* LifeingImagesData imagesData = new LifeingImagesData();
+         imagesData.lifingContent = lifingText.text;
+         imagesData.lifingImages = lifeingImageList;*/
+        //print(JsonUtility.ToJson(imagesData));
+
+
+        LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
+        lifeingImageInfo.lifingImage = lifingImg;
+        lifeingImageInfo.lifingContent = lifingText.text;
+        lifeingImageInfo.lifingImageName = lifingImgName;
+
+        //PC버전
+        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
+        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
+
+        //print(lifeingImageInfo.lifingImageName);
+
+        HttpRequester requester = new HttpRequester();
+        //url경로
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image";
+        requester.requestType = RequestType.POST;
+
+
+        //requester.postData = JsonUtility.ToJson(imagesData, true);
+        requester.postData = JsonUtility.ToJson(lifeingImageInfo, true);
+        print(requester.postData);
+
+        requester.onComplete = OnClickDownload;
+
+        HttpManager.instance.SendRequest(requester);
+    }
+
     private void OnClickDownload(DownloadHandler handler)
     {
         JObject json = JObject.Parse(handler.text);
         //lifingNo = (int)json["data"]["lifingNo"];
         lifingCategoryNo = (int)json["data"]["lifingCategoryNo"];
+        lifingId = (int)json["data"]["lifingId"];
 
 
         print("조회 완료");
@@ -177,6 +223,7 @@ public class LifeingItem : MonoBehaviour
         lifeing.lifingNo = lifingNo;
         lifeing.lifingCategoryNo = lifingCategoryNo;
         lifeing.lifingContent = lifingText.text;
+        lifeing.lifingId = lifingId;
         PlayerPrefs.SetInt("lifeingNo", lifeing.lifingNo);
 
         HttpRequester requester = new HttpRequester();
