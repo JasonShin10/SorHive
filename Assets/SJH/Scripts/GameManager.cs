@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         base.OnPlayerEnteredRoom(newPlayer);
-        print(newPlayer.NickName + "이 방에 참여했따!!!");
+        print(PhotonNetwork.PlayerList[1].NickName + "이 방에 참여했따!!!");
     }
 
     //public void Select()
