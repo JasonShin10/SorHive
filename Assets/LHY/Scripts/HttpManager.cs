@@ -4,6 +4,15 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
+[System.Serializable]
+public class GuestBookJsonInfos
+{
+    public int roomId;
+    //public byte[] onlineRoomImage;
+    public string content;
+}
+
 public class HttpManager : MonoBehaviour
 {
     public static HttpManager instance;
@@ -29,13 +38,7 @@ public class HttpManager : MonoBehaviour
 
         //PlayerPrefs.SetString("token","");
     }
-    [System.Serializable]
-    public class GuestBookJsonInfo
-    {
-        public int roomId;
-        //public byte[] onlineRoomImage;
-        public string content;
-    }
+
     public bool img = false;
     public string id;
     public int memberCode = 0;
@@ -49,11 +52,14 @@ public class HttpManager : MonoBehaviour
     public bool secondId = false;
     //서버에게 요청
     //url(posts/1), GET
+
+
     public void SendRequest(HttpRequester requester)
-    {
-        
+    {      
         StartCoroutine(Send(requester));
     }
+
+
     IEnumerator Send(HttpRequester requester)
     {
 
@@ -63,7 +69,7 @@ public class HttpManager : MonoBehaviour
         UnityWebRequest webRequest = null;
         //UnityWebRequest webTexture = null;
         //requestType 에 따라서 호출해줘야한다.
-        
+
         string accessToken = PlayerPrefs.GetString("token");
         switch (requester.requestType)
         {
@@ -73,6 +79,7 @@ public class HttpManager : MonoBehaviour
 
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
@@ -81,12 +88,12 @@ public class HttpManager : MonoBehaviour
                 LoadingCanvas.SetActive(true);
                 break;
             case RequestType.GET:
-               
+
                 webRequest = UnityWebRequest.Get(requester.url);
                 if (accessToken != null)
                 {
                     webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
-                    
+
                     webRequest.SetRequestHeader("Content-Type", "application/json");
                 }
                 //}
@@ -98,6 +105,7 @@ public class HttpManager : MonoBehaviour
                 print("1111");
                 byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
                 print("222");
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(pdata);
                 print("333");
                 webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -115,7 +123,7 @@ public class HttpManager : MonoBehaviour
         yield return webRequest.SendWebRequest();
         print("webRequest");
         //만약에 응답이 성공했다면
-        
+
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             LoadingCanvas.SetActive(false);
@@ -131,17 +139,18 @@ public class HttpManager : MonoBehaviour
         {
             LoadingCanvas.SetActive(false);
             //서버통신 실패....ㅠ
-            print(requester.requestName +  " : 통신 실패" + webRequest.result + "\n" + webRequest.error);
+            print(requester.requestName + " : 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
+        yield return null;
+        webRequest.Dispose();
+        //webRequest.Dispose();
         //}
         //그렇지않다면
-        yield return null;
 
-        webRequest.Dispose();
     }
 
-    public IEnumerator SendWarp(HttpRequester requester, int centerMemberCode)
-    {
+     public IEnumerator SendWarp(HttpRequester requester, int centerMemberCode)
+     {
         print("send");
 
         UnityWebRequest webRequest = null;
@@ -154,6 +163,7 @@ public class HttpManager : MonoBehaviour
                 print("post");
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
@@ -172,6 +182,7 @@ public class HttpManager : MonoBehaviour
                 print("put");
                 webRequest = UnityWebRequest.Put(requester.url, requester.putData);
                 byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(pdata);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
                 webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -198,12 +209,13 @@ public class HttpManager : MonoBehaviour
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
+        yield return null;
         webRequest.Dispose();
-        print("webRequest끝 reload시작");
+       /* print("webRequest끝 reload시작");
         StartCoroutine(WarpManager.instance.DownloadImg());
         while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        WarpManager.instance.reloadRoom(centerMemberCode);
-    }
+        WarpManager.instance.reloadRoom(centerMemberCode);*/
+     }
 
 
     public IEnumerator DownLoadChatList(HttpRequester requester)
@@ -219,6 +231,7 @@ public class HttpManager : MonoBehaviour
                 print("post");
                 webRequest = UnityWebRequest.Post(requester.url, requester.postData);
                 byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(data);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
@@ -237,6 +250,7 @@ public class HttpManager : MonoBehaviour
                 print("put");
                 webRequest = UnityWebRequest.Put(requester.url, requester.putData);
                 byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                webRequest.uploadHandler.Dispose();
                 webRequest.uploadHandler = new UploadHandlerRaw(pdata);
                 webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
                 webRequest.SetRequestHeader("Content-Type", "application/json");
@@ -258,15 +272,15 @@ public class HttpManager : MonoBehaviour
                 print("onComplete실행");
                 requester.onComplete(webRequest.downloadHandler);
             }
-            webRequest.Dispose();
         }
         else
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
+        yield return null;
         webRequest.Dispose();
-        StartCoroutine(ChatManager.instance.DownloadImage());
-
+        //StartCoroutine(ChatManager.instance.DownloadImage());
+        //yield return null;
         /*print("webRequest끝 reload시작");
         StartCoroutine(WarpManager.instance.DownloadImg());
         while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
@@ -279,9 +293,9 @@ public class HttpManager : MonoBehaviour
     void Update()
     {
         //print(HttpManager.instance.memberCode);
-       // print(HttpManager.instance.id);
+        // print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
     }
 
-  
+
 }

@@ -59,11 +59,16 @@ namespace CustomUtils
             /*  // sprite = Sprite.Create(texture,)
               Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
               sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+            string savePath = Application.persistentDataPath + "/Resources/ZRoomImage";
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
 
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
 
-            File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+            File.WriteAllBytes($"{savePath} /{screenShotName}.png", texture.EncodeToPNG());
 
         }
 

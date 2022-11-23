@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using Newtonsoft.Json.Linq;
 
 public class LifeingRoomItem : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class LifeingRoomItem : MonoBehaviour
     public Text detailID;
     public RawImage avatarImage;
     public RawImage roomImage;
-    public RawImage ProfileImage;
+  
     public GameObject lifeingisTrue;
 
 
@@ -27,13 +28,20 @@ public class LifeingRoomItem : MonoBehaviour
     public string roomImg;
     public string avatarImg;
 
+    public string profileImage;
+    public string lifeingImage;
+
     public GameObject LifeingDetailed;
+
+    public Transform LDPos;
 
     public LifeingManager lifeingManager;
 
     public bool LifeingLoad = false;
 
     public bool roomY = false;
+
+    public bool LifeingDetails = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,18 +52,17 @@ public class LifeingRoomItem : MonoBehaviour
 
         //LifeingDetailed = GameObject.Find("Lifeing_Item");
 
+        GameObject LDManager = GameObject.Find("LifeingDetailedCanvas");
+
+        LDPos = LDManager.transform;
+
         detailID.text = memberId.text; 
         //for()
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(roomImage != null)
-        {
-            ProfileImage.texture = roomImage.texture;
-        }
-
+    {      
         if (lifingYn == "Y")
         {
             if (LifeingLoad == false)
@@ -66,6 +73,7 @@ public class LifeingRoomItem : MonoBehaviour
                 //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
                 try
                 {
+                    LifeingLoad = true;
                     var temp = File.ReadAllBytes(Application.dataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
                     print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
                     //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
@@ -76,7 +84,6 @@ public class LifeingRoomItem : MonoBehaviour
                     //tex.LoadImage(temp);
                     lifeingisTrue.SetActive(true);
                     roomImage.texture = tex;
-                    LifeingLoad = true;
                 }
                 catch (Exception ex)
                 {
@@ -92,6 +99,20 @@ public class LifeingRoomItem : MonoBehaviour
             lifeingisTrue.SetActive(false);
             return;
         }
+
+        if(LifeingDetails == true)
+        {
+            GameObject lifeingDetail = Instantiate(LifeingDetailed, LDPos);
+
+            LifeingDetailed lifeingDetailed = lifeingDetail.GetComponent<LifeingDetailed>();
+            lifeingDetailed.Profilephoto.texture = roomImage.texture;
+            lifeingDetailed.IDText.text = detailID.text;
+            lifeingDetailed.NickNameText.text = memberName.text;
+            lifeingDetailed.Lifeingimg = lifeingImage;
+
+            LifeingDetails = false;
+        }
+        
 
     }
 
@@ -122,16 +143,34 @@ public class LifeingRoomItem : MonoBehaviour
                 Debug.Log(wwwA.error);
             else
                 avatarImage.texture = ((DownloadHandlerTexture)wwwA.downloadHandler).texture;
-            
+
+        yield return null;
 
             //yield return WaitForSeconds(0.1);
     }
     public void OnClickStoryView()
     {
+        print(memberCode);
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/lifing/"+memberCode;
+        requester.url = "http://52.79.209.232:8080/api/v1/lifing/"+ memberCode.ToString();
         requester.requestType = RequestType.GET;
         //requester.onComplete = OnCompleteGetPostAll;
-        requester.requestName = "GetMambersList";
+        requester.requestName = "GetLifeingDetails";
+        requester.onComplete = OnCompleteGetLifeDetails;
+
+        HttpManager.instance.SendRequest(requester);
+        //HttpManager.instance.secondId = false;       
+    }
+
+   
+
+    public void OnCompleteGetLifeDetails(DownloadHandler handler)
+    {
+        JObject jsonData = JObject.Parse(handler.text);
+        string lifingsDetailData = jsonData["data"]["lifingImagePath"]["lifingImagePath"].ToString();
+        print(lifingsDetailData);
+
+        lifeingImage = lifingsDetailData;
+        LifeingDetails = true;
     }
 }
