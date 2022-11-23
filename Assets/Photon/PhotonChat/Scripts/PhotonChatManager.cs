@@ -198,6 +198,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         messages.fromMemberCode = HttpManager.instance.memberCode;
         // 포톤에서 플레이어 리스트로 닉네임 받기.
         print(PhotonNetwork.PlayerList[0].NickName);
+        
         messages.toMemberCode = messages.fromMemberCode + 2;
         messages.message = currentChat;
         messages.chatTime = nowTime;

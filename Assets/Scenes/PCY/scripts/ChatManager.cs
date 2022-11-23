@@ -74,6 +74,7 @@ public class ChatManager : MonoBehaviour
 
     public IEnumerator DownloadImage()
     {
+        print("downloadImage");
         int i = 0;
         int processNum = 0;
         for (; i < chatLogBarLength; i++)
@@ -144,7 +145,6 @@ public class ChatManager : MonoBehaviour
         for (int i = 0; i < chatLogBarLength; i++)
         {
             ChatLog newChatLogBar = new ChatLog();
-            print(jsonString.data.Count);
             newChatLogBar.profileImage = tmpProfileImage;
             if (int.Parse(jsonString.data[i].memberCode1.ToString()) == memberCode)
             {   // 멤버코드1이 자기 자신인 상황이라면
@@ -159,6 +159,7 @@ public class ChatManager : MonoBehaviour
             }
             else
             {
+                print(jsonString.data[i].lastMessage);
                 myId.text = jsonString.data[i].memberName2;
                 newChatLogBar.guestMemberCode = int.Parse(jsonString.data[i].memberCode1.ToString());
                 newChatLogBar.nickName = jsonString.data[i].memberName1.ToString();

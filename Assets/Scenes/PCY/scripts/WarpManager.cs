@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
+using UnityEngine.SceneManagement;
+
 
 public class WarpManager : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class WarpManager : MonoBehaviour
     string[] nickNmae = new string[7];
     public RawImage[] warpAvatarImage;
     int[] memberCode = new int[7];
+    public Text CenterNickName;
 
     private void Awake()
     {
@@ -92,7 +95,7 @@ public class WarpManager : MonoBehaviour
             // 다운로드 받기
             RoomItem roomItem = WP.GetComponent<RoomItem>();
             roomItem.memberCode = memberCode[cnt];
-            WP.GetComponent<RawImage>().texture = warpRoomImage[cnt].texture;
+            WP.transform.GetChild(0).GetComponent<RawImage>().texture = warpRoomImage[cnt].texture;
             Character.GetComponent<RawImage>().texture = warpAvatarImage[cnt].texture;
             NNT.GetComponent<Text>().text = nickNmae[cnt];
 
@@ -102,6 +105,14 @@ public class WarpManager : MonoBehaviour
             if (cnt > 6)
                 break;
         }
+    }
+
+    public void BackToMain()
+    {
+
+        SceneManager.LoadScene("MainScenes");
+        //CreateRoom();
+        //JoinRoom();
     }
 
     public IEnumerator DownloadImg(){
