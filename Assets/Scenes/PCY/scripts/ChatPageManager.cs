@@ -75,6 +75,8 @@ public class ChatPageManager : MonoBehaviour
         this.myNickName.text = myNickName;
         this.guestMemberCode = guestMemberCode;
         this.guestProfileImage = guestProfileImage;
+        print("현재 채팅방");
+        print(guestMemberCode);
         LoadChat();
     }
 
@@ -153,10 +155,10 @@ public class ChatPageManager : MonoBehaviour
         }
     }
 
-    // 돌아가기
+    // 돌아가기 
     public void backToChatListPage()
     {
-        
+
         if (total_messages.Count != 0)
         {
             SendChatToServer();
@@ -197,8 +199,7 @@ public class ChatPageManager : MonoBehaviour
 
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
-        // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
-        int toMemberCode = fromMemberCode + 1;
+        int toMemberCode = guestMemberCode;
         if (fromMemberCode > toMemberCode)
         {
             chatData.memberCode1 = toMemberCode;
