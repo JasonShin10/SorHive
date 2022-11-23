@@ -20,6 +20,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public int memberCode;
 
+    public int MymemberCode;
+
     //Dictionary<string, int> roomCache = new Dictionary<string, int>();
 
     public int myRoom = 0;
@@ -41,7 +43,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //creat = false;
         //JoinRoom();
 
-        memberCode = HttpManager.instance.memberCode;
+        MymemberCode = HttpManager.instance.memberCode;
 
     }
 
@@ -53,7 +55,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void OnClickRoomIn()
     {
-        if (memberCode.ToString() != null)
+        if (MymemberCode.ToString() != null)
         {
             if (creat == false)
             {
@@ -84,7 +86,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.CreateRoom (userName.text, roomOptions);
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
-        PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
+        PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
+        PhotonNetwork.CreateRoom(MymemberCode.ToString(), roomOptions);
     }
 
 
@@ -107,7 +110,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         //PhotonNetwork.JoinRoom(userName.text); 
-        PhotonNetwork.LocalPlayer.NickName = HttpManager.instance.memberCode.ToString();
+        PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
         PhotonNetwork.JoinRoom(memberCode.ToString());
     }
 

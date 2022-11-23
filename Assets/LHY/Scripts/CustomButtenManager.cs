@@ -10,7 +10,8 @@ public class CustomButtenManager : MonoBehaviour
 
     void Start()
     {
-        playerItem = Player.GetComponent<LHY_PlayerItem>();   
+        playerItem = Player.GetComponent<LHY_PlayerItem>();
+        playerItem.Hairtype = 2;
     }
     
     //얼굴타입 변경
