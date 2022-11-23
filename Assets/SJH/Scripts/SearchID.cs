@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using UnityEngine.EventSystems;
-
+using System.Linq;
 
 public class SearchID : MonoBehaviour
 {
@@ -32,6 +32,7 @@ public class SearchID : MonoBehaviour
     public UserInfo userInfo;
     public string id;
     public string roomImgString;
+    public string searchId;
     public bool followingCheck = false;
     public int followingIdNum;
     public int memberCode;
@@ -69,7 +70,7 @@ public class SearchID : MonoBehaviour
         GetThree();
         GetFollowing();
         GetRoomImage();
-        GetRoomAll();
+        //GetRoomAll();
     }
   
     // Update is called once per frame
@@ -234,10 +235,10 @@ public class SearchID : MonoBehaviour
 
         print("조회완료");
     }
-    public void GetRoomAll()
+    public void GetRoomAll(string searchId)
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/search/j";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/search/" + searchId;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
         requester.requestName = "GetRoomAll";
@@ -265,16 +266,23 @@ public class SearchID : MonoBehaviour
         string userData = "{\"data\":" + jsonData["data"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
-        
+
         //for (int i = 0; i < userInfoList.Count; i++)
         //{
         //    userFollowList.Add(userInfoList[i].memberCode);
         //}
-        print(userInfo);
+        totalElements = ContentHolder.childCount;
+        FollowingElement = new GameObject[totalElements];
+        for (int i = 0; i < totalElements; i++)
+        {
+            FollowingElement[i] = ContentHolder.GetChild(i).gameObject;
+
+            Destroy(ContentHolder.GetChild(i).gameObject);
+        }
+        print(userInfoList);
         for (int i = 0; i < userInfoList.Count; i++)
         {
             CreateObject(userInfoList[i], ContentHolder, userInfoList[i].id);
-           
         }
         totalElements = ContentHolder.childCount;
         Element = new GameObject[totalElements];
@@ -283,6 +291,7 @@ public class SearchID : MonoBehaviour
         {
             Element[i] = ContentHolder.GetChild(i).gameObject;
             ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+            ContentHolder.GetChild(i).gameObject.SetActive(true);
         }
         print("조회완료");
     }
@@ -310,9 +319,11 @@ public class SearchID : MonoBehaviour
         //    ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(SceneLoad);
         //}
         string searchText = SearchBar.GetComponent<InputField>().text;
+            
         int searchTextLength = searchText.Length;
 
         int searchedElements = 0;
+        GetRoomAll(searchText);
 
         foreach (GameObject ele in Element)
         {
@@ -353,7 +364,6 @@ public class SearchID : MonoBehaviour
         sHandler = handler.text;
         print(sHandler);
         JObject jsonData = JObject.Parse(sHandler);
-
         string userData = "{\"data\":" + jsonData["data"]["followerData"].ToString() + "}";
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         userInfoList = userInfo.data;
@@ -411,6 +421,7 @@ public class SearchID : MonoBehaviour
         {
             Element[i] = ContentHolder.GetChild(i).gameObject;
             ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickVisit);
+            //ContentHolder.GetChild(i).gameObject.SetActive(true);
         }
         print("조회완료");
     }
@@ -493,7 +504,6 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
         requester.requestName = "OnSaveSignIn";
     }
-
     public void GetFollowing()
     {
         HttpRequester requester = new HttpRequester();
