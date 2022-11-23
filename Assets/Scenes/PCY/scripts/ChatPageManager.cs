@@ -49,7 +49,7 @@ public class ChatPageManager : MonoBehaviour
         print(requester.url);
         requester.requestType = RequestType.GET;
         requester.onComplete = OnClickSet;
-        StartCoroutine(HttpManager.instance.DownLoadChat(requester));
+        StartCoroutine(HttpManager.instance.DownLoadChatList(requester));
     }
 
     public void SendChat()
