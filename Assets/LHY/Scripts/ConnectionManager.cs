@@ -72,7 +72,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         base.OnJoinedLobby();
-
         print("OnJoinedLobby");
         //Lobbyæ¿ ¿∏∑Œ ¿Ãµø
         PhotonNetwork.LoadLevel("CreatCharactorScene");
