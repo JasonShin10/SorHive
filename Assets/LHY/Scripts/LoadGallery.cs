@@ -20,8 +20,13 @@ public class LoadGallery : MonoBehaviour
     public byte[] avatarImg;
     public string avatarImgName;
 
+    public GameObject Analysiserror;
+
+    public GameObject UpLoadFacePhoto;
+
     public void OnClickImageLoad()
     {
+        Analysiserror.SetActive(false);
         NativeGallery.GetImageFromGallery((file) =>
         {
             FileInfo selected = new FileInfo(file);          
@@ -105,9 +110,22 @@ public class LoadGallery : MonoBehaviour
         int eyebrows = (int)json["data"]["eyebrows"];
         int eye = (int)json["data"]["eye"];
 
-        playerItem.FaceType = face;
-        playerItem.EyebrowsType = eyebrows;
-        playerItem.Eyelashestype = eye;
+        if(face >= 7 || eyebrows >= 8 || eye >= 9)
+        {
+            playerItem.FaceType = 0;
+            playerItem.EyebrowsType = 0;
+            playerItem.Eyelashestype = 0;
+            Analysiserror.SetActive(true);
+
+        }
+        else
+        {
+            playerItem.FaceType = face;
+            playerItem.EyebrowsType = eyebrows;
+            playerItem.Eyelashestype = eye;
+            Analysiserror.SetActive(false);
+            UpLoadFacePhoto.SetActive(false);
+        }
 
         print("조회 완료");
     }

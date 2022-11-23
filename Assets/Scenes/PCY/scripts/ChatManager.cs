@@ -44,7 +44,7 @@ public class ChatManager : MonoBehaviour
 
     public string myProfileImageUrl;
 
-    int memberCode = HttpManager.instance.memberCode;
+    int memberCode;
 
     int chatLogBarLength = 0;
 
@@ -53,6 +53,7 @@ public class ChatManager : MonoBehaviour
     {
         // print(PlayerPrefs.GetString("token"));
         LoadChatList();
+        memberCode =  HttpManager.instance.memberCode;
     }
 
     // Update is called once per frame

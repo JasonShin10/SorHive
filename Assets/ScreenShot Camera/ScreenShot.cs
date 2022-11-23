@@ -87,7 +87,7 @@ namespace CustomUtils
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
 
-            string savePath = Application.persistentDataPath + "/Resources/AvatarImage";
+            string savePath = Application.persistentDataPath + "/Resources/Avatarimg";
             if(!Directory.Exists(savePath))
             {
                 Directory.CreateDirectory(savePath);
