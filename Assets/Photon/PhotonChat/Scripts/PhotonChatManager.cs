@@ -37,6 +37,9 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     int response_status = 0;
     public List<string> total_messages = new List<string>();
 
+    int guestMemberCode = 0;
+
+
     private void Awake()
     {
         //만약에 instance가 null이라면
@@ -57,6 +60,17 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         isConnected = true;
         chatClient = new ChatClient(this);
         chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(username));
+        // 게스트 멤버코드가 누군지 확인.
+        print("아래 멤버코드의 방에 참여했습니다.");
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {   // 먼저 들어온 사람이 있을 때
+            if(int.Parse(PhotonNetwork.PlayerList[i].NickName) != HttpManager.instance.memberCode)
+            {
+                guestMemberCode = int.Parse(PhotonNetwork.PlayerList[i].NickName);
+            }
+        }
+        print("방에 함께 있는 사람");
+        print(guestMemberCode);
         print("Connecting");
     }
 
@@ -175,7 +189,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     {
         if (privateReceiver == "")
         {
-
             chatClient.PublishMessage("RegionChannel", currentChat);
             print(currentChat);
 
@@ -197,9 +210,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         ChatMessageInfo messages = new ChatMessageInfo();
         messages.fromMemberCode = HttpManager.instance.memberCode;
         // 포톤에서 플레이어 리스트로 닉네임 받기.
-        print(PhotonNetwork.PlayerList[0].NickName);
-        
-        messages.toMemberCode = messages.fromMemberCode + 2;
+        messages.toMemberCode = guestMemberCode;
         messages.message = currentChat;
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
@@ -211,7 +222,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
         // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
-        int toMemberCode = fromMemberCode + 2;
+        int toMemberCode = guestMemberCode;
         if (fromMemberCode > toMemberCode)
         {
             chatData.memberCode1 = toMemberCode;
