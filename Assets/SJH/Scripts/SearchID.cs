@@ -225,9 +225,12 @@ public class SearchID : MonoBehaviour
         //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followIdData);
         followId = int.Parse(followIdData);
         roomOwner.text = userThree.memberName;
-        follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
-        following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
-        feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
+        //follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
+        //following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
+        //feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
+        follower.text = " " + userThree.followerCount;
+        following.text = " " + userThree.followingCount;
+        feedNum.text = " " + userThree.feedCount;
         HttpManager.instance.memberCode = userThree.memberCode;
         userGetInfo.followingCount = userThree.followingCount;
         userGetInfo.feedCount = userThree.feedCount;
