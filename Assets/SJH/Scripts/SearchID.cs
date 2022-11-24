@@ -279,7 +279,6 @@ public class SearchID : MonoBehaviour
         for (int i = 0; i < totalElements; i++)
         {
             FollowingElement[i] = ContentHolder.GetChild(i).gameObject;
-
             Destroy(ContentHolder.GetChild(i).gameObject);
         }
         print(userInfoList);
