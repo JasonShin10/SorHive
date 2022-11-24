@@ -22,7 +22,8 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         {
             ID.onValueChanged.AddListener(OnValueChanged);
             Password.onValueChanged.AddListener(OnPassValueChanged);
-        }   
+        }
+        btnConnect.interactable = false;
     }
 
     public void OnValueChanged(string s)

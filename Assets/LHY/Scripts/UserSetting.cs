@@ -12,6 +12,19 @@ public class UserInfo
     public string memberName;
     public string memberId;
     public string password;
+    public string email;
+}
+
+[System.Serializable]
+public class MemberEmail
+{
+    public string email;
+}
+
+[System.Serializable]
+public class MemberId
+{
+    public string memberId;
 }
 
 [System.Serializable]
@@ -59,6 +72,7 @@ public class UserSetting : MonoBehaviour
     public InputField inputid;
     public InputField inputpassword;
     public InputField inputpasschack;
+    
 
     public GameObject nonPasstext;
 
@@ -68,52 +82,161 @@ public class UserSetting : MonoBehaviour
 
     public GameObject LoginPage;
     public GameObject SigninPage;
+
+    public Text loginStatusText;
     public void Awake()
     {
         //PlayerPrefs.DeleteAll();
+        loginStatusText.text = "";
     }
 
+
+    bool isVerifyId = false;
+    bool isVerifyEmail = false;
+    bool isVerifyPassword = false;
+    bool isPasswordLength = false;
+    bool isVerifyNickName = false;
+    bool isVerifyIdLength = false;
+    public void Update()
+    {
+        if (isVerifyId && isVerifyEmail && isVerifyPassword && isPasswordLength && isVerifyIdLength && isVerifyNickName)
+        {
+            signUpBtnConnect.interactable = true;
+        }
+    }
+
+    public Button signUpBtnConnect;
+    public Text nickNameVerifyText;
     void Start()
-{
-    //PlayerPrefs.DeleteAll();
-}
+    {
+        signUpBtnConnect.interactable = false;
+        if (inputpasschack != null)
+        {
+            inputpassword.onValueChanged.AddListener(OnPassword);
+            inputpasschack.onValueChanged.AddListener(OnPasswordCheck);
+            inputid.onValueChanged.AddListener(OnIdCheck);
+            inputEmail.onValueChanged.AddListener(OnEmailCheck);
+            inputnickName.onValueChanged.AddListener(OnNickNameCheck);
+        }
+    }
+
+    // 닉네임 길이 체크(유효성 검사)
+    public void OnNickNameCheck(string s)
+    {
+        if (inputnickName.text.Length > 7 && inputnickName.text.Length < 16)
+        {
+            print("사용 가능한 이름.");
+            isVerifyNickName = true;
+            nickNameVerifyText.text = "사용 가능한 이름입니다.";
+        }
+        else
+        {
+            isVerifyNickName = false;
+            nickNameVerifyText.text = "이름은 7글자이상 15자이하여야 합니다.";
+        }
+    }
 
 
+    public Text passwordLengthText;
+    // 비밀번호 길이 체크
+    public void OnPassword(string s)
+    {
+        if (inputpassword.text.Length > 7)
+        {
+            print("비밀번호 8자 이상");
+            isPasswordLength = true;
+            passwordLengthText.text = "사용 가능한 비밀번호입니다.";
+        }
+        else
+        {
+            isPasswordLength = false;
+            passwordLengthText.text = "비밀번호를 8자 이상 입력해주세요.";
+        }
+    }
 
+    public Text passwordCheck;
+    // 0. 유효성 검사
+    public void OnPasswordCheck(string s)
+    {
+        if(inputpassword.text == inputpasschack.text)
+        {
+            print("비밀번호 일치");
+            isVerifyPassword = true;
+            passwordCheck.text = "비밀번호가 일치합니다.";
+        }
+        else
+        {
+            isVerifyPassword = false;
+            passwordCheck.text = "비밀번호가 일치하지 않습니다.";
+        }
+    }
+
+    // id 길이 체크(유효성 검사)
+    public void OnIdCheck(string s)
+    {
+        if (inputid.text.Length > 7 && inputid.text.Length < 16)
+        {
+            print("사용 가능한 Id.");
+            isVerifyIdLength = true;
+            idCheckText.text = "사용 가능한 ID입니다.";
+        }
+        else
+        {
+            isVerifyIdLength = false;
+            idCheckText.text = "ID는 7글자이상 15자이하여야 합니다.";
+        }
+    }
+
+    public void OnEmailCheck(string s)
+    {
+        isVerifyEmail = false;
+    }
+
+
+    // 1. 회원가입 보내기
     public void OnClickSave()
     {
         UserInfo userdata = new UserInfo();
         userdata.memberName = inputnickName.text;
         userdata.memberId = inputid.text;
         userdata.password = inputpassword.text;
+        userdata.email = inputEmail.text;
 
         HttpRequester requester = new HttpRequester();
         //url 경로
         requester.url = "http://52.79.209.232:8080/api/v1/auth/signup";
         requester.requestType = RequestType.POST;
 
-        print("test");
+        print("회원가입 시도");
 
         requester.postData = JsonUtility.ToJson(userdata, true);
         print(requester.postData);
-
-        HttpManager.instance.SendRequest(requester);
+        requester.onComplete = OnSave;
+        print("왜 안돼1");
         requester.requestName = "save";
-        //requester.onComplete = On
+        StartCoroutine(HttpManager.instance.SendSignUp(requester));
+    }
 
-        if (inputpasschack.text != userdata.password)
+    private void OnSave(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        int status = json["status"].ToObject<int>();
+        if (status == 201)
         {
-            nonPasstext.SetActive(true);
-            print("비밀번호가 맞지 않습니다. 다시 입력해 주세요");
-        }
-        else
-        { 
+            print("회원가입 완료");
             SigninPage.SetActive(false);
             LoginPage.SetActive(true);
+            loginStatusText.text = "회원 가입 완료. 로그인해주세요.";
+        }
+        else
+        {
+            print("회원가입 실패");
+            verifyEmail.text = "회원 가입 실패. 다시 시도해주세요.";
         }
     }
 
 
+    // 2. 로그인 하기
     public void OnClickLogin()
     {
         
@@ -134,35 +257,146 @@ public class UserSetting : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
-        
     }
-
-/*    private void OnClickDownload(DownloadHandler handler)
-    {
-        JObject json = JObject.Parse(handler.text);
-        string token = json["data"]["accessToken"].ToString();
-        print(token);
-
-        PlayerPrefs.SetString("token", token);
-        print("조회 완료");
-    }*/
-
     private void OnClickDownload(DownloadHandler handler)
     {
         JObject json = JObject.Parse(handler.text);
-        string token = json["data"]["accessToken"].ToString();
-        int memberCode = json["data"]["memberCode"].ToObject<int>();
-        HttpManager.instance.avatarYn = json["data"]["avatarYn"].ToString();
+        int status = json["status"].ToObject<int>();
+        if (status == 204)
+        {
+            string token = json["data"]["accessToken"].ToString();
+            int memberCode = json["data"]["memberCode"].ToObject<int>();
+            HttpManager.instance.avatarYn = json["data"]["avatarYn"].ToString();
 
-        HttpManager.instance.memberCode = memberCode;
-        HttpManager.instance.userMemberCode = memberCode;
-        print("postTokenData"+ token);
-        print(memberCode);
-        PlayerPrefs.SetString("token", token);
+            HttpManager.instance.memberCode = memberCode;
+            HttpManager.instance.userMemberCode = memberCode;
+            print("postTokenData" + token);
+            print(memberCode);
+            PlayerPrefs.SetString("token", token);
+            Photon.Pun.PhotonNetwork.JoinLobby();
+            print("조회 완료");
+        }
+        else
+        {   // 정상로그인 아닐 시
+            print("정상적인 로그인이 아닙니다.");
+            loginStatusText.text = "정상 로그인 아님";
 
-        //PlayerPrefs.SetString("memberId",)
-
-        Photon.Pun.PhotonNetwork.JoinLobby();
-        print("조회 완료");
+        }
     }
+
+    // 3. id 중복검사
+    public Text idCheckText;
+    public void OnClickVerifyId()
+    {
+        MemberId newId = new MemberId();
+        newId.memberId = inputid.text;
+
+        HttpRequester requester = new HttpRequester();
+        print(inputid.text);
+        requester.url = "http://52.79.209.232:8080/api/v1/auth/id";
+        requester.requestType = RequestType.POST;
+
+        requester.postData = JsonUtility.ToJson(newId, true);
+        print(requester.postData);
+
+        requester.onComplete = RecieveCheckId;
+        requester.requestName = "아이디 중복 검사";
+        StartCoroutine(HttpManager.instance.SendSignUp(requester));
+    }
+
+    private void RecieveCheckId(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        int status = json["status"].ToObject<int>();
+        if (status == 200)
+        {
+            print("아이디 중복 검사 성공");
+            idCheckText.text = json["data"].ToString();
+            isVerifyId = true;
+        }
+        else if (status == 400)
+        {
+            idCheckText.text = "잘못된 형식입니다.";
+        }
+        else 
+        {   // 정상로그인 아닐 시
+            // idCheckText.text = json["data"].ToString();
+            idCheckText.text = json["data"].ToString();
+        }
+    }
+
+
+    // 4. 이메일 인증 보내기
+    private string verifyNumber;
+    public Text verifyEmail;
+    public InputField inputEmail;
+    public void OnClickVerifyEmailSend()
+    {
+        MemberEmail newEmail = new MemberEmail();
+        newEmail.email = inputEmail.text;
+
+        HttpRequester requester = new HttpRequester();
+        print(newEmail.email);
+        requester.url = "http://52.79.209.232:8080/api/v1/auth/email";
+        requester.requestType = RequestType.POST;
+
+        requester.postData = JsonUtility.ToJson(newEmail, true);
+        print(requester.postData);
+
+        requester.onComplete = RecieveVerifyEmailSend;
+        requester.requestName = "이메일 인증 요청 보내기";
+        StartCoroutine(HttpManager.instance.SendSignUp(requester));
+    }
+
+    private void RecieveVerifyEmailSend(DownloadHandler handler)
+    {
+        JObject json = JObject.Parse(handler.text);
+        int status = json["status"].ToObject<int>();
+        if (status == 200)
+        {
+            print("이메일 인증 보내기");
+            verifyEmail.text = "이메일로 인증번호를 보냈습니다.";
+            verifyNumber = json["data"].ToString();
+        }
+        else if (status == 400)
+        {
+            verifyEmail.text = "잘못된 형식입니다.";
+        }
+        else
+        {   // 이메일 중복 시
+            verifyNumber = "-1";
+            verifyEmail.text = json["data"].ToString();
+        }
+    }
+
+    // 5. 이메일로 받은 인증번호로 본인인증하기.
+    public InputField inputVerifyNumber;
+    public Text verifyNumberText;
+
+    public void OnClickVerifyNumber()
+    {
+        if (verifyNumber == inputVerifyNumber.text)
+        {
+            print("이메일 인증 성공");
+            verifyNumberText.text = "이메일 인증 성공";
+            isVerifyEmail = true;
+        }
+        else
+        {
+            verifyNumberText.text = "이메일 인증 실패. 다시 보내주세요.";
+        }
+    }
+
+
+    /*    private void OnClickDownload(DownloadHandler handler)
+        {
+            JObject json = JObject.Parse(handler.text);
+            string token = json["data"]["accessToken"].ToString();
+            print(token);
+
+            PlayerPrefs.SetString("token", token);
+            print("조회 완료");
+        }*/
+
+
 }

@@ -128,6 +128,7 @@ public class HttpManager : MonoBehaviour
         if (webRequest.result == UnityWebRequest.Result.Success)
         {
             LoadingCanvas.SetActive(false);
+            print(webRequest.result);
             print(requester.requestName + ":" + webRequest.downloadHandler.text);
 
             //완료되었다고 requester.onComplete를 실행
@@ -138,6 +139,7 @@ public class HttpManager : MonoBehaviour
         }
         else
         {
+            print(webRequest.result);
             LoadingCanvas.SetActive(false);
             //서버통신 실패....ㅠ
             print(requester.requestName + " : 통신 실패" + webRequest.result + "\n" + webRequest.error);
@@ -150,7 +152,113 @@ public class HttpManager : MonoBehaviour
 
     }
 
-     public IEnumerator SendWarp(HttpRequester requester, int centerMemberCode)
+
+    // 회원가입 유효성 검사용
+    public IEnumerator SendSignUp(HttpRequester requester)
+    {
+
+        //WWWForm form = new WWWForm();
+        //form.AddField("furnitures", requester.postData);
+
+        UnityWebRequest webRequest = null;
+        //UnityWebRequest webTexture = null;
+        //requestType 에 따라서 호출해줘야한다.
+
+        string accessToken = PlayerPrefs.GetString("token");
+        switch (requester.requestType)
+        {
+
+            case RequestType.POST:
+                print("post");
+
+                webRequest = UnityWebRequest.Post(requester.url, requester.postData);
+                byte[] data = Encoding.UTF8.GetBytes(requester.postData);
+                webRequest.uploadHandler.Dispose();
+                webRequest.uploadHandler = new UploadHandlerRaw(data);
+                webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+
+                LoadingCanvas.SetActive(true);
+                break;
+            case RequestType.GET:
+
+                webRequest = UnityWebRequest.Get(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
+                //}
+                LoadingCanvas.SetActive(true);
+                break;
+            case RequestType.PUT:
+                print("aaa");
+                webRequest = UnityWebRequest.Put(requester.url.ToString(), requester.putData.ToString());
+                print("1111");
+                byte[] pdata = Encoding.UTF8.GetBytes(requester.putData);
+                print("222");
+                webRequest.uploadHandler.Dispose();
+                webRequest.uploadHandler = new UploadHandlerRaw(pdata);
+                print("333");
+                webRequest.SetRequestHeader("Content-Type", "application/json");
+                break;
+            case RequestType.DELETE:
+                webRequest = UnityWebRequest.Delete(requester.url);
+                if (accessToken != null)
+                {
+                    webRequest.SetRequestHeader("Authorization", "Bearer " + accessToken);
+                    webRequest.SetRequestHeader("Content-Type", "application/json");
+                }
+                break;
+        }
+        //서버에 요청을 보내고 응답이 올때까지 기다린다.
+        yield return webRequest.SendWebRequest();
+        print("webRequest");
+        //만약에 응답이 성공했다면
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            LoadingCanvas.SetActive(false);
+            print(requester.requestName + ":" + webRequest.downloadHandler.text);
+
+            //완료되었다고 requester.onComplete를 실행
+            if (requester.onComplete != null)
+            {
+                requester.onComplete(webRequest.downloadHandler);
+            }
+        }
+        else if (webRequest.result.ToString() == "ProtocolError")
+        {
+            LoadingCanvas.SetActive(false);
+            print(webRequest.result);
+            print(requester.requestName + ":" + webRequest.downloadHandler.text);
+
+            //완료되었다고 requester.onComplete를 실행
+            if (requester.onComplete != null)
+            {
+                requester.onComplete(webRequest.downloadHandler);
+            }
+        }
+        else
+        {
+            print(webRequest.result);
+            LoadingCanvas.SetActive(false);
+            //서버통신 실패....ㅠ
+            print(requester.requestName + " : 통신 실패" + webRequest.result + "\n" + webRequest.error);
+        }
+        yield return null;
+        webRequest.Dispose();
+        //webRequest.Dispose();
+        //}
+        //그렇지않다면
+
+    }
+
+
+
+    public IEnumerator SendWarp(HttpRequester requester, int centerMemberCode)
      {
         print("send");
 
@@ -349,6 +457,8 @@ public class HttpManager : MonoBehaviour
         }
         webRequest.Dispose();
     }
+    
+
 
     void Update()
     {
