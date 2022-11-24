@@ -12530,7 +12530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000038146973}
+  m_AnchoredPosition: {x: 0, y: 102.06999}
   m_SizeDelta: {x: 125.7061, y: 102.07}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2003410098
@@ -12985,6 +12985,8 @@ MonoBehaviour:
   playerItem: {fileID: 4920989634797595642}
   avatarImg: 
   avatarImgName: 
+  Analysiserror: {fileID: 0}
+  UpLoadFacePhoto: {fileID: 0}
 --- !u!1 &2050554354
 GameObject:
   m_ObjectHideFlags: 0
