@@ -72,7 +72,11 @@ public class LifeingRoomItem : MonoBehaviour
                 //Texture2D tex = new Texture2D(0, 0);
                 //Resources.Load("/ 02.Story / StoryRoom / " + lifingCategoryNo + "_" + lifingNo + ".png");
   
-                if (Directory.Exists(Application.persistentDataPath + "/Resources/RoomImages/"))
+                if(!Directory.Exists(Application.persistentDataPath + "/Resources/RoomImages/"))
+                {
+                    return;
+                }
+                else
                 {
                    var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
                     print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
@@ -86,6 +90,7 @@ public class LifeingRoomItem : MonoBehaviour
                     roomImage.texture = tex;
                     LifeingLoad = true;
                 }
+                
                 
               
                        

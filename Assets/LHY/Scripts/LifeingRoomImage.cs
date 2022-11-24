@@ -51,25 +51,6 @@ public class LifeingRoomImage : MonoBehaviour
 
     public void OnClickSaveRoomImg()
     {
-        //Texture2D texture = (Texture2D)lifeingRoomImage.texture;
 
-
-        //Texture2D texture = lifeingRoomImage.texture as Texture2D;
-        //Texture2D texture = TextureToTexture2D(lifeingRoomImage);
-
-        /*        Texture2D texture = Resources.Load("02.Story / StoryRoom /" + a + "_" + b + ".png", typeof(Texture2D)) as Texture2D;
-
-                string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
-                if (!Directory.Exists(savePath))
-                {
-                    Directory.CreateDirectory(savePath);
-                }
-
-                File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + a +"_"+ b + ".png", texture.EncodeToPNG());*/
-
-
-        lifeingScreenShot.texture = lifeingRoomImage.texture;
-
-        //EditorApplication.ExecuteMenuItem("Assets/Refresh");
     }
 }
