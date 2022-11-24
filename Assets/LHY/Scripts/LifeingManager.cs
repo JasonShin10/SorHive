@@ -109,7 +109,6 @@ public class LifeingManager : MonoBehaviour
     public void ReLoadMambersList()
     {
         GetMambersList();
-
         isUpLoad = true;
     }
 
@@ -124,6 +123,8 @@ public class LifeingManager : MonoBehaviour
 
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.secondId = false;
+
+
     }
 
     public void OnCompleteGetPostAll(DownloadHandler handler)

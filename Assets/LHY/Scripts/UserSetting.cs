@@ -152,6 +152,8 @@ public class UserSetting : MonoBehaviour
         JObject json = JObject.Parse(handler.text);
         string token = json["data"]["accessToken"].ToString();
         int memberCode = json["data"]["memberCode"].ToObject<int>();
+        HttpManager.instance.avatarYn = json["data"]["avatarYn"].ToString();
+
         HttpManager.instance.memberCode = memberCode;
         HttpManager.instance.userMemberCode = memberCode;
         print("postTokenData"+ token);

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 
@@ -91,6 +89,7 @@ namespace CustomUtils
             if(!Directory.Exists(savePath))
             {
                 Directory.CreateDirectory(savePath);
+                print(savePath);
             }
 
             File.WriteAllBytes($"{savePath}/{screenShotName}.png", texture.EncodeToPNG());
