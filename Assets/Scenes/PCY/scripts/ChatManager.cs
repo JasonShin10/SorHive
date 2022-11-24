@@ -143,6 +143,7 @@ public class ChatManager : MonoBehaviour
     {
         JsonString jsonString = JsonUtility.FromJson<JsonString>(handler.text);
         chatLogBarLength = jsonString.data.Count;
+        print(jsonString.data);
         for (int i = 0; i < chatLogBarLength; i++)
         {
             ChatLog newChatLogBar = new ChatLog();
@@ -178,11 +179,12 @@ public class ChatManager : MonoBehaviour
         SceneManager.LoadScene("MainScenes");
     }
 
+/*
     public void OnCreateChatLog()
     {
         print("버튼은 눌림");
         GameObject chatLogBar = Instantiate(ChatLogBarUIFactory, ChatLogBarListContent);
-    }
+    }*/
 
     [System.Serializable]
     public class Messages

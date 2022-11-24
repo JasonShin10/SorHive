@@ -156,7 +156,6 @@ public class HttpManager : MonoBehaviour
     // 회원가입 유효성 검사용
     public IEnumerator SendSignUp(HttpRequester requester)
     {
-
         //WWWForm form = new WWWForm();
         //form.AddField("furnitures", requester.postData);
 
@@ -386,14 +385,9 @@ public class HttpManager : MonoBehaviour
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
-        yield return null;
         webRequest.Dispose();
-        //StartCoroutine(ChatManager.instance.DownloadImage());
-        //yield return null;
-        /*print("webRequest끝 reload시작");
-        StartCoroutine(WarpManager.instance.DownloadImg());
-        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        WarpManager.instance.reloadRoom(centerMemberCode);*/
+        StartCoroutine(ChatManager.instance.DownloadImage());
+        yield return null;
     }
 
 
