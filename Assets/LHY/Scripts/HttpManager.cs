@@ -50,6 +50,7 @@ public class HttpManager : MonoBehaviour
     public int guestBookId;
     public bool firstId = false;
     public bool secondId = false;
+    public string avatarYn;
     //서버에게 요청
     //url(posts/1), GET
 
@@ -209,13 +210,12 @@ public class HttpManager : MonoBehaviour
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
-        print("webRequest끝 reload시작");
-        StartCoroutine(WarpManager.instance.DownloadImg());
-        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        print("reloadRoom");
-        WarpManager.instance.reloadRoom(centerMemberCode);
         yield return null;
         webRequest.Dispose();
+       /* print("webRequest끝 reload시작");
+        StartCoroutine(WarpManager.instance.DownloadImg());
+        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
+        WarpManager.instance.reloadRoom(centerMemberCode);*/
      }
 
 
@@ -278,9 +278,14 @@ public class HttpManager : MonoBehaviour
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
-        webRequest.Dispose();
-        StartCoroutine(ChatManager.instance.DownloadImage());
         yield return null;
+        webRequest.Dispose();
+        //StartCoroutine(ChatManager.instance.DownloadImage());
+        //yield return null;
+        /*print("webRequest끝 reload시작");
+        StartCoroutine(WarpManager.instance.DownloadImg());
+        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
+        WarpManager.instance.reloadRoom(centerMemberCode);*/
     }
 
 

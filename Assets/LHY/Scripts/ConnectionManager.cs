@@ -74,8 +74,17 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnJoinedLobby();
         print("OnJoinedLobby");
         //Lobbyæ¿ ¿∏∑Œ ¿Ãµø
-        PhotonNetwork.LoadLevel("CreatCharactorScene");
-        //PhotonNetwork.LoadLevel("MainScenes");
+        if(HttpManager.instance.avatarYn == "Y")
+        {
+            PhotonNetwork.LoadLevel("MainScenes");
+        }
+        else
+        {
+            PhotonNetwork.LoadLevel("CreatCharactorScene");
+        }
+
+        
+        //
         //SceneManager.LoadScene("MainScenes");
     }
 
