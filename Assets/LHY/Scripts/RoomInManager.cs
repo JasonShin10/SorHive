@@ -160,9 +160,7 @@ public class RoomInManager : MonoBehaviour
     }
     public void OnCompleteDeleteGuestBook(DownloadHandler handler)
     {
-
-        Destroy(clickObject.transform.parent);
-
+        AddManager.instance.GetPostAll();
     }
     public void CreateObject(GuestBookJsonInfo info)
     {
