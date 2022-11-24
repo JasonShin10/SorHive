@@ -28,6 +28,8 @@ public class LifeingRoomItem : MonoBehaviour
     public string roomImg;
     public string avatarImg;
 
+    public string roomImageprofile;
+
     public string profileImage;
     public string lifeingImage;
 
@@ -51,7 +53,7 @@ public class LifeingRoomItem : MonoBehaviour
         StartCoroutine(GetTextureR(roomImage, avatarImage));
 
         //LifeingDetailed = GameObject.Find("Lifeing_Item");
-
+        
         GameObject LDManager = GameObject.Find("LifeingDetailedCanvas");
 
         LDPos = LDManager.transform;
@@ -62,7 +64,21 @@ public class LifeingRoomItem : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
+    {
+
+        if (LifeingDetails == true)
+        {
+            GameObject lifeingDetail = Instantiate(LifeingDetailed, LDPos);
+
+            LifeingDetailed lifeingDetailed = lifeingDetail.GetComponent<LifeingDetailed>();
+            lifeingDetailed.profileimg = roomImg;
+            lifeingDetailed.IDText.text = detailID.text;
+            lifeingDetailed.NickNameText.text = memberName.text;
+            lifeingDetailed.Lifeingimg = lifeingImage;
+
+            LifeingDetails = false;
+        }
+
         if (lifingYn == "Y")
         {
             if (LifeingLoad == false)
@@ -106,18 +122,7 @@ public class LifeingRoomItem : MonoBehaviour
             return;
         }
 
-        if(LifeingDetails == true)
-        {
-            GameObject lifeingDetail = Instantiate(LifeingDetailed, LDPos);
-
-            LifeingDetailed lifeingDetailed = lifeingDetail.GetComponent<LifeingDetailed>();
-            lifeingDetailed.Profilephoto.texture = roomImage.texture;
-            lifeingDetailed.IDText.text = detailID.text;
-            lifeingDetailed.NickNameText.text = memberName.text;
-            lifeingDetailed.Lifeingimg = lifeingImage;
-
-            LifeingDetails = false;
-        }
+ 
         
 
     }

@@ -39,7 +39,20 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject llifeingItemFactory;
 
+    public GameObject PageUp;
+
+    public GameObject PageDown;
+
+    public GameObject[] Group;
+
+    public GameObject main;
+
+    public GameObject LifeingDelete;
+
     public Text roomId;
+
+    public int countgroup;
+    public int ListCount;
 
     public bool isUpLoad = true;
     public bool userSetting = false;
@@ -68,6 +81,8 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
+               
+
                 //print(friendList.Count);
                 GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
@@ -77,10 +92,13 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.memberId.text = friendList[i].memberId;
                 lifeingRoomItem.avatarImg = friendList[i].avatarImage;
                 lifeingRoomItem.roomImg = friendList[i].roomImage;
+                lifeingRoomItem.roomImageprofile = friendList[i].roomImage;
 
                 lifeingRoomItem.lifingCategoryNo = friendList[i].lifingCategoryNo;
                 lifeingRoomItem.lifingNo = friendList[i].lifingNo;
                 lifeingRoomItem.lifingYn = friendList[i].lifingYn;
+
+
                 
                 //lifeingRoomItem.
 
@@ -108,7 +126,11 @@ public class LifeingManager : MonoBehaviour
 
     public void ReLoadMambersList()
     {
-        GetMambersList();
+        Destroy(GameObject.Find("LifeingItem(Clone)"));
+        print("a/Clone");
+    
+            GetMambersList();
+        //main.SetActive(false);
         isUpLoad = true;
     }
 
@@ -116,7 +138,7 @@ public class LifeingManager : MonoBehaviour
     public void GetMambersList()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/list/0";
+        requester.url = "http://52.79.209.232:8080/api/v1/member/list/" + ListCount.ToString();
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
         requester.requestName = "GetMambersList";
@@ -151,6 +173,136 @@ public class LifeingManager : MonoBehaviour
 
     }
 
+
+    public void UpDownbutton()
+    {
+        
+        if(friendList.Count <= 7)
+        {
+            PageUp.SetActive(false);
+            PageDown.SetActive(false);
+        }
+        else if(friendList.Count >= 8 && friendList.Count < 14)
+        {
+            if(countgroup <= 0)
+            {
+                PageUp.SetActive(false);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 1)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(false);
+            }
+
+        }
+        else if (friendList.Count >= 14 && friendList.Count < 20)
+        {
+            if (countgroup <= 0)
+            {
+                PageUp.SetActive(false);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 1)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 2)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(false);
+            }
+
+        }
+        else if (friendList.Count >= 20 && friendList.Count < 26)
+        {
+            if (countgroup <= 0)
+            {
+                PageUp.SetActive(false);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 1)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 2)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 3)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(false);
+            }
+
+        }
+        else if (friendList.Count >= 26 && friendList.Count < 32)
+        {
+            if (countgroup <= 0)
+            {
+                PageUp.SetActive(false);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 1)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 2)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 3)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(true);
+            }
+            if (countgroup == 4)
+            {
+                PageUp.SetActive(true);
+                PageDown.SetActive(false);
+            }
+
+        }
+    }
+
+
+    public void GroupCountDown()
+    {
+        countgroup++;
+        UpDownbutton();
+        if(countgroup > 5)
+        {
+            ListCount++;
+            ReLoadMambersList();
+            countgroup = 0;
+        }
+        for(int i = 0; i < Group.Length; i++)
+        {
+            Group[i].SetActive(false);
+        }
+        Group[countgroup].SetActive(true);
+
+    }
+    public void GroupCountUP()
+    {
+        countgroup--;
+        UpDownbutton();
+        if (countgroup <= 0)
+        {
+            countgroup = 0;
+        }
+        for (int i = 0; i < Group.Length; i++)
+        {
+            Group[i].SetActive(false);
+        }
+        Group[countgroup].SetActive(true);
+
+    }
 
 
 }
