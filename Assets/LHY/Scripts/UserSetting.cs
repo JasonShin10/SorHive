@@ -251,14 +251,15 @@ public class UserSetting : MonoBehaviour
         requester.putData = JsonUtility.ToJson(logdata, true);
         print(requester.putData);
 
-        requester.onComplete = OnClickDownload;
+        requester.onComplete = downloadLoginData;
         requester.requestName = "login";
 
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
     }
-    private void OnClickDownload(DownloadHandler handler)
+
+    private void downloadLoginData(DownloadHandler handler)
     {
         JObject json = JObject.Parse(handler.text);
         int status = json["status"].ToObject<int>();

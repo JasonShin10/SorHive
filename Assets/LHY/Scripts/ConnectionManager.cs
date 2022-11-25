@@ -45,8 +45,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     }
 
 
-    
-
     //마스터 서버 접속 성공시 호출(Lobby에 진입 할 수 없는 상태)
     public override void OnConnected()
     {
@@ -60,6 +58,11 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         base.OnConnectedToMaster();
         Debug.Log("OnConnectedToMaster");
 
+    }
+
+    public void ExitToLoginPage()
+    {
+        SceneManager.LoadScene("ConnectionScene");
     }
 
 
