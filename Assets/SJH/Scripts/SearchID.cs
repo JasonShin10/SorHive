@@ -90,14 +90,14 @@ public class SearchID : MonoBehaviour
             {
                 
                 myPage.transform.GetChild(2).gameObject.SetActive(true);
-                myPage.transform.GetChild(8).gameObject.SetActive(false);
-                myPage.transform.GetChild(12).gameObject.SetActive(false);
+                myPage.transform.GetChild(7).gameObject.SetActive(false);
+                myPage.transform.GetChild(11).gameObject.SetActive(false);
             }
             else
             {
                 myPage.transform.GetChild(2).gameObject.SetActive(false);
-                myPage.transform.GetChild(8).gameObject.SetActive(true);
-                myPage.transform.GetChild(12).gameObject.SetActive(false);
+                myPage.transform.GetChild(7).gameObject.SetActive(true);
+                myPage.transform.GetChild(11).gameObject.SetActive(false);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -141,7 +141,7 @@ public class SearchID : MonoBehaviour
         PlayerPrefs.SetString("token", token);
         print("조회 완료");
     }
-
+    #region GetRoomImage()
     public void GetRoomImage()
     {
         //HttpManager.instance.img = true;
@@ -188,8 +188,9 @@ public class SearchID : MonoBehaviour
         else
             roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
     }
+    #endregion
 
-
+    #region GetThree()
     public void GetThree()
     {
         HttpRequester requester = new HttpRequester();
@@ -239,6 +240,9 @@ public class SearchID : MonoBehaviour
 
         print("조회완료");
     }
+    #endregion
+
+    #region GetRoomAll()_회원아이디검색
     public void GetRoomAll(string searchId)
     {
         HttpRequester requester = new HttpRequester();
@@ -298,13 +302,16 @@ public class SearchID : MonoBehaviour
         }
         print("조회완료");
     }
+    #endregion
+
+    #region CreateObject
     public void CreateObject(UserGetInfo info, Transform Content, string id)
     {
         //search.text = info.id;
         GameObject idImage = Instantiate(IDFactory, Content);
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = id;
-        idImageItem.followId.text = followId.ToString();
+        //idImageItem.followId.text = followId.ToString();
         
         
 
@@ -312,7 +319,9 @@ public class SearchID : MonoBehaviour
         //memberCode = info.memberCode;
         idImage.gameObject.SetActive(false);
     }
+    #endregion
 
+    #region Search()
     public void Search()
     {
         //totalElements = ContentHolder.childCount;
@@ -354,6 +363,9 @@ public class SearchID : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region GetUserFollowing() 사용하지않음
     public void GetUserFollowing()
     {
         HttpRequester requester = new HttpRequester();
@@ -394,6 +406,8 @@ public class SearchID : MonoBehaviour
         //}
         print("조회완료");
     }
+    #endregion
+    #region GetMember()
     public void GetMember()
     {
         HttpRequester requester = new HttpRequester();
@@ -430,7 +444,9 @@ public class SearchID : MonoBehaviour
         }
         print("조회완료");
     }
+    #endregion
 
+    #region OnClickVisit() Search하고 회원아이디 눌러 들어갈때
     public void OnClickVisit()
     {
         myPageButton.onClick.Invoke();
@@ -450,7 +466,8 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
     }
-
+    #endregion
+    #region OnClickFollowingVisit()
     public void OnClickFollowingVisit()
     {
         myPageButton.onClick.Invoke();
@@ -479,15 +496,19 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.fakeId = id;
         HttpManager.instance.memberCode = memberCode;
     }
+    #endregion
 
+#region UserFollowingCheckUI()
     public void UserFollowingCheckUI()
     {
         myPage.transform.GetChild(2).gameObject.SetActive(false);
-        myPage.transform.GetChild(8).gameObject.SetActive(false);
-        myPage.transform.GetChild(12).gameObject.SetActive(true);
+        myPage.transform.GetChild(7).gameObject.SetActive(false);
+        myPage.transform.GetChild(11).gameObject.SetActive(true);
         //userFollowList.Remove(memberCode);
     }
+    #endregion
 
+    #region OnClickFollowing()
     public void OnClickFollowing()
     {
         OnSaveSignIn();
@@ -511,6 +532,23 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.SendRequest(requester);
         requester.requestName = "OnSaveSignIn";
     }
+    public void OnCompleteSignIn(DownloadHandler handler)
+    {
+        print(handler);
+        //string s = "{\"furniture\":" + handler.text + "}";
+        //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
+    }
+    #endregion
+    public void GetUserFollowList(List<UserGetInfo> userList)
+    {
+        for (int i = 0; i < userList.Count; i++)
+        {
+            userFollowList.Add(userList[i].memberCode);
+            print(userInfo);
+        }
+    }
+
+    #region GetFollowing()
     public void GetFollowing()
     {
         HttpRequester requester = new HttpRequester();
@@ -519,14 +557,6 @@ public class SearchID : MonoBehaviour
         requester.onComplete = OnCompleteGetFollowing;
         HttpManager.instance.SendRequest(requester);   
         requester.requestName = "GetFollowing";
-    }
-    public void GetUserFollowList(List<UserGetInfo> userList)
-    {
-        for (int i = 0; i < userList.Count; i++)
-        {
-            userFollowList.Add(userList[i].memberCode);
-            print(userInfo);
-        }
     }
     public void OnCompleteGetFollowing(DownloadHandler handler)
     {
@@ -568,6 +598,7 @@ public class SearchID : MonoBehaviour
 
         print("조회완료");
     }
+    #endregion
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
@@ -614,12 +645,6 @@ public class SearchID : MonoBehaviour
 
  
 
-    public void OnCompleteSignIn(DownloadHandler handler)
-    {
-        print(handler);
-        //string s = "{\"furniture\":" + handler.text + "}";
-        //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
-    }
 
     public void OnRoomIn()
     {
