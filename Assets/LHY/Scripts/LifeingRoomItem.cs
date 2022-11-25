@@ -35,6 +35,8 @@ public class LifeingRoomItem : MonoBehaviour
 
     public GameObject LifeingDetailed;
 
+    public GameObject LifeingName;
+
     public Transform LDPos;
 
     public LifeingManager lifeingManager;
@@ -54,11 +56,15 @@ public class LifeingRoomItem : MonoBehaviour
 
         //LifeingDetailed = GameObject.Find("Lifeing_Item");
         
+
         GameObject LDManager = GameObject.Find("LifeingDetailedCanvas");
 
         LDPos = LDManager.transform;
 
-        detailID.text = memberId.text; 
+        detailID.text = memberId.text;
+
+        
+        lifeingManager.names[0] = LifeingName; 
         //for()
     }
 
