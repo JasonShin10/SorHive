@@ -319,7 +319,7 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
-
+                names[0].SetActive(false);
                 names[i].SetActive(false);
                 memberIdsee = false;
                 OnOff[0].SetActive(false);
@@ -331,7 +331,7 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
-
+                names[0].SetActive(true);
                 names[i].SetActive(true);
                 memberIdsee = true;
                 OnOff[0].SetActive(true);
