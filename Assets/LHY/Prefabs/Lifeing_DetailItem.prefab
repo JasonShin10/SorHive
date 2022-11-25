@@ -530,12 +530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2914db1e71b67e4c921b6ec08e1dd32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Profilephoto: {fileID: 3117753323488784326}
+  profilephoto: {fileID: 3117753323488784326}
   IDText: {fileID: 3117753325158836816}
   NickNameText: {fileID: 3117753323587506909}
   lifeingImage: {fileID: 3117753323596481906}
   profileimg: 
   Lifeingimg: 
+  Lifeing_DetailItem: {fileID: 0}
 --- !u!1 &3117753325158836818
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +718,7 @@ GameObject:
   - component: {fileID: 1084422958411168038}
   - component: {fileID: 2798579685087828443}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,4 +825,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1084422958411168038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4213487901123118607}
+        m_TargetAssemblyTypeName: LifeingDetailed, Assembly-CSharp
+        m_MethodName: DestroyMe
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

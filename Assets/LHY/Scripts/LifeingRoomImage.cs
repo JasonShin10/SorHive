@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class LifeingRoomImage : MonoBehaviour
 {
 
-    public RawImage lifeingRoomImage;
+  
+    public GameObject[] RoomImages;
 
-    public RawImage lifeingScreenShot;
 
-    public LifeingItem lifeingItem;
 
 
     int a;
@@ -23,34 +22,92 @@ public class LifeingRoomImage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*for (int i = 0; i < RoomImages.Length; i++)
+        {
+            RoomImages[i].name.ToString();
+            print(RoomImages[i].name);
+        }*/
+        //ScreenShotClick2();
+        StartCoroutine(RoomImage());
     }
 
     // Update is called once per frame
     void Update()
     {
-        a = lifeingItem.lifingCategoryNo;
-        b = lifeingItem.lifingNo;
+       
     }
 
-    private Texture2D TextureToTexture2D(Texture texture)
+
+    public void ScreenShotClick2()
     {
-        Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
-        RenderTexture currentRT = RenderTexture.active;
-        RenderTexture renderTexture = RenderTexture.GetTemporary(texture.width, texture.height, 32);
-        Graphics.Blit(texture, renderTexture);
+        /*for(int i = 0; i < RoomImages.Length; i++)
+        {
+            RoomImages[i].SetActive(true);
+                
+            RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+            Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+            RenderTexture.active = renderTexture;
 
-        RenderTexture.active = renderTexture;
-        texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
-        texture2D.Apply();
+            Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
 
-        RenderTexture.active = currentRT;
-        RenderTexture.ReleaseTemporary(renderTexture);
-        return texture2D;
+            *//*  // sprite = Sprite.Create(texture,)
+              Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+              sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*//*
+
+            texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            texture.Apply();
+
+            string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
+
+            print(RoomImages[i].name);
+        }*/
+
+
     }
 
-    public void OnClickSaveRoomImg()
+    IEnumerator RoomImage()
     {
+        for (int i = 0; i < RoomImages.Length; i++)
+        {
+            RoomImages[i].SetActive(true);
+
+            yield return new WaitForSecondsRealtime(0.5f);
+
+            RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
+            Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
+            RenderTexture.active = renderTexture;
+
+            Sprite.Create(texture, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
+
+            /*  // sprite = Sprite.Create(texture,)
+              Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
+              sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
+
+            texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
+            texture.Apply();
+
+            string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+                File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
+            }
+            else
+            {
+                File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
+            }
+
+          
+
+            print(RoomImages[i].name);
+        }
+
 
     }
 }
