@@ -68,6 +68,7 @@ MonoBehaviour:
   profileImage: 
   lifeingImage: 
   LifeingDetailed: {fileID: 3117753324141034949, guid: 335a8a240c762264db00db7a277f0dc0, type: 3}
+  LifeingName: {fileID: 1583732345528537003}
   LDPos: {fileID: 0}
   lifeingManager: {fileID: 0}
   LifeingLoad: 0
