@@ -91,13 +91,13 @@ public class SearchID : MonoBehaviour
                 
                 myPage.transform.GetChild(2).gameObject.SetActive(true);
                 myPage.transform.GetChild(8).gameObject.SetActive(false);
-                myPage.transform.GetChild(10).gameObject.SetActive(false);
+                myPage.transform.GetChild(12).gameObject.SetActive(false);
             }
             else
             {
                 myPage.transform.GetChild(2).gameObject.SetActive(false);
                 myPage.transform.GetChild(8).gameObject.SetActive(true);
-                myPage.transform.GetChild(10).gameObject.SetActive(false);
+                myPage.transform.GetChild(12).gameObject.SetActive(false);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -484,7 +484,7 @@ public class SearchID : MonoBehaviour
     {
         myPage.transform.GetChild(2).gameObject.SetActive(false);
         myPage.transform.GetChild(8).gameObject.SetActive(false);
-        myPage.transform.GetChild(10).gameObject.SetActive(true);
+        myPage.transform.GetChild(12).gameObject.SetActive(true);
         //userFollowList.Remove(memberCode);
     }
 

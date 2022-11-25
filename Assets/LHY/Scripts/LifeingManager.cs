@@ -51,11 +51,18 @@ public class LifeingManager : MonoBehaviour
 
     public Text roomId;
 
+    public GameObject[] names;
+
+    public GameObject[] OnOff;
+
     public int countgroup;
     public int ListCount;
 
     public bool isUpLoad = true;
     public bool userSetting = false;
+
+    public bool memberIdsee = true;
+
     //public bool end = false;
     private void Awake()
     {
@@ -79,10 +86,10 @@ public class LifeingManager : MonoBehaviour
       
         if (isUpLoad == true)
         {
+            names = new GameObject[friendList.Count];
             for (int i = 0; i < friendList.Count; i++)
             {
                
-
                 //print(friendList.Count);
                 GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
 
@@ -98,11 +105,11 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.lifingNo = friendList[i].lifingNo;
                 lifeingRoomItem.lifingYn = friendList[i].lifingYn;
 
+                names[i] = lifeingRoomItem.LifeingName;
 
-                
-                //lifeingRoomItem.
+               //lifeingRoomItem.
 
-                roomId.text = friendList[0].memberId;
+               roomId.text = friendList[0].memberId;
 
                 isUpLoad = false;
             }
@@ -306,5 +313,33 @@ public class LifeingManager : MonoBehaviour
 
     }
 
+    public void OnClickMemberID()
+    {
+        if (memberIdsee == true)
+        {
+            for (int i = 0; i < friendList.Count; i++)
+            {
+                names[0].SetActive(false);
+                names[i].SetActive(false);
+                memberIdsee = false;
+                OnOff[0].SetActive(false);
+                OnOff[1].SetActive(true);
+
+            }
+        }
+        else if (memberIdsee == false)
+        {
+            for (int i = 0; i < friendList.Count; i++)
+            {
+                names[0].SetActive(true);
+                names[i].SetActive(true);
+                memberIdsee = true;
+                OnOff[0].SetActive(true);
+                OnOff[1].SetActive(false);
+
+            }
+        }
+        
+    }
 
 }
