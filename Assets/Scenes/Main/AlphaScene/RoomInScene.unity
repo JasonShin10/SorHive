@@ -2487,6 +2487,7 @@ MonoBehaviour:
   memberCode: 0
   userMemberCode: 0
   userId: 
+  roomOwner: 
   roomId: 0
   fakeId: 
   accessToken: 
@@ -5483,7 +5484,7 @@ GameObject:
   - component: {fileID: 1126895323}
   - component: {fileID: 1126895322}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: RoomOwnerID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5506,7 +5507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -346, y: -114}
+  m_AnchoredPosition: {x: -310, y: -114}
   m_SizeDelta: {x: -740.17004, y: 112.859985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126895322
@@ -5530,13 +5531,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 3266abe83be473b4c9bc784a52586e71, type: 3}
-    m_FontSize: 85
+    m_Font: {fileID: 12800000, guid: ce2f6115fa0b8c14e9a2f3eb3ec6d5a5, type: 3}
+    m_FontSize: 81
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 248
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 0
@@ -7933,6 +7934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db2c15408f8e42543b0370709c5f72a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomOwner: {fileID: 1126895322}
   photos: []
   chat: {fileID: 712589448}
   upLoadText: 

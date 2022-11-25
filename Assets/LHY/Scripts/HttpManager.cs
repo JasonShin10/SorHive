@@ -44,6 +44,7 @@ public class HttpManager : MonoBehaviour
     public int memberCode = 0;
     public int userMemberCode;
     public string userId;
+    public string roomOwner;
     public int roomId;
     public string fakeId;
     public string accessToken;

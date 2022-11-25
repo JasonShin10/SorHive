@@ -38,6 +38,7 @@ public class ChatPageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myNickName.text = HttpManager.instance.roomOwner;
         inputChat.text = "";
     }
 

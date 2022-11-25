@@ -28,6 +28,7 @@ public class GuestBookInfo
 
 public class GuestBookManager : MonoBehaviour
 {
+    public Text roomOwner;
     public Texture[] photos;
     public GameObject chat;
     //public GameObject GBoxManager;
@@ -45,7 +46,7 @@ public class GuestBookManager : MonoBehaviour
 
     void Start()
     {
-       
+        roomOwner.text = HttpManager.instance.roomOwner;
     }
 
     void Update()

@@ -26,6 +26,7 @@ public class SearchID : MonoBehaviour
     public Text follower;
     public Text feedNum;
     public Text roomOwner;
+    public Image title;
     public int totalElements;
     public int followId;
     //public Text search;
@@ -34,6 +35,7 @@ public class SearchID : MonoBehaviour
     public string roomImgString;
     public string searchId;
     public bool followingCheck = false;
+    public bool firstFollowingCheck = true;
     public int followingIdNum;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
@@ -55,6 +57,7 @@ public class SearchID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        roomOwner.gameObject.SetActive(false);
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
 
@@ -72,7 +75,7 @@ public class SearchID : MonoBehaviour
         GetRoomImage();
         //GetRoomAll();
     }
-  
+
     // Update is called once per frame
     void Update()
     {
@@ -88,16 +91,18 @@ public class SearchID : MonoBehaviour
 
             if (HttpManager.instance.id == HttpManager.instance.userId)
             {
-                
+
                 myPage.transform.GetChild(2).gameObject.SetActive(true);
                 myPage.transform.GetChild(7).gameObject.SetActive(false);
                 myPage.transform.GetChild(11).gameObject.SetActive(false);
+               //myPage.transform.GetChild(12).gameObject.SetActive(false);
             }
             else
             {
                 myPage.transform.GetChild(2).gameObject.SetActive(false);
                 myPage.transform.GetChild(7).gameObject.SetActive(true);
                 myPage.transform.GetChild(11).gameObject.SetActive(false);
+                //myPage.transform.GetChild(12).gameObject.SetActive(false);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -152,9 +157,9 @@ public class SearchID : MonoBehaviour
         requester.onComplete = OnCompleteGetRoomImage;
         HttpManager.instance.SendRequest(requester);
         requester.requestName = "GetRoomImage";
-     
 
-        
+
+
     }
     public void OnCompleteGetRoomImage(DownloadHandler handler)
     {
@@ -162,17 +167,17 @@ public class SearchID : MonoBehaviour
         string userData = jsonData["data"]["memberRoomImage"].ToString();
         //RoomImage roomImg = JsonUtility.FromJson<RoomImage>(userData);
         roomImgString = userData;
-            int j = userFollowList.FindIndex(a => a == memberCode);
-            if (j == -1)
-            {
-                followingCheck = false;
-            }
-            else
-            {
+        int j = userFollowList.FindIndex(a => a == memberCode);
+        if (j == -1)
+        {
+            followingCheck = false;
+        }
+        else
+        {
             followingCheck = true;
             UserFollowingCheckUI();
-                //return;
-            }
+            //return;
+        }
         StartCoroutine(GetTextureR(Img));
     }
     IEnumerator GetTextureR(RawImage roomImage)
@@ -221,12 +226,13 @@ public class SearchID : MonoBehaviour
 
         //int status = jsonData["status"].ToObject<int>();
         string userData = jsonData["data"].ToString();
-        
+
         string followIdData = jsonData["data"]["followSummary"]["followId"].ToString();
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
         //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followIdData);
         followId = int.Parse(followIdData);
         roomOwner.text = userThree.memberName;
+        HttpManager.instance.roomOwner = userThree.memberName;
         //follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         //following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
         //feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
@@ -312,8 +318,8 @@ public class SearchID : MonoBehaviour
         IdImageItem idImageItem = idImage.GetComponent<IdImageItem>();
         idImageItem.id.text = id;
         //idImageItem.followId.text = followId.ToString();
-        
-        
+
+
 
         idImageItem.memberCode.text = info.memberCode.ToString();
         //memberCode = info.memberCode;
@@ -332,7 +338,7 @@ public class SearchID : MonoBehaviour
         //    ContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(SceneLoad);
         //}
         string searchText = SearchBar.GetComponent<InputField>().text;
-            
+
         int searchTextLength = searchText.Length;
 
         int searchedElements = 0;
@@ -392,9 +398,9 @@ public class SearchID : MonoBehaviour
         }
         //for (int i = 0; i < userInfoList.Count; i++)
         //{
-          
+
         //    userFollowList.Add(userInfoList[i].memberCode);
-          
+
         //}
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
@@ -471,25 +477,25 @@ public class SearchID : MonoBehaviour
     public void OnClickFollowingVisit()
     {
         myPageButton.onClick.Invoke();
-       
+
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject.GetComponentInChildren<Text>().text);
-  
+
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
-        followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
+        //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
         int j = userFollowList.FindIndex(a => a == memberCode);
-            if (j == -1)
-            {
-                followingCheck = false;
-            }
-            else
-            {
-        followingCheck = true;
-                UserFollowingCheckUI();
+        if (j == -1)
+        {
+            followingCheck = false;
+        }
+        else
+        {
+            followingCheck = true;
+            UserFollowingCheckUI();
 
-                //return;
-            }
+            //return;
+        }
         GetRoomImage();
         GetThree();
         HttpManager.instance.id = id;
@@ -497,14 +503,49 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.memberCode = memberCode;
     }
     #endregion
+    public void OnClickFollowerVisit()
+    {
+        myPageButton.onClick.Invoke();
 
-#region UserFollowingCheckUI()
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        print(clickObject.GetComponentInChildren<Text>().text);
+
+        id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
+        memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
+        int j = userFollowList.FindIndex(a => a == memberCode);
+        if (j == -1)
+        {
+            followingCheck = false;
+        }
+        else
+        {
+            followingCheck = true;
+            UserFollowingCheckUI();
+
+            //return;
+        }
+        GetRoomImage();
+        GetThree();
+        HttpManager.instance.id = id;
+        HttpManager.instance.fakeId = id;
+        HttpManager.instance.memberCode = memberCode;
+    }
+    #region UserFollowingCheckUI()
     public void UserFollowingCheckUI()
     {
         myPage.transform.GetChild(2).gameObject.SetActive(false);
         myPage.transform.GetChild(7).gameObject.SetActive(false);
         myPage.transform.GetChild(11).gameObject.SetActive(true);
+        //myPage.transform.GetChild(12).gameObject.SetActive(false);
         //userFollowList.Remove(memberCode);
+    }
+    public void UserFollowerCheckUI()
+    {
+        myPage.transform.GetChild(2).gameObject.SetActive(false);
+        myPage.transform.GetChild(7).gameObject.SetActive(false);
+        myPage.transform.GetChild(11).gameObject.SetActive(false);
+        //myPage.transform.GetChild(12).gameObject.SetActive(true);
     }
     #endregion
 
@@ -555,7 +596,7 @@ public class SearchID : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollowing;
-        HttpManager.instance.SendRequest(requester);   
+        HttpManager.instance.SendRequest(requester);
         requester.requestName = "GetFollowing";
     }
     public void OnCompleteGetFollowing(DownloadHandler handler)
@@ -567,11 +608,15 @@ public class SearchID : MonoBehaviour
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
         //followId = jsonData["data"]["followerData"][0]["followSummary"]["followId"].ToObject<int>();
         userFollowingList = userInfo.followerData;
-
-        for (int i = 0; i < userFollowingList.Count; i++)
+        if (firstFollowingCheck == true)
         {
-            userFollowList.Add(userFollowingList[i].memberCode);
-            print(userInfo);
+
+            for (int i = 0; i < userFollowingList.Count; i++)
+            {
+                userFollowList.Add(userFollowingList[i].memberCode);
+                print(userInfo);
+            }
+            firstFollowingCheck = false;
         }
         totalElements = FollowingContentHolder.childCount;
         FollowingElement = new GameObject[totalElements];
@@ -618,7 +663,7 @@ public class SearchID : MonoBehaviour
         ArrayJsonID<UserGetInfo> userInfo = JsonUtility.FromJson<ArrayJsonID<UserGetInfo>>(userData);
 
         userInfoList = userInfo.followerData;
-   
+
         totalElements = FollowingContentHolder.childCount;
         FollowingElement = new GameObject[totalElements];
         for (int i = 0; i < totalElements; i++)
@@ -646,7 +691,7 @@ public class SearchID : MonoBehaviour
     #endregion
 
 
-    
+
     public void OnRoomIn()
     {
         //HttpManager.instance.id = HttpManager.instance.fakeId;
@@ -670,8 +715,15 @@ public class SearchID : MonoBehaviour
         //GetRoomImage();
         //GetThree();
         //StartCoroutine(GetTextureR(Img));
+        title.gameObject.SetActive(false);
+        roomOwner.gameObject.SetActive(true);
     }
 
+    public void OnClickTitleReset()
+    {
+        title.gameObject.SetActive(true);
+        roomOwner.gameObject.SetActive(false);
+    }
     public void OnClickFollowingList()
     {
         followingList.SetActive(true);
@@ -691,7 +743,7 @@ public class SearchID : MonoBehaviour
     {
         print(memberCode);
         userFollowList.Remove(memberCode);
-        
+
 
         print("»èÁ¦¿Ï·á");
     }
