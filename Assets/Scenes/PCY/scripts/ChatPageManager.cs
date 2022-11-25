@@ -28,9 +28,9 @@ public class ChatPageManager : MonoBehaviour
     public int guestMemberCode = 0;
     public RawImage guestProfileImage;
     public RawImage myProfileImage;
-    int response_status;
 
-    string inputField;
+    public InputField inputChat;
+    int response_status;
 
     public GameObject chatItemUIFactory;
     public Transform chatItemListContent;
@@ -38,7 +38,7 @@ public class ChatPageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        inputChat.text = "";
     }
 
     public void LoadChat()
@@ -49,15 +49,13 @@ public class ChatPageManager : MonoBehaviour
         print(requester.url);
         requester.requestType = RequestType.GET;
         requester.onComplete = OnClickSet;
-        StartCoroutine(HttpManager.instance.DownLoadChatList(requester));
+        StartCoroutine(HttpManager.instance.DownLoadChat(requester));
     }
 
     public void SendChat()
     {
 
     }
-
-    
 
     public void OnCreateChat()
     {
@@ -144,14 +142,17 @@ public class ChatPageManager : MonoBehaviour
         public string message;
         public JsonData data;
     }
-    string tmpMessage = "";
+
     // Update is called once per frame
     void Update()
     {
-        if (tmpMessage != "" && Input.GetKey(KeyCode.Return))
+        if (inputChat != null)
         {
-            insertMessageToList(tmpMessage, DateTime.Now.ToString());
-            tmpMessage = "";
+            if (inputChat.text != "" && Input.GetKey(KeyCode.Return))
+            {
+                insertMessageToList(inputChat.text, DateTime.Now.ToString());
+                inputChat.text = "";
+            }
         }
     }
 
@@ -175,14 +176,9 @@ public class ChatPageManager : MonoBehaviour
         GameObject.Find("ChatListPageCanvas").transform.GetChild(0).gameObject.SetActive(true);
     }
 
-
     // 채팅 보내기
     public List<string> total_messages = new List<string>();
-    public void ReceiverOnValueChange(string valueIn)
-    {
-        tmpMessage = valueIn;
-    }
-
+    
     private void insertMessageToList(string currentChat, string nowTime)
     {
         ChatMessageInfo messages = new ChatMessageInfo();
