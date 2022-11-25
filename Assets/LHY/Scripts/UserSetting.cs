@@ -123,7 +123,7 @@ public class UserSetting : MonoBehaviour
     // 닉네임 길이 체크(유효성 검사)
     public void OnNickNameCheck(string s)
     {
-        if (inputnickName.text.Length > 7 && inputnickName.text.Length < 16)
+        if (inputnickName.text.Length <= 10)
         {
             print("사용 가능한 이름.");
             isVerifyNickName = true;
@@ -132,7 +132,7 @@ public class UserSetting : MonoBehaviour
         else
         {
             isVerifyNickName = false;
-            nickNameVerifyText.text = "이름은 7글자이상 15자이하여야 합니다.";
+            nickNameVerifyText.text = "10자이하여야 합니다.";
         }
     }
 
@@ -174,7 +174,7 @@ public class UserSetting : MonoBehaviour
     // id 길이 체크(유효성 검사)
     public void OnIdCheck(string s)
     {
-        if (inputid.text.Length > 7 && inputid.text.Length < 16)
+        if (inputid.text.Length >= 3 && inputid.text.Length <= 10)
         {
             print("사용 가능한 Id.");
             isVerifyIdLength = true;
@@ -183,7 +183,7 @@ public class UserSetting : MonoBehaviour
         else
         {
             isVerifyIdLength = false;
-            idCheckText.text = "ID는 7글자이상 15자이하여야 합니다.";
+            idCheckText.text = "ID는 3글자이상 10자이하여야 합니다.";
         }
     }
 

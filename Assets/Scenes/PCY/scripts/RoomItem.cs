@@ -7,6 +7,9 @@ using UnityEngine.Networking;
 public class RoomItem : MonoBehaviour
 {
     public int memberCode;
+    public RawImage avatarImage;
+    public RawImage roomImage;
+    public Text nickName;
 
     void Start()
     {
@@ -31,7 +34,7 @@ public class RoomItem : MonoBehaviour
         // 이미지, 코드 설정 완료 후 작용 단계
     }
 
-    public void UpdateRoom(string roomPath)
+    /*public void UpdateRoom(string roomPath)
     {
         StartCoroutine(DownloadRoomImg(roomPath));
     }
@@ -48,6 +51,6 @@ public class RoomItem : MonoBehaviour
         {
             GetComponent<RawImage>().texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         }
-    }
+    }*/
 
 }

@@ -7418,8 +7418,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 611637149}
   m_HandleRect: {fileID: 611637148}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999994
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8156,7 +8156,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3, y: 5}
-  m_SizeDelta: {x: 1395, y: 1235}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416967166
 MonoBehaviour:
@@ -12525,7 +12525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2028602481
 MonoBehaviour:
   m_ObjectHideFlags: 0

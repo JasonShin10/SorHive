@@ -317,13 +317,13 @@ public class HttpManager : MonoBehaviour
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
         }
-        yield return null;
         webRequest.Dispose();
-       /* print("webRequest끝 reload시작");
+        print("webRequest끝 reload시작");
         StartCoroutine(WarpManager.instance.DownloadImg());
         while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        WarpManager.instance.reloadRoom(centerMemberCode);*/
-     }
+        WarpManager.instance.reloadRoom(centerMemberCode);
+        yield return null;
+    }
 
 
     public IEnumerator DownLoadChatList(HttpRequester requester)

@@ -80,7 +80,7 @@ public class WarpManager : MonoBehaviour
         // 트랜스폼을 이용해서 각 방 하나씩 접근 후 설정
         Transform WPM = this.transform.Find("WarpPosManager");
         // 2번째 부터 7번째 자식까지만 순회
-        cnt = 0;
+        int roomCount = 0;
         // child가 각 방의 번호
         foreach (Transform child in WPM.transform)
         {
@@ -94,15 +94,20 @@ public class WarpManager : MonoBehaviour
             // 룸아이템의 멤버코드, 룸이미지를 배열에서 가져와서 변경
             // 다운로드 받기
             RoomItem roomItem = WP.GetComponent<RoomItem>();
-            roomItem.memberCode = memberCode[cnt];
-            WP.transform.GetChild(0).GetComponent<RawImage>().texture = warpRoomImage[cnt].texture;
-            Character.GetComponent<RawImage>().texture = warpAvatarImage[cnt].texture;
-            NNT.GetComponent<Text>().text = nickNmae[cnt];
+            print(roomItem.name);
+            roomItem.memberCode = memberCode[roomCount];
+            roomItem.avatarImage.texture = warpAvatarImage[roomCount].texture;
+            roomItem.roomImage.texture = warpRoomImage[roomCount].texture;
+            roomItem.nickName.text = nickNmae[roomCount];
 
-            print("불러온 사람: " + memberCode[cnt].ToString());
+            /*WP.transform.GetChild(0).GetComponent<RawImage>().texture = warpRoomImage[roomCount].texture;
+            Character.GetComponent<RawImage>().texture = warpAvatarImage[roomCount].texture;
+            NNT.GetComponent<Text>().text = nickNmae[roomCount];*/
+
+            print("불러온 사람: " + memberCode[roomCount].ToString());
             // 카운트 세줌
-            cnt++;
-            if (cnt > 6)
+            roomCount++;
+            if (roomCount > 6)
                 break;
         }
     }
@@ -116,13 +121,20 @@ public class WarpManager : MonoBehaviour
     }
 
     public IEnumerator DownloadImg(){
-        int imageIdx = 0;
-        while (imageIdx < 7)
+        int roomImgIdx = 0;
+        while (roomImgIdx < 7)
         {
-            StartCoroutine(DownloadRoomImg(imageIdx));
-            StartCoroutine(DownloadAvatarImg(imageIdx));
-            while ((downLoadAvatarCount + downLoadRoomCount) < (imageIdx+1)*2) yield return null;
-            imageIdx++;
+            StartCoroutine(DownloadRoomImg(roomImgIdx));
+            while (downLoadRoomCount < (roomImgIdx + 1)) yield return null;
+            roomImgIdx++;
+        }
+
+        int imgIdx = 0;
+        while (imgIdx < 7)
+        {
+            StartCoroutine(DownloadAvatarImg(imgIdx));
+            while (downLoadAvatarCount < (imgIdx + 1)) yield return null;
+            imgIdx++;
         }
     }
 
@@ -138,34 +150,38 @@ public class WarpManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DownloadRoomImg(int imageIdx = 0){            // var url = $"https://combucket.s3.ap-northeast-2.amazonaws.com/images/room_11.png";
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(roomImagePath[imageIdx]);
-        yield return www.SendWebRequest();
-        if (www.result != UnityWebRequest.Result.Success)
+    private IEnumerator DownloadRoomImg(int imageIdx = 0){ 
+        UnityWebRequest wwwRoom = UnityWebRequestTexture.GetTexture(roomImagePath[imageIdx]);
+        print("Room" + imageIdx.ToString());
+        print(roomImagePath[imageIdx]);
+        yield return wwwRoom.SendWebRequest();
+        if (wwwRoom.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(www.error);
+            Debug.Log(wwwRoom.error);
         }
         else
         {
-            warpRoomImage[imageIdx].texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            warpRoomImage[imageIdx].texture = ((DownloadHandlerTexture)wwwRoom.downloadHandler).texture;
         }
         downLoadRoomCount++;
-        www.Dispose();
+        wwwRoom.Dispose();
     }
 
     private IEnumerator DownloadAvatarImg(int imageIdx = 0){
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(avatarImagePath[imageIdx]);
-        yield return www.SendWebRequest();
-        if (www.result != UnityWebRequest.Result.Success)
+        UnityWebRequest wwwAvatar = UnityWebRequestTexture.GetTexture(avatarImagePath[imageIdx]);
+        print("Avatar" + imageIdx.ToString());
+        print(avatarImagePath[imageIdx]);
+        yield return wwwAvatar.SendWebRequest();
+        if (wwwAvatar.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(www.error);
+            Debug.Log(wwwAvatar.error);
         }
         else
         {
-            warpAvatarImage[imageIdx].texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            warpAvatarImage[imageIdx].texture = ((DownloadHandlerTexture)wwwAvatar.downloadHandler).texture;
         }
         downLoadAvatarCount++;
-        www.Dispose();
+        wwwAvatar.Dispose();
     }
 
 }
