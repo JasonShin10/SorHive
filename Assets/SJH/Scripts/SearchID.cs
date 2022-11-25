@@ -599,6 +599,7 @@ public class SearchID : MonoBehaviour
         print("조회완료");
     }
     #endregion
+    #region GetFollower()
     public void GetFollower()
     {
         HttpRequester requester = new HttpRequester();
@@ -642,10 +643,10 @@ public class SearchID : MonoBehaviour
         }
         print("조회완료");
     }
+    #endregion
 
- 
 
-
+    
     public void OnRoomIn()
     {
         //HttpManager.instance.id = HttpManager.instance.fakeId;
@@ -676,8 +677,8 @@ public class SearchID : MonoBehaviour
         followingList.SetActive(true);
 
     }
-
-    public void OnclickDeleteFollowing()
+    #region OnClickDeleteFollowing()
+    public void OnClickDeleteFollowing()
     {
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
@@ -694,4 +695,5 @@ public class SearchID : MonoBehaviour
 
         print("삭제완료");
     }
+    #endregion 
 }
