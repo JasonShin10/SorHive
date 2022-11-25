@@ -99,6 +99,7 @@ public class GuestBookManager : MonoBehaviour
         //post data 셋팅
         requester.postData = JsonUtility.ToJson(info, true);
         requester.onComplete = OnCompleteSaveGuestBook;
+        requester.requestName = "OnSaveGuestBook";
         //HttpManager에게 요청
         HttpManager.instance.SendRequest(requester);
         SceneManager.LoadScene("RoomInScene");

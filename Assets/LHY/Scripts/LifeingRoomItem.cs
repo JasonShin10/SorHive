@@ -28,6 +28,8 @@ public class LifeingRoomItem : MonoBehaviour
     public string roomImg;
     public string avatarImg;
 
+    public string roomImageprofile;
+
     public string profileImage;
     public string lifeingImage;
 
@@ -51,7 +53,7 @@ public class LifeingRoomItem : MonoBehaviour
         StartCoroutine(GetTextureR(roomImage, avatarImage));
 
         //LifeingDetailed = GameObject.Find("Lifeing_Item");
-
+        
         GameObject LDManager = GameObject.Find("LifeingDetailedCanvas");
 
         LDPos = LDManager.transform;
@@ -62,7 +64,22 @@ public class LifeingRoomItem : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
+    {
+
+        if (LifeingDetails == true)
+        {
+            GameObject lifeingDetail = Instantiate(LifeingDetailed, LDPos);
+
+            LifeingDetailed lifeingDetailed = lifeingDetail.GetComponent<LifeingDetailed>();
+            lifeingDetailed.profileimg = roomImg;
+            lifeingDetailed.IDText.text = detailID.text;
+            lifeingDetailed.NickNameText.text = memberName.text;
+            lifeingDetailed.Lifeingimg = lifeingImage;
+            //lifeingDetailed.
+
+            LifeingDetails = false;
+        }
+
         if (lifingYn == "Y")
         {
             if (LifeingLoad == false)
@@ -78,17 +95,20 @@ public class LifeingRoomItem : MonoBehaviour
                 }
                 else
                 {
-                   var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
-                    print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
-                    //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
-                    print("라이핑 룸스토리 있음!!");
-                    Texture2D tex = new Texture2D(0, 0);
-                    tex.LoadImage(temp);
+                    if (lifingCategoryNo >= 0 && lifingNo >= 0)
+                    {
+                        var temp = File.ReadAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + lifingCategoryNo + "_" + lifingNo + ".png");
+                        print(lifingCategoryNo + ("카테고리 번호") + lifingNo + ("라이핑 이미지 번호"));
+                        //tex = Resources.Load("02.Story / StoryRoom /" + lifingCategoryNo + "_" + lifingNo + ".png", typeof(Texture2D)) as Texture2D;
+                        print("라이핑 룸스토리 있음!!");
+                        Texture2D tex = new Texture2D(0, 0);
+                        tex.LoadImage(temp);
 
                         //tex.LoadImage(temp);
-                    lifeingisTrue.SetActive(true);
-                    roomImage.texture = tex;
-                    LifeingLoad = true;
+                        lifeingisTrue.SetActive(true);
+                        roomImage.texture = tex;
+                        LifeingLoad = true;
+                    }                  
                 }
                 
                 
@@ -103,18 +123,7 @@ public class LifeingRoomItem : MonoBehaviour
             return;
         }
 
-        if(LifeingDetails == true)
-        {
-            GameObject lifeingDetail = Instantiate(LifeingDetailed, LDPos);
-
-            LifeingDetailed lifeingDetailed = lifeingDetail.GetComponent<LifeingDetailed>();
-            lifeingDetailed.Profilephoto.texture = roomImage.texture;
-            lifeingDetailed.IDText.text = detailID.text;
-            lifeingDetailed.NickNameText.text = memberName.text;
-            lifeingDetailed.Lifeingimg = lifeingImage;
-
-            LifeingDetails = false;
-        }
+ 
         
 
     }

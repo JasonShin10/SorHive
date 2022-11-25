@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LifeingDetailed : MonoBehaviour
 {
-    public RawImage Profilephoto;
+    public RawImage profilephoto;
     public Text IDText;
     public Text NickNameText;
 
@@ -15,32 +15,62 @@ public class LifeingDetailed : MonoBehaviour
     public string profileimg;
     public string Lifeingimg;
 
+    public GameObject Lifeing_DetailItem;
+
     void Start()
     {
-        StartCoroutine(GetTextureR(lifeingImage));
+        StartCoroutine(GetTextureR(lifeingImage, profilephoto));
     }
 
-    IEnumerator GetTextureR(RawImage LifeingImage)
+    IEnumerator GetTextureR(RawImage LifeingImage, RawImage Profilephoto)
     {
         
             //lifeingRoomItem.roomImage = friendList[i].roomImage
          
-         var urlL = Lifeingimg;
+        var urlL = Lifeingimg;
+        var urlP = profileimg;
 
         print(urlL);
 
- 
-         UnityWebRequest wwwL = UnityWebRequestTexture.GetTexture(urlL);
-         yield return wwwL.SendWebRequest();
-      
+        HttpManager.instance.LoadingCanvas.SetActive(true);
+        UnityWebRequest wwwL = UnityWebRequestTexture.GetTexture(urlL);
+        yield return wwwL.SendWebRequest();
 
-         if (wwwL.result != UnityWebRequest.Result.Success)
-                Debug.Log(wwwL.error);
-         else
-             LifeingImage.texture = ((DownloadHandlerTexture)wwwL.downloadHandler).texture;
+        UnityWebRequest wwwP = UnityWebRequestTexture.GetTexture(urlP);
+        yield return wwwP.SendWebRequest();
+
+
+        if (wwwL.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(wwwL.error);
+            HttpManager.instance.LoadingCanvas.SetActive(false);
+        }
+
+        else
+        {
+            LifeingImage.texture = ((DownloadHandlerTexture)wwwL.downloadHandler).texture;
+            HttpManager.instance.LoadingCanvas.SetActive(false);
+        }
+
+        if (wwwP.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(wwwP.error);
+            HttpManager.instance.LoadingCanvas.SetActive(false);
+        }     
+        else
+        {
+            Profilephoto.texture = ((DownloadHandlerTexture)wwwP.downloadHandler).texture;
+            HttpManager.instance.LoadingCanvas.SetActive(false);
+        }
+            
 
         yield return null;
 
             //yield return WaitForSeconds(0.1);
+    }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
     }
 }

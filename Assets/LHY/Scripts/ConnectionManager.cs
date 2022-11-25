@@ -78,6 +78,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         if(HttpManager.instance.avatarYn == "Y")
         {
             // PhotonNetwork.LoadLevel("CreatCharactorScene");
+
             PhotonNetwork.LoadLevel("MainScenes");
         }
         else
