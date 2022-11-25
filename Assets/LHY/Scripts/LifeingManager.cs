@@ -83,9 +83,10 @@ public class LifeingManager : MonoBehaviour
             GetMambersList();
         }
 
-      
+
         if (isUpLoad == true)
         {
+            
             names = new GameObject[friendList.Count];
             for (int i = 0; i < friendList.Count; i++)
             {
@@ -105,6 +106,7 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.lifingNo = friendList[i].lifingNo;
                 lifeingRoomItem.lifingYn = friendList[i].lifingYn;
 
+                //names[0] = GameObject.Find("RoomPos0").transform.Find("LifeingItem");
                 names[i] = lifeingRoomItem.LifeingName;
 
                //lifeingRoomItem.
@@ -319,7 +321,7 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
-                names[0].SetActive(false);
+                //names[0].SetActive(false);
                 names[i].SetActive(false);
                 memberIdsee = false;
                 OnOff[0].SetActive(false);
@@ -331,7 +333,7 @@ public class LifeingManager : MonoBehaviour
         {
             for (int i = 0; i < friendList.Count; i++)
             {
-                names[0].SetActive(true);
+                //names[0].SetActive(true);
                 names[i].SetActive(true);
                 memberIdsee = true;
                 OnOff[0].SetActive(true);
