@@ -106,6 +106,8 @@ public class LifeingManager : MonoBehaviour
 
                 isUpLoad = false;
             }
+
+            UpDownbutton();
         }
        
 
@@ -129,7 +131,7 @@ public class LifeingManager : MonoBehaviour
         Destroy(GameObject.Find("LifeingItem(Clone)"));
         print("a/Clone");
     
-            GetMambersList();
+        GetMambersList();
         //main.SetActive(false);
         isUpLoad = true;
     }

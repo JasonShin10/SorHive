@@ -21923,6 +21923,7 @@ MonoBehaviour:
   PageDown: {fileID: 0}
   Group: []
   main: {fileID: 0}
+  LifeingDelete: {fileID: 0}
   roomId: {fileID: 0}
   countgroup: 0
   ListCount: 0
@@ -28573,6 +28574,7 @@ MonoBehaviour:
   - {fileID: 2082565558}
   - {fileID: 1394397176}
   main: {fileID: 0}
+  LifeingDelete: {fileID: 0}
   roomId: {fileID: 17623654}
   countgroup: 0
   ListCount: 0

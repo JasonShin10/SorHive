@@ -75,6 +75,7 @@ public class LifeingRoomItem : MonoBehaviour
             lifeingDetailed.IDText.text = detailID.text;
             lifeingDetailed.NickNameText.text = memberName.text;
             lifeingDetailed.Lifeingimg = lifeingImage;
+            //lifeingDetailed.
 
             LifeingDetails = false;
         }
