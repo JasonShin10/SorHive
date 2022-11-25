@@ -319,10 +319,11 @@ public class HttpManager : MonoBehaviour
         }
         webRequest.Dispose();
         print("webRequest≥° reloadΩ√¿€");
-        StartCoroutine(WarpManager.instance.DownloadImg());
-        while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
-        WarpManager.instance.reloadRoom(centerMemberCode);
         yield return null;
+        WarpManager.instance.DownloadImg();
+        /*while ((WarpManager.instance.downLoadAvatarCount + WarpManager.instance.downLoadRoomCount) < 14) yield return null;
+        WarpManager.instance.reloadRoom(centerMemberCode);*/
+        
     }
 
 
