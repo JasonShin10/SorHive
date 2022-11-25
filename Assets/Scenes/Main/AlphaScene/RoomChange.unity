@@ -10490,7 +10490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99
+      value: 95.5
       objectReference: {fileID: 0}
     - target: {fileID: 2002645207267020835, guid: b9f12c66c674ccb44bbe0fbabdd3293a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16176,8 +16176,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1918797058}
   m_HandleRect: {fileID: 1918797057}
   m_Direction: 2
-  m_Value: 0.611717
-  m_Size: 0.39288622
+  m_Value: 0.6117169
+  m_Size: 0.3928862
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
