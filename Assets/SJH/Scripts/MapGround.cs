@@ -40,12 +40,12 @@ public class MapGround : Map
         rb = GetComponent<MeshRenderer>();
         delete = AddManager.instance.deleteButton;
         delete.GetComponent<Button>().onClick.AddListener(OnRemoveJson);
-        
+
     }
     UnityEngine.Transform selectObj;
     void Update()
     {
-      
+
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -78,14 +78,14 @@ public class MapGround : Map
                     #region 방생성
                     if (AddManager.instance.AddBed == true)
                     {
-       
+
                         num = 0;
                         Room(AddManager.instance.bedItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddBed = false;
                     }
-                   if (AddManager.instance.AddChair == true)
+                    if (AddManager.instance.AddChair == true)
                     {
-                     
+
                         num = 1;
                         Room(AddManager.instance.chairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddChair = false;
@@ -110,41 +110,41 @@ public class MapGround : Map
                     //startPos = currCube.transform.position;
                     if (AddManager.instance.AddDesk == true)
                     {
-                 
+
                         num = 2;
                         Room(AddManager.instance.DeskItem[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddDesk = false;
                     }
                     if (AddManager.instance.AddCloset == true)
                     {
-                   
+
                         num = 4;
                         Room(AddManager.instance.closetItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCloset = false;
                     }
                     if (AddManager.instance.AddCoffeeTable == true)
                     {
-          
+
                         num = 5;
                         Room(AddManager.instance.coffee_tableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddCoffeeTable = false;
                     }
                     if (AddManager.instance.AddEntertainment == true)
-                    {                  
+                    {
                         num = 6;
                         Room(AddManager.instance.entertainmentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddEntertainment = false;
                     }
 
                     if (AddManager.instance.AddElectrionic == true)
-                    {                
+                    {
                         num = 7;
                         Room(AddManager.instance.electrionicsItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddElectrionic = false;
                     }
 
                     if (AddManager.instance.AddFlower == true)
-                    {             
+                    {
                         num = 8;
                         Room(AddManager.instance.flowerItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddFlower = false;
@@ -157,40 +157,40 @@ public class MapGround : Map
                     }
                     if (AddManager.instance.AddKitchenTable == true)
                     {
-                        
+
                         num = 10;
                         Room(AddManager.instance.kitchenTableItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddKitchenTable = false;
                     }
                     if (AddManager.instance.AddLamp == true)
                     {
-                     
+
                         num = 11;
                         Room(AddManager.instance.lamp[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLamp = false;
                     }
                     if (AddManager.instance.AddLoungeChair == true)
                     {
-                  
+
                         num = 12;
                         Room(AddManager.instance.loungeChairItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddLoungeChair = false;
                     }
                     if (AddManager.instance.AddInstrument == true)
                     {
-        
+
                         num = 13;
                         Room(AddManager.instance.musical_instrumentItems[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddInstrument = false;
                     }
                     if (AddManager.instance.AddOfficeChair == true)
-                    {                   
+                    {
                         num = 14;
                         Room(AddManager.instance.office_chair[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddOfficeChair = false;
                     }
                     if (AddManager.instance.AddShelf == true)
-                    {                 
+                    {
                         num = 15;
                         Room(AddManager.instance.shelf[AddManager.instance.currButtonNum]);
                         AddManager.instance.AddShelf = false;
@@ -222,7 +222,7 @@ public class MapGround : Map
 
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
                     AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
-                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3( -1.5f,selectObj.GetComponent<MeshRenderer>().bounds.size.y *2f,-1.5f));
+                    AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(-1.5f, selectObj.GetComponent<MeshRenderer>().bounds.size.y * 2f, -1.5f));
                     AddManager.instance.gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(8, selectObj.GetComponent<MeshRenderer>().bounds.size.y * 2f, 8));
                     selectObj = null;
 
@@ -295,13 +295,17 @@ public class MapGround : Map
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
-            if (AddManager.instance.objectInfoList[i].obj.name == obj.name)
+            if (AddManager.instance.objectInfoList[i].obj)
             {
-                //정보수정
-                AddManager.instance.objectInfoList[i].position = obj.transform.position;
-                AddManager.instance.objectInfoList[i].scale = obj.transform.localScale;
-                AddManager.instance.objectInfoList[i].angle = obj.transform.eulerAngles;
-                return;
+                if (AddManager.instance.objectInfoList[i].obj.name == obj.name)
+                {
+                    //정보수정
+                    AddManager.instance.objectInfoList[i].position = obj.transform.position;
+                    AddManager.instance.objectInfoList[i].scale = obj.transform.localScale;
+                    AddManager.instance.objectInfoList[i].angle = obj.transform.eulerAngles;
+                    return;
+                }
+
             }
         }
         AddManager.instance.objectInfo = new ObjectInfo();
@@ -317,7 +321,7 @@ public class MapGround : Map
         AddManager.instance.objectInfo.angle = AddManager.instance.ang;
         AddManager.instance.objectInfo.name = AddManager.instance.obj.name;
         AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
-        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);   
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
     #endregion 
     void RemoveJson(GameObject obj)
@@ -360,17 +364,20 @@ public class MapGround : Map
             {
                 AddManager.instance.objectInfoList.RemoveAt(i);
             }
-            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
+            else if (AddManager.instance.objectInfoList[i].obj)
             {
-                AddManager.instance.objectInfoList.RemoveAt(i);
-        AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
-                return;
+                if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
+                {
+                    AddManager.instance.objectInfoList.RemoveAt(i);
+                    AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
+                    return;
+                }
             }
             //전부삭제
             //AddManager.instance.objectInfoList.RemoveAt(i);
         }
     }
-    
+
     void Room(GameObject item)
     {
         currCube = Instantiate(item);

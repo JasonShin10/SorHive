@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public Quaternion quaternion;
 
-
+    Scene scene;
     private void Awake()
     {
         if (!instance)
@@ -27,8 +28,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.SerializationRate = 60;
 
         PhotonNetwork.SendRate = 60;
-
+        if (scene.name == "RoomInScene")
+        {
         PhotonNetwork.Instantiate("PLayer", setPlayer.transform.position, quaternion);
+
+        }
     }
 
     // Update is called once per frame
