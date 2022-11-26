@@ -47,6 +47,7 @@ public class ArrayJsonID<T>
 {
     public List<T> data;
     public List<T> followerData;
+    public List<T> followSummary;
     public List<T> followingData;
 }
 
