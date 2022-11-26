@@ -67,8 +67,8 @@ public class ChatPageManager : MonoBehaviour
     [SerializeField] GameObject chatListPage;
     public void OpenChatPage(string guestNickName, string myNickName, int guestMemberCode, RawImage guestProfileImage)
     {
-        chatPage.transform.GetChild(0).gameObject.SetActive(true);
-        chatListPage.transform.GetChild(0).gameObject.SetActive(false);
+        chatPage.gameObject.SetActive(true);
+        chatListPage.SetActive(false);
         this.guestNickName.text = guestNickName;
         this.myNickName.text = myNickName;
         this.guestMemberCode = guestMemberCode;
@@ -189,15 +189,15 @@ public class ChatPageManager : MonoBehaviour
             SendChatToServer();
             total_messages.Clear();
         }
-        GameObject.Find("ChatPage").transform.GetChild(0).gameObject.SetActive(false);
+        chatPage.gameObject.SetActive(false);
 
-        Transform chatContent = GameObject.Find("ChatPage").transform.GetChild(0).transform.GetChild(0).transform.GetChild(1);
-        print(chatContent.name);
+        Transform chatContent = chatPage.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0);
+        
         foreach (Transform child in chatContent.transform)
         {
             Destroy(child.gameObject);
         }
-        GameObject.Find("ChatListPageCanvas").transform.GetChild(0).gameObject.SetActive(true);
+        chatListPage.gameObject.SetActive(true);
     }
 
     // 채팅 보내기

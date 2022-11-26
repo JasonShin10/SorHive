@@ -47,4 +47,11 @@ public class UpDownBGManager : MonoBehaviour
         
         PhotonNetwork.LoadLevel("MainScenes");
     }
+
+    public void ExitLifeingUpLoad()
+    {
+        SceneManager.LoadScene("MainScenes");
+        GameObject.Find("LifeingUpLoadCanvas").gameObject.SetActive(false) ;
+    }
+
 }
