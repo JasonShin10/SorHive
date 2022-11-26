@@ -58,10 +58,9 @@ public class HttpManager : MonoBehaviour
 
 
     public void SendRequest(HttpRequester requester)
-    {      
+    {
         StartCoroutine(Send(requester));
     }
-
 
     IEnumerator Send(HttpRequester requester)
     {
@@ -148,10 +147,6 @@ public class HttpManager : MonoBehaviour
         }
         yield return null;
         webRequest.Dispose();
-        //webRequest.Dispose();
-        //}
-        //그렇지않다면
-
     }
 
 

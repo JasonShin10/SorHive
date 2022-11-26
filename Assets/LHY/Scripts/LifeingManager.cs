@@ -156,8 +156,6 @@ public class LifeingManager : MonoBehaviour
 
         HttpManager.instance.SendRequest(requester);
         HttpManager.instance.secondId = false;
-
-
     }
 
     public void OnCompleteGetPostAll(DownloadHandler handler)

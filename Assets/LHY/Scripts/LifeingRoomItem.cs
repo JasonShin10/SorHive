@@ -50,6 +50,8 @@ public class LifeingRoomItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // loadingCanvas = GameObject.Find("LoadingCanvas").gameObject;
+        // loadingCanvas.SetActive(false);
         GameObject lifeingmanager = GameObject.Find("LifeingPosManager");
         lifeingManager = lifeingmanager.GetComponent<LifeingManager>();
         StartCoroutine(GetTextureR(roomImage, avatarImage));
@@ -166,8 +168,11 @@ public class LifeingRoomItem : MonoBehaviour
 
             //yield return WaitForSeconds(0.1);
     }
+
+    public GameObject loadingCanvas;
     public void OnClickStoryView()
     {
+        // loadingCanvas.SetActive(true);
         print(memberCode);
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/lifing/"+ memberCode.ToString();
@@ -190,5 +195,6 @@ public class LifeingRoomItem : MonoBehaviour
 
         lifeingImage = lifingsDetailData;
         LifeingDetails = true;
+        // loadingCanvas.SetActive(false);
     }
 }

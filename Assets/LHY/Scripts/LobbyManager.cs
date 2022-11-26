@@ -30,6 +30,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public GameObject feedUIFactory;
 
+    
+
     public bool creat = false;
 
     private void Awake()
@@ -49,7 +51,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-      
         
     }
 

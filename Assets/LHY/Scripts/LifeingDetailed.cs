@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class LifeingDetailed : MonoBehaviour
 {
-    public RawImage profilephoto;
+    
     public Text IDText;
     public Text NickNameText;
 
+    public RawImage profilephoto;
     public RawImage lifeingImage;
 
     public string profileimg;
@@ -31,6 +32,7 @@ public class LifeingDetailed : MonoBehaviour
         var urlP = profileimg;
 
         print(urlL);
+        print(urlP);
 
         HttpManager.instance.LoadingCanvas.SetActive(true);
         UnityWebRequest wwwL = UnityWebRequestTexture.GetTexture(urlL);
