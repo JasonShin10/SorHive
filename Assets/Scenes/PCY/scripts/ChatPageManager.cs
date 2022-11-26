@@ -143,15 +143,39 @@ public class ChatPageManager : MonoBehaviour
         public JsonData data;
     }
 
+
+    public GameObject sendButtonClickedImage;
+    public GameObject sendButtonImage;
+
+    private bool m_IsButtonDowning = false;
+    // send버튼 눌렸을 때
+    public void PointerDown()
+    {
+        m_IsButtonDowning = true;
+    }
+
+    public void PointerUp()
+    {
+        m_IsButtonDowning = false;
+    }
     // Update is called once per frame
     void Update()
     {
+        if (m_IsButtonDowning)
+        {
+            sendButtonClickedImage.SetActive(true);
+            sendButtonImage.SetActive(false);
+        }
+        else
+        {
+            sendButtonClickedImage.SetActive(false);
+            sendButtonImage.SetActive(true);
+        }
         if (inputChat != null)
         {
             if (inputChat.text != "" && Input.GetKey(KeyCode.Return))
             {
                 insertMessageToList(inputChat.text, DateTime.Now.ToString());
-                inputChat.text = "";
             }
         }
     }
@@ -179,7 +203,7 @@ public class ChatPageManager : MonoBehaviour
     // 채팅 보내기
     public List<string> total_messages = new List<string>();
     
-    private void insertMessageToList(string currentChat, string nowTime)
+    public void insertMessageToList(string currentChat, string nowTime)
     {
         ChatMessageInfo messages = new ChatMessageInfo();
         messages.fromMemberCode = HttpManager.instance.memberCode;
@@ -188,6 +212,12 @@ public class ChatPageManager : MonoBehaviour
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
         total_messages.Add(JsonUtility.ToJson(messages, true).ToString());
+        inputChat.text = "";
+    }
+
+    public void OnCLickSend()
+    {
+        insertMessageToList(inputChat.text, DateTime.Now.ToString());
     }
 
     public void SendChatToServer()
