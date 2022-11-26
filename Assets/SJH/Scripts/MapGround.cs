@@ -373,6 +373,8 @@ public class MapGround : Map
                     return;
                 }
             }
+            AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(false);
             //전부삭제
             //AddManager.instance.objectInfoList.RemoveAt(i);
         }
