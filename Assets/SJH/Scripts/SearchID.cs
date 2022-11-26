@@ -44,8 +44,6 @@ public class SearchID : MonoBehaviour
     public List<UserGetInfo> userFollowingList = new List<UserGetInfo>();
     public List<UserGetInfo> userFollowerList = new List<UserGetInfo>();
     public List<UserGetInfo> userThreeList = new List<UserGetInfo>();
-
-    
     public List<int> userFollowList;
     public List<int> userFollowersList;
     public UserGetInfo userGetInfo;
@@ -236,6 +234,7 @@ public class SearchID : MonoBehaviour
         UserGetInfo userThree = JsonUtility.FromJson<UserGetInfo>(userData);
         //UserGetInfo userFollowing = JsonUtility.FromJson<UserGetInfo>(followIdData);
         followId = int.Parse(followIdData);
+        HttpManager.instance.followId = int.Parse(followIdData);
         roomOwner.text = userThree.memberName;
         HttpManager.instance.roomOwner = userThree.memberName;
         //follower.text = "팔로워" + " " + userThree.followerCount;
@@ -361,7 +360,6 @@ public class SearchID : MonoBehaviour
                 }
                 else
                 {
-
                     if (searchText == ele.transform.GetChild(0).GetComponent<Text>().text.Substring(0, searchTextLength))
                     {
                         ele.SetActive(true);
@@ -488,6 +486,7 @@ public class SearchID : MonoBehaviour
 
         id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
         memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        //userFollowList.Add(memberCode);
         //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
         int j = userFollowList.FindIndex(a => a == memberCode);
         if (j == -1)
@@ -557,7 +556,9 @@ public class SearchID : MonoBehaviour
     #region OnClickFollowing()
     public void OnClickFollowing()
     {
+        GetThree(); 
         OnSaveSignIn();
+        
     }
     public void OnSaveSignIn()
     {
@@ -581,6 +582,20 @@ public class SearchID : MonoBehaviour
     public void OnCompleteSignIn(DownloadHandler handler)
     {
         print(handler);
+        userFollowList.Add(memberCode);
+        int j = userFollowList.FindIndex(a => a == memberCode);
+        if (j == -1)
+        {
+            followingCheck = false;
+        }
+        else
+        {
+            followingCheck = true;
+            UserFollowingCheckUI();
+
+            //return;
+        }
+        GetThree();
         //string s = "{\"furniture\":" + handler.text + "}";
         //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
     }
@@ -645,7 +660,6 @@ public class SearchID : MonoBehaviour
             FollowingContentHolder.GetChild(i).gameObject.GetComponent<Button>().onClick.AddListener(OnClickFollowingVisit);
             FollowingContentHolder.GetChild(i).gameObject.SetActive(true);
         }
-
         print("조회완료");
     }
     #endregion
@@ -753,13 +767,24 @@ public class SearchID : MonoBehaviour
         requester.onComplete = OnCompleteDeleteFollowing;
         requester.requestName = "OnclickDeleteFollowing";
         HttpManager.instance.SendRequest(requester);
+        userFollowList.Remove(memberCode);
+        int j = userFollowList.FindIndex(a => a == memberCode);
+        if (j == -1)
+        {
+            followingCheck = false;
+        }
+        else
+        {
+            followingCheck = true;
+            UserFollowingCheckUI();
+        }
+        GetThree();
     }
     public void OnCompleteDeleteFollowing(DownloadHandler handler)
     {
         print(memberCode);
-        userFollowList.Remove(memberCode);
-
-
+        //OnClickFollowingVisit();
+        //GetThree();
         print("삭제완료");
     }
     #endregion 
