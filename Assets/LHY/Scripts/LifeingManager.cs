@@ -326,7 +326,6 @@ public class LifeingManager : MonoBehaviour
                 memberIdsee = false;
                 OnOff[0].SetActive(false);
                 OnOff[1].SetActive(true);
-
             }
         }
         else if (memberIdsee == false)
@@ -338,7 +337,6 @@ public class LifeingManager : MonoBehaviour
                 memberIdsee = true;
                 OnOff[0].SetActive(true);
                 OnOff[1].SetActive(false);
-
             }
         }
         

@@ -52,6 +52,7 @@ public class HttpManager : MonoBehaviour
     public bool firstId = false;
     public bool secondId = false;
     public string avatarYn;
+    public int followId;
     //서버에게 요청
     //url(posts/1), GET
 
