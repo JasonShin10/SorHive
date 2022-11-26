@@ -73,7 +73,7 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         //GetFollower();
-        memberCode = HttpManager.instance.memberCode;
+        memberCode = HttpManager.instance.userMemberCode;
         print(memberCode);
         //GetUserFollowing();
         GetThree();
@@ -771,8 +771,8 @@ public class SearchID : MonoBehaviour
 
     public void OnClickIdReset()
     {
+        GetThree();
         memberCode = HttpManager.instance.userMemberCode;
-        //GetThree();
         //GetRoomImage();
         //GetRoomAll();
         followingCheck = false;
@@ -784,7 +784,7 @@ public class SearchID : MonoBehaviour
     public void OnClickRoomImage()
     {
         //GetRoomImage();
-        GetThree();
+        //GetThree();
         //StartCoroutine(GetTextureR(Img));
         title.gameObject.SetActive(false);
         roomOwner.gameObject.SetActive(true);
