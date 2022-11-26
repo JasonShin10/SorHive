@@ -8,7 +8,6 @@ using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using UnityEngine.EventSystems;
 
-
 //방명록정보
 public class GuestBookInfo
 {
@@ -127,14 +126,22 @@ public class GuestBookManager : MonoBehaviour
 
     public void OnClickChat()
     {
-        if(chat.activeSelf)
+        GameObject joyStick = GameObject.Find("GuestBoxCanvas").transform.Find("JoyStick").gameObject;
+        GameObject jump = GameObject.Find("GuestBoxCanvas").transform.Find("Jump").gameObject;
+        if (chat.activeSelf)
         {
             chat.SetActive(false);
             PhotonChatManager.instance.SendChatToServer();
+
+            joyStick.SetActive(true);
+            jump.SetActive(true);
         }
         else
         {
             chat.SetActive(true);
+
+            jump.SetActive(false);
+            joyStick.SetActive(false);
         }
     }
     //public void OnDeleteGuestBook()

@@ -89,9 +89,22 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         ChatConnectOnClick();
     }
 
+    public GameObject sendButtonClickedImage;
+    public GameObject sendButtonImage;
     // Update is called once per frame 
     void Update()
     {
+        if (m_IsButtonDowning)
+        {
+            sendButtonClickedImage.SetActive(true);
+            sendButtonImage.SetActive(false);
+        }
+        else
+        {
+            sendButtonClickedImage.SetActive(false);
+            sendButtonImage.SetActive(true);
+        }
+
         if (isConnected)
         {
             chatClient.Service();
@@ -123,8 +136,17 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
        
     }
 
+    private bool m_IsButtonDowning = false;
+    // send버튼 눌렸을 때
+    public void PointerDown()
+    {
+        m_IsButtonDowning = true;
+    }
 
- 
+    public void PointerUp()
+    {
+        m_IsButtonDowning = false;
+    }
 
     public void OnDisconnected()
     {
