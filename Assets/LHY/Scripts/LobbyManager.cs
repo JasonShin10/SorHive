@@ -113,7 +113,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.JoinRoom(userName.text); 
         PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
         PhotonNetwork.JoinRoom(memberCode.ToString());
-        //PhotonNetwork.JoinRoom(HttpManager.instance.memberCode.ToString());
     }
 
     public void OnClickRoomWarp()

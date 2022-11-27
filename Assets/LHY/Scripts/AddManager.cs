@@ -221,15 +221,15 @@ public class AddManager : MonoBehaviour
         //OnLoadJson();
         objActive.AddRange(GameObject.FindGameObjectsWithTag("Furniture"));
         scene = SceneManager.GetActiveScene();
-        //if (scene.name == "RoomInScene")
-        //{
-        //    for (int i = 0; i < objActive.Count; i++)
-        //    {
-        //        objActive[i].GetComponent<Rigidbody>().isKinematic = false;
-        //        objActive[i].GetComponent<BoxCollider>().isTrigger = false;
-        //        objActive[i].GetComponent<BoxCollider>().center = new Vector3(objActive[i].GetComponent<BoxCollider>().center.x, objActive[i].GetComponent<BoxCollider>().center.y, 0);
-        //    }
-        //}
+        if (scene.name == "RoomInScene")
+        {
+            for (int i = 0; i < objActive.Count; i++)
+            {
+                objActive[i].GetComponent<Rigidbody>().isKinematic = false;
+                objActive[i].GetComponent<BoxCollider>().isTrigger = false;
+                objActive[i].GetComponent<BoxCollider>().center = new Vector3(objActive[i].GetComponent<BoxCollider>().center.x, objActive[i].GetComponent<BoxCollider>().center.y, 0);
+            }
+        }
         
         //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
         JObject json = new JObject();
