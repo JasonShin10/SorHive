@@ -114,7 +114,7 @@
                 "instanceID": 0
             },
             "room": {
-                "instanceID": 781558
+                "instanceID": 818484
             },
             "name": "",
             "position": {
@@ -149,7 +149,7 @@
                 "instanceID": 0
             },
             "room": {
-                "instanceID": -1757702
+                "instanceID": -1863822
             },
             "name": "",
             "position": {
@@ -286,7 +286,7 @@
             "furnitureCategoryNumber": 4,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": -1789058
+                "instanceID": 28146
             },
             "room": {
                 "instanceID": 0

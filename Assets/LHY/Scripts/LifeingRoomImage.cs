@@ -91,16 +91,16 @@ public class LifeingRoomImage : MonoBehaviour
 
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
-
-            string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
+            
+            string savePath = Application.dataPath + "/Resources/RoomImages/";
             if (!Directory.Exists(savePath))
             {
                 Directory.CreateDirectory(savePath);
-                File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
+                File.WriteAllBytes(Application.dataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
             }
             else
             {
-                File.WriteAllBytes(Application.persistentDataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
+                File.WriteAllBytes(Application.dataPath + "/Resources/RoomImages/" + RoomImages[i].name + ".png", texture.EncodeToPNG());
             }
 
           
