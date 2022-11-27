@@ -57,7 +57,7 @@ namespace CustomUtils
             /*  // sprite = Sprite.Create(texture,)
               Texture2D roomSprite = Resources.Load<Texture2D>("Images/SampleImage");
               sprite = Sprite.Create(roomSprite, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));*/
-            string savePath = Application.dataPath + "/Resources/ZRoomImage";
+            string savePath = Application.persistentDataPath + "/Resources/ZRoomImage";
             if (!Directory.Exists(savePath))
             {
                 Directory.CreateDirectory(savePath);
