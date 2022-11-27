@@ -52,7 +52,10 @@ public class SearchID : MonoBehaviour
     public UserGetInfo userGetInfo;
     public RoomImage img;
     public GameObject followingList;
-
+    public string followerCount;
+    public string followingCount;
+    public string roomOwnerString;
+    
     //public GameObject ContentHolder;
 
     //public GameObject[] Element;
@@ -97,6 +100,9 @@ public class SearchID : MonoBehaviour
             myPage.transform.GetChild(2).gameObject.SetActive(true);
             myPage.transform.GetChild(7).gameObject.SetActive(false);
             myPage.transform.GetChild(11).gameObject.SetActive(false);
+            follower.text = followerCount;
+            following.text = followingCount;
+            roomOwner.text = roomOwnerString;  
 
         }
         else if(followingCheck == false)
@@ -244,6 +250,12 @@ public class SearchID : MonoBehaviour
         follower.text = " " + userThree.followerCount;
         following.text = " " + userThree.followingCount;
         feedNum.text = " " + userThree.feedCount;
+        if (HttpManager.instance.userMemberCode == memberCode)
+        {
+            followerCount = " " + userThree.followerCount;
+            followingCount = " " + userThree.followingCount;
+            roomOwnerString = " " + userThree.memberName;
+        }
         HttpManager.instance.memberCode = userThree.memberCode;
         userGetInfo.followingCount = userThree.followingCount;
         userGetInfo.feedCount = userThree.feedCount;
