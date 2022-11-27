@@ -771,8 +771,9 @@ public class SearchID : MonoBehaviour
 
     public void OnClickIdReset()
     {
-        GetThree();
         memberCode = HttpManager.instance.userMemberCode;
+        
+        //GetThree();
         //GetRoomImage();
         //GetRoomAll();
         followingCheck = false;
