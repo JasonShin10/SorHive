@@ -233,8 +233,8 @@ public class AddManager : MonoBehaviour
         
         //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
         JObject json = new JObject();
-        json["byte"] = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
-        File.WriteAllText(Application.dataPath + "/test.txt", json.ToString());
+        json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
+        File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
     }
     #region 임시로그인
     public void OnClickLogin()
@@ -674,7 +674,7 @@ public class AddManager : MonoBehaviour
     public void OnSaveSignIn()
     {
         FurnitureInfo info = new FurnitureInfo();
-        info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        info.roomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
         //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
         info.furnitures = objectInfoList;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();

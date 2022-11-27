@@ -6,7 +6,7 @@
             "furnitureCategoryNumber": 0,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": 29028
+                "instanceID": 28458
             },
             "room": {
                 "instanceID": 0
@@ -41,7 +41,7 @@
             "furnitureCategoryNumber": 2,
             "furnitureNumber": 0,
             "obj": {
-                "instanceID": 30040
+                "instanceID": 29478
             },
             "room": {
                 "instanceID": 0
@@ -76,7 +76,7 @@
             "furnitureCategoryNumber": 1,
             "furnitureNumber": 3,
             "obj": {
-                "instanceID": 29292
+                "instanceID": 28722
             },
             "room": {
                 "instanceID": 0
@@ -114,7 +114,7 @@
                 "instanceID": 0
             },
             "room": {
-                "instanceID": 2478838
+                "instanceID": 818484
             },
             "name": "",
             "position": {
@@ -149,7 +149,7 @@
                 "instanceID": 0
             },
             "room": {
-                "instanceID": -1830662
+                "instanceID": -1863822
             },
             "name": "",
             "position": {
@@ -181,7 +181,7 @@
             "furnitureCategoryNumber": 3,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": 29036
+                "instanceID": 28394
             },
             "room": {
                 "instanceID": 0
@@ -216,7 +216,7 @@
             "furnitureCategoryNumber": 3,
             "furnitureNumber": 3,
             "obj": {
-                "instanceID": 29332
+                "instanceID": 28762
             },
             "room": {
                 "instanceID": 0
@@ -251,7 +251,7 @@
             "furnitureCategoryNumber": 2,
             "furnitureNumber": 2,
             "obj": {
-                "instanceID": -1862002
+                "instanceID": 29218
             },
             "room": {
                 "instanceID": 0
@@ -276,6 +276,41 @@
                 "x": -5.364418029785156e-7,
                 "y": 0.24871663749217988,
                 "z": 0.24871663749217988
+            },
+            "roomId": 0,
+            "wallTag": ""
+        },
+        {
+            "wallNumber": 0,
+            "floorNumber": 0,
+            "furnitureCategoryNumber": 4,
+            "furnitureNumber": 2,
+            "obj": {
+                "instanceID": 28146
+            },
+            "room": {
+                "instanceID": 0
+            },
+            "name": "closet_002",
+            "position": {
+                "x": 13.0,
+                "y": 25.93000030517578,
+                "z": 8.0
+            },
+            "scale": {
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+            },
+            "angle": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "boxPosition": {
+                "x": -1.4901161193847657e-7,
+                "y": 0.9632973670959473,
+                "z": 0.9632973670959473
             },
             "roomId": 0,
             "wallTag": ""
