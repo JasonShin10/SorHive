@@ -130,7 +130,11 @@ public class HttpManager : MonoBehaviour
         {
             LoadingCanvas.SetActive(false);
             print(webRequest.result);
+            if (webRequest.downloadHandler != null)
+            {
+
             print(requester.requestName + ":" + webRequest.downloadHandler.text);
+            }
 
             //완료되었다고 requester.onComplete를 실행
             if (requester.onComplete != null)
