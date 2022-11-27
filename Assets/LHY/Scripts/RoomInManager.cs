@@ -173,10 +173,16 @@ public class RoomInManager : MonoBehaviour
     public void CreateObject(GuestBookJsonInfo info)
     {
         GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
+        
         guestBook.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(OnDeleteGuestBook);
         GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
         guestBookItem.guestBookText.text = info.guestBookContent;
         guestBookItem.UserID.text = info.guestBookWriterId;
+        if (HttpManager.instance.userId != info.guestBookWriterId)
+        {
+            guestBook.transform.GetChild(3).gameObject.SetActive(false);
+        }
+
         guestBookItem.guestBookId.text = info.guestBookId;
     }
 }
