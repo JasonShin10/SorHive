@@ -62,7 +62,7 @@ public class MapGround : Map
                     GameManager.instance.name = selectObj.name;
                     GameManager.instance.selected = selectObj.gameObject;
                     //selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, 0, selectObj.GetComponent<BoxCollider>().center.z);
-                    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 27.5f, 0));
+                    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 24f, 0));
                 }
             }
             //AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(false);
