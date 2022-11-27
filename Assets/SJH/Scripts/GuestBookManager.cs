@@ -29,7 +29,6 @@ public class GuestBookManager : MonoBehaviour
 {
     public Text roomOwner;
     public Texture[] photos;
-    public GameObject chat;
     //public GameObject GBoxManager;
 
     //임시 오브젝트 정보 담을 변수
@@ -124,26 +123,8 @@ public class GuestBookManager : MonoBehaviour
 
     }
 
-    public void OnClickChat()
-    {
-        GameObject joyStick = GameObject.Find("GuestBoxCanvas").transform.Find("JoyStick").gameObject;
-        GameObject jump = GameObject.Find("GuestBoxCanvas").transform.Find("Jump").gameObject;
-        if (chat.activeSelf)
-        {
-            chat.SetActive(false);
-            PhotonChatManager.instance.SendChatToServer();
 
-            joyStick.SetActive(true);
-            jump.SetActive(true);
-        }
-        else
-        {
-            chat.SetActive(true);
-
-            jump.SetActive(false);
-            joyStick.SetActive(false);
-        }
-    }
+    
     //public void OnDeleteGuestBook()
     //{
     //    GameObject clickObject = EventSystem.current.currentSelectedGameObject;

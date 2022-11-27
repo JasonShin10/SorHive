@@ -55,23 +55,37 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         username = valueIn;
     }
 
+
+
+    public GameObject chatPannel;
+    public GameObject clickedChatButtonImage;
     public void ChatConnectOnClick()
     {
-        isConnected = true;
-        chatClient = new ChatClient(this);
-        chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(username));
-        // 게스트 멤버코드가 누군지 확인.
-        print("아래 멤버코드의 방에 참여했습니다.");
-        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-        {   // 먼저 들어온 사람이 있을 때
-            if(int.Parse(PhotonNetwork.PlayerList[i].NickName) != HttpManager.instance.memberCode)
-            {
-                guestMemberCode = int.Parse(PhotonNetwork.PlayerList[i].NickName);
-            }
+        if (clickedChatButtonImage.activeSelf)
+        {   // 활성화되어 있을 때
+            chatPannel.SetActive(false);
+            clickedChatButtonImage.SetActive(false);
         }
-        print("방에 함께 있는 사람");
-        print(guestMemberCode);
-        print("Connecting");
+        else
+        {   // 비활성화 되어 있을 때
+            chatPannel.SetActive(true);
+            clickedChatButtonImage.SetActive(true);
+            isConnected = true;
+            chatClient = new ChatClient(this);
+            chatClient.Connect(PhotonNetwork.PhotonServerSettings.AppSettings.AppIdChat, PhotonNetwork.AppVersion, new AuthenticationValues(username));
+            // 게스트 멤버코드가 누군지 확인.
+            print("아래 멤버코드의 방에 참여했습니다.");
+            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {   // 먼저 들어온 사람이 있을 때
+                if (int.Parse(PhotonNetwork.PlayerList[i].NickName) != HttpManager.instance.memberCode)
+                {
+                    guestMemberCode = int.Parse(PhotonNetwork.PlayerList[i].NickName);
+                }
+            }
+            print("방에 함께 있는 사람");
+            print(guestMemberCode);
+            print("Connecting");
+        }
     }
 
     [SerializeField] GameObject chatPanel;
@@ -86,25 +100,11 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     void Start()
     {
         chatField.onValueChanged.AddListener(TypeChatOnValueChange);
-        ChatConnectOnClick();
     }
 
-    public GameObject sendButtonClickedImage;
-    public GameObject sendButtonImage;
     // Update is called once per frame 
     void Update()
     {
-        if (m_IsButtonDowning)
-        {
-            sendButtonClickedImage.SetActive(true);
-            sendButtonImage.SetActive(false);
-        }
-        else
-        {
-            sendButtonClickedImage.SetActive(false);
-            sendButtonImage.SetActive(true);
-        }
-
         if (isConnected)
         {
             chatClient.Service();
@@ -198,7 +198,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public void OnConnected()
     {
         print("Connected");
-        joinChatButton.SetActive(false);
         chatClient.Subscribe(new string[] { "RegionChannel" });
         chatClient.SetOnlineStatus(ChatUserStatus.Online);
     }
@@ -209,7 +208,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SubmitPublicChatOnClick()
     {
-        if (privateReceiver == "")
+        if (chatClient != null && privateReceiver == "")
         {
             chatClient.PublishMessage("RegionChannel", currentChat);
             print(currentChat);
@@ -225,6 +224,10 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             currentChat = "";        
             //chatText.text = currentChat;
         }
+        else
+        {
+            print("asf");
+        }
     }
 
     private void insertMessageToList(string currentChat, string nowTime)
@@ -237,7 +240,10 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         messages.chatTime = nowTime;
         print("채팅 시간: " + messages.chatTime.ToString());
         total_messages.Add(JsonUtility.ToJson(messages, true).ToString());
+        SendChatToServer();
     }
+
+   
 
     public void SendChatToServer()
     {
@@ -295,5 +301,4 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             //chatText.text = chatDisplay.text;
         }
     }
-
 }
