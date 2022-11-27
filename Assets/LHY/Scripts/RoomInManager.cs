@@ -35,9 +35,17 @@ public class RoomInManager : MonoBehaviour
 
     }
 
+    public GameObject chatButtonImage;
     public void OnClickBack()
     {
-        SceneManager.LoadScene("MainScenes");
+        if (chatButtonImage.activeSelf)
+        {
+            PhotonChatManager.instance.ChatConnectOnClick();
+        }
+        else
+        {
+            SceneManager.LoadScene("MainScenes");
+        }
     }
 
     public void CreateFeedUI()

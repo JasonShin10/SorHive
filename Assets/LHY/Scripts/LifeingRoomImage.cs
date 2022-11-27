@@ -91,7 +91,7 @@ public class LifeingRoomImage : MonoBehaviour
 
             texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
             texture.Apply();
-
+            
             string savePath = Application.persistentDataPath + "/Resources/RoomImages/";
             if (!Directory.Exists(savePath))
             {
