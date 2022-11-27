@@ -23,6 +23,7 @@ public class SearchID : MonoBehaviour
     public Button myPageButton;
     public RawImage Img;
     public RawImage mainImg;
+    public RawImage otherImg;
     public Text following;
     public Text follower;
     public Text feedNum;
@@ -40,7 +41,7 @@ public class SearchID : MonoBehaviour
     public bool followerCheck = false;
     public bool firstFollowingCheck = true;
     public bool firstFollowerCheck = true;
-    public bool firstGetRoomImgae = true;
+    public bool firstGetRoomImgae = false;
     public int followingIdNum;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
@@ -68,6 +69,7 @@ public class SearchID : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         roomOwner.gameObject.SetActive(false);
         //totalElements = ContentHolder.childCount;
         //Element = new GameObject[totalElements];
@@ -78,6 +80,7 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         //GetFollower();
+       
         memberCode = HttpManager.instance.userMemberCode;
         print(memberCode);
         //GetUserFollowing();
@@ -97,7 +100,8 @@ public class SearchID : MonoBehaviour
         //}
         //print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
-        if (HttpManager.instance.userMemberCode == memberCode)
+      
+            if (HttpManager.instance.userMemberCode == memberCode)
         {
             myPage.transform.GetChild(2).gameObject.SetActive(true);
             myPage.transform.GetChild(7).gameObject.SetActive(false);
@@ -105,19 +109,27 @@ public class SearchID : MonoBehaviour
             follower.text = followerCount;
             following.text = followingCount;
             roomOwner.text = roomOwnerString;
-            if (firstGetRoomImgae == true)
-            {
+            Img.texture = mainImg.texture;
+            //if (firstGetRoomImgae == true)
+            //{
+            //    mainImg = Img;
+            //    if (mainImg.texture = Img.texture)
+            //    {
+            //        firstGetRoomImgae = false;
 
-                mainImg.texture = Img.texture;
-                firstGetRoomImgae = false;
-            }
-
+            //    }
+            //}
+            //if(mainImg.texture != null)
+            //{
+            //Img.texture = mainImg.texture;
+            //}
         }
         else if (followingCheck == false)
         {
             myPage.transform.GetChild(2).gameObject.SetActive(false);
             myPage.transform.GetChild(7).gameObject.SetActive(true);
             myPage.transform.GetChild(11).gameObject.SetActive(false);
+            
             //myPage.transform.GetChild(12).gameObject.SetActive(false);
         }
 
@@ -194,7 +206,7 @@ public class SearchID : MonoBehaviour
             UserFollowingCheckUI();
             //return;
         }
-        StartCoroutine(GetTextureR(Img));
+        StartCoroutine(GetTextureR(otherImg));
     }
     IEnumerator GetTextureR(RawImage roomImage)
     {
@@ -208,8 +220,13 @@ public class SearchID : MonoBehaviour
             Debug.Log(wwwR.error);
         else
         {
-            roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+            if (HttpManager.instance.userMemberCode == memberCode)
+            {
+                mainImg.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+            }
 
+                roomImage.texture = ((DownloadHandlerTexture)wwwR.downloadHandler).texture;
+            Img.texture = roomImage.texture;
 
         }
     }
