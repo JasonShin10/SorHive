@@ -73,7 +73,7 @@ public class SearchID : MonoBehaviour
         //}
         //OnClickLogin();
         //GetFollower();
-        memberCode = HttpManager.instance.memberCode;
+        memberCode = HttpManager.instance.userMemberCode;
         print(memberCode);
         //GetUserFollowing();
         GetThree();
@@ -92,25 +92,21 @@ public class SearchID : MonoBehaviour
         //}
         //print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
-        if (followingCheck == false && followerCheck == false)
+        if (HttpManager.instance.userMemberCode == memberCode)
         {
+            myPage.transform.GetChild(2).gameObject.SetActive(true);
+            myPage.transform.GetChild(7).gameObject.SetActive(false);
+            myPage.transform.GetChild(11).gameObject.SetActive(false);
 
-            if (HttpManager.instance.id == HttpManager.instance.userId)
-            {
-
-                myPage.transform.GetChild(2).gameObject.SetActive(true);
-                myPage.transform.GetChild(7).gameObject.SetActive(false);
-                myPage.transform.GetChild(11).gameObject.SetActive(false);
-               myPage.transform.GetChild(12).gameObject.SetActive(false);
-            }
-            else
-            {
-                myPage.transform.GetChild(2).gameObject.SetActive(false);
-                myPage.transform.GetChild(7).gameObject.SetActive(true);
-                myPage.transform.GetChild(11).gameObject.SetActive(false);
-                myPage.transform.GetChild(12).gameObject.SetActive(false);
-            }
         }
+        else if(followingCheck == false)
+        {
+            myPage.transform.GetChild(2).gameObject.SetActive(false);
+            myPage.transform.GetChild(7).gameObject.SetActive(true);
+            myPage.transform.GetChild(11).gameObject.SetActive(false);
+            //myPage.transform.GetChild(12).gameObject.SetActive(false);
+        }
+        
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
 
@@ -389,8 +385,8 @@ public class SearchID : MonoBehaviour
         requester.url = "http://52.79.209.232:8080/api/v1/following/" + HttpManager.instance.userMemberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetUserFollowing;
-        HttpManager.instance.SendRequest(requester);
         requester.requestName = "GetUserMember";
+        HttpManager.instance.SendRequest(requester);
     }
     public void OnCompleteGetUserFollowing(DownloadHandler handler)
     {
@@ -549,7 +545,7 @@ public class SearchID : MonoBehaviour
         myPage.transform.GetChild(2).gameObject.SetActive(false);
         myPage.transform.GetChild(7).gameObject.SetActive(false);
         myPage.transform.GetChild(11).gameObject.SetActive(true);
-        myPage.transform.GetChild(12).gameObject.SetActive(false);
+        //myPage.transform.GetChild(12).gameObject.SetActive(false);
         //userFollowList.Remove(memberCode);
     }
     public void UserFollowerCheckUI()
@@ -557,7 +553,7 @@ public class SearchID : MonoBehaviour
         myPage.transform.GetChild(2).gameObject.SetActive(false);
         myPage.transform.GetChild(7).gameObject.SetActive(false);
         myPage.transform.GetChild(11).gameObject.SetActive(false);
-        myPage.transform.GetChild(12).gameObject.SetActive(true);
+        //myPage.transform.GetChild(12).gameObject.SetActive(true);
     }
     #endregion
 
@@ -619,6 +615,8 @@ public class SearchID : MonoBehaviour
     #region GetFollowing()
     public void GetFollowing()
     {
+        followingCheck = false;
+        followerCheck = false;
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
         requester.requestType = RequestType.GET;
@@ -690,6 +688,8 @@ public class SearchID : MonoBehaviour
     #region GetFollower()
     public void GetFollower()
     {
+        followingCheck = false;
+        followerCheck = false;
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follower/" + memberCode;
         requester.requestType = RequestType.GET;
@@ -772,7 +772,8 @@ public class SearchID : MonoBehaviour
     public void OnClickIdReset()
     {
         memberCode = HttpManager.instance.userMemberCode;
-        GetThree();
+        
+        //GetThree();
         //GetRoomImage();
         //GetRoomAll();
         followingCheck = false;
@@ -808,6 +809,7 @@ public class SearchID : MonoBehaviour
       
 
         followId = int.Parse(clickObject.transform.parent.GetChild(2).GetComponent<Text>().text);
+        memberCode = int.Parse(clickObject.transform.parent.GetChild(1).GetComponent<Text>().text);
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
@@ -877,7 +879,7 @@ public class SearchID : MonoBehaviour
         print(clickObject);
        
             followerId = int.Parse(clickObject.transform.parent.GetChild(2).GetComponent<Text>().text);
-        
+        memberCode = int.Parse(clickObject.transform.parent.GetChild(1).GetComponent<Text>().text);
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followerId;
         requester.requestType = RequestType.DELETE;
