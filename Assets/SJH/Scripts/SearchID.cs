@@ -639,6 +639,8 @@ public class SearchID : MonoBehaviour
 
             //return;
         }
+        followingCount = (int.Parse(followingCount) + 1).ToString();
+        following.text = followingCount;
         GetThree();
         //string s = "{\"furniture\":" + handler.text + "}";
         //PostDataArray array = JsonUtility.FromJson<PostDataArray>(s);
@@ -865,6 +867,8 @@ public class SearchID : MonoBehaviour
             UserFollowingCheckUI();
         }
         GetThree();
+        followingCount = (int.Parse(followingCount)-1).ToString();
+        following.text = followingCount;
         print(clickObject.transform.parent.gameObject);
         Destroy(clickObject.transform.parent.gameObject);
         followingCheck = false;
@@ -930,6 +934,8 @@ public class SearchID : MonoBehaviour
             UserFollowerCheckUI();
         }
         GetThree();
+        followerCount = (int.Parse(followerCount) - 1).ToString();
+        follower.text = followerCount;
         print(clickObject.transform.parent.gameObject);
         Destroy(clickObject.transform.parent.gameObject);
         followerCheck = false;
