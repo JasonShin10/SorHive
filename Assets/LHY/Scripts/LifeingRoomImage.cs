@@ -81,7 +81,7 @@ public class LifeingRoomImage : MonoBehaviour
             }
             RoomImages[i].SetActive(true);
 
-            yield return new WaitForSecondsRealtime(0.5f);
+            yield return new WaitForSecondsRealtime(1f);
 
             RenderTexture renderTexture = GetComponent<Camera>().targetTexture;
             Texture2D texture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.ARGB32, false);
