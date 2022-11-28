@@ -28,7 +28,7 @@ public class SearchID : MonoBehaviour
     public Text follower;
     public Text feedNum;
     public Text roomOwner;
-    public Image title;
+    // public Image title;
     public int totalElements;
     public int followId;
     public int followerId;
@@ -829,13 +829,13 @@ public class SearchID : MonoBehaviour
         //GetRoomImage();
         //GetThree();
         //StartCoroutine(GetTextureR(Img));
-        title.gameObject.SetActive(false);
+        //title.gameObject.SetActive(false);
         roomOwner.gameObject.SetActive(true);
     }
 
     public void OnClickTitleReset()
     {
-        title.gameObject.SetActive(true);
+        // title.gameObject.SetActive(true);
         roomOwner.gameObject.SetActive(false);
     }
     public void OnClickFollowingList()
