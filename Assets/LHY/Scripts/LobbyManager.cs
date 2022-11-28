@@ -9,8 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System;
 using Newtonsoft.Json.Linq;
-
-
+using UnityEngine.Android;
 
 public class LobbyManager : MonoBehaviourPunCallbacks
 {
@@ -46,6 +45,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //JoinRoom();
 
         MymemberCode = HttpManager.instance.memberCode;
+
+#if ANDROID
+        Permission.RequestUserPermission(Permission.ExternalStorageRead);
+        Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+#endif
 
     }
 
@@ -88,6 +92,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
         PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
+       
         PhotonNetwork.CreateRoom(MymemberCode.ToString(), roomOptions);
     }
 
@@ -212,13 +217,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
   /*  public void CreateFeedUI()
     {
-        FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
+        FeedNum = Directory.GetFiles(Application.persistentDataPath + "/LHY/FeedData/").Length;
         //피드의 정보를 불러오고
         //LoadFeedData();
         // FeedManager.FeedNum;
         for(int i = 1; i <= FeedNum; i++)
         {
-            string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
+            string path = Application.persistentDataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
             print(FeedNum+"피드개수");
 
