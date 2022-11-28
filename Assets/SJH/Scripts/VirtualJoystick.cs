@@ -72,5 +72,10 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             InputControlVector();
         }
+
+        if(GameObject.Find("Player(Clone)").GetComponent<LHY_PlayerMove>())
+        {
+            controller = GameObject.Find("Player(Clone)").GetComponent<LHY_PlayerMove>();
+        }
     }
 }

@@ -845,6 +845,7 @@ public class SearchID : MonoBehaviour
     #region OnClickDeleteFollowing()
     public void OnClickDeleteFollowing()
     {
+        GetThree();
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject);
         followId = int.Parse(clickObject.transform.parent.GetChild(2).GetComponent<Text>().text);
@@ -866,7 +867,6 @@ public class SearchID : MonoBehaviour
             followingCheck = true;
             UserFollowingCheckUI();
         }
-        GetThree();
         followingCount = (int.Parse(followingCount)-1).ToString();
         following.text = followingCount;
         print(clickObject.transform.parent.gameObject);
@@ -877,6 +877,7 @@ public class SearchID : MonoBehaviour
 
     public void OnClickDeleteFollowingMyProfile()
     {
+        GetThree();
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
@@ -894,7 +895,6 @@ public class SearchID : MonoBehaviour
             followingCheck = true;
             UserFollowingCheckUI();
         }
-        GetThree();
         followingCount = (int.Parse(followingCount) - 1).ToString();
         following.text = followingCount;
         followingCheck = false;
