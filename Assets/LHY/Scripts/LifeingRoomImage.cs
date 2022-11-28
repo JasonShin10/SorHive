@@ -75,6 +75,10 @@ public class LifeingRoomImage : MonoBehaviour
     {
         for (int i = 0; i < RoomImages.Length; i++)
         {
+            for(int j = 0; j<RoomImages.Length; j++)
+            {
+                RoomImages[j].SetActive(false);
+            }
             RoomImages[i].SetActive(true);
 
             yield return new WaitForSecondsRealtime(0.5f);

@@ -57,16 +57,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickRoomIn()
     {
         if (MymemberCode.ToString() != null)
-        {
-            if (creat == false)
-            {
-                CreateRoom();
-                creat = true;
-            }
-            else
-            {
+        {        
                 JoinRoom();
-            }
+                CreateRoom();         
         }
 
     }
@@ -88,7 +81,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
         PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
-        PhotonNetwork.CreateRoom(MymemberCode.ToString(), roomOptions);
+        PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
     }
 
 
