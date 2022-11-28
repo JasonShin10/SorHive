@@ -90,7 +90,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     [SerializeField] GameObject chatPanel;
     string privateReceiver = "";
-    string currentChat;
+    string currentChat = "";
     [SerializeField] InputField chatField;
     public Transform ChatListContent;
     public GameObject ChatUIFactory;
@@ -113,7 +113,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         if(chatField.text != "" && Input.GetKey(KeyCode.Return))
         {
             SubmitPublicChatOnClick();
-            SubmitPrivateChatOnClick();
+            currentChat = chatField.text;
         }
        
     }
@@ -160,10 +160,10 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         for (int i = 0; i < senders.Length; i++)
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
-            tmpReceiveBuffer += msgs;
-            //print(msgs);
+            GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+            chat.transform.GetChild(0).GetComponent<Text>().text = msgs;
         }
-        print(tmpReceiveBuffer);
+        print(msgs);
     }
 
     // 한명에게 받기
@@ -212,7 +212,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SubmitPublicChatOnClick()
     {
-        if (chatClient != null && privateReceiver == "")
+        if (chatClient != null && currentChat == "")
         {
             chatClient.PublishMessage("RegionChannel", currentChat);
             print(currentChat);
@@ -295,7 +295,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SubmitPrivateChatOnClick()
     {      
-        if (privateReceiver != "")
+        if (currentChat != "")
         {
             chatClient.SendPrivateMessage(privateReceiver, currentChat);
             chatField.text = "";
