@@ -123,6 +123,8 @@ public class LifeingItem : MonoBehaviour
         lifingImg = File.ReadAllBytes(savePath + filename + ".png");
         lifingImgName = Path.GetFileName(savePath + filename + ".png").Split('.')[0];
         image.texture = tex;
+        image.SetNativeSize();
+        ImageSizeSetting(image, 1000, 1000);
 
         LifeingImageInfo lifeingImageInfo = new LifeingImageInfo();
         lifeingImageInfo.lifingImage = lifingImg;
@@ -131,6 +133,23 @@ public class LifeingItem : MonoBehaviour
         //lifeingImageInfo[i].
 
         lifeingImageList.Add(lifeingImageInfo);
+    }
+
+    void ImageSizeSetting(RawImage image, float x, float y)
+    {
+        var imgX = image.rectTransform.sizeDelta.x;
+        var imgY = image.rectTransform.sizeDelta.y;
+
+        if (x / y > imgX / imgY) //이미지의 세로길이가 더 길다
+        {
+            image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y);
+            image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, imgX * (y / imgY));
+        }
+        else
+        {
+            image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, x);
+            image.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, imgY * (x / imgX));
+        }
     }
 
     public void OnCilckImageSaveAI()
