@@ -8,6 +8,13 @@ using UnityEngine.UI;
 
 public class ConnectionManager : MonoBehaviourPunCallbacks
 {
+    public static ConnectionManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public InputField ID;
     public InputField Password;
 
@@ -81,7 +88,6 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
         if(HttpManager.instance.avatarYn == "Y")
         {
             // PhotonNetwork.LoadLevel("CreatCharactorScene");
-
             PhotonNetwork.LoadLevel("MainScenes");
         }
         else

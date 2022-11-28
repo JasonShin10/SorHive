@@ -255,7 +255,7 @@ public class UserSetting : MonoBehaviour
         requester.onComplete = downloadLoginData;
         requester.requestName = "login";
 
-        HttpManager.instance.SendRequest(requester);
+        StartCoroutine(HttpManager.instance.SendSignUp(requester));
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
     }
@@ -277,6 +277,10 @@ public class UserSetting : MonoBehaviour
             PlayerPrefs.SetString("token", token);
             Photon.Pun.PhotonNetwork.JoinLobby();
             print("조회 완료");
+            ConnectionManager.instance.OnClickJoinLobby();
+        }
+        else if (status == 400){
+            loginStatusText.text = "아이디 혹은 비밀번호가 틀립니다.";
         }
         else
         {   // 정상로그인 아닐 시

@@ -32,6 +32,8 @@ public class WarpManager : MonoBehaviour
     int[] memberCode = new int[7];
     public Text CenterNickName;
 
+    private int finishDownload = 0;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,7 +60,11 @@ public class WarpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (finishDownload == 2)
+        {
+            HttpManager.instance.LoadingCanvas.SetActive(false);
+            finishDownload = 0;
+        }
     }
 
     public void loadRoom(int centerMemberCode)
@@ -121,6 +127,10 @@ public class WarpManager : MonoBehaviour
         }
         downLoadRoomCount++;
         wwwRoom.Dispose();
+        if (imageIdx == 6)
+        {
+            finishDownload += 1;
+        }
     }
 
     private IEnumerator DownloadAvatarImg(int imageIdx, RoomItem roomItem)
@@ -138,6 +148,10 @@ public class WarpManager : MonoBehaviour
         }
         downLoadAvatarCount++;
         wwwAvatar.Dispose();
+        if (imageIdx == 6)
+        {
+            finishDownload += 1;
+        }
     }
 
 }

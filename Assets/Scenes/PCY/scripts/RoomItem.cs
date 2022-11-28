@@ -28,9 +28,10 @@ public class RoomItem : MonoBehaviour
 
     public void WarpButtonClick()
     {
+        HttpManager.instance.LoadingCanvas.SetActive(true);
         // 네트워크 단계
         print(memberCode);
-        GameObject.Find("Hex").GetComponent<WarpManager>().loadRoom(memberCode);
+        GameObject.Find("RoomWarp").GetComponent<WarpManager>().loadRoom(memberCode);
         // 이미지, 코드 설정 완료 후 작용 단계
     }
 
