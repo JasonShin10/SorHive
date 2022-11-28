@@ -57,9 +57,10 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void OnClickRoomIn()
     {
         if (MymemberCode.ToString() != null)
-        {        
-                JoinRoom();
-                CreateRoom();         
+        {
+            //JoinOrCreateRoom();
+           
+            CreateRoom();         
         }
 
     }
@@ -82,6 +83,27 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
         PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
         PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
+
+        //PhotonNetwork.JoinOrCreateRoom(memberCode.ToString(), roomOptions, default);
+    }
+
+    public void JoinOrCreateRoom()
+    {
+        //방 옵션을 설정
+        RoomOptions roomOptions = new RoomOptions();
+        //최대인원
+        roomOptions.MaxPlayers = 2;
+        //룸 리스트에 보이지 않게? 보이게?
+        roomOptions.IsVisible = true;
+
+        //방 생성 요청(해당 옵션을 이용해서)
+        //PhotonNetwork.CreateRoom (userName.text, roomOptions);
+
+        //PhotonNetwork.CreateRoom(userName.text, roomOptions);
+        PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
+        PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
+
+        //PhotonNetwork.JoinOrCreateRoom(memberCode.ToString(), roomOptions, default);
     }
 
 
@@ -96,7 +118,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
-        
+        JoinRoom();
         print("OnCreateRoomFailed, " + returnCode + ", " + message);
     }
 

@@ -55,6 +55,8 @@ public class LifeingManager : MonoBehaviour
 
     public GameObject[] OnOff;
 
+    public GameObject[] lifeingRoom;
+
     public int countgroup;
     public int ListCount;
 
@@ -62,6 +64,8 @@ public class LifeingManager : MonoBehaviour
     public bool userSetting = false;
 
     public bool memberIdsee = true;
+
+
 
     //public bool end = false;
     private void Awake()
@@ -86,7 +90,7 @@ public class LifeingManager : MonoBehaviour
 
         if (isUpLoad == true)
         {
-            
+            lifeingRoom = new GameObject[friendList.Count];
             names = new GameObject[friendList.Count];
             for (int i = 0; i < friendList.Count; i++)
             {
@@ -108,12 +112,15 @@ public class LifeingManager : MonoBehaviour
 
                 //names[0] = GameObject.Find("RoomPos0").transform.Find("LifeingItem");
                 names[i] = lifeingRoomItem.LifeingName;
+                
 
                //lifeingRoomItem.
 
-               roomId.text = friendList[0].memberId;
+                roomId.text = friendList[0].memberId;
 
                 isUpLoad = false;
+
+                lifeingRoom[i] = lifeingRoomItem.gameObject;
             }
 
             UpDownbutton();
@@ -137,7 +144,11 @@ public class LifeingManager : MonoBehaviour
 
     public void ReLoadMambersList()
     {
-        Destroy(GameObject.Find("LifeingItem(Clone)"));
+        for(int i = 0; i< friendList.Count; i++)
+        {
+            Destroy(lifeingRoom[i].gameObject);
+        }
+
         print("a/Clone");
     
         GetMambersList();

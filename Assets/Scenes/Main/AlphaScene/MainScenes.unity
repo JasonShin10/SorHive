@@ -2168,7 +2168,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickTitleReset
+        m_MethodName: OnClickRoomImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2183,7 +2183,7 @@ MonoBehaviour:
         m_MethodName: SelectedButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 76490884}
+          m_ObjectArgument: {fileID: 20717874}
           m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -21818,6 +21818,7 @@ GameObject:
   - component: {fileID: 1226601567}
   - component: {fileID: 1226601569}
   - component: {fileID: 1226601568}
+  - component: {fileID: 1226601570}
   m_Layer: 5
   m_Name: RoomPos25
   m_TagString: Untagged
@@ -21883,6 +21884,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226601566}
   m_CullTransparentMesh: 1
+--- !u!95 &1226601570
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226601566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 170593816ef0eae4784665d28f5da667, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1227652448
 GameObject:
   m_ObjectHideFlags: 0
@@ -25288,7 +25309,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickTitleReset
+        m_MethodName: OnClickRoomImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25303,7 +25324,7 @@ MonoBehaviour:
         m_MethodName: SelectedButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1416258731}
+          m_ObjectArgument: {fileID: 20717874}
           m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -28414,6 +28435,7 @@ MonoBehaviour:
   roomId: {fileID: 0}
   names: []
   OnOff: []
+  lifeingRoom: []
   countgroup: 0
   ListCount: 0
   isUpLoad: 1
@@ -28640,7 +28662,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1146731188}
         m_TargetAssemblyTypeName: SearchID, Assembly-CSharp
-        m_MethodName: OnClickTitleReset
+        m_MethodName: OnClickRoomImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28655,7 +28677,7 @@ MonoBehaviour:
         m_MethodName: SelectedButton
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1656943263}
+          m_ObjectArgument: {fileID: 20717874}
           m_ObjectArgumentAssemblyTypeName: TabButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -36452,6 +36474,7 @@ MonoBehaviour:
   OnOff:
   - {fileID: 1149758654}
   - {fileID: 642179464}
+  lifeingRoom: []
   countgroup: 0
   ListCount: 0
   isUpLoad: 1
@@ -37208,6 +37231,7 @@ MonoBehaviour:
   roomId: {fileID: 0}
   names: []
   OnOff: []
+  lifeingRoom: []
   countgroup: 0
   ListCount: 0
   isUpLoad: 1

@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using UnityEngine.EventSystems;
+using Photon.Pun;
 
-public class RoomInManager : MonoBehaviour
+public class RoomInManager : MonoBehaviourPunCallbacks
 {
     public static RoomInManager instance;
 
@@ -44,9 +45,32 @@ public class RoomInManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainScenes");
+            PhotonNetwork.LeaveRoom();
+            //OnClickJoinLobby();
         }
     }
+
+    public override void OnConnectedToMaster()
+    {
+        base.OnConnectedToMaster();
+
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        base.OnJoinedLobby();
+        PhotonNetwork.LoadLevel("MainScenes");
+
+    }
+
+    public void OnClickJoinLobby()
+    {
+        //로비 진입
+        PhotonNetwork.LoadLevel("MainScenes");
+    }
+
+
 
     public void CreateFeedUI()
     {
