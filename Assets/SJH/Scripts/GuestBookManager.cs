@@ -68,10 +68,10 @@ public class GuestBookManager : MonoBehaviour
         //피드정보를 Json으로 변환한다.
         string jsonData = JsonUtility.ToJson(guestBookInfo, true);
         //print(jsonData);
-        GuestBookNum = Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length/2; 
+        GuestBookNum = Directory.GetFiles(Application.persistentDataPath + "/SJH/GuestBookData/").Length/2; 
         GuestBookNum++;
 
-        string path = Application.dataPath + "/SJH/GuestBookData";
+        string path = Application.persistentDataPath + "/SJH/GuestBookData";
         if(!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
@@ -86,7 +86,7 @@ public class GuestBookManager : MonoBehaviour
         GuestBookJsonInfo info = new GuestBookJsonInfo();
         info.guestBookContent = upLoadText;
         print(upLoadText);
-        //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        //info.offlineRoomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
         info.roomId = HttpManager.instance.roomId;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
         //arrayJson.furnitures = objectInfoList;

@@ -191,6 +191,7 @@ public class MapRight : Map
         AddManager.instance.ang = obj.transform.eulerAngles;
         AddManager.instance.objectInfo.furnitureNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfo.furnitureCategoryNumber = num;
+        AddManager.instance.objectInfo.wallTag = "WallRight";
         AddManager.instance.objectInfo.obj = AddManager.instance.obj;
         AddManager.instance.objectInfo.position = AddManager.instance.pos;
         AddManager.instance.objectInfo.scale = AddManager.instance.sca;
@@ -278,6 +279,7 @@ public class MapRight : Map
             }
         }
         AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
+
     }
     public LineRenderer line;
 }

@@ -895,7 +895,8 @@ public class SearchID : MonoBehaviour
             UserFollowingCheckUI();
         }
         GetThree();
-
+        followingCount = (int.Parse(followingCount) - 1).ToString();
+        following.text = followingCount;
         followingCheck = false;
         followerCheck = false;
     }

@@ -150,8 +150,8 @@ public class LifeingItem : MonoBehaviour
         lifeingImageInfo.lifingImageName = lifingImgName;
         
         //PC버전
-        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
-        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
+        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
+        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.persistentDataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
 
         //print(lifeingImageInfo.lifingImageName);
 
@@ -185,8 +185,8 @@ public class LifeingItem : MonoBehaviour
         lifeingImageInfo.lifingImageName = lifingImgName;
 
         //PC버전
-        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
-        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.dataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
+        //lifeingImageInfo.lifingImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/02.Story/StoryPhoto/Bar.png");
+        //lifeingImageInfo.lifingImageName = Path.GetFileName(Application.persistentDataPath + "/Resources/02.Story/StoryPhoto/Bar.png").Split('.')[0];
 
         //print(lifeingImageInfo.lifingImageName);
 

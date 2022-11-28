@@ -50,16 +50,16 @@ public class RoomInManager : MonoBehaviour
 
     public void CreateFeedUI()
     {
-        GuestBookNum = Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length / 2;
+        GuestBookNum = Directory.GetFiles(Application.persistentDataPath + "/SJH/GuestBookData/").Length / 2;
         GuestBookNum++;
         //피드의 정보를 불러오고
         //LoadFeedData();
         // FeedManager.FeedNum;
-        // print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/").Length);
+        // print(Directory.GetFiles(Application.persistentDataPath + "/SJH/GuestBookData/").Length);
         for (int i = 1; i < GuestBookNum; i++)
         {
-            string path = Application.dataPath + "/SJH/GuestBookData/guestBookData" + i + ".txt";
-            //print(Directory.GetFiles(Application.dataPath + "/SJH/GuestBookData/")[i]);
+            string path = Application.persistentDataPath + "/SJH/GuestBookData/guestBookData" + i + ".txt";
+            //print(Directory.GetFiles(Application.persistentDataPath + "/SJH/GuestBookData/")[i]);
             //print(GuestBookNum + "피드개수");
 
             string jsonData = File.ReadAllText(path);
