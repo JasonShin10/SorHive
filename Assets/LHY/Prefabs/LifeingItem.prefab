@@ -57,7 +57,7 @@ MonoBehaviour:
   memberId: {fileID: 1583732344696345865}
   detailID: {fileID: 2335269054384774936}
   avatarImage: {fileID: 1583732345909707258}
-  roomImage: {fileID: 1583732345107894096}
+  roomImage: {fileID: 2823725720556411702}
   lifeingisTrue: {fileID: 1237517780998228446}
   lifingYn: 
   lifingCategoryNo: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3b2bca3f04c06ed44a3ad4e00f0c2605, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d5e60fbee83eef4090bb43322003e81, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1583732345107894103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -502,9 +502,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1583732345222859012}
   - component: {fileID: 1583732345222859009}
-  - component: {fileID: 1583732345222859008}
+  - component: {fileID: 2823725720556411702}
   - component: {fileID: 1583732345222859015}
   - component: {fileID: 1583732345222859011}
+  - component: {fileID: 2117828330022774001}
   m_Layer: 5
   m_Name: LifeingBase
   m_TagString: Untagged
@@ -543,7 +544,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583732345222859013}
   m_CullTransparentMesh: 1
---- !u!114 &1583732345222859008
+--- !u!114 &2823725720556411702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -563,7 +564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 7ca46119f23a1a84e9a4823233e1a41a, type: 3}
+  m_Texture: {fileID: 2800000, guid: f9fbc9e577243914db7a5604be2c50d3, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -610,7 +611,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1583732345222859008}
+  m_TargetGraphic: {fileID: 2823725720556411702}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -651,6 +652,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &2117828330022774001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583732345222859013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab8fb911fe6fd64187f85de6bca742e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583732345528537003
 GameObject:
   m_ObjectHideFlags: 0
