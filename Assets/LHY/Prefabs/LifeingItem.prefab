@@ -74,6 +74,7 @@ MonoBehaviour:
   LifeingLoad: 0
   roomY: 0
   LifeingDetails: 0
+  loadingCanvas: {fileID: 0}
 --- !u!1 &936459386276981395
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +160,6 @@ GameObject:
   - component: {fileID: 4839729457456882190}
   - component: {fileID: 4992758112554100655}
   - component: {fileID: 6796292260082661467}
-  - component: {fileID: 4322692760284116183}
   m_Layer: 5
   m_Name: RoomImage (1)
   m_TagString: Untagged
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -465265603, guid: 76502f96524a6dd4ebb5eb21fada5434, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b2bca3f04c06ed44a3ad4e00f0c2605, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -269,26 +269,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!95 &4322692760284116183
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237517780998228446}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d83cf5721508d524a923d9c2036919a2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1583732344696345871
 GameObject:
   m_ObjectHideFlags: 0

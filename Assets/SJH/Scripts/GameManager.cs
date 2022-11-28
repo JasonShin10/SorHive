@@ -28,10 +28,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.SerializationRate = 60;
 
         PhotonNetwork.SendRate = 60;
+        PhotonNetwork.Instantiate("Player", setPlayer.transform.position, quaternion);
         if (scene.name == "RoomInScene")
         {
-        PhotonNetwork.Instantiate("PLayer", setPlayer.transform.position, quaternion);
-
         }
     }
 
