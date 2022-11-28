@@ -21,6 +21,8 @@ public class LifeingDetailed : MonoBehaviour
 
     public SearchID searchID;
 
+    public int memberCode;
+
     void Start()
     {
         StartCoroutine(GetTextureR(lifeingImage, profilephoto));
@@ -80,14 +82,14 @@ public class LifeingDetailed : MonoBehaviour
 
     public void OnClickLifeingVisit()
     {
-        //myPageButton.onClick.Invoke();
         //myPage.transform.GetChild(2).gameObject.SetActive(false);
         //myPage.transform.GetChild(8).gameObject.SetActive(true);
-        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
-        print(clickObject.GetComponentInChildren<Text>().text);
+        //GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        //print(clickObject.GetComponentInChildren<Text>().text);
         //id = clickObject.GetComponentInChildren<Text>().text;
-        searchID.id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
-        searchID.memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+
+        searchID.id = IDText.text;
+        searchID.memberCode = memberCode;
         //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
         searchID.GetRoomImage();
         //StartCoroutine(GetTextureR(Img));
@@ -96,6 +98,8 @@ public class LifeingDetailed : MonoBehaviour
         HttpManager.instance.id = searchID.id;
         HttpManager.instance.fakeId = searchID.id;
         HttpManager.instance.memberCode = searchID.memberCode;
+        searchID.myPageButton.onClick.Invoke();
+        DestroyMe();
     }
 
 
