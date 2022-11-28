@@ -72,7 +72,6 @@ public class WarpManager : MonoBehaviour
     public void loadRoom(int centerMemberCode)
     {
         print("loadRoom");
-        roomOwnerText.text = centerMemberCode;
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + centerMemberCode.ToString();
         requester.requestType = RequestType.GET;
@@ -106,6 +105,10 @@ public class WarpManager : MonoBehaviour
     private void OnClickSet(DownloadHandler handler){
         JObject json = JObject.Parse(handler.text);
         int tmpCnt = 0;
+        if (tmpCnt == 0)
+        {
+            roomOwnerText.text = id[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
+        }
         while(tmpCnt < 7){
             memberCode[tmpCnt] = int.Parse(json["data"]["memberDtoList"][tmpCnt]["memberCode"].ToString());
             id[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
