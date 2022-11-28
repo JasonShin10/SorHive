@@ -88,6 +88,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         }
     }
 
+    [SerializeField] GameObject chatPanel;
     string privateReceiver = "";
     string currentChat;
     [SerializeField] InputField chatField;
@@ -181,6 +182,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void OnSubscribed(string[] channels, bool[] results)
     {
+        chatPanel.SetActive(true);
     }
 
     public void OnUnsubscribed(string[] channels)
