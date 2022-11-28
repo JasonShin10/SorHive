@@ -27,10 +27,12 @@ public class WarpManager : MonoBehaviour
     public int downLoadAvatarCount = 0;
     
     public RawImage[] warpRoomImage;
-    string[] nickNmae = new string[7];
+    string[] id = new string[7];
     public RawImage[] warpAvatarImage;
     int[] memberCode = new int[7];
     public Text CenterNickName;
+
+    public Text roomOwnerText;
 
     private int finishDownload = 0;
 
@@ -70,6 +72,7 @@ public class WarpManager : MonoBehaviour
     public void loadRoom(int centerMemberCode)
     {
         print("loadRoom");
+        roomOwnerText.text = centerMemberCode;
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + centerMemberCode.ToString();
         requester.requestType = RequestType.GET;
@@ -93,7 +96,7 @@ public class WarpManager : MonoBehaviour
             RoomItem roomItem = this.transform.Find("WarpPosManager").transform.GetChild(roomImgIdx).transform.GetChild(0).GetComponent<RoomItem>();
             StartCoroutine(DownloadRoomImg(roomImgIdx, roomItem));
             StartCoroutine(DownloadAvatarImg(roomImgIdx, roomItem));
-            roomItem.nickName.text = nickNmae[roomImgIdx];
+            roomItem.id.text = id[roomImgIdx];
             roomItem.memberCode = memberCode[roomImgIdx];
             //while ((downLoadAvatarCount + downLoadRoomCount) < (roomImgIdx + 1)*2) yield return null;
             roomImgIdx++;
@@ -105,7 +108,7 @@ public class WarpManager : MonoBehaviour
         int tmpCnt = 0;
         while(tmpCnt < 7){
             memberCode[tmpCnt] = int.Parse(json["data"]["memberDtoList"][tmpCnt]["memberCode"].ToString());
-            nickNmae[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
+            id[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
             roomImagePath[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["memberRoomImage"].ToString();
             avatarImagePath[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["avatarImagePath"].ToString();
             tmpCnt++;

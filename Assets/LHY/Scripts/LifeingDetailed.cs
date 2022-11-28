@@ -98,6 +98,7 @@ public class LifeingDetailed : MonoBehaviour
         HttpManager.instance.memberCode = searchID.memberCode;
     }
 
+
     public void DestroyMe()
     {
         Destroy(gameObject);

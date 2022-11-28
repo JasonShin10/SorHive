@@ -331,7 +331,8 @@ MonoBehaviour:
   memberCode: 0
   avatarImage: {fileID: 6369732472810516957}
   roomImage: {fileID: 1505439629294333507}
-  nickName: {fileID: 1505439628364985370}
+  id: {fileID: 1505439628364985370}
+  searchID: {fileID: 0}
 --- !u!1 &1505439629294333511
 GameObject:
   m_ObjectHideFlags: 0
