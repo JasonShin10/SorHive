@@ -152,13 +152,13 @@ public class WarpLobbyManager : MonoBehaviourPunCallbacks
 
     public void CreateFeedUI()
     {
-        FeedNum = Directory.GetFiles(Application.dataPath + "/LHY/FeedData/").Length;
+        FeedNum = Directory.GetFiles(Application.persistentDataPath + "/LHY/FeedData/").Length;
         //�ǵ��� ������ �ҷ�����
         //LoadFeedData();
         // FeedManager.FeedNum;
         for(int i = 1; i <= FeedNum; i++)
         {
-            string path = Application.dataPath + "/LHY/FeedData/feedData" + i + ".txt";
+            string path = Application.persistentDataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
             print(FeedNum+"�ǵ尳��");
 

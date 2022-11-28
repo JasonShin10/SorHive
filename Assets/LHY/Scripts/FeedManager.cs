@@ -92,7 +92,7 @@ public class FeedManager : MonoBehaviour
 
         print("사진번호"+feedInfo.feedtextureNum);
 
-        string path = Application.dataPath + "/LHY/FeedData";
+        string path = Application.persistentDataPath + "/LHY/FeedData";
         if(!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);

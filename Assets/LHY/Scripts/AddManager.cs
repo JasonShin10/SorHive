@@ -233,8 +233,22 @@ public class AddManager : MonoBehaviour
         
         //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
         JObject json = new JObject();
+        if(File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
+        {
         json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
         File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
+        }
+        else
+        {
+            //Directory.Exists(Application.persistentDataPath + "/Resources");
+            if(!Directory.Exists(Application.persistentDataPath + "/Resources"))
+            {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+            Directory.CreateDirectory(Application.persistentDataPath + "/Resources/ZRoomImage");
+                json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
+                File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
+            }
+        }
     }
     #region 임시로그인
     public void OnClickLogin()
@@ -449,6 +463,10 @@ public class AddManager : MonoBehaviour
             if(info.wallTag == "WallLeft")
             {
                 createObj.gameObject.tag = "WallLeft";
+            }
+            else
+            {
+                createObj.gameObject.tag = "WallRight";
             }
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
@@ -673,9 +691,37 @@ public class AddManager : MonoBehaviour
     #region Post
     public void OnSaveSignIn()
     {
+        print("1111");
         FurnitureInfo info = new FurnitureInfo();
+        if(Directory.Exists(Application.persistentDataPath + "/Resources"))
+        {
+            print("4444444444444444444444");
+        }
+        else
+        {
+            print("5555555555555555");
+        }
+
+        if (Directory.Exists(Application.persistentDataPath + "/Resources/ZRoomImage"))
+        {
+            print("6666666666666666");
+        }
+        else
+        {
+            print("777777777777777777777");
+        }
+
+        if(File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
+        {
+            print("888888888888888");
+        }
+        else
+        {
+            print("9999999999999999");
+        }
         info.roomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
-        //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+        print("2222");
+        //info.offlineRoomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
         info.furnitures = objectInfoList;
         //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
         //arrayJson.furnitures = objectInfoList;
@@ -683,6 +729,7 @@ public class AddManager : MonoBehaviour
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
         requester.url = "http://52.79.209.232:8080/api/v1/room";
+        print("3333333333");
         requester.requestType = RequestType.POST;
         requester.requestName = "OnSaveSignIn";
         //post data 셋팅
@@ -695,8 +742,8 @@ public class AddManager : MonoBehaviour
     //public void OnDefaultSaveSignIn()
     //{
     //    FurnitureInfo info = new FurnitureInfo();
-    //    info.roomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
-    //    //info.offlineRoomImage = File.ReadAllBytes(Application.dataPath + "/Resources/ZRoomImage/my0.png");
+    //    info.roomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
+    //    //info.offlineRoomImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
     //    info.furnitures = objectInfoList;
     //    //ArrayJson<ObjectInfo> arrayJson = new ArrayJson<ObjectInfo>();
     //    //arrayJson.furnitures = objectInfoList;
@@ -732,7 +779,7 @@ public class AddManager : MonoBehaviour
         objectInfo.angle = ang;
         string jsonData = JsonUtility.ToJson(objectInfo, true);
         // 저장경로
-        string path = Application.dataPath + "/furniture.txt";
+        string path = Application.persistentDataPath + "/furniture.txt";
         // 파일로 저장
         File.WriteAllText(path, jsonData);
         print(jsonData);
@@ -748,7 +795,7 @@ public class AddManager : MonoBehaviour
         string jsonData = JsonUtility.ToJson(arrayJson, true);
         print(jsonData);
         // 저장경로
-        string path = Application.dataPath + "/Data";
+        string path = Application.persistentDataPath + "/Data";
 
         //만약에 경로가 없다면
         if (Directory.Exists(path) == false)
@@ -770,7 +817,7 @@ public class AddManager : MonoBehaviour
         //texture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         //texture.Apply();
 
-        //File.WriteAllBytes($"{Application.dataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
+        //File.WriteAllBytes($"{Application.persistentDataPath + "/Resources/ZRoomImage"} /{screenShotName}.png", texture.EncodeToPNG());
         //EditorApplication.ExecuteMenuItem("Assets/Refresh");
     }
     #endregion 
@@ -778,7 +825,7 @@ public class AddManager : MonoBehaviour
     public void OnLoad()
     {
         //저장된 정보 불러오고
-        string path = Application.dataPath + "/furniture.txt";
+        string path = Application.persistentDataPath + "/furniture.txt";
         string jsonData = File.ReadAllText(path);
         //json -> objectInfo 에 셋팅
         objectInfo = JsonUtility.FromJson<ObjectInfo>(jsonData);
@@ -800,7 +847,7 @@ public class AddManager : MonoBehaviour
     public void OnLoad2()
     {
         //파일로 불러오기
-        string path = Application.dataPath + "/Data";
+        string path = Application.persistentDataPath + "/Data";
         string jsonData = File.ReadAllText(path + "/furniture.txt");
 
         //불러온 파일(jsonData) -> ArrayJson<ObjectInfo>

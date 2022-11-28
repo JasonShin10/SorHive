@@ -82,8 +82,8 @@ public class LoadGallery : MonoBehaviour
         avatarImageInfo.avatarImageName = avatarImgName;
 
         //PC
-        //avatarImageInfo.avatarImage = File.ReadAllBytes(Application.dataPath + "/Resources/01.Pictures/human1.png");
-        //avatarImageInfo.avatarImageName = Path.GetFileName(Application.dataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
+        //avatarImageInfo.avatarImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/01.Pictures/human1.png");
+        //avatarImageInfo.avatarImageName = Path.GetFileName(Application.persistentDataPath + "/Resources/01.Pictures/human1.png").Split('.')[0];
 
         print(avatarImageInfo.avatarImage);
         print(avatarImageInfo.avatarImageName);
