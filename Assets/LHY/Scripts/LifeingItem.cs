@@ -131,9 +131,6 @@ public class LifeingItem : MonoBehaviour
         //lifeingImageInfo[i].
 
         lifeingImageList.Add(lifeingImageInfo);
-
-
-
     }
 
     public void OnCilckImageSaveAI()
