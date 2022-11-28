@@ -42,6 +42,7 @@ public class SearchID : MonoBehaviour
     public bool firstFollowingCheck = true;
     public bool firstFollowerCheck = true;
     public bool firstGetRoomImgae = false;
+    public bool followingCountBool = true;
     public int followingIdNum;
     public int memberCode;
     public List<UserGetInfo> userInfoList = new List<UserGetInfo>();
@@ -58,6 +59,8 @@ public class SearchID : MonoBehaviour
     public string followerCount;
     public string followingCount;
     public string roomOwnerString;
+    public string followerCountSecond;
+    public string followingCountSecond;
 
     //public GameObject ContentHolder;
 
@@ -162,7 +165,6 @@ public class SearchID : MonoBehaviour
         requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
         HttpManager.instance.SendRequest(requester);
-
     }
 
     private void OnClickDownload(DownloadHandler handler)
@@ -276,20 +278,25 @@ public class SearchID : MonoBehaviour
         //follower.text = "ÆÈ·Î¿ö" + " " + userThree.followerCount;
         //following.text = "ÆÈ·ÎÀ×" + " " + userThree.followingCount;
         //feedNum.text = "°Ô½Ã¹°" + " " + userThree.feedCount;
+        
         follower.text = " " + userThree.followerCount;
         following.text = " " + userThree.followingCount;
         feedNum.text = " " + userThree.feedCount;
+        
         if (HttpManager.instance.userMemberCode == memberCode)
         {
-            followerCount = " " + userThree.followerCount;
-            followingCount = " " + userThree.followingCount;
-            roomOwnerString = " " + userThree.memberName;
+            if (followingCountBool == true)
+            {
+                followerCount = " " + userThree.followerCount;
+                followingCount = " " + userThree.followingCount;
+                roomOwnerString = " " + userThree.memberName;
+            }
         }
         HttpManager.instance.memberCode = userThree.memberCode;
         userGetInfo.followingCount = userThree.followingCount;
         userGetInfo.feedCount = userThree.feedCount;
         print(userData);
-
+        followingCountBool = true;
         print("Á¶È¸¿Ï·á");
     }
     #endregion
@@ -555,7 +562,6 @@ public class SearchID : MonoBehaviour
     public void OnClickFollowerVisit()
     {
         myPageButton.onClick.Invoke();
-
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject.GetComponentInChildren<Text>().text);
 
@@ -845,6 +851,7 @@ public class SearchID : MonoBehaviour
     #region OnClickDeleteFollowing()
     public void OnClickDeleteFollowing()
     {
+        followingCountBool = false;
         GetThree();
         GameObject clickObject = EventSystem.current.currentSelectedGameObject;
         print(clickObject);
@@ -877,6 +884,7 @@ public class SearchID : MonoBehaviour
 
     public void OnClickDeleteFollowingMyProfile()
     {
+        followingCountBool = false;
         GetThree();
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
