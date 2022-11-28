@@ -38,6 +38,8 @@ public class ChatManager : MonoBehaviour
 
     public Text myId;
 
+    
+
     List<ChatLog> chatLog = new List<ChatLog>();
 
     public RawImage tmpProfileImage;
@@ -48,6 +50,9 @@ public class ChatManager : MonoBehaviour
 
     int chatLogBarLength = 0;
 
+    public bool timeBool = true;
+
+    public bool chatListTime = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +64,13 @@ public class ChatManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (timeBool == false && chatListTime == true)
+        {
+            ChatListTime();
+            timeBool = true;
+            chatListTime = false;
+            
+        }
     }
 
     // chatList를 전체 다 불러오는 것
@@ -85,8 +96,22 @@ public class ChatManager : MonoBehaviour
             while (processNum > 1) yield return null;
             processNum--;
         }
-        while (i < chatLogBarLength) yield return null;
-        ApplyChatList();
+        //while (i < chatLogBarLength) yield return null;
+        //if(timeBool ==false)
+        //{
+
+        //ApplyChatList();
+        //}
+    }
+
+    public void ChatListTime()
+    {
+        int i = 0;
+        //while (i < chatLogBarLength)
+        //{
+            ApplyChatList();
+        //    i++;
+        //}
     }
 
     public IEnumerator downloadMyImage()
@@ -106,7 +131,8 @@ public class ChatManager : MonoBehaviour
 
 
     private IEnumerator DownloadRoomImg(int imageIdx = 0)
-    {            
+    {
+        timeBool = true;
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(chatLog[imageIdx].profileImageUrl);
         print(chatLog[imageIdx].profileImageUrl);
         yield return www.SendWebRequest();
@@ -118,6 +144,8 @@ public class ChatManager : MonoBehaviour
         {
             chatLog[imageIdx].profileImage.texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         }
+        //ApplyChatList();
+        timeBool = false;
         www.Dispose();
     }
 

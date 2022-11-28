@@ -213,7 +213,7 @@ MonoBehaviour:
   chatItemNum: 0
   isMe: 0
   nickName: {fileID: 5511896417636334296}
-  profileImage: {fileID: 0}
+  profileImage: {fileID: 3714406986811344621}
   chatText: {fileID: 6823100882436307539}
   writeTime: {fileID: 4215923130459373431}
 --- !u!222 &3354915721976289107
