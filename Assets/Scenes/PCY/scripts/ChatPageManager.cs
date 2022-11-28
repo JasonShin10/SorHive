@@ -95,7 +95,7 @@ public class ChatPageManager : MonoBehaviour
                 {   // 보낸 사람이 상대방일 때
                     chatItem.isMe = false;
                     chatItem.nickName.text = guestNickName.text;
-                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = myProfileImage.texture;
+                    chatItem.transform.GetChild(0).GetComponent<RawImage>().texture = guestProfileImage.texture;
                 }
                 else
                 {

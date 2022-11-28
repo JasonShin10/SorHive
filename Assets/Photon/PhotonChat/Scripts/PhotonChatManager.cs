@@ -38,7 +38,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public List<string> total_messages = new List<string>();
 
     int guestMemberCode = 0;
-
+    public string guestMemberName = "";
 
     private void Awake()
     {
@@ -113,7 +113,6 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         if(chatField.text != "" && Input.GetKey(KeyCode.Return))
         {
             SubmitPublicChatOnClick();
-            currentChat = chatField.text;
         }
        
     }
@@ -153,17 +152,21 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         
     }
 
+    
     // 모든 사람에게 받기
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
         string msgs = "";
         for (int i = 0; i < senders.Length; i++)
         {
-            msgs = string.Format("{0}: {1}", senders[i], messages[i]);
+            print(senders[i]);
+            msgs = string.Format("{0}",  messages[i]);
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
             chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
+            chat.transform.Find("NickName").transform.GetChild(0).GetComponent<Text>().text = "";
+            chat.transform.Find("ChatTime").transform.GetChild(0).GetComponent<Text>().text = "";
+            chat.transform.Find("RawImage").gameObject.SetActive(false);
         }
-        print(msgs);
     }
 
     // 한명에게 받기
@@ -173,8 +176,8 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
         msgs = string.Format("(Private) {0}: {1}", sender, message);
 
-        GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-        chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
+        // GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+        // chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
 
         Debug.Log(msgs);
     }
@@ -212,7 +215,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SubmitPublicChatOnClick()
     {
-        if (chatClient != null && currentChat == "")
+        if (chatClient != null && currentChat != "")
         {
             chatClient.PublishMessage("RegionChannel", currentChat);
             print(currentChat);
@@ -222,8 +225,8 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             insertMessageToList(currentChat, nowTime);
             // 챗박스 프리펩을 생성하여 채팅을 보여준다.
 
-            GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-            chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
+            //GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+            //chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
             chatField.text = "";
             currentChat = "";        
             //chatText.text = currentChat;
@@ -251,6 +254,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SendChatToServer()
     {
+        print("채팅 서버에 보내기");
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
         // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
@@ -300,8 +304,8 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             chatClient.SendPrivateMessage(privateReceiver, currentChat);
             chatField.text = "";
             currentChat = "";
-            GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-            chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
+            //GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+            //chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
             //chatText.text = chatDisplay.text;
         }
     }
