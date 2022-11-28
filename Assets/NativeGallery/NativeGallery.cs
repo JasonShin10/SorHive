@@ -522,7 +522,7 @@ public static class NativeGallery
 
 	private static string GetTemporarySavePath( string filename )
 	{
-		string saveDir = Path.Combine( Application.persistentDataPath, "NGallery" );
+		string saveDir = Path.Combine( Application.dataPath, "NGallery" );
 		Directory.CreateDirectory( saveDir );
 
 #if !UNITY_EDITOR && UNITY_IOS

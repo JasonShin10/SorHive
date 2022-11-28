@@ -566,7 +566,7 @@ namespace IngameDebugConsole
 #endif
 			}
 
-			DebugLogConsole.AddCommand( "logs.save", "Saves logs to persistentDataPath", SaveLogsToFile );
+			DebugLogConsole.AddCommand( "logs.save", "Saves logs to dataPath", SaveLogsToFile );
 			DebugLogConsole.AddCommand<string>( "logs.save", "Saves logs to the specified file", SaveLogsToFile );
 
 #if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
@@ -1670,7 +1670,7 @@ namespace IngameDebugConsole
 
 		private void SaveLogsToFile()
 		{
-			SaveLogsToFile( Path.Combine( Application.persistentDataPath, System.DateTime.Now.ToString( "dd-MM-yyyy--HH-mm-ss" ) + ".txt" ) );
+			SaveLogsToFile( Path.Combine( Application.dataPath, System.DateTime.Now.ToString( "dd-MM-yyyy--HH-mm-ss" ) + ".txt" ) );
 		}
 
 		private void SaveLogsToFile( string filePath )

@@ -180,13 +180,14 @@ public class RoomInManager : MonoBehaviourPunCallbacks
 
         requester.onComplete = OnCompleteDeleteGuestBook;
         requester.requestName = "GuestBookDelete";
+        Destroy(clickObject.gameObject.transform.parent.gameObject);
         //HttpManager에게 요청
         HttpManager.instance.SendRequest(requester);
+        //AddManager.instance.GetPostAll();
 
     }
     public void OnCompleteDeleteGuestBook(DownloadHandler handler)
     {
-        AddManager.instance.GetPostAll();
     }
     public void CreateObject(GuestBookJsonInfo info)
     {
