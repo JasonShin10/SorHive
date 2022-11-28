@@ -464,10 +464,6 @@ public class AddManager : MonoBehaviour
             {
                 createObj.gameObject.tag = "WallLeft";
             }
-            else
-            {
-                createObj.gameObject.tag = "WallRight";
-            }
             createObj.transform.position = info.position;
             createObj.transform.localScale = info.scale;
             createObj.transform.eulerAngles = info.angle;
