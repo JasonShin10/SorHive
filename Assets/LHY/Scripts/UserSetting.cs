@@ -282,7 +282,6 @@ public class UserSetting : MonoBehaviour
         {   // 정상로그인 아닐 시
             print("정상적인 로그인이 아닙니다.");
             loginStatusText.text = "정상 로그인 아님";
-
         }
     }
 
