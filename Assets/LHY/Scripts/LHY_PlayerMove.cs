@@ -110,14 +110,15 @@ public class LHY_PlayerMove : MonoBehaviourPun, IPunObservable
         float hi = -v + h;
 
         Vector3 dir = new Vector3(w, 0, hi);
+        transform.forward = -dir;
         //Vector2 dir = inputDirection;
-        dir.Normalize();
+        dir.Normalize(); 
 
         P_jump();
 
         dir.y = yVelocity;
         cc.Move(dir * speed * Time.deltaTime);
-
+        //return new Vector3(w, 0, hi);
     }
 
     public void P_jump()
