@@ -92,10 +92,10 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     string privateReceiver = "";
     string currentChat;
     [SerializeField] InputField chatField;
-    [SerializeField] Text chatDisplay;
     public Transform ChatListContent;
     public GameObject ChatUIFactory;
 
+    private string tmpReceiveBuffer = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -153,24 +153,28 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         
     }
 
+    // 모든 사람에게 받기
     public void OnGetMessages(string channelName, string[] senders, object[] messages)
     {
         string msgs = "";
         for (int i = 0; i < senders.Length; i++)
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
-            chatDisplay.text += "\n" + msgs;
+            tmpReceiveBuffer += msgs;
             //print(msgs);
         }
+        print(tmpReceiveBuffer);
     }
 
+    // 한명에게 받기
     public void OnPrivateMessage(string sender, object message, string channelName)
     {
         string msgs = "";
 
         msgs = string.Format("(Private) {0}: {1}", sender, message);
 
-        chatDisplay.text += "\n" + msgs;
+        GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
+        chat.transform.GetChild(0).GetComponent<Text>().text = msgs;
 
         Debug.Log(msgs);
     }

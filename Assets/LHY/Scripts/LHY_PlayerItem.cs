@@ -1,7 +1,10 @@
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class PlayerInfo
@@ -42,7 +45,7 @@ public class LHY_PlayerItem : MonoBehaviour
 
     void Start()
     {
-        
+        OnClickCustomDataLoad();
     }
 
     // Update is called once per frame
@@ -78,6 +81,40 @@ public class LHY_PlayerItem : MonoBehaviour
             hairType[i].SetActive(false);
         }
         hairType[Hairtype].SetActive(true);
+    }
+
+    public void OnClickCustomDataLoad()
+    {
+        HttpRequester requester = new HttpRequester();
+        requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + HttpManager.instance.memberCode.ToString();
+        requester.requestType = RequestType.GET;
+        requester.onComplete = OnCompleteGetPostAll;
+        requester.requestName = "GetMambersList";
+
+        HttpManager.instance.SendRequest(requester);
+        //HttpManager.instance.secondId = false;
+    }
+
+    private void OnCompleteGetPostAll(DownloadHandler handler)
+    {
+        JObject jsonData = JObject.Parse(handler.text);
+        int faceData = ((int)jsonData["data"]["ownAvatarData"]["faceType"]);
+        int eyeBrowsType = ((int)jsonData["data"]["ownAvatarData"]["eyeBrowsType"]);
+        int eyeType = ((int)jsonData["data"]["ownAvatarData"]["eyeType"]);
+        int hairType = ((int)jsonData["data"]["ownAvatarData"]["hairType"]);
+
+        print(faceData);
+        print(eyeBrowsType);
+        print(eyeType);
+        print(hairType);
+        //PlayerInfo playerdata = new PlayerInfo();
+        FaceType = faceData;
+        EyebrowsType = eyeBrowsType;
+        Eyelashestype = eyeType;
+        Hairtype = hairType;
+
+        //LIfeingData<LifeingItemInfo> lIfeingInfo = JsonUtility.FromJson<LIfeingData<LifeingItemInfo>>(lifingsData);
+        //friendList = lIfeingInfo.userData;
     }
 
     public void OnClickSaveCustomData()
