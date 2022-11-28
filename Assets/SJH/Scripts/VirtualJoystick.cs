@@ -12,10 +12,12 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     [SerializeField, Range(10, 150)]
     private float leverRange;
     private Vector2 inputDirection;
+    private Vector2 inputRotation;
     private bool isInput;
 
     [SerializeField]
     private LHY_PlayerMove controller;
+    public GameObject player;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -40,6 +42,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         isInput = false;
         print(inputDirection);
         controller.MoveUpdate(Vector2.zero);
+        
     }
 
     
@@ -48,7 +51,14 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         Vector2 inputPos = eventData.position - rectTransform.anchoredPosition;
         Vector2 inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
         lever.anchoredPosition = inputVector;
-        inputDirection = inputVector   / leverRange;
+        //inputDirection = inputVector   / leverRange;
+        inputDirection = inputVector / leverRange;
+        
+        //inputRotation.y += Mathf.Abs(inputDirection.y);
+        
+      
+        
+        
         
     }
 
@@ -57,6 +67,10 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // 캐릭터에게 입력벡터를 전달
         controller.MoveUpdate(inputDirection);
         print(inputDirection.x + "/" + inputDirection.y);
+        //player.transform.forward = -controller.MoveUpdate(inputDirection);
+
+
+
     }
 
     // Start is called before the first frame update
@@ -75,7 +89,9 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if(GameObject.Find("Player(Clone)").GetComponent<LHY_PlayerMove>())
         {
+            player = GameObject.Find("Player(Clone)");
             controller = GameObject.Find("Player(Clone)").GetComponent<LHY_PlayerMove>();
+        //player.transform.rotation = Quaternion.Euler(player.transform.rotation.x, inputRotation.y , player.transform.rotation.z);
         }
     }
 }
