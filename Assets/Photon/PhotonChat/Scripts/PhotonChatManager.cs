@@ -38,7 +38,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
     public List<string> total_messages = new List<string>();
 
     int guestMemberCode = 0;
-
+    public string guestMemberName = "";
 
     private void Awake()
     {
@@ -163,7 +163,9 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             msgs = string.Format("{0}",  messages[i]);
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
             chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
-            print(msgs);
+            chat.transform.Find("NickName").transform.GetChild(0).GetComponent<Text>().text = "";
+            chat.transform.Find("ChatTime").transform.GetChild(0).GetComponent<Text>().text = "";
+            chat.transform.Find("RawImage").gameObject.SetActive(false);
         }
     }
 
@@ -252,6 +254,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
 
     public void SendChatToServer()
     {
+        print("채팅 서버에 보내기");
         ChatInfo chatData = new ChatInfo();
         int fromMemberCode = HttpManager.instance.memberCode;
         // int toMemberCode = PhotonNetwork.PlayerList[0].NickName;
