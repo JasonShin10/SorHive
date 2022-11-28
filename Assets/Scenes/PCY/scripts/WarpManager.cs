@@ -27,10 +27,12 @@ public class WarpManager : MonoBehaviour
     public int downLoadAvatarCount = 0;
     
     public RawImage[] warpRoomImage;
-    string[] nickNmae = new string[7];
+    string[] id = new string[7];
     public RawImage[] warpAvatarImage;
     int[] memberCode = new int[7];
     public Text CenterNickName;
+
+    public Text roomOwnerText;
 
     private int finishDownload = 0;
 
@@ -93,7 +95,7 @@ public class WarpManager : MonoBehaviour
             RoomItem roomItem = this.transform.Find("WarpPosManager").transform.GetChild(roomImgIdx).transform.GetChild(0).GetComponent<RoomItem>();
             StartCoroutine(DownloadRoomImg(roomImgIdx, roomItem));
             StartCoroutine(DownloadAvatarImg(roomImgIdx, roomItem));
-            roomItem.nickName.text = nickNmae[roomImgIdx];
+            roomItem.id.text = id[roomImgIdx];
             roomItem.memberCode = memberCode[roomImgIdx];
             //while ((downLoadAvatarCount + downLoadRoomCount) < (roomImgIdx + 1)*2) yield return null;
             roomImgIdx++;
@@ -103,9 +105,13 @@ public class WarpManager : MonoBehaviour
     private void OnClickSet(DownloadHandler handler){
         JObject json = JObject.Parse(handler.text);
         int tmpCnt = 0;
+        if (tmpCnt == 0)
+        {
+            roomOwnerText.text = id[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
+        }
         while(tmpCnt < 7){
             memberCode[tmpCnt] = int.Parse(json["data"]["memberDtoList"][tmpCnt]["memberCode"].ToString());
-            nickNmae[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
+            id[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["id"].ToString();
             roomImagePath[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["memberRoomImage"].ToString();
             avatarImagePath[tmpCnt] = json["data"]["memberDtoList"][tmpCnt]["avatarImagePath"].ToString();
             tmpCnt++;

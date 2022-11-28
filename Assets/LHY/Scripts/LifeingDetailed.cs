@@ -102,6 +102,7 @@ public class LifeingDetailed : MonoBehaviour
         DestroyMe();
     }
 
+
     public void DestroyMe()
     {
         Destroy(gameObject);
