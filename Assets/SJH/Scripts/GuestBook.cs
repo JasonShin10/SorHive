@@ -49,7 +49,10 @@ public class GuestBook : MonoBehaviour
 
             }
         }
-        
+        if(GameObject.Find("Player(Clone)"))
+        {
+            player = GameObject.Find("Player(Clone)");
+        }
         //print(HttpManager.instance.userId);
         //print(HttpManager.instance.id);
         //print(distance);

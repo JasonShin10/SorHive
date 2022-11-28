@@ -12,7 +12,6 @@ using Photon.Pun;
 public class RoomInManager : MonoBehaviourPunCallbacks
 {
     public static RoomInManager instance;
-
     private void Awake()
     {
         instance = this;
@@ -53,7 +52,6 @@ public class RoomInManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         base.OnConnectedToMaster();
-
         PhotonNetwork.JoinLobby();
     }
 
@@ -61,7 +59,6 @@ public class RoomInManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         PhotonNetwork.LoadLevel("MainScenes");
-
     }
 
     public void OnClickJoinLobby()
@@ -85,9 +82,7 @@ public class RoomInManager : MonoBehaviourPunCallbacks
             string path = Application.persistentDataPath + "/SJH/GuestBookData/guestBookData" + i + ".txt";
             //print(Directory.GetFiles(Application.persistentDataPath + "/SJH/GuestBookData/")[i]);
             //print(GuestBookNum + "피드개수");
-
             string jsonData = File.ReadAllText(path);
-
             //피드 아이템을 만들어준다.
             GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
             GuestBookInfo info = JsonUtility.FromJson<GuestBookInfo>(jsonData);
@@ -172,7 +167,6 @@ public class RoomInManager : MonoBehaviourPunCallbacks
         clickObject = EventSystem.current.currentSelectedGameObject;
         HttpManager.instance.guestBookId = int.Parse(clickObject.transform.parent.GetChild(2).GetChild(0).GetComponent<Text>().text);
         GuestBookDelete();
-
     }
 
     public void GuestBookDelete()
@@ -196,8 +190,7 @@ public class RoomInManager : MonoBehaviourPunCallbacks
     }
     public void CreateObject(GuestBookJsonInfo info)
     {
-        GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent);
-        
+        GameObject guestBook = Instantiate(GuestBookUIFactory, GuestBookListContent); 
         guestBook.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(OnDeleteGuestBook);
         GuestBookItem guestBookItem = guestBook.GetComponent<GuestBookItem>();
         guestBookItem.guestBookText.text = info.guestBookContent;
