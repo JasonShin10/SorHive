@@ -161,7 +161,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         {
             msgs = string.Format("{0}: {1}", senders[i], messages[i]);
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-            chat.transform.GetChild(0).GetComponent<Text>().text = msgs;
+            chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
         }
         print(msgs);
     }
@@ -174,7 +174,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
         msgs = string.Format("(Private) {0}: {1}", sender, message);
 
         GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-        chat.transform.GetChild(0).GetComponent<Text>().text = msgs;
+        chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = msgs;
 
         Debug.Log(msgs);
     }
@@ -223,7 +223,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             // 챗박스 프리펩을 생성하여 채팅을 보여준다.
 
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-            chat.transform.GetChild(0).GetComponent<Text>().text = currentChat;
+            chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
             chatField.text = "";
             currentChat = "";        
             //chatText.text = currentChat;
@@ -301,7 +301,7 @@ public class PhotonChatManager : MonoBehaviour, IChatClientListener
             chatField.text = "";
             currentChat = "";
             GameObject chat = Instantiate(ChatUIFactory, ChatListContent);
-            chat.transform.GetChild(0).GetComponent<Text>().text = currentChat;
+            chat.transform.Find("Content").transform.GetChild(0).GetComponent<Text>().text = currentChat;
             //chatText.text = chatDisplay.text;
         }
     }
