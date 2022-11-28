@@ -72,7 +72,7 @@ public class WarpManager : MonoBehaviour
     public void loadRoom(int centerMemberCode)
     {
         print("loadRoom");
-        roomOwnerText.text = centerMemberCode;
+        roomOwnerText.text = centerMemberCode.ToString();
         HttpRequester requester = new HttpRequester();
         requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + centerMemberCode.ToString();
         requester.requestType = RequestType.GET;
