@@ -197,4 +197,9 @@ public class LifeingRoomItem : MonoBehaviour
         LifeingDetails = true;
         // loadingCanvas.SetActive(false);
     }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
+    }
 }

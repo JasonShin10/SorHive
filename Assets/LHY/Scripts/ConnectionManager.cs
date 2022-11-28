@@ -69,7 +69,7 @@ public class ConnectionManager : MonoBehaviourPunCallbacks
     public void OnClickJoinLobby()
     {
         //로비 진입
-        //PhotonNetwork.JoinLobby();
+        PhotonNetwork.JoinLobby();
     }
 
     //로비진입 성공시 호출

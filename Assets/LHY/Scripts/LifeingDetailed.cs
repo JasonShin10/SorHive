@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
@@ -18,9 +19,13 @@ public class LifeingDetailed : MonoBehaviour
 
     public GameObject Lifeing_DetailItem;
 
+    public SearchID searchID;
+
     void Start()
     {
         StartCoroutine(GetTextureR(lifeingImage, profilephoto));
+
+        searchID = GameObject.Find("SearchManager").GetComponent<SearchID>();
     }
 
     IEnumerator GetTextureR(RawImage LifeingImage, RawImage Profilephoto)
@@ -69,6 +74,28 @@ public class LifeingDetailed : MonoBehaviour
         yield return null;
 
             //yield return WaitForSeconds(0.1);
+    }
+
+
+
+    public void OnClickLifeingVisit()
+    {
+        //myPageButton.onClick.Invoke();
+        //myPage.transform.GetChild(2).gameObject.SetActive(false);
+        //myPage.transform.GetChild(8).gameObject.SetActive(true);
+        GameObject clickObject = EventSystem.current.currentSelectedGameObject;
+        print(clickObject.GetComponentInChildren<Text>().text);
+        //id = clickObject.GetComponentInChildren<Text>().text;
+        searchID.id = clickObject.transform.GetChild(0).GetComponent<Text>().text;
+        searchID.memberCode = int.Parse(clickObject.transform.GetChild(1).GetComponent<Text>().text);
+        //followId = int.Parse(clickObject.transform.GetChild(2).GetComponent<Text>().text);
+        searchID.GetRoomImage();
+        //StartCoroutine(GetTextureR(Img));
+        searchID.GetThree();
+        //GetRoomImage();
+        HttpManager.instance.id = searchID.id;
+        HttpManager.instance.fakeId = searchID.id;
+        HttpManager.instance.memberCode = searchID.memberCode;
     }
 
     public void DestroyMe()

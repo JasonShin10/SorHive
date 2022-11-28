@@ -62,57 +62,71 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if (MymemberCode.ToString() != null)
         {
-            if (creat == false)
-            {
-                CreateRoom();
-                creat = true;
-            }
-            else
-            {
-                JoinRoom();
-            }
+            //JoinOrCreateRoom();
+           
+            CreateRoom();         
         }
 
     }
 
     //public string[] curUsersNames;
 
-    //¹æ »ý¼º
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void CreateRoom()
     {
-        //¹æ ¿É¼ÇÀ» ¼³Á¤
+        //ï¿½ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         RoomOptions roomOptions = new RoomOptions();
-        //ÃÖ´ëÀÎ¿ø
+        //ï¿½Ö´ï¿½ï¿½Î¿ï¿½
         roomOptions.MaxPlayers = 2;
-        //·ë ¸®½ºÆ®¿¡ º¸ÀÌÁö ¾Ê°Ô? º¸ÀÌ°Ô?
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½? ï¿½ï¿½ï¿½Ì°ï¿½?
         roomOptions.IsVisible = true;
 
-        //¹æ »ý¼º ¿äÃ»(ÇØ´ç ¿É¼ÇÀ» ÀÌ¿ëÇØ¼­)
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»(ï¿½Ø´ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½)
         //PhotonNetwork.CreateRoom (userName.text, roomOptions);
 
         //PhotonNetwork.CreateRoom(userName.text, roomOptions);
         PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
-       
-        PhotonNetwork.CreateRoom(MymemberCode.ToString(), roomOptions);
+        PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
+
+        //PhotonNetwork.JoinOrCreateRoom(memberCode.ToString(), roomOptions, default);
+    }
+
+    public void JoinOrCreateRoom()
+    {
+        //ï¿½ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        RoomOptions roomOptions = new RoomOptions();
+        //ï¿½Ö´ï¿½ï¿½Î¿ï¿½
+        roomOptions.MaxPlayers = 2;
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½? ï¿½ï¿½ï¿½Ì°ï¿½?
+        roomOptions.IsVisible = true;
+
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»(ï¿½Ø´ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½)
+        //PhotonNetwork.CreateRoom (userName.text, roomOptions);
+
+        //PhotonNetwork.CreateRoom(userName.text, roomOptions);
+        PhotonNetwork.LocalPlayer.NickName = MymemberCode.ToString();
+        PhotonNetwork.CreateRoom(memberCode.ToString(), roomOptions);
+
+        //PhotonNetwork.JoinOrCreateRoom(memberCode.ToString(), roomOptions, default);
     }
 
 
-    //¹æÀÌ »ý¼ºµÇ¸é È£Ãâ µÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ È£ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
         print("OnCreatedRoom");
     }
 
-    //¹æ »ý¼ºÀÌ ½ÇÆÐ µÉ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½É¶ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         base.OnCreateRoomFailed(returnCode, message);
-        
+        JoinRoom();
         print("OnCreateRoomFailed, " + returnCode + ", " + message);
     }
 
-    //¹æ Âü°¡
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void JoinRoom()
     {
         //PhotonNetwork.JoinRoom(userName.text); 
@@ -152,7 +166,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
    
     }*/
 
-    //¹æ Âü°¡°¡ ¿Ï·áµÇ¾úÀ»¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
@@ -171,24 +185,24 @@ public class LobbyManager : MonoBehaviourPunCallbacks
          }
          else if (myRoom == 2)
          {
-             //¹úÁýÅ¸±â ¾À
+             //ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½
              //hotonNetwork.LoadLevel("RoomInScene");
          }*/
     }
 
-    //¹æ Âü°¡°¡ ½ÇÆÐ µÇ¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         base.OnJoinRoomFailed(returnCode, message);
         print("OnJoinRoomFailed, " + returnCode + ", " + message);
     }
 
-    //¹æ ¸ñ·ÏÀÌ º¯°æ µÇ¾úÀ» ¶§(»ý¼º, Á¤º¸°»½Å, »èÁ¦)È£Ãâ ÇØÁÖ´Â ÇÔ¼ö
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½)È£ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
    /* public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        //·ë ¸®½ºÆ® Á¤º¸ °»½Å   
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½   
         UPdateRoomListUI();
-        //·ë ¸®½ºÆ® »ý¼º
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         CreateRoomListUI();
     }*/
 
@@ -218,18 +232,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
   /*  public void CreateFeedUI()
     {
         FeedNum = Directory.GetFiles(Application.persistentDataPath + "/LHY/FeedData/").Length;
-        //ÇÇµåÀÇ Á¤º¸¸¦ ºÒ·¯¿À°í
+        //ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
         //LoadFeedData();
         // FeedManager.FeedNum;
         for(int i = 1; i <= FeedNum; i++)
         {
             string path = Application.persistentDataPath + "/LHY/FeedData/feedData" + i + ".txt";
 
-            print(FeedNum+"ÇÇµå°³¼ö");
+            print(FeedNum+"ï¿½Çµå°³ï¿½ï¿½");
 
             string jsonData = File.ReadAllText(path);
 
-            //ÇÇµå ¾ÆÀÌÅÛÀ» ¸¸µé¾îÁØ´Ù.
+            //ï¿½Çµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
             GameObject feed = Instantiate(feedUIFactory, feedListContent);
 
             FeedInfo info = JsonUtility.FromJson<FeedInfo>(jsonData);
