@@ -5183,7 +5183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &302719181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17639,6 +17639,7 @@ MonoBehaviour:
   firstFollowingCheck: 1
   firstFollowerCheck: 1
   firstGetRoomImgae: 0
+  followingCountBool: 1
   followingIdNum: 0
   memberCode: 0
   userInfoList: []
@@ -17664,6 +17665,8 @@ MonoBehaviour:
   followerCount: 
   followingCount: 
   roomOwnerString: 
+  followerCountSecond: 
+  followingCountSecond: 
 --- !u!4 &1146731189
 Transform:
   m_ObjectHideFlags: 0
@@ -21963,7 +21966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+  m_Color: {r: 0.8901961, g: 0.8901961, b: 0.8901961, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
