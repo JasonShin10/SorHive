@@ -317,6 +317,7 @@ public class HttpManager : MonoBehaviour
         else
         {
             print("네트워크 통신 실패" + webRequest.result + "\n" + webRequest.error);
+            WarpManager.instance.finishDownload = 14;
         }
         webRequest.Dispose();
         print("webRequest끝 reload시작");
