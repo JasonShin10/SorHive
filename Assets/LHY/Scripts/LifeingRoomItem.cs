@@ -29,6 +29,7 @@ public class LifeingRoomItem : MonoBehaviour
     public string avatarImg;
 
     public string roomImageprofile;
+    public string lifingConetent;
 
     public string profileImage;
     public string lifeingImage;
@@ -84,6 +85,7 @@ public class LifeingRoomItem : MonoBehaviour
             lifeingDetailed.NickNameText.text = memberName.text;
             lifeingDetailed.Lifeingimg = lifeingImage;
             lifeingDetailed.memberCode = memberCode;
+            lifeingDetailed.LifeingContent.text = lifingConetent;
 
             LifeingDetails = false;
         }
@@ -193,7 +195,10 @@ public class LifeingRoomItem : MonoBehaviour
         string lifingsDetailData = jsonData["data"]["lifingImagePath"]["lifingImagePath"].ToString();
         print(lifingsDetailData);
 
+        string lifeingConetent = jsonData["data"]["lifingSummary"]["lifingConetent"].ToString();
+
         lifeingImage = lifingsDetailData;
+        lifingConetent = lifeingConetent;
         LifeingDetails = true;
         // loadingCanvas.SetActive(false);
     }
