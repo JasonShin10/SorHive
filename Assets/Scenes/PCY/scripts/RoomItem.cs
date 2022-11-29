@@ -7,13 +7,14 @@ using UnityEngine.Networking;
 public class RoomItem : MonoBehaviour
 {
     public int memberCode;
+    
     public RawImage avatarImage;
     public RawImage roomImage;
     public Text id;
     public SearchID searchID;
     void Start()
     {
-        searchID = GameObject.Find("SearchManager").GetComponent<SearchID>();
+        // searchID = GameObject.Find("SearchManager").GetComponent<SearchID>();
     }
 
     void Update()
@@ -34,9 +35,9 @@ public class RoomItem : MonoBehaviour
         {
             HttpManager.instance.LoadingCanvas.SetActive(true);
             // 네트워크 단계
-            GameObject.Find("RoomWarp").GetComponent<WarpManager>().loadRoom(memberCode);
+            WarpManager.instance.loadRoom(memberCode);
         }
-        else
+        /*else
         {
             searchID.id = id.text;
             searchID.memberCode = memberCode;
@@ -46,28 +47,42 @@ public class RoomItem : MonoBehaviour
             HttpManager.instance.fakeId = searchID.id;
             HttpManager.instance.memberCode = searchID.memberCode;
             searchID.myPageButton.onClick.Invoke();
-        }
+        }*/
 
         // 이미지, 코드 설정 완료 후 작용 단계
     }
 
-    /*public void UpdateRoom(string roomPath)
+    public IEnumerator DownloadRoomImg(string roomImagePath)
     {
-        StartCoroutine(DownloadRoomImg(roomPath));
-    }
+        UnityWebRequest wwwRoom = UnityWebRequestTexture.GetTexture(roomImagePath);
 
-    private IEnumerator DownloadRoomImg(string roomPath)
-    {
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture(roomPath);
-        yield return www.SendWebRequest();
-        if (www.result != UnityWebRequest.Result.Success)
+        yield return wwwRoom.SendWebRequest();
+        if (wwwRoom.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(www.error);
+            Debug.Log(wwwRoom.error);
         }
         else
         {
-            GetComponent<RawImage>().texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+            roomImage.texture = ((DownloadHandlerTexture)wwwRoom.downloadHandler).texture;
         }
-    }*/
+        wwwRoom.Dispose();
+        WarpManager.instance.finishDownload++;
+    }
 
+    public IEnumerator DownloadAvatarImg(string avatarImagePath)
+    {
+        UnityWebRequest wwwAvatar = UnityWebRequestTexture.GetTexture(avatarImagePath);
+
+        yield return wwwAvatar.SendWebRequest();
+        if (wwwAvatar.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(wwwAvatar.error);
+        }
+        else
+        {
+            avatarImage.texture = ((DownloadHandlerTexture)wwwAvatar.downloadHandler).texture;
+        }
+        wwwAvatar.Dispose();
+        WarpManager.instance.finishDownload++;
+    }
 }
