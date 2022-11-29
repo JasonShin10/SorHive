@@ -161,7 +161,7 @@ public class ChatManager : MonoBehaviour
             chatLogBarItem.chatLogBarText.text = chatLog[i].lastMessage;
             chatLogBarItem.lastTime.text = chatLog[i].lastTime;
             chatLogBarItem.memberCode = chatLog[i].guestMemberCode;
-            chatLogBar.transform.GetChild(0).GetComponent<RawImage>().texture = chatLog[i].profileImage.texture;
+            chatLogBarItem.guestProfileImage.texture = chatLog[i].profileImage.texture;
             chatLogBarItem.guestProfileImage = chatLog[i].profileImage;
         }
         StartCoroutine(downloadMyImage());

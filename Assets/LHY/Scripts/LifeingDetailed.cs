@@ -16,6 +16,7 @@ public class LifeingDetailed : MonoBehaviour
 
     public string profileimg;
     public string Lifeingimg;
+    public Text LifeingContent;
 
     public GameObject Lifeing_DetailItem;
 

@@ -184,7 +184,6 @@ public class ChatPageManager : MonoBehaviour
     // 돌아가기 
     public void backToChatListPage()
     {
-
         if (total_messages.Count != 0)
         {
             SendChatToServer();
