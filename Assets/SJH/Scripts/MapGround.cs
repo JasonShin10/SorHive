@@ -218,7 +218,7 @@ public class MapGround : Map
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
 
                     selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
-                    //SaveJson(selectObj.gameObject);
+                    SaveJson(selectObj.gameObject);
 
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
                     AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
@@ -370,7 +370,7 @@ public class MapGround : Map
                 {
                     AddManager.instance.objectInfoList.RemoveAt(i);
                     AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
-                    //return;
+                    return;
                 }
             }
             //전부삭제
