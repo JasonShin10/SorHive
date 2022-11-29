@@ -711,6 +711,7 @@ MonoBehaviour:
   lifeingImage: {fileID: 3117753323596481906}
   profileimg: 
   Lifeingimg: 
+  LifeingContent: {fileID: 3055158910177547675}
   Lifeing_DetailItem: {fileID: 0}
   searchID: {fileID: 0}
   memberCode: 0

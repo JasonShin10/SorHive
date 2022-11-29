@@ -145,10 +145,10 @@ public class LifeingManager : MonoBehaviour
 
     public void ReLoadMambersList()
     {
-        for(int i = 0; i< friendList.Count; i++)
+        /*for(int i = 0; i< friendList.Count; i++)
         {
             Destroy(lifeingRoom[i].gameObject);
-        }
+        }*/
 
         print("a/Clone");
     
