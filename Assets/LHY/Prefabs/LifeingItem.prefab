@@ -65,6 +65,7 @@ MonoBehaviour:
   roomImg: 
   avatarImg: 
   roomImageprofile: 
+  lifingConetent: 
   profileImage: 
   lifeingImage: 
   LifeingDetailed: {fileID: 3117753324141034949, guid: 335a8a240c762264db00db7a277f0dc0, type: 3}
@@ -160,6 +161,7 @@ GameObject:
   - component: {fileID: 4839729457456882190}
   - component: {fileID: 4992758112554100655}
   - component: {fileID: 6796292260082661467}
+  - component: {fileID: 6392675627680305374}
   m_Layer: 5
   m_Name: RoomImage (1)
   m_TagString: Untagged
@@ -269,6 +271,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!223 &6392675627680305374
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237517780998228446}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 50
+  m_TargetDisplay: 0
 --- !u!1 &1583732344696345871
 GameObject:
   m_ObjectHideFlags: 0
