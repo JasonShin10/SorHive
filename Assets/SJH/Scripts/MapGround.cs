@@ -368,8 +368,8 @@ public class MapGround : Map
             {
                 if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
                 {
-                    AddManager.instance.objectInfoList.RemoveAt(i);
                     AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
+                    AddManager.instance.objectInfoList.RemoveAt(i);
                     return;
                 }
             }
