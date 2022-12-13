@@ -65,6 +65,8 @@ public class LifeingManager : MonoBehaviour
 
     public bool memberIdsee = true;
 
+    public float delayTime = 0;
+
 
 
     //public bool end = false;
@@ -153,7 +155,15 @@ public class LifeingManager : MonoBehaviour
         print("a/Clone");
     
         GetMambersList();
+
+        delayTime += Time.deltaTime;
         //main.SetActive(false);
+
+        if (delayTime >= 2)
+        {
+            GetMambersList();
+        }
+
         isUpLoad = true;
     }
 
