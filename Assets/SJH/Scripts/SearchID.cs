@@ -104,7 +104,7 @@ public class SearchID : MonoBehaviour
         //print(HttpManager.instance.id);
         //print(HttpManager.instance.userId);
       
-            if (HttpManager.instance.userMemberCode == memberCode)
+        if (HttpManager.instance.userMemberCode == memberCode)
         {
             myPage.transform.GetChild(2).gameObject.SetActive(true);
             myPage.transform.GetChild(7).gameObject.SetActive(false);

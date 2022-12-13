@@ -113,6 +113,8 @@ public class LifeingManager : MonoBehaviour
                 lifeingRoomItem.lifingNo = friendList[i].lifingNo;
                 lifeingRoomItem.lifingYn = friendList[i].lifingYn;
 
+                lifeingRoomItem.OnClickReload();
+                lifeingRoomItem.LifeingLoad = false;
                 //names[0] = GameObject.Find("RoomPos0").transform.Find("LifeingItem");
                 names[i] = lifeingRoomItem.LifeingName;
                 
@@ -152,9 +154,20 @@ public class LifeingManager : MonoBehaviour
             Destroy(lifeingRoom[i].gameObject);
         }
 
-        print("a/Clone");
+        for (int i = 0; i < friendList.Count; i++)
+        {
+
+            //print(friendList.Count);
+            GameObject Lifeing = Instantiate(llifeingItemFactory, hexPos[i]);
+
+            LifeingRoomItem lifeingRoomItem = Lifeing.GetComponent<LifeingRoomItem>();
+            lifeingRoomItem.OnClickReload();
+            lifeingRoomItem.LifeingLoad = false;
+        }
+            print("a/Clone");
     
         GetMambersList();
+     
 
         delayTime += Time.deltaTime;
         //main.SetActive(false);
@@ -162,6 +175,7 @@ public class LifeingManager : MonoBehaviour
         if (delayTime >= 2)
         {
             GetMambersList();
+            delayTime = 0;
         }
 
         isUpLoad = true;

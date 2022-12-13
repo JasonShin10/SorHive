@@ -203,6 +203,12 @@ public class LifeingRoomItem : MonoBehaviour
         // loadingCanvas.SetActive(false);
     }
 
+    public void OnClickReload()
+    {
+        LifeingLoad = false;
+    }
+
+
     public void DestroyMe()
     {
         Destroy(gameObject);
