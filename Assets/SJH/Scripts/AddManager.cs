@@ -14,7 +14,6 @@ using Newtonsoft.Json.Linq;
 public class GuestBookJsonInfo
 {
     public int roomId;
-    //public byte[] onlineRoomImage;
     public string guestBookContent;
     public string guestBookWriterId;
     public string guestBookId;
@@ -27,21 +26,21 @@ public class ObjectInfo
     public int floorNumber;
     public int furnitureCategoryNumber;
     public int furnitureNumber;
+    public int roomId;
     public GameObject obj;
     public GameObject room;
     public string name;
+    public string wallTag;
     public Vector3 position;
     public Vector3 scale;
     public Vector3 angle;
     public Vector3 boxPosition;
-    public int roomId;
-    public string wallTag;
 }
+
 [System.Serializable]
 public class FurnitureInfo
 {
     public byte[] roomImage;
-    //public byte[] onlineRoomImage;
     public List<ObjectInfo> furnitures;
 }
 
@@ -78,8 +77,8 @@ public class RoomData
 [System.Serializable]
 public class RoomCreator
 {
-    public RoomValue memberCode;
     public string name;
+    public RoomValue memberCode;
     public List<ObjectInfo> furnitures;
 }
 [System.Serializable]
@@ -96,14 +95,7 @@ public class RoomImage
 
 public class AddManager : MonoBehaviour
 {
-    [SerializeField] string screenShotName;
     public static AddManager instance;
-    public Transform deletetObj;
-    public Button deleteButton;
-    public ObjectInfo objectInfo;
-    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
-    public GuestBookJsonInfo guestBookJsonInfo;
-    public List<GuestBookJsonInfo> guestBookJsonInfoList = new List<GuestBookJsonInfo>();
     private void Awake()
     {
         if (!instance)
@@ -113,12 +105,19 @@ public class AddManager : MonoBehaviour
 
     }
 
+    [SerializeField]
+    string screenShotName;
+    public Canvas rotate;
+    public Camera cam;
     //오브젝트들이 생성되는 장소
     public Transform SpawnPos;
-
-    public Camera cam;
-    //침대오브젝트
-    public Canvas rotate;
+    public Transform deletetObj;
+    public Button deleteButton;
+    public ObjectInfo objectInfo;
+    public GuestBookJsonInfo guestBookJsonInfo;
+    public List<ObjectInfo> objectInfoList = new List<ObjectInfo>();
+    public List<GuestBookJsonInfo> guestBookJsonInfoList = new List<GuestBookJsonInfo>();
+ 
     #region 오브젝트 배열
     public GameObject[] bedItems;
     //의자오브젝트
@@ -212,39 +211,24 @@ public class AddManager : MonoBehaviour
         mats = Resources.LoadAll<Material>("WallPaper");
         floor = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
-        
-        #endregion 
-        //OnLoad2();
-        //OnClickLogin();
-        print(1);
+
+        #endregion
         GetPostAll();
-        //OnLoadJson();
         objActive.AddRange(GameObject.FindGameObjectsWithTag("Furniture"));
         scene = SceneManager.GetActiveScene();
-        //if (scene.name == "RoomInScene")
-        //{
-        //    for (int i = 0; i < objActive.Count; i++)
-        //    {
-        //        objActive[i].GetComponent<Rigidbody>().isKinematic = false;
-        //        objActive[i].GetComponent<BoxCollider>().isTrigger = false;
-        //        objActive[i].GetComponent<BoxCollider>().center = new Vector3(objActive[i].GetComponent<BoxCollider>().center.x, objActive[i].GetComponent<BoxCollider>().center.y, 0);
-        //    }
-        //}
-        
-        //C:\Users\sjaso\Documents\GitHub\SorHive\Assets\Resources\ZRoomImage
+
         JObject json = new JObject();
-        if(File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
+        if (File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
         {
-        json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
-        File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
+            json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
+            File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
         }
         else
         {
-            //Directory.Exists(Application.persistentDataPath + "/Resources");
-            if(!Directory.Exists(Application.persistentDataPath + "/Resources"))
+            if (!Directory.Exists(Application.persistentDataPath + "/Resources"))
             {
-            Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
-            Directory.CreateDirectory(Application.persistentDataPath + "/Resources/ZRoomImage");
+                Directory.CreateDirectory(Application.persistentDataPath + "/Resources");
+                Directory.CreateDirectory(Application.persistentDataPath + "/Resources/ZRoomImage");
                 json["byte"] = File.ReadAllBytes(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png");
                 File.WriteAllText(Application.persistentDataPath + "/test.txt", json.ToString());
             }
@@ -254,7 +238,6 @@ public class AddManager : MonoBehaviour
     public void OnClickLogin()
     {
         LoginInfo2 logdata = new LoginInfo2();
-        //logdata.memberId = "john1230";
         HttpManager.instance.userId = "john1230";
         logdata.memberId = HttpManager.instance.id;
         print(HttpManager.instance.id);
@@ -280,18 +263,13 @@ public class AddManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //OnClickLogin();
             GetPostAll();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             OnClickLogin();
         }
-
-        //print(n);
-
     }
-
     #region GetRoom
     public void GetPostAll()
     {
@@ -365,7 +343,7 @@ public class AddManager : MonoBehaviour
             }
 
         }
-       
+
         n = objectInfoList.Count;
 
         for (int i = 0; i < objectInfoList.Count; i++)
@@ -460,7 +438,7 @@ public class AddManager : MonoBehaviour
             {
                 createObj.gameObject.name = info.name;
             }
-            if(info.wallTag == "WallLeft")
+            if (info.wallTag == "WallLeft")
             {
                 createObj.gameObject.tag = "WallLeft";
             }
@@ -689,7 +667,7 @@ public class AddManager : MonoBehaviour
     {
         print("1111");
         FurnitureInfo info = new FurnitureInfo();
-        if(Directory.Exists(Application.persistentDataPath + "/Resources"))
+        if (Directory.Exists(Application.persistentDataPath + "/Resources"))
         {
             print("4444444444444444444444");
         }
@@ -707,7 +685,7 @@ public class AddManager : MonoBehaviour
             print("777777777777777777777");
         }
 
-        if(File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
+        if (File.Exists(Application.persistentDataPath + "/Resources/ZRoomImage/my0.png"))
         {
             print("888888888888888");
         }
@@ -855,12 +833,6 @@ public class AddManager : MonoBehaviour
         }
     }
     #endregion
-
-    public void CreateMat(ObjectInfo info)
-    {
-
-
-    }
     #region Button
     public void OnClickButton(int index)
     {
@@ -1509,8 +1481,4 @@ public class AddManager : MonoBehaviour
         GameManager.instance.selected.transform.Rotate(0, -90, 0);
     }
 
-    public void OnDestroyObject()
-    {
-        
-    }
 }
