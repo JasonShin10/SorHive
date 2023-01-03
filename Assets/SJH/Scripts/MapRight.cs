@@ -4,11 +4,29 @@ using UnityEngine;
 
 public class MapRight : Map
 {
+    
+    Vector3 startPos;
+    Quaternion startLocation;
+    Ray ray;
+    RaycastHit hit;
     public Material[] mats;
-
+    GameObject floor;
+    float box;
     void Start()
     {
-        Tile(firstPos.y, firstPos.z);
+        //Tile(firstPos.y, firstPos.z);
+        for (int i = 0; i <= tileX; i++)
+        {
+            for (int j = 0; j <= tileX; j++)
+            {
+                floor = Instantiate(quadFactory);
+                Vector3 firstPos = transform.position;
+                firstPos.y += j;
+                firstPos.z += i;
+                floor.transform.position = firstPos;
+                floor.transform.rotation = transform.rotation;
+            }
+        }
         mats = Resources.LoadAll<Material>("WallPaper");
         rb = GetComponent<MeshRenderer>();
         floorMats = Resources.LoadAll<Material>("floorMat");

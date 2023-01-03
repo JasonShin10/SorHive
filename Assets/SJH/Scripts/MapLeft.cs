@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class MapLeft : Map
 {
+    
+     Vector3 startPos;
+     Quaternion startLocation;
+     Ray ray;
+     RaycastHit hit;
+    GameObject floor;
+    float box;
     void Start()
     {
-        Tile(firstPos.x, firstPos.y);
+        //Tile(firstPos.x, firstPos.y);
+        for (int i = 0; i <= tileX; i++)
+        {
+            for (int j = 0; j <= tileY; j++)
+            {
+                floor = Instantiate(quadFactory);
+                Vector3 firstPos = transform.position;
+                firstPos.x += j;
+                firstPos.y += i;
+                floor.transform.position = firstPos;
+                floor.transform.rotation = transform.rotation;
+            }
+        }
     }
 
     void Update()

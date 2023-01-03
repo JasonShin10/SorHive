@@ -4,13 +4,29 @@ using UnityEngine.UI;
 public class MapGround : Map
 {
 
-
-    Button delete;
     
-
+    Vector3 startPos;
+    Quaternion startLocation;
+    Ray ray;
+    RaycastHit hit;
+    Button delete;
+    GameObject floor;
+    float box;
     void Start()
     {
-        Tile(firstPos.x, firstPos.z);
+        //Tile(firstPos.x, firstPos.z);
+        for (int i = 0; i <= tileX; i++)
+        {
+            for (int j = 0; j <= tileX; j++)
+            {
+                floor = Instantiate(quadFactory);
+                Vector3 firstPos = transform.position;
+                firstPos.x += j;
+                firstPos.z += i;
+                floor.transform.position = firstPos;
+                floor.transform.rotation = transform.rotation;
+            }
+        }
         floorMats = Resources.LoadAll<Material>("floorMat");
         rb = GetComponent<MeshRenderer>();
         delete = AddManager.instance.deleteButton;

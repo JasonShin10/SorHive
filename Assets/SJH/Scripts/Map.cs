@@ -17,13 +17,10 @@ public class Map : MonoBehaviour
     public float ox;
     public float oz;
     public float oy;
-    public float box;
+    
     public bool located = true;
     public Vector3 firstPos;
-    public Vector3 startPos;
-    public Quaternion startLocation;
-    public Ray ray;
-    public RaycastHit hit;
+    float box;
     public Transform selectObj;
     public MeshRenderer rb;
 
@@ -40,21 +37,21 @@ public class Map : MonoBehaviour
        
     }
 
-    public void Tile(float a, float b)
-    {
-        for (int i = 0; i <= tileX; i++)
-        {
-            for (int j = 0; j <= tileX; j++)
-            {
-                firstPos = transform.position;
-                floor = Instantiate(quadFactory);
-                a += j;
-                b += i;
-                floor.transform.position = firstPos;
-                floor.transform.rotation = transform.rotation;
-            }
-        }
-    }
+    //public void Tile(float a, float b)
+    //{
+    //    for (int i = 0; i <= tileX; i++)
+    //    {
+    //        for (int j = 0; j <= tileX; j++)
+    //        {
+    //            firstPos = transform.position;
+    //            floor = Instantiate(quadFactory);
+    //            a += j;
+    //            b += i;
+    //            floor.transform.position = firstPos;
+    //            floor.transform.rotation = transform.rotation;
+    //        }
+    //    }
+    //}
 
     public void SaveJson(GameObject obj)
     {
