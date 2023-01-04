@@ -96,8 +96,8 @@ public class RoomInManager : MonoBehaviourPunCallbacks
     //{
     //    HttpRequester requester = new HttpRequester();
     //    print(HttpManager.instance.memberCode);
-    //    //requester.url = "http://52.79.209.232:8080/api/v1/room/" + HttpManager.instance.memberCode;
-    //    requester.url = "http://52.79.209.232:8080/api/v1/room/" + 1;
+    //    //requester.url = "http://13.124.225.86:8080/api/v1/room/" + HttpManager.instance.memberCode;
+    //    requester.url = "http://13.124.225.86:8080/api/v1/room/" + 1;
 
     //    requester.requestType = RequestType.GET;
     //    requester.onComplete = OnCompleteGetPostGuestBookAll;
@@ -174,7 +174,7 @@ public class RoomInManager : MonoBehaviourPunCallbacks
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
-        requester.url = "http://52.79.209.232:8080/api/v1/guestbook/" + HttpManager.instance.guestBookId;
+        requester.url = "http://13.124.225.86:8080/api/v1/guestbook/" + HttpManager.instance.guestBookId;
         requester.requestType = RequestType.DELETE;
         //post data 셋팅
 

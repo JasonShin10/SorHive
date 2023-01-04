@@ -9,11 +9,9 @@ public class Furniture : MonoBehaviour
    
     public Vector3 startPos;
     public Quaternion startRotation;
-    // Start is called before the first frame update
+
     void Start()
     {
-        //canLocated = true;
-        //located = true;
     }
 
     // Update is called once per frame

@@ -5,24 +5,28 @@ using UnityEngine;
    
 public class Map : MonoBehaviour
 {
-    public GameObject quadFactory;
-    public GameObject cube;
-    public GameObject currCube;
-    public Material[] floorMats;
-    public int tileX = 16;
-    public int tileZ = 16;
-    public int tileY = 16;
-    public int select = 0;
-    public int num;
-    public float ox;
-    public float oz;
-    public float oy;
-    
-    public bool located = true;
-    public Vector3 firstPos;
-    float box;
-    public Transform selectObj;
-    public MeshRenderer rb;
+    //protected 상속받은 자식들만 접근 가능
+    protected GameObject quadFactory;
+    protected GameObject cube;
+    protected GameObject currCube;
+    protected Material[] floorMats;
+    protected int tileX = 16;
+    protected int tileZ = 16;
+    protected int tileY = 16;
+    protected int select = 0;
+    protected int num;
+    protected float ox;
+    protected float oz;
+    protected float oy; 
+    protected bool located = true;
+    protected Vector3 startPos;
+    protected Quaternion startLocation;
+    protected Ray ray;
+    protected RaycastHit hit;
+    protected Vector3 firstPos;
+    protected float box;
+    protected Transform selectObj;
+    protected MeshRenderer rb;
 
     GameObject floor;
     void Start()
@@ -37,7 +41,7 @@ public class Map : MonoBehaviour
        
     }
 
-    //public void Tile(float a, float b)
+    //protected void Tile(float a, float b)
     //{
     //    for (int i = 0; i <= tileX; i++)
     //    {
@@ -53,7 +57,7 @@ public class Map : MonoBehaviour
     //    }
     //}
 
-    public void SaveJson(GameObject obj)
+    protected virtual void SaveJson(GameObject obj)
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
         {
@@ -73,20 +77,14 @@ public class Map : MonoBehaviour
         AddManager.instance.objectInfo.scale = obj.transform.localScale;
         AddManager.instance.objectInfo.angle = obj.transform.eulerAngles;
         AddManager.instance.objectInfo.name = obj.gameObject.name;
-        if (gameObject.GetComponent<MapLeft>())
-        {
-            AddManager.instance.objectInfo.wallTag = "WallLeft";
-        }
-        else if (gameObject.GetComponent<MapGround>())
-        {
-            AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
-        }
-        else if (gameObject.GetComponent<MapRight>())
-        {
-            AddManager.instance.objectInfo.wallTag = "WallRight";
-        }
-        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
 
-   
+    protected virtual void Room(GameObject item)
+    {
+        currCube = Instantiate(item);
+        currCube.name = item.name;
+        currCube.layer = LayerMask.NameToLayer("Obj");       
+    }
+
+
 }

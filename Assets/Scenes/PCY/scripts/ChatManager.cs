@@ -78,7 +78,7 @@ public class ChatManager : MonoBehaviour
     {
         print("loadChatList");
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/chatting";
+        requester.url = "http://13.124.225.86:8080/api/v1/chatting";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnClickSet;
         StartCoroutine(HttpManager.instance.DownLoadChatList(requester));

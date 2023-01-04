@@ -5,16 +5,12 @@ public class MapGround : Map
 {
 
     
-    Vector3 startPos;
-    Quaternion startLocation;
-    Ray ray;
-    RaycastHit hit;
+
     Button delete;
     GameObject floor;
-    float box;
+    
     void Start()
     {
-        //Tile(firstPos.x, firstPos.z);
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileX; j++)
@@ -53,7 +49,6 @@ public class MapGround : Map
                 }
             }
         }
-
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -223,6 +218,12 @@ public class MapGround : Map
         GameObject.Find("Floor.007").GetComponent<MeshRenderer>().material = floorMats[AddManager.instance.currButtonNum];
     }
 
+    protected override void SaveJson(GameObject obj)
+    {
+        base.SaveJson(obj);
+        AddManager.instance.objectInfo.boxPosition = new Vector3(obj.GetComponent<BoxCollider>().center.x, box, obj.GetComponent<BoxCollider>().center.y);
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+    }
     void SaveMat(GameObject objRoom)
     {
         for (int i = 0; i < AddManager.instance.objectInfoList.Count; i++)
@@ -287,11 +288,8 @@ public class MapGround : Map
         AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(false);
     }
 
-    void Room(GameObject item)
+    protected override void Room(GameObject item)
     {
-        currCube = Instantiate(item);
-        currCube.name = item.name;   
-        currCube.layer = LayerMask.NameToLayer("Obj");
         int x = (int)(hit.point.x);
         int z = (int)(hit.point.z);
         currCube.transform.position = new Vector3(x, hit.point.y, z);

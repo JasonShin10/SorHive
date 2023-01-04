@@ -173,7 +173,7 @@ public class LifeingItem : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url경로
-        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image/ai";
+        requester.url = "http://13.124.225.86:8080/api/v1/lifing/image/ai";
         requester.requestType = RequestType.POST;
        
 
@@ -208,7 +208,7 @@ public class LifeingItem : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url경로
-        requester.url = "http://52.79.209.232:8080/api/v1/lifing/image";
+        requester.url = "http://13.124.225.86:8080/api/v1/lifing/image";
         requester.requestType = RequestType.POST;
 
 
@@ -244,7 +244,7 @@ public class LifeingItem : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
 
-        requester.url = "http://52.79.209.232:8080/api/v1/lifing";
+        requester.url = "http://13.124.225.86:8080/api/v1/lifing";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(lifeing, true);

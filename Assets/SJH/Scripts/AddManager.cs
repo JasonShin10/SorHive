@@ -243,7 +243,7 @@ public class AddManager : MonoBehaviour
         print(HttpManager.instance.id);
         logdata.password = "qwer1234!";
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/auth/login";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
         requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
@@ -275,8 +275,8 @@ public class AddManager : MonoBehaviour
     {
         HttpRequester requester = new HttpRequester();
         print(HttpManager.instance.memberCode);
-        requester.url = "http://52.79.209.232:8080/api/v1/room/" + HttpManager.instance.memberCode;
-        //requester.url = "http://52.79.209.232:8080/api/v1/room/" + 1;
+        requester.url = "http://13.124.225.86:8080/api/v1/room/" + HttpManager.instance.memberCode;
+        //requester.url = "http://13.124.225.86:8080/api/v1/room/" + 1;
         requester.requestName = "GetPostAll";
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
@@ -702,7 +702,7 @@ public class AddManager : MonoBehaviour
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
-        requester.url = "http://52.79.209.232:8080/api/v1/room";
+        requester.url = "http://13.124.225.86:8080/api/v1/room";
         print("3333333333");
         requester.requestType = RequestType.POST;
         requester.requestName = "OnSaveSignIn";
@@ -724,7 +724,7 @@ public class AddManager : MonoBehaviour
     //    //서버에 게시물 조회 요청(/posts/1 , Get)
     //    HttpRequester requester = new HttpRequester();
     //    /// POST, 완료되었을 때 호출되는 함수
-    //    requester.url = "http://52.79.209.232:8080/api/v1/room";
+    //    requester.url = "http://13.124.225.86:8080/api/v1/room";
     //    requester.requestType = RequestType.POST;
     //    requester.requestName = "OnSaveSignIn";
     //    //post data 셋팅

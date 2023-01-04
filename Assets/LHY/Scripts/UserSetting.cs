@@ -205,7 +205,7 @@ public class UserSetting : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         //url 경로
-        requester.url = "http://52.79.209.232:8080/api/v1/auth/signup";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/signup";
         requester.requestType = RequestType.POST;
 
         print("회원가입 시도");
@@ -298,7 +298,7 @@ public class UserSetting : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         print(inputid.text);
-        requester.url = "http://52.79.209.232:8080/api/v1/auth/id";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/id";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(newId, true);
@@ -342,7 +342,7 @@ public class UserSetting : MonoBehaviour
 
         HttpRequester requester = new HttpRequester();
         print(newEmail.email);
-        requester.url = "http://52.79.209.232:8080/api/v1/auth/email";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/email";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(newEmail, true);

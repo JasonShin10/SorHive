@@ -5,16 +5,12 @@ using UnityEngine;
 public class MapRight : Map
 {
     
-    Vector3 startPos;
-    Quaternion startLocation;
-    Ray ray;
-    RaycastHit hit;
+   
     public Material[] mats;
     GameObject floor;
-    float box;
+    
     void Start()
     {
-        //Tile(firstPos.y, firstPos.z);
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileX; j++)
@@ -99,7 +95,6 @@ public class MapRight : Map
                     SaveJson(selectObj.gameObject);
                     selectObj = null;
                 }
-
             }
         }
 
@@ -120,42 +115,32 @@ public class MapRight : Map
                     
                     selectObj.position = new Vector3(hit.point.x, y, z);
                 }
-                //line.SetPosition(0, Camera.main.transform.position);
-                //line.SetPosition(1, hit.point);
             }
         }
     }
     
 
-    void Room(GameObject item)
+   protected override void Room(GameObject item)
     {
-        currCube = Instantiate(item);
-        //SaveJson(currCube.gameObject);
-        //currCube.name = "d" + select;
-        currCube.name = item.name;
+      
         select += 1;
-        currCube.layer = LayerMask.NameToLayer("Obj");
         int y = (int)(hit.point.y);
         int z = (int)(hit.point.z);
         currCube.transform.position = new Vector3(hit.point.x, y, z);
         SaveJson(currCube);
-        //if (currCube.GetComponent<Furniture>())
-        //{
-        //    currCube.GetComponent<Furniture>().startPos = new Vector3(hit.point.x, y, z);
-        //    startPos = currCube.GetComponent<Furniture>().startPos;
-        //    currCube.GetComponent<Furniture>().startRotation = currCube.transform.rotation;
-        //    startLocation = currCube.GetComponent<Furniture>().startRotation;
-         
-        //}
-
     }
 
     void Mat()
     {
         GameObject.Find("Wall_B").GetComponent<MeshRenderer>().material = mats[AddManager.instance.currButtonNum];
     }
+    protected override void SaveJson(GameObject obj)
+    {
+        base.SaveJson(obj);
+        AddManager.instance.objectInfo.wallTag = "WallRight";
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+    }
 
-  
 
     void SaveMat(GameObject objRoom)
     {
@@ -163,9 +148,7 @@ public class MapRight : Map
         {
             if (AddManager.instance.objectInfoList[i].room == objRoom)
             {
-                //정보수정
-                AddManager.instance.objectInfoList[i].wallNumber = AddManager.instance.currButtonNum;
-                
+                AddManager.instance.objectInfoList[i].wallNumber = AddManager.instance.currButtonNum;          
                 return;
             }
         }
@@ -175,36 +158,4 @@ public class MapRight : Map
         AddManager.instance.objectInfo.wallNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
-
-    public void OnRemoveJson()
-    {
-        print("OnRemoveJson");
-        int count = AddManager.instance.objectInfoList.Count;
-        //for (int i = 0; i < count; i++)
-        //{
-        //    //AddManager.instance.objectInfoList.RemoveAt(i);
-        //if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
-        //{
-
-        //    AddManager.instance.objectInfoList.RemoveAt(i);
-        //}
-        //else if (AddManager.instance.objectInfoList[i].obj.name == removeSelectObj.gameObject.name)
-        //{
-        //}
-        //}
-        for (int i = AddManager.instance.objectInfoList.Count - 1; i >= 0; i--)
-        {
-            if (AddManager.instance.objectInfoList[i].obj == null && AddManager.instance.objectInfoList[i].wallNumber == 0 && AddManager.instance.objectInfoList[i].floorNumber == 0)
-            {
-                AddManager.instance.objectInfoList.RemoveAt(i);
-            }
-            else if (AddManager.instance.objectInfoList[i].obj.name == AddManager.instance.deletetObj.gameObject.name)
-            {
-                AddManager.instance.objectInfoList.RemoveAt(i);
-            }
-        }
-        AddManager.instance.deletetObj.GetComponent<Furniture>().Delete();
-
-    }
-    public LineRenderer line;
 }

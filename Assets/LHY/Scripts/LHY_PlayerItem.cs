@@ -86,7 +86,7 @@ public class LHY_PlayerItem : MonoBehaviour
     public void OnClickCustomDataLoad()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + HttpManager.instance.memberCode.ToString();
+        requester.url = "http://13.124.225.86:8080/api/v1/member/roomin/" + HttpManager.instance.memberCode.ToString();
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
         requester.requestName = "GetMambersList";
@@ -127,7 +127,7 @@ public class LHY_PlayerItem : MonoBehaviour
         playerdata.memberAvatarImage = File.ReadAllBytes(Application.persistentDataPath + "/Resources/Avatarimg/avatar0.png");
 
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/avatar/create";
+        requester.url = "http://13.124.225.86:8080/api/v1/avatar/create";
         requester.requestType = RequestType.POST;
 
         requester.postData = JsonUtility.ToJson(playerdata, true);

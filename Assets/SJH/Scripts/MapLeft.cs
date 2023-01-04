@@ -5,15 +5,11 @@ using UnityEngine;
 public class MapLeft : Map
 {
     
-     Vector3 startPos;
-     Quaternion startLocation;
-     Ray ray;
-     RaycastHit hit;
+
     GameObject floor;
-    float box;
+    
     void Start()
     {
-        //Tile(firstPos.x, firstPos.y);
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileY; j++)
@@ -73,10 +69,7 @@ public class MapLeft : Map
             {
                 if (selectObj.GetComponent<Furniture>().canLocated == true)
                 {
-                    //print(1);
                     selectObj.position = new Vector3(ox, oy, oz);
-                    //print(selectObj.position);
-                    //print(ox);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
                     SaveJson(selectObj.gameObject);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
@@ -118,17 +111,21 @@ public class MapLeft : Map
         }
     }
 
-    void Room(GameObject item)
+    protected override void Room(GameObject item)
     {
-        currCube = Instantiate(item);
-        currCube.name = item.name;
         select += 1;
         currCube.gameObject.tag = "WallLeft";
         currCube.transform.rotation = Quaternion.Euler(0, 0, 0);
-        currCube.layer = LayerMask.NameToLayer("Obj");
         int x = (int)(hit.point.x);
         int y = (int)(hit.point.y);
         currCube.transform.position = new Vector3(x, y, hit.point.z);
         SaveJson(currCube);
     }
+    protected override void SaveJson(GameObject obj)
+    {
+        base.SaveJson(obj);
+        AddManager.instance.objectInfo.wallTag = "WallLeft";
+        AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
+    }
+
 }

@@ -185,7 +185,7 @@ public class LifeingManager : MonoBehaviour
     public void GetMambersList()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/list/" + ListCount.ToString();
+        requester.url = "http://13.124.225.86:8080/api/v1/member/list/" + ListCount.ToString();
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetPostAll;
         requester.requestName = "GetMambersList";

@@ -160,7 +160,7 @@ public class SearchID : MonoBehaviour
         HttpManager.instance.id = logdata.memberId;
         HttpManager.instance.memberCode = 6;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/auth/login";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
         requester.putData = JsonUtility.ToJson(logdata);
         requester.onComplete = OnClickDownload;
@@ -182,7 +182,7 @@ public class SearchID : MonoBehaviour
         //HttpManager.instance.img = true;
         HttpRequester requester = new HttpRequester();
         //print(HttpManager.instance.memberCode);
-        requester.url = "http://52.79.209.232:8080/api/v1/member/" + memberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/member/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomImage;
         requester.requestName = "GetRoomImage";
@@ -239,7 +239,7 @@ public class SearchID : MonoBehaviour
     {
         HttpRequester requester = new HttpRequester();
         print(memberCode);
-        requester.url = "http://52.79.209.232:8080/api/v1/member/" + memberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/member/" + memberCode;
 
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetThree;
@@ -305,7 +305,7 @@ public class SearchID : MonoBehaviour
     public void GetRoomAll(string searchId)
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/search/" + searchId;
+        requester.url = "http://13.124.225.86:8080/api/v1/member/search/" + searchId;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetRoomAll;
         requester.requestName = "GetRoomAll";
@@ -430,7 +430,7 @@ public class SearchID : MonoBehaviour
     public void GetUserFollowing()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/following/" + HttpManager.instance.userMemberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/following/" + HttpManager.instance.userMemberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetUserFollowing;
         requester.requestName = "GetUserMember";
@@ -472,7 +472,7 @@ public class SearchID : MonoBehaviour
     public void GetMember()
     {
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/" + id;
+        requester.url = "http://13.124.225.86:8080/api/v1/member/" + id;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetMember;
         requester.requestName = "GetMember";
@@ -620,7 +620,7 @@ public class SearchID : MonoBehaviour
         //서버에 게시물 조회 요청(/posts/1 , Get)
         HttpRequester requester = new HttpRequester();
         /// POST, 완료되었을 때 호출되는 함수
-        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + memberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/follow/" + memberCode;
         requester.requestType = RequestType.POST;
         //post data 셋팅
         requester.postData = JsonUtility.ToJson(info, true);
@@ -667,7 +667,7 @@ public class SearchID : MonoBehaviour
         followingCheck = false;
         followerCheck = false;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/following/" + memberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/following/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollowing;
         requester.requestName = "GetFollowing";
@@ -740,7 +740,7 @@ public class SearchID : MonoBehaviour
         followingCheck = false;
         followerCheck = false;
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follower/" + memberCode;
+        requester.url = "http://13.124.225.86:8080/api/v1/follower/" + memberCode;
         requester.requestType = RequestType.GET;
         requester.onComplete = OnCompleteGetFollower;
         requester.requestName = "GetFollower";
@@ -858,7 +858,7 @@ public class SearchID : MonoBehaviour
         followId = int.Parse(clickObject.transform.parent.GetChild(2).GetComponent<Text>().text);
         memberCode = int.Parse(clickObject.transform.parent.GetChild(1).GetComponent<Text>().text);
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
+        requester.url = "http://13.124.225.86:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteDeleteFollowing;
         requester.requestName = "OnClickDeleteFollowing";
@@ -887,7 +887,7 @@ public class SearchID : MonoBehaviour
         followingCountBool = false;
         GetThree();
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followId;
+        requester.url = "http://13.124.225.86:8080/api/v1/follow/" + followId;
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteDeleteFollowing;
         requester.requestName = "OnClickDeleteFollowing";
@@ -926,7 +926,7 @@ public class SearchID : MonoBehaviour
         followerId = int.Parse(clickObject.transform.parent.GetChild(2).GetComponent<Text>().text);
         memberCode = int.Parse(clickObject.transform.parent.GetChild(1).GetComponent<Text>().text);
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/follow/" + followerId;
+        requester.url = "http://13.124.225.86:8080/api/v1/follow/" + followerId;
         requester.requestType = RequestType.DELETE;
         requester.onComplete = OnCompleteDeleteFollower;
         requester.requestName = "OnClickDeleteFollower";

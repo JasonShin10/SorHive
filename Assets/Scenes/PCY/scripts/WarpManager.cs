@@ -58,7 +58,7 @@ public class WarpManager : MonoBehaviour
     {
         print("loadRoom");
         HttpRequester requester = new HttpRequester();
-        requester.url = "http://52.79.209.232:8080/api/v1/member/roomin/" + centerMemberCode.ToString();
+        requester.url = "http://13.124.225.86:8080/api/v1/member/roomin/" + centerMemberCode.ToString();
         requester.requestType = RequestType.GET;
         requester.onComplete = OnClickSet;
         StartCoroutine(HttpManager.instance.SendWarp(requester, centerMemberCode));
