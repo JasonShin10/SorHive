@@ -246,7 +246,7 @@ public class UserSetting : MonoBehaviour
         logdata.password = logPassword.text;
 
         HttpRequester requester = new HttpRequester();
-        requester.url = "ssl.sorhive.shop/api/v1/auth/login";
+        requester.url = "http://13.124.225.86:8080/api/v1/auth/login";
         requester.requestType = RequestType.PUT;
 
         requester.putData = JsonUtility.ToJson(logdata, true);
