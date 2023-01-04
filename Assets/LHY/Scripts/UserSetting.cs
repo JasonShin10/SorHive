@@ -254,7 +254,7 @@ public class UserSetting : MonoBehaviour
 
         requester.onComplete = downloadLoginData;
         requester.requestName = "login";
-
+        //
         StartCoroutine(HttpManager.instance.SendSignUp(requester));
         HttpManager.instance.userId = logID.text;
         HttpManager.instance.id = logID.text;
