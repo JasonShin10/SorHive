@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class MapGround : Map
 {
 
-    
 
+    public GameObject quadFactory;
+    public GameObject cube;
+    public Material[] floorMats;
     Button delete;
     GameObject floor;
     

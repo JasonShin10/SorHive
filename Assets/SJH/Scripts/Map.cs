@@ -6,10 +6,8 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     //protected 상속받은 자식들만 접근 가능
-    public GameObject quadFactory;
-    public GameObject cube;
-    public GameObject currCube;
-    protected Material[] floorMats;
+    
+    protected GameObject currCube;
     protected int tileX = 16;
     protected int tileZ = 16;
     protected int tileY = 16;
@@ -18,7 +16,7 @@ public class Map : MonoBehaviour
     protected float ox;
     protected float oz;
     protected float oy; 
-    protected bool located = true;
+    public bool located = true;
     protected Vector3 startPos;
     protected Quaternion startLocation;
     protected Ray ray;

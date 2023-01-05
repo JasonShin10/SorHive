@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MapLeft : Map
 {
-    
 
+    public GameObject quadFactory;
+    public GameObject cube;
+    public Material[] floorMats;
     GameObject floor;
     
     void Start()

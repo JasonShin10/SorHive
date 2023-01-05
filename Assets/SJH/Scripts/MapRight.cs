@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MapRight : Map
 {
-    
-   
+
+    public GameObject quadFactory;
+    public GameObject cube;
+    public Material[] floorMats;
     public Material[] mats;
     GameObject floor;
     
