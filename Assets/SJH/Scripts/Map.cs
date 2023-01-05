@@ -6,9 +6,9 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     //protected 상속받은 자식들만 접근 가능
-    protected GameObject quadFactory;
-    protected GameObject cube;
-    protected GameObject currCube;
+    public GameObject quadFactory;
+    public GameObject cube;
+    public GameObject currCube;
     protected Material[] floorMats;
     protected int tileX = 16;
     protected int tileZ = 16;
