@@ -33,6 +33,7 @@ public class MapGround : Map
 
     void Update()
     {
+        #region 마우스 클릭했을때
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -41,6 +42,7 @@ public class MapGround : Map
             {
                 if (hit.transform.CompareTag("Furniture"))
                 {
+                    // selectObj 선택된 가구
                     selectObj = hit.transform;
                     selectObj.gameObject.GetComponent<Furniture>().located = false;
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
@@ -51,6 +53,8 @@ public class MapGround : Map
                 }
             }
         }
+
+        // UI에서 가구를 클릭하였을때 소환할 가구를 받아온다.
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -162,6 +166,7 @@ public class MapGround : Map
                 }
             }
         }
+        #endregion
         #region 마우스 놓았을때
         if (Input.GetMouseButtonUp(0))
         {
@@ -190,6 +195,9 @@ public class MapGround : Map
                 }
             }
         }
+
+        #endregion
+        #region
         if (selectObj != null)
         {
             AddManager.instance.deletetObj = selectObj;
@@ -290,8 +298,11 @@ public class MapGround : Map
         AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(false);
     }
 
-    protected override void Room(GameObject item)
+    void Room(GameObject item)
     {
+        currCube = Instantiate(item);
+        currCube.name = item.name;
+        currCube.layer = LayerMask.NameToLayer("Obj");
         int x = (int)(hit.point.x);
         int z = (int)(hit.point.z);
         currCube.transform.position = new Vector3(x, hit.point.y, z);

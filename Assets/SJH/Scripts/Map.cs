@@ -6,8 +6,8 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     //protected 상속받은 자식들만 접근 가능
-    
-    protected GameObject currCube;
+
+    public GameObject currCube;
     protected int tileX = 16;
     protected int tileZ = 16;
     protected int tileY = 16;
@@ -77,12 +77,12 @@ public class Map : MonoBehaviour
         AddManager.instance.objectInfo.name = obj.gameObject.name;
     }
 
-    protected virtual void Room(GameObject item)
-    {
-        currCube = Instantiate(item);
-        currCube.name = item.name;
-        currCube.layer = LayerMask.NameToLayer("Obj");       
-    }
+    //protected virtual void Room(GameObject item)
+    //{
+    //    currCube = Instantiate(item);
+    //    currCube.name = item.name;
+    //    currCube.layer = LayerMask.NameToLayer("Obj");       
+    //}
 
 
 }

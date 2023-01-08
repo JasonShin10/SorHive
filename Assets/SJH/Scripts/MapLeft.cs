@@ -113,8 +113,11 @@ public class MapLeft : Map
         }
     }
 
-    protected override void Room(GameObject item)
+   void Room(GameObject item)
     {
+        currCube = Instantiate(item);
+        currCube.name = item.name;
+        currCube.layer = LayerMask.NameToLayer("Obj");
         select += 1;
         currCube.gameObject.tag = "WallLeft";
         currCube.transform.rotation = Quaternion.Euler(0, 0, 0);

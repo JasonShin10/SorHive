@@ -122,9 +122,11 @@ public class MapRight : Map
     }
     
 
-   protected override void Room(GameObject item)
+   void Room(GameObject item)
     {
-      
+        currCube = Instantiate(item);
+        currCube.name = item.name;
+        currCube.layer = LayerMask.NameToLayer("Obj");
         select += 1;
         int y = (int)(hit.point.y);
         int z = (int)(hit.point.z);
