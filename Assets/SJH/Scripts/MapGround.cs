@@ -1,18 +1,19 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class MapGround : Map
 {
-
-
     public GameObject quadFactory;
     public GameObject cube;
     public Material[] floorMats;
+    //Transform selectObj;
     Button delete;
     GameObject floor;
-    
     void Start()
     {
+    //tag = "Furniture";
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileX; j++)
@@ -33,16 +34,18 @@ public class MapGround : Map
 
     void Update()
     {
-        #region ¸¶¿ì½º Å¬¸¯ÇßÀ»¶§
+
+        #region ë§ˆìš°ìŠ¤ í´ë¦­í–ˆì„ë•Œ
         if (Input.GetMouseButtonDown(0))
         {
+            //SelectObject(tag);
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
                 if (hit.transform.CompareTag("Furniture"))
                 {
-                    // selectObj ¼±ÅÃµÈ °¡±¸
+                    // selectobj ì„ íƒëœ ê°€êµ¬
                     selectObj = hit.transform;
                     selectObj.gameObject.GetComponent<Furniture>().located = false;
                     selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
@@ -53,8 +56,7 @@ public class MapGround : Map
                 }
             }
         }
-
-        // UI¿¡¼­ °¡±¸¸¦ Å¬¸¯ÇÏ¿´À»¶§ ¼ÒÈ¯ÇÒ °¡±¸¸¦ ¹Ş¾Æ¿Â´Ù.
+        // UIì—ì„œ ê°€êµ¬ë¥¼ í´ë¦­í•˜ì˜€ì„ë•Œ ì†Œí™˜í•  ê°€êµ¬ë¥¼ ë°›ì•„ì˜¨ë‹¤.
         if (Input.GetMouseButtonDown(0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -62,7 +64,7 @@ public class MapGround : Map
             {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
                 {
-                    #region ¹æ»ı¼º
+                    #region ë°©ìƒì„±
                     if (AddManager.instance.AddBed == true)
                     {
                         num = 0;
@@ -167,7 +169,7 @@ public class MapGround : Map
             }
         }
         #endregion
-        #region ¸¶¿ì½º ³õ¾ÒÀ»¶§
+        #region ë§ˆìš°ìŠ¤ ë†“ì•˜ì„ë•Œ
         if (Input.GetMouseButtonUp(0))
         {
             if (selectObj)
@@ -183,12 +185,12 @@ public class MapGround : Map
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(-1.5f, selectObj.GetComponent<MeshRenderer>().bounds.size.y * 2f, -1.5f));
                     AddManager.instance.gameObject.transform.GetChild(3).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(8, selectObj.GetComponent<MeshRenderer>().bounds.size.y * 2f, 8));
                     selectObj = null;
-
                 }
                 else
                 {
                     selectObj.position = startPos;
                     selectObj.rotation = startLocation;
+                    //selectObj.GetComponent<Furniture>().canLocated = false;
                     selectObj.GetComponent<BoxCollider>().center = new Vector3(selectObj.GetComponent<BoxCollider>().center.x, box, selectObj.GetComponent<BoxCollider>().center.z);
                     SaveJson(selectObj.gameObject);
                     selectObj = null;
@@ -240,7 +242,7 @@ public class MapGround : Map
         {
             if (AddManager.instance.objectInfoList[i].room == objRoom)
             {
-                //Á¤º¸¼öÁ¤
+                //ì •ë³´ìˆ˜ì •
                 AddManager.instance.objectInfoList[i].floorNumber = AddManager.instance.currButtonNum;
 
                 return;
@@ -252,7 +254,7 @@ public class MapGround : Map
         AddManager.instance.objectInfo.floorNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
-    #region JsonÀúÀå
+    #region Jsonì €ì¥
 
     #endregion 
     void RemoveJson(GameObject obj)
@@ -291,7 +293,7 @@ public class MapGround : Map
                     return;
                 }
             }
-            //ÀüºÎ»èÁ¦
+            //ì „ë¶€ì‚­ì œ
             //AddManager.instance.objectInfoList.RemoveAt(i);
         }
         AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(false);
@@ -319,5 +321,10 @@ public class MapGround : Map
         }
     }
 
-
+    //public override void SelectObject(string tag)
+    //{
+    //    base.SelectObject(tag);
+    //    GameManager.instance.selected = selectObj.gameObject;
+    //    selectObj.GetComponent<BoxCollider>().center = transform.InverseTransformPoint(new Vector3(0, 24.5f, 0));
+    //}
 }

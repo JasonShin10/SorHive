@@ -5,6 +5,7 @@ using UnityEngine;
    
 public class Map : MonoBehaviour
 {
+    
     //protected 상속받은 자식들만 접근 가능
 
     public GameObject currCube;
@@ -16,13 +17,14 @@ public class Map : MonoBehaviour
     protected float ox;
     protected float oz;
     protected float oy; 
+    protected float box;
+    //protected string tag;
     public bool located = true;
     protected Vector3 startPos;
     protected Quaternion startLocation;
     protected Ray ray;
     protected RaycastHit hit;
     protected Vector3 firstPos;
-    protected float box;
     protected Transform selectObj;
     protected MeshRenderer rb;
 
@@ -76,6 +78,26 @@ public class Map : MonoBehaviour
         AddManager.instance.objectInfo.angle = obj.transform.eulerAngles;
         AddManager.instance.objectInfo.name = obj.gameObject.name;
     }
+    // 오브젝트를 클릭했을시
+    //public virtual void SelectObject(string tag)
+    //{
+     
+    //        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //        int layer = 1 << LayerMask.NameToLayer("Obj");
+    //        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
+    //        {
+    //            if (hit.transform.gameObject.CompareTag(tag))
+    //            {
+    //                selectObj = hit.transform;
+    //                selectObj.gameObject.GetComponent<Furniture>().located = false;
+    //                selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
+    //                startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
+    //                GameManager.instance.name = selectObj.name;
+    //            }
+    //        }
+        
+    //}
+
 
     //protected virtual void Room(GameObject item)
     //{

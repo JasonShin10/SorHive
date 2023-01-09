@@ -12,6 +12,7 @@ public class MapLeft : Map
     
     void Start()
     {
+        //tag = "WallLeft";
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileY; j++)
@@ -30,6 +31,7 @@ public class MapLeft : Map
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //SelectObject(tag);
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
@@ -44,7 +46,6 @@ public class MapLeft : Map
                 }
             }
         }
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -64,7 +65,6 @@ public class MapLeft : Map
             }
         }
 
-
         if (Input.GetMouseButtonUp(0))
         {
             if (selectObj)
@@ -74,7 +74,6 @@ public class MapLeft : Map
                     selectObj.position = new Vector3(ox, oy, oz);
                     selectObj.gameObject.GetComponent<Furniture>().located = true;
                     SaveJson(selectObj.gameObject);
-                    selectObj.gameObject.GetComponent<Furniture>().located = true;
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.SetActive(true);
                     AddManager.instance.gameObject.transform.GetChild(3).gameObject.SetActive(true);
                     AddManager.instance.gameObject.transform.GetChild(2).gameObject.GetComponent<RectTransform>().anchoredPosition = RectTransformUtility.WorldToScreenPoint(AddManager.instance.cam, selectObj.position + new Vector3(-1.5f, selectObj.GetComponent<MeshRenderer>().bounds.size.y, -1.5f));
@@ -126,6 +125,12 @@ public class MapLeft : Map
         currCube.transform.position = new Vector3(x, y, hit.point.z);
         SaveJson(currCube);
     }
+
+    //public override void SelectObject(string tag)
+    //{
+    //    base.SelectObject(tag);
+    //}
+
     protected override void SaveJson(GameObject obj)
     {
         base.SaveJson(obj);

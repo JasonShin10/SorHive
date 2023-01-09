@@ -9,10 +9,12 @@ public class MapRight : Map
     public GameObject cube;
     public Material[] floorMats;
     public Material[] mats;
+    //Transform selectObj;
     GameObject floor;
     
     void Start()
     {
+        //tag = "wall";
         for (int i = 0; i <= tileX; i++)
         {
             for (int j = 0; j <= tileX; j++)
@@ -34,17 +36,18 @@ public class MapRight : Map
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);     
+        //SelectObject(tag);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layer = 1 << LayerMask.NameToLayer("Obj");
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
             {
-                if(hit.transform.gameObject.CompareTag("Wall"))
+                if (hit.transform.gameObject.CompareTag("Wall"))
                 {
-                selectObj = hit.transform;
-                selectObj.gameObject.GetComponent<Furniture>().located = false;
-                selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
-                startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
-                GameManager.instance.name = selectObj.name;
+                    selectObj = hit.transform;
+                    selectObj.gameObject.GetComponent<Furniture>().located = false;
+                    selectObj.gameObject.GetComponent<Furniture>().startPos = hit.transform.position;
+                    startPos = selectObj.gameObject.GetComponent<Furniture>().startPos;
+                    GameManager.instance.name = selectObj.name;
                 }
             }
         }
@@ -162,4 +165,10 @@ public class MapRight : Map
         AddManager.instance.objectInfo.wallNumber = AddManager.instance.currButtonNum;
         AddManager.instance.objectInfoList.Add(AddManager.instance.objectInfo);
     }
+
+
+    //public override void SelectObject(string tag)
+    //{
+    //    base.SelectObject(tag);
+    //}
 }
