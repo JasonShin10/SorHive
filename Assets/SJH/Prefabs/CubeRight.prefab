@@ -54,6 +54,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8770533033395230762}
     m_Modifications:
+    - target: {fileID: 3067991071735672015, guid: 1abb60cbe3a0b4846bcd8a462f860f1a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3432799492069549885, guid: 1abb60cbe3a0b4846bcd8a462f860f1a, type: 3}
       propertyPath: m_Name
       value: Quad

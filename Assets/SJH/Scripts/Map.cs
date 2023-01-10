@@ -5,13 +5,18 @@ using UnityEngine;
    
 public class Map : MonoBehaviour
 {
-    
-    //protected 상속받은 자식들만 접근 가능
+   
 
-    public GameObject currCube;
-    protected int tileX = 16;
-    protected int tileZ = 16;
-    protected int tileY = 16;
+    //protected 상속받은 자식들만 접근 가능
+    public GameObject floorQuadFactory;
+    public GameObject rightQuadFactory;
+    public GameObject leftQuadFactory;
+   
+
+
+
+    protected int tile = 16;
+   
     protected int select = 0;
     protected int num;
     protected float ox;
@@ -27,35 +32,25 @@ public class Map : MonoBehaviour
     protected Vector3 firstPos;
     protected Transform selectObj;
     protected MeshRenderer rb;
-
+ 
     GameObject floor;
+    GameObject leftWall;
+    GameObject rightWall;
+
+  
     void Start()
     {
        
     }
 
-   
+
     void Update()
     {
-       
-       
+     
     }
 
-    //protected void Tile(float a, float b)
-    //{
-    //    for (int i = 0; i <= tileX; i++)
-    //    {
-    //        for (int j = 0; j <= tileX; j++)
-    //        {
-    //            firstPos = transform.position;
-    //            floor = Instantiate(quadFactory);
-    //            a += j;
-    //            b += i;
-    //            floor.transform.position = firstPos;
-    //            floor.transform.rotation = transform.rotation;
-    //        }
-    //    }
-    //}
+  
+   
 
     protected virtual void SaveJson(GameObject obj)
     {
