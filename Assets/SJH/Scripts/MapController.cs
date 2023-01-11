@@ -12,6 +12,9 @@ public class MapController : MonoBehaviour
     GameObject floor;
     GameObject leftWall;
     GameObject rightWall;
+    //Ray ray;
+    //RaycastHit hit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,54 @@ public class MapController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            map.ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layer = 1 << LayerMask.NameToLayer("Obj");
+            if (Physics.Raycast(map.ray, out map.hit, Mathf.Infinity, layer))
+            {
+                if (map.hit.transform.CompareTag("Furniture"))
+                {
+                    // selectobj 선택된 가구
+                    map = GetComponent<MapGround>();
+                    map.ClickObject(map.hit);
+                    map.Ground = true;
+
+                }
+                else if (map.hit.transform.CompareTag("WallLeft"))
+                {
+                    map = GetComponent<MapLeft>();
+                    map.ClickObject(map.hit);
+                    map.Left = true;
+                }
+                else if (map.hit.transform.CompareTag("Wall"))
+                {
+                    map = GetComponent<MapRight>();
+                    map.ClickObject(map.hit);
+                    map.Right = true;
+                }
+
+            }
+            if (Physics.Raycast(map.ray, out map.hit))
+            {
+                if (map.hit.transform.gameObject.layer == LayerMask.NameToLayer("Ground"))
+                {
+                    map = GetComponent<MapGround>();
+                    map.ClickUIObj();
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            map.ClickUpObject();
+        }
+
+        if (map.selectObj)
+        {
+            map.SelectObj();
+        }
+
     }
     public void SetTile()
     {
